@@ -48,7 +48,7 @@ public class IntegerToRoman {
         String result = intToRoman(testData);
 
         System.out.printf(" %d ToRoman is %s \n", testData, result);
-        System.out.printf("OK");
+
     }
 
 }
