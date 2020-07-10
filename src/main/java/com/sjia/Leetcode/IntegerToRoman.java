@@ -11,6 +11,10 @@ public class IntegerToRoman {
     //C             100
     //D             500
     //M             1000
+    //V             5000
+
+    // Runtime: 21 ms, faster than 8.22% of Java online submissions for Integer to Roman.
+    // Memory Usage: 43.9 MB, less than 5.01% of Java online submissions for Integer to Roman.
 
     static String intToRoman(int num)
     {
