@@ -12,6 +12,9 @@ public class FourSum {
     // Runtime: 13 ms, faster than 77.03% of Java online submissions for 4Sum.
     // Memory Usage: 39.7 MB, less than 77.46% of Java online submissions for 4Sum.
 
+    // add dup check condition at the beginning of i, j loop
+    //Runtime: 10 ms, faster than 85.32% of Java online submissions for 4Sum.
+    //Memory Usage: 39.7 MB, less than 80.85% of Java online submissions for 4Sum.
 
     static List<List<Integer>> fourSum(int[] nums, int target) {
         if (nums.length < 3) return new ArrayList<>();
@@ -20,8 +23,10 @@ public class FourSum {
         if (nums[0] * 4 > target) return new ArrayList<>();
 
         List<List<Integer>> res = new ArrayList<>();
-        for (int i = 0; i < nums.length - 3; i++)
+        for (int i = 0; i < nums.length - 3; i++) {
+            if(i!=0 && nums[i]==nums[i-1]) continue;
             for (int j = i + 1; j < nums.length - 2; j++) {
+                if(j!=i+1 && nums[j]==nums[j-1]) continue;
                 int lo = j + 1, hi = nums.length - 1, tmp = target - nums[i] - nums[j];
                 while (lo < hi) {
                     if (nums[lo] + nums[hi] == tmp) {
@@ -35,11 +40,13 @@ public class FourSum {
                     } else {
                         hi--;
                     }
-                    while ( nums[j]==nums[j+1] && j < nums.length - 2) j++;
+                    //while ( nums[j]==nums[j+1] && j < nums.length - 2) j++;
                 }
-                while ( nums[i]==nums[i+1] && i < nums.length - 3)  i++;
+                //while ( nums[i]==nums[i+1] && i < nums.length - 3)  i++;
             }
-            return res;
+
+        }
+        return res;
     }
 
 
@@ -47,8 +54,8 @@ public class FourSum {
 
 
         // int[] testData = {1, 0, -1, 0, -2, 2};
-        // int[] testData  = {-3,-2,-1,0,0,1,2,3};
-        // int[] testData  = {1,-2,-5,-4,-3,3,3,5};
+        // int[] testData  = {-3,-2,-1,0,0,1,2,3}; 0
+        // int[] testData  = {1,-2,-5,-4,-3,3,3,5}; -11
         int[] testData  = {-1,-5,-5,-3,2,5,0,4};
         int target = -7;
         List<List<Integer>> result = fourSum(testData, target);
