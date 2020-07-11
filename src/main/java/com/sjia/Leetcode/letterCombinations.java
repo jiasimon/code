@@ -15,7 +15,43 @@ public class letterCombinations {
     // Runtime: 5 ms, faster than 42.41% of Java online submissions for Letter Combinations of a Phone Number.
     //Memory Usage: 39.4 MB, less than 53.00% of Java online submissions for Letter Combinations of a Phone Number.
 
+
     static List<String> letterCombinations(String digits) {
+        if (digits.length() == 0) return new ArrayList<String>();
+
+        String[] mapTable = new String[]{
+                "0",
+                "",
+                "abc",
+                "def",
+                "ghi",
+                "jkl",
+                "mno",
+                "pqrs",
+                "tuv",
+                "wxyz"};
+        List<String> res = new ArrayList<>();
+        char[] cur = new char [digits.length()];
+        dfs(digits, mapTable, 0, cur, res );
+
+        return res;
+    }
+
+    private static void dfs(String digits, String[] mapTable, int i, char[] cur, List<String> res) {
+        if (i == digits.length()) {
+            if( i > 0 ) res.add(new String(cur) );
+            return;
+        }
+
+        String tmp = mapTable[Character.getNumericValue(digits.charAt(i))];
+        for (int j = 0; j < tmp.length(); ++j) {
+            cur[i] = tmp.charAt(j);
+            dfs(digits, mapTable, i + 1, cur, res);
+        }
+
+    }
+
+/*    static List<String> letterCombinations(String digits) {
         if (digits.length() == 0) return new ArrayList<String>();
 
         String[] mapTable = new String[]{
@@ -42,7 +78,7 @@ public class letterCombinations {
         }
 
         return res;
-    }
+    }*/
 
 
     public static void main(String[] args) {
