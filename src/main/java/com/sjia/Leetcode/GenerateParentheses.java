@@ -10,10 +10,18 @@ public class GenerateParentheses {
     // Runtime: 3 ms, faster than 28.99% of Java online submissions for Generate Parentheses.
     //Memory Usage: 40.9 MB, less than 12.20% of Java online submissions for Generate Parentheses.
 
+    // use if (left > right || left < 0 || right < 0), remove condition before recursive call
+    // Runtime: 1 ms, faster than 86.83% of Java online submissions for Generate Parentheses.
+    // Memory Usage: 39.3 MB, less than 88.90% of Java online submissions for Generate Parentheses.
 
-    public List<String> generateParenthesis(int n) {
+
+    static List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
         if (n == 0) {
+            return res;
+        }
+        if (n ==1)  {
+            res.add("()");
             return res;
         }
 
@@ -28,7 +36,7 @@ public class GenerateParentheses {
      * @param right  右括号还有几个可以使用
      * @param res    结果集
      */
-    private void dfs(String curStr, int left, int right, List<String> res) {
+    static void dfs(String curStr, int left, int right, List<String> res) {
         // 因为每一次尝试，都使用新的字符串变量，所以无需回溯
         // 在递归终止的时候，直接把它添加到结果集即可，注意与 第 46 题、第 39 题区分
         if (left == 0 && right == 0) {
@@ -40,14 +48,14 @@ public class GenerateParentheses {
         if (left > right || left < 0 || right < 0) {
             return;
         }
-
-        if (left > 0) {
             dfs(curStr + "(", left - 1, right, res);
-        }
-
-        if (right > 0) {
             dfs(curStr + ")", left, right - 1, res);
-        }
+    }
+
+    public static void main(String[] args) {
+        int testData  = 3;
+        List<String> result = generateParenthesis(testData);
+        System.out.printf(" Number %d  Generate Parentheses is: %s \n", testData, result);
     }
 
 
