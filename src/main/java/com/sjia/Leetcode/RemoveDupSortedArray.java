@@ -6,7 +6,10 @@ public class RemoveDupSortedArray {
     // Runtime: 1 ms, faster than 39.75% of Java online submissions for Remove Duplicates from Sorted Array.
     //Memory Usage: 41.2 MB, less than 70.66% of Java online submissions for Remove Duplicates from Sorted Array.
 
-    
+
+    //{1,2,3,4,5,6}
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Remove Duplicates from Sorted Array.
+    //Memory Usage: 41.2 MB, less than 76.86% of Java online submissions for Remove Duplicates from Sorted Array.
 
     static int removeDuplicates(int[] nums) {
         if(nums == null || nums.length == 0) return 0;
@@ -15,7 +18,7 @@ public class RemoveDupSortedArray {
         int q = 1;
         while(q < nums.length){
             if(nums[p] != nums[q]){
-                nums[p + 1] = nums[q];
+                if(q - p > 1) nums[p + 1] = nums[q];
                 p++;
             }
             q++;
@@ -25,7 +28,8 @@ public class RemoveDupSortedArray {
 
     public static void main(String[] args) {
 
-        int[] testData  = {0,0,1,1,1,2,2,3,3,4,5};
+        //int[] testData = {0,0,1,1,1,2,2,3,3,4,5};
+        int[] testData = {1,2,3,4,5,6};
         int result = removeDuplicates(testData);
 
         System.out.println("Array non duplicate number total is: " + result);
