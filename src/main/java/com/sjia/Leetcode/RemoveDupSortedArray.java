@@ -2,7 +2,7 @@ package com.sjia.Leetcode;
 
 public class RemoveDupSortedArray {
 
-    // #25 https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+    // #26 https://leetcode.com/problems/remove-duplicates-from-sorted-array/
     // Runtime: 1 ms, faster than 39.75% of Java online submissions for Remove Duplicates from Sorted Array.
     //Memory Usage: 41.2 MB, less than 70.66% of Java online submissions for Remove Duplicates from Sorted Array.
 

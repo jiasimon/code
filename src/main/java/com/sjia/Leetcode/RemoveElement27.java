@@ -3,7 +3,7 @@ package com.sjia.Leetcode;
 public class RemoveElement27 {
 
     // #27 remove Element, https://leetcode.com/problems/remove-element/
-    // similar to #25 removeDup
+    // similar to #26 removeDup
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Remove Element.
     // Memory Usage: 40 MB, less than 5.09% of Java online submissions for Remove Element.
 
