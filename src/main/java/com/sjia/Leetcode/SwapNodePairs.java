@@ -15,6 +15,9 @@ public class SwapNodePairs {
     // Memory Usage: 37.2 MB, less than 49.15% of Java online submissions for Swap Nodes in Pairs.
 
 
+    // remove "ListNode firstNode = head;"
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Swap Nodes in Pairs.
+    //Memory Usage: 37.1 MB, less than 63.66% of Java online submissions for Swap Nodes in Pairs.
 
     public ListNode swapPairs(ListNode head) {
 
@@ -24,12 +27,11 @@ public class SwapNodePairs {
         }
 
         // Nodes to be swapped
-        ListNode firstNode = head;
         ListNode secondNode = head.next;
 
         // Swapping
-        firstNode.next  = swapPairs(secondNode.next);
-        secondNode.next = firstNode;
+        head.next  = swapPairs(secondNode.next);
+        secondNode.next = head;
 
         // Now the head is the second node
         return secondNode;
