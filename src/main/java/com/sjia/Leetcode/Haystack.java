@@ -8,8 +8,12 @@ public class Haystack {
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Implement strStr().
     //Memory Usage: 39.9 MB, less than 5.21% of Java online submissions for Implement strStr().
 
+    // if needle is "", return 0; with  substring, no need to check
+
+    // KMB, Rabin Karp hash,
+
     static int strStr(String haystack, String needle) {
-        if( needle.isEmpty()) return 0;
+        //if( needle.isEmpty()) return 0;
         int len = haystack.length(), x = needle.length();
         for (int i=0; i< len-x+1; i++) {
             if ( needle.equals(haystack.substring(i, i+x)) ) return i;
