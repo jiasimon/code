@@ -5,6 +5,12 @@ import static java.lang.StrictMath.abs;
 public class PalindromeNumber {
 
 
+    // Runtime: 13 ms, faster than 19.96% of Java online submissions for Palindrome Number.
+    // Memory Usage: 41.6 MB, less than 11.61% of Java online submissions for Palindrome Number.
+
+    // Runtime: 10 ms, faster than 38.56% of Java online submissions for Palindrome Number.
+    // Memory Usage: 41.4 MB, less than 14.51% of Java online submissions for Palindrome Number.
+
 /*    static boolean isPalindrome(int x) {
         if (x < 0 || (x % 10 == 0 && x != 0)) {
             return false;
@@ -18,23 +24,13 @@ public class PalindromeNumber {
     }*/
 
 
-/*    static boolean isPalindrome(int x) {
-        if (x < 0 || (x % 10 == 0 && x != 0)) return false;
-        return reverse(x) == x;
-    }
 
-    static int reverse(int x) {
-        int result = 0;
-        while (x !=0) {
-            if  ( abs(result) > Integer.MAX_VALUE/ 10 ) {
-                System.out.println("reversed integer is out of Int range: ");
-                return -1;
-            }
-            result = result * 10 + x%10;
-            x = x/10;
-        }
-        return result;
-    }*/
+
+
+
+    // #9 https://leetcode.com/problems/palindrome-number/
+    // Runtime: 20 ms, faster than 9.53% of Java online submissions for Palindrome Number.
+    //Memory Usage: 38.9 MB, less than 54.92% of Java online submissions for Palindrome Number.
 
     static boolean isPalindrome(int x) {
         if ( x < 0 || ( (x%10)==0 && x!=0)) return  false;
