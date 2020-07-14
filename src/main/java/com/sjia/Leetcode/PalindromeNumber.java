@@ -49,7 +49,7 @@ public class PalindromeNumber {
 
         int testData2 = 1000000009;
         int testData1  = 12321;
-        int testData  = 212;
+        int testData  = 2122212;
         boolean result = isPalindrome(testData);
 
         System.out.printf(" input %d isPalindrome: %b ", testData, result);
