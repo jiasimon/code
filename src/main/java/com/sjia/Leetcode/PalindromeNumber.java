@@ -40,7 +40,7 @@ public class PalindromeNumber {
         if ( x < 0 || ( (x%10)==0 && x!=0)) return  false;
         String tmp = String.valueOf(x);
         StringBuilder output = new StringBuilder(tmp).reverse();
-        if ( tmp.equalsIgnoreCase(output.toString())) return true;
+        if ( tmp.equals(output.toString())) return true;
         else return false;
     }
 
