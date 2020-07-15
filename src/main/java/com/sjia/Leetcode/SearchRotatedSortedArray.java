@@ -15,6 +15,7 @@ public class SearchRotatedSortedArray {
 
     static int search(int[] nums, int target) {
         if (nums.length == 0) return -1;
+        if (nums.length == 1) return nums[0]==target ? 0:-1 ;
         int l = 0, r = nums.length - 1;
         while (l <= r) {
             int mid = (l+r)/2;
@@ -27,7 +28,7 @@ public class SearchRotatedSortedArray {
                 }
             } else {
                 if (target > nums[mid] && target <= nums[r] ) {
-                        l = mid + 1;
+                   l = mid + 1;
                 } else {
                     r = mid - 1;
                 }
@@ -41,7 +42,7 @@ public class SearchRotatedSortedArray {
         // int range:  -2147483648～2147483647
 
 
-         int [] testData ={3,1};
+         int [] testData ={1,3};
         // int [] testData ={1};
         // int []  testData  = { 7,0,1,2,4,5,6};
         //int []  testData  = { 4,5,6,7,0,1,2};
