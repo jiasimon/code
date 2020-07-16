@@ -34,6 +34,32 @@ public class CountSay {
     }
 
 
+    // if use String instead of StringBuffer
+    // Runtime: 31 ms, faster than 7.65% of Java online submissions for Count and Say.
+    //Memory Usage: 40.1 MB, less than 13.16% of Java online submissions for Count and Say.
+
+/*
+    public String countAndSay(int n) {
+        if (n == 1) {
+            return "1";
+        }
+        String res = "";
+        String tmp = countAndSay(n - 1);
+        int length = tmp.length();
+        int a = 0;
+        for (int i = 1; i < length + 1; i++) {
+            if (i == length) {
+                return res + (i - a) + tmp.charAt(a);
+            } else if (tmp.charAt(i) != tmp.charAt(a) ) {
+                res = res + (i - a) + tmp.charAt(a);
+                a = i;
+            }
+        }
+        return res.toString();
+    }*/
+
+
+
     public static void main(String[] args) {
         int testData = 5;
         String result = countAndSay(testData);
