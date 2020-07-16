@@ -9,7 +9,7 @@ public class FindFLSortedArray {
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Find First and Last Position of Element in Sorted Array.
     //Memory Usage: 42.6 MB, less than 72.07% of Java online submissions for Find First and Last Position of Element in Sorted Array.
 
-    // Need follow up
+    // Need follow up. 
 
 
     static int[] searchRange(int[] nums, int target) {
@@ -38,7 +38,7 @@ public class FindFLSortedArray {
 
             while (lo < hi) {
                 int mid = (lo + hi) / 2;
-                if (nums[mid] > target || (flag && target == nums[mid])) {
+                if (nums[mid] > target || (flag && target == nums[mid])) { // when left, flag is true
                     hi = mid;
                 }
                 else {
@@ -51,15 +51,11 @@ public class FindFLSortedArray {
 
 
 
-
-    }
-
-
     public static void main(String[] args) {
         int[] testData = {5,7,7,8,8,10};
-        int target = 8;
+        int target = 7;
         int[] result = searchRange(testData, target);
-        System.out.println("result is: " + Arrays.toString(result));
+        System.out.println( "Number " + target + " result is: " + Arrays.toString(result));
     }
 
 
