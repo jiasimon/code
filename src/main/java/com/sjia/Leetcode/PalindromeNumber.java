@@ -25,19 +25,18 @@ public class PalindromeNumber {
 
 
 
-
-
-
     // #9 https://leetcode.com/problems/palindrome-number/
     // Runtime: 20 ms, faster than 9.53% of Java online submissions for Palindrome Number.
     //Memory Usage: 38.9 MB, less than 54.92% of Java online submissions for Palindrome Number.
 
+    // Runtime: 13 ms, faster than 22.11% of Java online submissions for Palindrome Number.
+    //Memory Usage: 38.8 MB, less than 62.17% of Java online submissions for Palindrome Number.
+
     static boolean isPalindrome(int x) {
         if ( x < 0 || ( (x%10)==0 && x!=0)) return  false;
         String tmp = String.valueOf(x);
-        StringBuilder output = new StringBuilder(tmp).reverse();
-        if ( tmp.equals(output.toString())) return true;
-        else return false;
+        String reverse = new StringBuilder(tmp).reverse().toString();
+        return tmp.equals(reverse);
     }
 
 

@@ -2,17 +2,15 @@ package com.sjia.Leetcode;
 
 public class PalindromeString {
 
+    static boolean isPalindrome(String input) {
+        String reverseStr = new StringBuilder(input).reverse().toString();
+        return input.equals(reverseStr) ;
+    }
+
 /*
     static boolean isPalindrome(String input) {
-        StringBuilder output = new StringBuilder(input).reverse();
-        if ( input.equals(output.toString())) return true;
-        else return false;
-    }*/
-
-
-    static boolean isPalindrome(String input) {
         if (input == null) {
-            System.out.println("Input is Null, please provide valid string");
+            System.out.println("Input is Null, please provide a valid string");
             return false;
         }
 
@@ -32,7 +30,7 @@ public class PalindromeString {
             }
         }
         return true;
-    }
+    }*/
 
 
     public static void main(String[] args) {
@@ -40,10 +38,10 @@ public class PalindromeString {
 
         //String testData = "";
         //String testData  = " a  ";
-        //String testData  = " a ";
+        //String testData  = "aA";
         //String testData  = "abba ";
         //String testData  = null;
-        String testData  = null;
+        String testData  = "aBa";
         boolean result = isPalindrome(testData);
 
         System.out.printf(" input %s isPalindrome: %b ", testData, result);
