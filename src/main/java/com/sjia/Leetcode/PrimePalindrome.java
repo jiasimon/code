@@ -21,13 +21,37 @@ public class PrimePalindrome {
 
     }
 
-    static boolean isPalindrome(int x) {
+
+/*    static boolean isPalindrome(int x) {
         String tmp = String.valueOf(x);
         String reverse = new StringBuilder(tmp).reverse().toString();
         return tmp.equals(reverse);
+    }*/
+
+
+
+    // Runtime: 17 ms, faster than 89.25% of Java online submissions for Prime Palindrome.
+    //Memory Usage: 38.2 MB, less than 59.81% of Java online submissions for Prime Palindrome.
+
+    static boolean isPalindrome(int x) {
+        if (x % 10 == 0 && x != 0) {
+            return false;
+        }
+        int revertNum = 0;
+        while (x > revertNum) {
+            revertNum = revertNum * 10 + x % 10;
+            x /= 10;
+        }
+        return x == revertNum || x == revertNum / 10;
     }
 
+
+    // add if (N%2 ==0 || N < 2) return N==2;
+    //Runtime: 13 ms, faster than 89.90% of Java online submissions for Prime Palindrome.
+    //Memory Usage: 36.5 MB, less than 74.77% of Java online submissions for Prime Palindrome.
+
     static boolean isPrime(int N) {
+        if (N%2 ==0 || N < 2) return N==2;
         for (int i=2; i<= Math.sqrt(N); i++ ) {
             if (N%i ==0) return false;
         }
