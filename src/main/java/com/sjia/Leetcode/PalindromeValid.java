@@ -7,6 +7,10 @@ public class PalindromeValid {
     // Runtime: 11 ms, faster than 33.72% of Java online submissions for Valid Palindrome II.
     //Memory Usage: 52.1 MB, less than 9.72% of Java online submissions for Valid Palindrome II.
 
+
+    // no change, second run Runtime: 7 ms, faster than 75.12% of Java online submissions for Valid Palindrome II.
+    //Memory Usage: 39.7 MB, less than 91.42% of Java online submissions for Valid Palindrome II.
+
     static boolean validPalindrome(String s) {
         int i = 0, j = s.length() - 1;
         while (i < j) {
