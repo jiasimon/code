@@ -36,7 +36,7 @@ public class PalindromeKStrings {
 
     // second run, Runtime: 13 ms, faster than 41.24% of Java online submissions for Construct K Palindrome Strings.
     //Memory Usage: 39.9 MB, less than 76.61% of Java online submissions for Construct K Palindrome Strings.
-    
+
     public boolean canConstruct(String s, int k) {
         if (k > s.length()) return false;
         int odd = 0;
@@ -52,7 +52,7 @@ public class PalindromeKStrings {
     public static void main(String[] args) {
 
         //String testData = "leetcode";
-        String testData  = "";
+        String testData  = "leetcode";
         int k = 1;
         PalindromeKStrings solution = new PalindromeKStrings();
         boolean result = solution.canConstruct(testData, k);
