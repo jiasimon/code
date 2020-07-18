@@ -12,8 +12,28 @@ public class PalindromeValidIgnore {
 
     public boolean isPalindrome(String s) {
         String filterStr = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-        return filterStr.equals(new StringBuilder(filterStr).reverse().toString()) ;
+        String revertStr = new StringBuilder(filterStr).reverse().toString();
+        return filterStr.equals(revertStr) ;
     }
+
+
+    // Runtime: 11 ms, faster than 31.09% of Java online submissions for Valid Palindrome.
+    //Memory Usage: 40.9 MB, less than 12.38% of Java online submissions for Valid Palindrome.
+
+/*
+    public boolean isPalindrome(String s) {
+        StringBuffer sgood = new StringBuffer();
+        int length = s.length();
+        for (int i = 0; i < length; i++) {
+            char ch = s.charAt(i);
+            if (Character.isLetterOrDigit(ch)) {
+                sgood.append(Character.toLowerCase(ch));
+            }
+        }
+        StringBuffer sgood_rev = new StringBuffer(sgood).reverse();
+        return sgood.toString().equals(sgood_rev.toString());
+    }*/
+
 
 
     public static void main(String[] args) {
