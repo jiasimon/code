@@ -28,7 +28,7 @@ public class PalindromeBreak {
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Break a Palindrome.
     //Memory Usage: 37.2 MB, less than 88.59% of Java online submissions for Break a Palindrome.
-
+/*
     static String breakPalindrome(String palindrome) {
         if (palindrome.length()<=1) return "";
         int N = palindrome.length();
@@ -44,9 +44,25 @@ public class PalindromeBreak {
             }
         }
         return String.valueOf(s);
+    }*/
+
+
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Break a Palindrome.
+    //Memory Usage: 37.4 MB, less than 63.01% of Java online submissions for Break a Palindrome.
+
+    static String breakPalindrome(String palindrome) {
+        if (palindrome.length()<=1) return "";
+        int N = palindrome.length();
+        char[] s = palindrome.toCharArray();
+        for (int i=0; i<N/2; i++) {
+            if (palindrome.charAt(i) != 'a') {
+                s[i] = 'a';
+                return String.valueOf(s);
+            }
+        }
+        s[N-1]='b';
+        return String.valueOf(s);
     }
-
-
 
     public static void main(String[] args) {
 
