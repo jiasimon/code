@@ -1,6 +1,6 @@
 package com.sjia.Leetcode;
 
-public class LongestPalindrom {
+public class LongestPalindrome {
 
     // #5 https://leetcode.com/problems/longest-palindromic-substring/
 
@@ -32,7 +32,7 @@ public class LongestPalindrom {
 
 
 
-    // extend 
+    // extend
     // Runtime: 22 ms, faster than 91.29% of Java online submissions for Longest Palindromic Substring.
     //Memory Usage: 38 MB, less than 71.62% of Java online submissions for Longest Palindromic Substring.
 
@@ -72,7 +72,8 @@ public class LongestPalindrom {
         //String testData = "baacecaaa";
         //String testData = "abacd"; dcaba
         String testData  = "baacecaaa";
-        String result = longestPalindrome(testData);
+        LongestPalindrome solution = new LongestPalindrome();
+        String result = solution.longestPalindrome(testData);
 
         System.out.printf(" input %s , PalindromeShortest is %s ", testData, result);
     }
