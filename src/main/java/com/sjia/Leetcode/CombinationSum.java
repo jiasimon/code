@@ -49,7 +49,7 @@ public class CombinationSum {
     // Runtime: 5 ms, faster than 50.66% of Java online submissions for Combination Sum.
     //Memory Usage: 41.6 MB, less than 11.95% of Java online submissions for Combination Sum.
 
-    // 
+    // Recursive backtracking
     // Runtime: 3 ms, faster than 81.69% of Java online submissions for Combination Sum.
     //Memory Usage: 39.6 MB, less than 68.37% of Java online submissions for Combination Sum.
 
