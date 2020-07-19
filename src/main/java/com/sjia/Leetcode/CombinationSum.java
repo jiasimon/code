@@ -61,8 +61,8 @@ public class CombinationSum {
     }
 
     private void backtrack(List<List<Integer>> result, ArrayList<Integer> tmp, int[] nums, int remain, int start) {
-        if (remain < 0) return;
-        else if ( remain == 0) {
+        // if (remain < 0) return;
+        if ( remain == 0) {
             result.add(new ArrayList<>(tmp));
             return;
         } else {
