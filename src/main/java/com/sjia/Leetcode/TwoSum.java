@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class TwoSum {
 
-    public int[] twoSum(int[] nums, int target) {
+/*    public int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> m = new HashMap<Integer, Integer>();
         int[] res = new int[2];
         for (int i = 0; i < nums.length; ++i) {
@@ -19,6 +19,25 @@ public class TwoSum {
             }
         }
         return res;
+    }*/
+
+
+    // Runtime: 6 ms, faster than 43.76% of Java online submissions for Two Sum.
+    //Memory Usage: 41.7 MB, less than 5.44% of Java online submissions for Two Sum.
+
+    public int[] twoSum(int[] nums, int target) {
+        int[] result = new int[2];
+        HashMap<Integer, Integer> tmp = new HashMap<>();
+        for (int i=0; i< nums.length; i++) {
+            if ( tmp.containsKey(target- nums[i]) ) {
+                result[1] = i;
+                result[0] = tmp.get(target- nums[i]);
+                return result;
+            } else {
+                tmp.put(nums[i], i);
+            }
+        }
+        return result;
     }
 
 /*
