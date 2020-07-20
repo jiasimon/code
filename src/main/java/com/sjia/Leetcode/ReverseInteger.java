@@ -4,7 +4,16 @@ import static java.lang.StrictMath.abs;
 
 public class ReverseInteger {
 
-/*    static int reverse(int x) {
+
+    // #7 reverse Int
+
+    // Runtime: 2 ms, faster than 44.17% of Java online submissions for Reverse Integer.
+    //Memory Usage: 38.6 MB, less than 6.91% of Java online submissions for Reverse Integer.
+
+    // second run, Runtime: 1 ms, faster than 100.00% of Java online submissions for Reverse Integer.
+    //Memory Usage: 39 MB, less than 5.04% of Java online submissions for Reverse Integer.
+
+    static int reverse(int x) {
         int result = 0;
 //        int lengh = String.valueOf(abs(x)).length();
 //        for (int i=0; i<lengh; i++) {
@@ -18,8 +27,12 @@ public class ReverseInteger {
         }
         return result;
 
-    }*/
+    }
 
+    // Runtime: 6 ms
+    //Memory Usage: 38.6 MB
+
+/*
     static int reverse(int x) {
         if (x==Integer.MIN_VALUE) return 0;
         Long result = 0L;
@@ -33,7 +46,7 @@ public class ReverseInteger {
         }
         else  return 0;
 
-    }
+    }*/
 
 
 
