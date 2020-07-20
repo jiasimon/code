@@ -46,7 +46,7 @@ public class CombinationSum2 {
         CombinationSum2 solution = new CombinationSum2();
         List<List<Integer>> result = solution.combinationSum2(testData, target);
 
-        System.out.printf(" target %d Three sum result is %s \n",target, result);
+        System.out.printf(" target %d CombinationSum2 result is %s \n",target, result);
     }
 
 

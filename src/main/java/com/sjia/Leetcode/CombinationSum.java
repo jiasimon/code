@@ -86,7 +86,7 @@ public class CombinationSum {
         CombinationSum solution = new CombinationSum();
         List<List<Integer>> result = solution.combinationSum(testData, target);
 
-        System.out.printf(" target %d Three sum result is %s \n",target, result);
+        System.out.printf(" target %d CombinationSum is %s \n",target, result);
     }
 
 }

@@ -27,6 +27,7 @@ public class Permutations {
             return;
         } else {
             for (int i = 0; i < nums.length; i++) {
+                if (tmp.contains(nums[i])) continue;
                 tmp.add(nums[i]);
                 backtrack(result, tmp, nums, i + 1);
                 tmp.remove(tmp.size() - 1);
@@ -43,7 +44,7 @@ public class Permutations {
         Permutations solution = new Permutations();
         List<List<Integer>> result = solution.permute(testData);
 
-        System.out.printf(" testData %s Three sum result is %s \n", Arrays.toString(testData),result);
+        System.out.printf(" testData %s Permutations result is %s \n", Arrays.toString(testData),result);
     }
 
 }

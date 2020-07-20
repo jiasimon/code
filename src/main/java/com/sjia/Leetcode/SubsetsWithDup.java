@@ -39,7 +39,7 @@ public class SubsetsWithDup {
         SubsetsWithDup solution = new SubsetsWithDup();
         List<List<Integer>> result = solution.subsetsWithDup(testData);
 
-        System.out.printf(" testData %s Three sum result is %s \n", Arrays.toString(testData),result);
+        System.out.printf(" testData %s Subsets with duplicate result is %s \n", Arrays.toString(testData),result);
     }
 
 

@@ -35,7 +35,7 @@ public class Subsets {
         Subsets solution = new Subsets();
         List<List<Integer>> result = solution.subsets(testData);
 
-        System.out.printf(" testData %s Three sum result is %s \n", Arrays.toString(testData),result);
+        System.out.printf(" testData %s Subsets result is %s \n", Arrays.toString(testData),result);
     }
 
 }
