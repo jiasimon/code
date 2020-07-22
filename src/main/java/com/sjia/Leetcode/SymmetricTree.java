@@ -30,11 +30,15 @@ public class SymmetricTree {
         return checkSymmetric(root.left, root.right);
     }
 
+    // use "else if, else" instead of "if, if"
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Symmetric Tree.
+    //Memory Usage: 37.3 MB, less than 97.09% of Java online submissions for Symmetric Tree.
+
     public boolean checkSymmetric(TreeNode left, TreeNode right) {
         if (left == null && right == null) return true;
-        if (left == null || right == null) return false;
-        return (left.val == right.val) && checkSymmetric(left.left, right.right) &&
-                checkSymmetric(left.right, right.left);
+        else if (left == null || right == null) return false;
+        else return (left.val == right.val) && checkSymmetric(left.left, right.right)
+                    && checkSymmetric(left.right, right.left);
     }
 
 }
