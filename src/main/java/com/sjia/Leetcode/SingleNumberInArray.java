@@ -10,7 +10,7 @@ public class SingleNumberInArray {
 
     // leetcode was down for some time today. Runtime: 6 ms, faster than 39.12% of Java online submissions for Single Number.
     //Memory Usage: 40.3 MB, less than 59.60% of Java online submissions for Single Number.
-
+/*
     public int singleNumber(int[] nums) {
         HashSet<Integer> result = new HashSet<>();
         for (int num : nums) {
@@ -18,6 +18,18 @@ public class SingleNumberInArray {
             else result.add(num);
         }
         return result.stream().findFirst().get();
+    }*/
+
+
+    //Runtime: 1 ms, faster than 73.39% of Java online submissions for Single Number.
+    //Memory Usage: 43.6 MB, less than 5.10% of Java online submissions for Single Number.
+    
+    public int singleNumber(int[] nums) {
+        int result =0;
+        for (int num : nums) {
+            result ^= num;
+        }
+        return result;
     }
 
 
