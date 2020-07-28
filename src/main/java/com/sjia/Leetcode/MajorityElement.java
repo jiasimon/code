@@ -29,10 +29,24 @@ public class MajorityElement {
 
     // Runtime: 3 ms, faster than 62.79% of Java online submissions for Majority Element.
     //Memory Usage: 50.6 MB, less than 5.06% of Java online submissions for Majority Element.
-
+/*
     public int majorityElement(int[] nums) {
         Arrays.sort(nums);
         return nums[nums.length/2];
+    }*/
+
+
+
+    // Runtime: 1 ms, faster than 99.89% of Java online submissions for Majority Element.
+    //Memory Usage: 42.9 MB, less than 57.33% of Java online submissions for Majority Element.
+    public int majorityElement(int[] nums) {
+        int count =0, tmp=0;
+        for (int num: nums) {
+            if (count ==0) tmp =num;
+            count += (num == tmp) ? 1:-1;
+        }
+        return tmp;
+
     }
 
 
