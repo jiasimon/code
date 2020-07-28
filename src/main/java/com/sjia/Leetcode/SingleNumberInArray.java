@@ -23,7 +23,7 @@ public class SingleNumberInArray {
 
     //Runtime: 1 ms, faster than 73.39% of Java online submissions for Single Number.
     //Memory Usage: 43.6 MB, less than 5.10% of Java online submissions for Single Number.
-    
+
     public int singleNumber(int[] nums) {
         int result =0;
         for (int num : nums) {
