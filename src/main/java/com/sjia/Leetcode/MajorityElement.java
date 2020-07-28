@@ -50,10 +50,12 @@ public class MajorityElement {
     }
 
 
+
+
     public static void main(String[] args) {
         // int[] testData = { 2,2,1,1,1,2,2 };
         // int[] testData = { 3,3,4};
-        int[] testData = { -1,1,1,1,2,1};
+        int[] testData = { 3,4,4};
         MajorityElement mySolution = new MajorityElement();
         int result = mySolution.majorityElement(testData);
         System.out.printf("The majority of testData %s is: %s" , Arrays.toString(testData),result );
