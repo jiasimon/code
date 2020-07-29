@@ -6,6 +6,11 @@ public class Numberof1Bits {
     // Runtime: 1 ms, faster than 54.21% of Java online submissions for Number of 1 Bits.
     //Memory Usage: 38.8 MB, less than 5.01% of Java online submissions for Number of 1 Bits.
 
+
+    //   return Integer.bitCount()
+    // Runtime: 1 ms, faster than 54.21% of Java online submissions for Number of 1 Bits.
+    //Memory Usage: 38.3 MB, less than 5.27% of Java online submissions for Number of 1 Bits.
+
     public int hammingWeight(int n) {
         int result = 0;
         while (n != 0) {
@@ -13,6 +18,7 @@ public class Numberof1Bits {
             n = n >>> 1;
         }
         return result;
+        // return Integer.bitCount();
     }
 
 
