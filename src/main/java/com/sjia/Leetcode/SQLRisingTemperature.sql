@@ -11,3 +11,10 @@ where DATEDIFF(w2.RecordDate, w1.RecordDate) = 1
 and w2.Temperature > w1.Temperature;
 
 
+
+# Runtime: 552 ms, faster than 55.08% of MySQL online submissions for Rising Temperature.
+SELECT w1.Id
+FROM Weather w1, Weather w2
+WHERE w1.Temperature > w2.Temperature AND
+      TO_DAYS(w1.RecordDate)-TO_DAYS(w2.RecordDate)=1;
+
