@@ -1,4 +1,6 @@
 
+#181 https://leetcode.com/problems/employees-earning-more-than-their-managers/
+
 select a.Name as Employee
 From Employee a right outer join Employee b
 On a.ManagerId = b.Id
