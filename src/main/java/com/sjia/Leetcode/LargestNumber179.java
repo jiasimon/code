@@ -17,6 +17,7 @@ public class LargestNumber179 {
             String order1 = a + b;
             String order2 = b + a;
             return order2.compareTo(order1);
+
         }
     }
 
@@ -38,8 +39,8 @@ public class LargestNumber179 {
 
     public static void main(String[] args) {
 
-        int[] testData  = {0,0};
-        //int[] testData  = {3,30,34,5,9};
+        //int[] testData  = {0,0};
+        int[] testData  = {3,30,34,5,9};
 
         LargestNumber179 solution = new LargestNumber179();
         String result = solution.largestNumber(testData);
