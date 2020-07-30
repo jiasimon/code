@@ -28,21 +28,22 @@ public class HappyNumber {
     }*/
 
 
-    // 4, 16, 37, 58, 89,
+    // private static HashSet<Integer> tmp =
+    //        new HashSet<>(Arrays.asList(4, 16, 37, 58, 89, 145, 42, 20));
 
     //Runtime: 4 ms, faster than 13.94% of Java online submissions for Happy Number.
     //Memory Usage: 38.6 MB, less than 6.83% of Java online submissions for Happy Number.
+
+    // update while loop
+    // Runtime: 2 ms, faster than 41.71% of Java online submissions for Happy Number.
+    //Memory Usage: 36.7 MB, less than 35.32% of Java online submissions for Happy Number.
     public boolean isHappy(int n) {
         HashSet<Integer> tmp = new HashSet<>();
-        while(true) {
-            int result = getNextNumber(n);
-            if ( result ==1) return true;
-            else if (tmp.contains(result)) return false;
-            else {
-                tmp.add(result);
-                n = result;
-            }
+        while(n !=1 && !tmp.contains(n)) {
+            tmp.add(n);
+            n = getNextNumber(n);
         }
+        return n==1;
     }
 
     private int getNextNumber(int n) {
