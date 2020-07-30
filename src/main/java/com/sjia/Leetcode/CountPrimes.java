@@ -28,13 +28,13 @@ public class CountPrimes {
 
     // Runtime: 19 ms, faster than 55.19% of Java online submissions for Count Primes.
     //Memory Usage: 41.2 MB, less than 9.02% of Java online submissions for Count Primes.
-
+/*
     int countPrimes(int n) {
         boolean[] isPrime = new boolean[n];
         // init all to true
         Arrays.fill(isPrime, true);
 
-        for (int i = 2; i < Math.sqrt(n); i++) {
+        for (int i = 2; i < n; i++) {
             if (isPrime[i])
                 for (int j = 2 * i; j < n; j += i)
                     isPrime[j] = false;
@@ -45,9 +45,26 @@ public class CountPrimes {
             if (isPrime[i]) count++;
         }
         return count;
+    }*/
+
+
+    // Runtime: 13 ms, faster than 85.90% of Java online submissions for Count Primes.
+    //Memory Usage: 38.5 MB, less than 8.34% of Java online submissions for Count Primes.
+
+    public int countPrimes(int n) {
+        boolean[] notPrime = new boolean[n];
+        int count = 0;
+        for (int i = 2; i < n; i++) {
+            if (notPrime[i] == false) {
+                count++;
+                for (int j = 2; i*j < n; j++) {
+                    notPrime[i*j] = true;
+                }
+            }
+        }
+
+        return count;
     }
-
-
 
 
     public static void main(String[] args) {
