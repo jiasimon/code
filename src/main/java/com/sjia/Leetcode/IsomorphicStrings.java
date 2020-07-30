@@ -37,10 +37,8 @@ public class IsomorphicStrings {
         for (int i=0; i< s.length(); i++) {
             if( tmp.containsKey(s.charAt(i)) ) {
                 if(tmp.get(s.charAt(i)) != t.charAt(i) ) return false;
-            } else {
-                if (tmp.containsValue(t.charAt(i)) ) return false;
-                else tmp.put(s.charAt(i), t.charAt(i));
-            }
+            } else if (tmp.containsValue(t.charAt(i)) ) return false;
+            else tmp.put(s.charAt(i), t.charAt(i));
         }
         return true;
     }
