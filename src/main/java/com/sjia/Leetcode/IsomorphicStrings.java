@@ -35,8 +35,8 @@ public class IsomorphicStrings {
         if(s == null || s.length() <= 1) return true;
         HashMap<Character, Character> tmp = new HashMap<>();
         for (int i=0; i< s.length(); i++) {
-            if( tmp.containsKey(s.charAt(i)) ) {
-                if(tmp.get(s.charAt(i)) != t.charAt(i) ) return false;
+            if( tmp.getOrDefault(s.charAt(i),'0'  ) !=t.charAt(i) ) {
+                return false;
             } else if (tmp.containsValue(t.charAt(i)) ) return false;
             else tmp.put(s.charAt(i), t.charAt(i));
         }
