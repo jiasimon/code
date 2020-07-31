@@ -1,6 +1,7 @@
 package com.sjia.Leetcode;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class ValidAnagram {
     // #242 https://leetcode.com/problems/valid-anagram/
@@ -17,6 +18,15 @@ public class ValidAnagram {
         Arrays.sort(a);
         Arrays.sort(b);
         return Arrays.equals(a, b);
+    }
+
+    public static void main(String[] args) {
+
+        String s = "太阳雨";
+        String t = "雨太阳";
+        ValidAnagram solution = new ValidAnagram();
+        boolean result = solution.isAnagram(s,t);
+        System.out.printf(" %s and %s anagram is : %s  \n", s, t, result);
     }
 
 }
