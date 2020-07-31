@@ -22,7 +22,7 @@ public class ValidAnagram {
         return Arrays.equals(a, b);
     }*/
 
-    // HashMap 
+    // HashMap
     // Runtime: 21 ms, faster than 11.72% of Java online submissions for Valid Anagram.
     //Memory Usage: 39.8 MB, less than 33.14% of Java online submissions for Valid Anagram.
     public boolean isAnagram(String s, String t) {
