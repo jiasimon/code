@@ -1,6 +1,7 @@
 package com.sjia.Leetcode;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class ContainsDuplicateK {
@@ -11,6 +12,7 @@ public class ContainsDuplicateK {
 
     // Runtime: 6 ms, faster than 76.44% of Java online submissions for Contains Duplicate II.
     //Memory Usage: 43.2 MB, less than 56.72% of Java online submissions for Contains Duplicate II.
+/*
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         HashSet<Integer> tmp = new HashSet<>();
         for (int i=0; i< nums.length; i++) {
@@ -19,7 +21,22 @@ public class ContainsDuplicateK {
             if (tmp.size() > k ) tmp.remove(nums[i-k]);
         }
         return false;
+    }*/
+
+
+    // Runtime: 10 ms, faster than 46.12% of Java online submissions for Contains Duplicate II.
+    //Memory Usage: 50.4 MB, less than 5.47% of Java online submissions for Contains Duplicate II.
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashMap<Integer, Integer> tmp = new HashMap<>();
+        for (int i=0; i< nums.length; i++) {
+            if (!tmp.containsKey(nums[i])) tmp.put(nums[i], i);
+            else if(tmp.containsKey(nums[i]) &&  i - tmp.get(nums[i]) <= k ) return true;
+            else tmp.put(nums[i], i);
+        }
+        return false;
     }
+
+
 
     public static void main(String[] args) {
         int[] testData  = {1,2,3,1,2,3};
