@@ -15,10 +15,35 @@ public class AddDigits {
         return num;
     }
 
+
+    // Runtime: 1 ms, faster than 100.00% of Java online submissions for Add Digits.
+    //Memory Usage: 38.6 MB, less than 5.39% of Java online submissions for Add Digits.
+/*
+    public int addDigits(int num) {
+        while (num > 9) {
+            int tmp = 0;
+            while ( num>0) {
+                tmp += num%10;
+                num /=10;
+            }
+            num = tmp;
+        }
+        return num;
+    }*/
+
+
+    // O(1) took longer time ??
+    // Runtime: 3 ms, faster than 12.36% of Java online submissions for Add Digits.
+    //Memory Usage: 38.7 MB, less than 5.39% of Java online submissions for Add Digits.
+
+/*
+    public int addDigits(int num) {
+        return (num-1) % 9 +1;
+    }*/
+
+
     public static void main(String[] args) {
-
-
-        int testData  = 182;  // 37
+        int testData  = 38;  // 182
         AddDigits solution = new AddDigits();
         int result = solution.addDigits(testData);
 
