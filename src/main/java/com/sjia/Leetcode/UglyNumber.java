@@ -8,6 +8,7 @@ public class UglyNumber {
 
     //Runtime: 1 ms, faster than 100.00% of Java online submissions for Ugly Number.
     //Memory Usage: 36.8 MB, less than 27.19% of Java online submissions for Ugly Number.
+/*
     public boolean isUgly(int num) {
         if (num <=0) return false;
         while (true) {
@@ -18,11 +19,18 @@ public class UglyNumber {
             else if (num ==1 ) return true;
             else if (num == tmp) return false;
         }
+    }*/
+
+
+    // Runtime: 1 ms, faster than 100.00% of Java online submissions for Ugly Number.
+    //Memory Usage: 36.9 MB, less than 5.26% of Java online submissions for Ugly Number.
+    public boolean isUgly(int num) {
+        if (num <=0) return false;
+        while (num % 2 == 0) num /= 2;
+        while (num % 3 == 0) num /= 3;
+        while (num % 5 == 0) num /= 5;
+        return num == 1;
+        }
     }
 
-
-    
-
-
-}
 
