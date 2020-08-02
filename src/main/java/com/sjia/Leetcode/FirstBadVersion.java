@@ -21,5 +21,9 @@ public class FirstBadVersion {
 
     }
 
-    
+    private boolean isBadVersion(int mid) {
+        return mid >20;
+    }
+
+
 }
