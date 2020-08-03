@@ -14,7 +14,7 @@ public class PowerofThree {
         return n==1;
     }
 
-    
+
 /*
     public boolean isPowerOfThree(int n) {
         while (n>0 && (n % 3 == 0) ) {
