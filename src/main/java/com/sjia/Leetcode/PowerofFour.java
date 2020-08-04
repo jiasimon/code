@@ -28,8 +28,9 @@ public class PowerofFour {
     // bit
     // Runtime: 1 ms, faster than 100.00% of Java online submissions for Power of Four.
     //Memory Usage: 36.6 MB, less than 53.98% of Java online submissions for Power of Four.
-    public boolean isPowerOfFour(int num) {
+/*    public boolean isPowerOfFour(int num) {
+
         return ( num > 0 && (num & (num-1)) == 0 && (num & 0x55555555) != 0 );
-    }
+    }*/
 
 }
