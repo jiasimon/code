@@ -12,6 +12,7 @@ public class IntersectionTwoArrays {
 
     // Runtime: 2 ms, faster than 99.33% of Java online submissions for Intersection of Two Arrays.
     //Memory Usage: 40.1 MB, less than 5.08% of Java online submissions for Intersection of Two Arrays.
+/*
     public int[] intersection(int[] nums1, int[] nums2) {
         HashSet<Integer> set1 = new HashSet<>();
         for (Integer n: nums1) set1.add(n);
@@ -26,6 +27,34 @@ public class IntersectionTwoArrays {
             if(set2.contains(k)) result[i++]=k;
         }
         return  Arrays.copyOf(result, i);
+    }*/
+
+
+
+    // Runtime: 4 ms, faster than 43.97% of Java online submissions for Intersection of Two Arrays.
+    //Memory Usage: 41.4 MB, less than 5.08% of Java online submissions for Intersection of Two Arrays.
+    public int[] intersection(int[] nums1, int[] nums2) {
+        HashSet<Integer> set1 = new HashSet<>();
+        for (Integer n: nums1) set1.add(n);
+
+        HashSet<Integer> set2 = new HashSet<>();
+        for(Integer n: nums2) set2.add(n);
+
+        set1.retainAll(set2);
+        int [] result = new int[set1.size()];
+        int i=0;
+        for (Integer k :  set1) {
+            result[i++]=k;
+        }
+        return  result;
     }
 
+    public static void main(String[] args) {
+        int[] num1 = {4, 9, 5};
+        int[] num2 = {9, 4, 9, 8, 4};
+        IntersectionTwoArrays solution = new IntersectionTwoArrays();
+        int[] result = solution.intersection(num1, num2);
+        System.out.printf("nums1: %s , nums2 %s, result is : %s ", Arrays.toString(num1),
+                Arrays.toString(num2), Arrays.toString(result));
+    }
 }
