@@ -8,6 +8,7 @@ public class FindtheDifference {
 
     // Runtime: 1 ms, faster than 99.65% of Java online submissions for Find the Difference.
     //Memory Usage: 39.7 MB, less than 5.71% of Java online submissions for Find the Difference.
+/*
     public char findTheDifference(String s, String t) {
         int sum = 0;
         for ( int i=0; i < s.length(); i++) {
@@ -15,7 +16,7 @@ public class FindtheDifference {
         }
         sum += t.charAt(s.length());
         return (char) sum;
-    }
+    }*/
 
 
     // Runtime: 1 ms, faster than 99.65% of Java online submissions for Find the Difference.
@@ -33,6 +34,40 @@ public class FindtheDifference {
     }*/
 
 
-    
+    // xor
+    // Runtime: 1 ms, faster than 99.65% of Java online submissions for Find the Difference.
+    //Memory Usage: 37.7 MB, less than 46.43% of Java online submissions for Find the Difference.
+    public char findTheDifference(String s, String t) {
+        int result = 0;
+        for ( int i=0; i < s.length(); i++) {
+            result = result ^ s.charAt(i) ^ t.charAt(i);
+        }
+        result = result ^ t.charAt(s.length());
+        return  (char)result;
+    }
+
+
+    // Runtime: 1 ms, faster than 99.65% of Java online submissions for Find the Difference.
+    //Memory Usage: 37.7 MB, less than 51.43% of Java online submissions for Find the Difference.
+    public static void main(String[] args) {
+        String s  = "abcd";
+        String t = "abcde";
+        FindtheDifference solution = new FindtheDifference();
+        char result = solution.findTheDifference(s, t);
+
+        System.out.printf("s: %s  and t: %s findTheDifference %s \n",
+                s,t, result);
+    }
+
+/*
+    public char findTheDifference(String s, String t) {
+        int result = 0;
+        for ( int i=0; i < s.length(); i++) {
+            result = result ^ s.charAt(i) ^ t.charAt(i);
+        }
+        result = result ^ t.charAt(s.length());
+        return  (char)result;
+    }*/
+
 
 }
