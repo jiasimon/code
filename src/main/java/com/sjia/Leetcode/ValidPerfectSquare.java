@@ -16,7 +16,16 @@ public class ValidPerfectSquare {
         return num==0;
     }*/
 
-
+    // refer #69 Newton
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Valid Perfect Square.
+    //Memory Usage: 38.6 MB, less than 5.15% of Java online submissions for Valid Perfect Square.
+    public boolean isPerfectSquare(int num) {
+        long root = num;
+        while (root * root > num) {
+            root = (root + num / root)/2;
+        }
+        return root * root == num;
+    }
 
 
 
