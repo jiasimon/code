@@ -19,5 +19,19 @@ public class SumLeftLeaves {
         return sum;
     }
 
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Sum of Left Leaves.
+    //Memory Usage: 39.4 MB, less than 5.34% of Java online submissions for Sum of Left Leaves.
+/*
+    public int sumOfLeftLeaves(TreeNode root) {
+        return helper(root, false);
+    }
+
+    private int helper(TreeNode root, boolean isLeft) {
+        if (root == null) return 0;
+        if (root.left == null && root.right == null && isLeft) {
+            return root.val;
+        }
+        return helper(root.left, true) + helper(root.right, false);
+    }*/
 
 }
