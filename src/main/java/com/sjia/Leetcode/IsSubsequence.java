@@ -20,7 +20,7 @@ public class IsSubsequence {
     // two pointer
     // Runtime: 1 ms, faster than 83.83% of Java online submissions for Is Subsequence.
     //Memory Usage: 37.3 MB, less than 57.83% of Java online submissions for Is Subsequence.
-    
+
     public boolean isSubsequence(String s, String t) {
         //if (s.length() ==0 ) return true;
         int i = 0, j = 0;
