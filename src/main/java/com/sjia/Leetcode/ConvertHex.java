@@ -10,6 +10,10 @@ public class ConvertHex {
         String result = "";
         String[] hex = {"0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"};
 
+        // if use char[], Runtime: 13 ms, faster than 5.21% of Java online submissions for Convert a Number to Hexadecimal.
+        //Memory Usage: 39.5 MB, less than 5.36% of Java online submissions for Convert a Number to Hexadecimal.
+        // char[] hex = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+
         while ( num !=0 ) {
             result = hex[(num & 15)] + result;
             num = (num >>> 4);
