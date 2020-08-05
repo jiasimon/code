@@ -22,4 +22,15 @@ public class ConvertHex {
     }
 
 
+
+
+
+    public static void main(String[] args) {
+        int testData = -1;  //-1 ,32
+        ConvertHex solution = new ConvertHex();
+        String result = solution.toHex(testData);
+        System.out.printf( "testData  %s is   %s ",testData, result );
+    }
+
+
 }
