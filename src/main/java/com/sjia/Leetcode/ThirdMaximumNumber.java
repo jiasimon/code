@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.PriorityQueue;
+
 public class ThirdMaximumNumber {
 
     // #414 https://leetcode.com/problems/third-maximum-number/
@@ -34,6 +36,7 @@ public class ThirdMaximumNumber {
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Third Maximum Number.
     //Memory Usage: 39.6 MB, less than 12.08% of Java online submissions for Third Maximum Number.
+/*
     public int thirdMax(int[] nums) {
         long first = Long.MIN_VALUE, second = Long.MIN_VALUE, third = Long.MIN_VALUE;
         for (int n : nums) {
@@ -50,6 +53,29 @@ public class ThirdMaximumNumber {
         }
         if (third == Long.MIN_VALUE || third == second) return (int) first;
         else return (int) third;
+    }*/
+
+
+    // For  N th largest number
+    // Runtime: 3 ms, faster than 59.96% of Java online submissions for Third Maximum Number.
+    //Memory Usage: 39.7 MB, less than 10.83% of Java online submissions for Third Maximum Number.
+
+    public int thirdMax(int[] nums) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for(int n : nums) {
+            if(pq.size() < 3 && !pq.contains(n)) {
+                pq.add(n);
+            } else if(!pq.contains(n) && n > pq.peek()) {
+                pq.poll();
+                pq.add(n);
+            }
+        }
+
+        if(pq.size() < 3)
+            while(pq.size() > 1)
+                pq.poll();
+
+        return pq.poll();
     }
 
 
