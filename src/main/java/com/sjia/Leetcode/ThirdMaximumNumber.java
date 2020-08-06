@@ -32,8 +32,25 @@ public class ThirdMaximumNumber {
     }*/
 
 
-
-
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Third Maximum Number.
+    //Memory Usage: 39.6 MB, less than 12.08% of Java online submissions for Third Maximum Number.
+    public int thirdMax(int[] nums) {
+        long first = Long.MIN_VALUE, second = Long.MIN_VALUE, third = Long.MIN_VALUE;
+        for (int n : nums) {
+            if (n > first) {
+                third = second;
+                second = first;
+                first = n;
+            } else if (n < first && n > second) {
+                third = second;
+                second = n;
+            } else if (n < second && n > third) {
+                third = n;
+            }
+        }
+        if (third == Long.MIN_VALUE || third == second) return (int) first;
+        else return (int) third;
+    }
 
 
 }
