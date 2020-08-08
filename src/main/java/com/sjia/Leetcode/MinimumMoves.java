@@ -22,7 +22,7 @@ public class MinimumMoves {
     }*/
 
 
-    
+
     //Math, Sum + m(n-1) = (min+m) * n    so m = sum - min*n
     // Runtime: 1 ms, faster than 100.00% of Java online submissions for Minimum Moves to Equal Array Elements.
     //Memory Usage: 39.7 MB, less than 92.37% of Java online submissions for Minimum Moves to Equal Array Elements.
