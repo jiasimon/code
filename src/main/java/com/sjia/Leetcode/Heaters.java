@@ -28,7 +28,6 @@ public class Heaters {
     }*/
 
 
-
     // Runtime: 6 ms, faster than 100.00% of Java online submissions for Heaters.
     //Memory Usage: 42.7 MB, less than 73.53% of Java online submissions for Heaters.
 
@@ -48,8 +47,8 @@ public class Heaters {
     }
 
     public static void main(String[] args) {
-        int[] houses = {474833169,264817709,998097157,817129560};
-        int[] heaters = {197493099,404280278,893351816,505795335};
+        int[] houses = {474833169, 264817709, 998097157, 817129560};
+        int[] heaters = {197493099, 404280278, 893351816, 505795335};
         Heaters solution = new Heaters();
         int result = solution.findRadius(houses, heaters);
         System.out.printf(" houses: %s  heaters %s , radious is: %s ", Arrays.toString(houses),
