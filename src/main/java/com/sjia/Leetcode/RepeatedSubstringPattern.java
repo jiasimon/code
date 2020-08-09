@@ -10,6 +10,6 @@ public class RepeatedSubstringPattern {
         return tmp.substring(1,tmp.length()-1).contains(s);
     }
 
-    
+
 
 }
