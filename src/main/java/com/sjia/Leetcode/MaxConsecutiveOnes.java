@@ -7,6 +7,7 @@ public class MaxConsecutiveOnes {
 
     // Runtime: 1 ms, faster than 100.00% of Java online submissions for Max Consecutive Ones.
     //Memory Usage: 41.4 MB, less than 51.99% of Java online submissions for Max Consecutive Ones.
+/*
     public int findMaxConsecutiveOnes(int[] nums) {
         int result=0, count=0;
         for (int i=0; i < nums.length; i++) {
@@ -19,6 +20,23 @@ public class MaxConsecutiveOnes {
         }
         //return result;  if all "1"
         return Math.max(result, count);
+    }*/
+
+
+    // this is slower than above, but easy
+    // Runtime: 2 ms, faster than 73.89% of Java online submissions for Max Consecutive Ones.
+    //Memory Usage: 41.5 MB, less than 44.08% of Java online submissions for Max Consecutive Ones.
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int result=0, count=0;
+        for (int i=0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                count++;
+                result = Math.max(result, count); // better to put it here
+            } else {
+                count =0;
+            }
+        }
+        return result;
     }
 
 
