@@ -11,14 +11,28 @@ public class ConstructRectangle {
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Construct the Rectangle.
     //Memory Usage: 37.2 MB, less than 42.91% of Java online submissions for Construct the Rectangle.
+/*
     public int[] constructRectangle(int area) {
         int tmp = (int)Math.sqrt(area);
         while ( area % tmp != 0) {
             tmp--;
         }
         return new int[] {area/tmp, tmp};
-    }
+    }*/
 
+
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Construct the Rectangle.
+    //Memory Usage: 36.8 MB, less than 75.10% of Java online submissions for Construct the Rectangle.
+    public int[] constructRectangle(int area) {
+        int[] result = new int[2];
+        int tmp = (int)Math.sqrt(area);
+        while ( area % tmp != 0) {
+            tmp--;
+        }
+        result[0] = area/tmp;
+        result[1] = tmp;
+        return result;
+    }
 
 
 }
