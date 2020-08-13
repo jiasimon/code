@@ -30,5 +30,5 @@ public class FibonacciNumber {
         return current;
     }
 
-    
+
 }
