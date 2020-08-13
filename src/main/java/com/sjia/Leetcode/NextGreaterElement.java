@@ -2,6 +2,7 @@ package com.sjia.Leetcode;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public class NextGreaterElement {
     // #496 https://leetcode.com/problems/next-greater-element-i/
@@ -58,6 +59,26 @@ public class NextGreaterElement {
     }
 
 
+    // Use Stack
+    // Runtime: 3 ms, faster than 90.64% of Java online submissions for Next Greater Element I.
+    //Memory Usage: 39.9 MB, less than 48.90% of Java online submissions for Next Greater Element I.
+/*
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> map = new HashMap<>();
+        Stack<Integer> stack = new Stack<>();
+        int[] res = new int[nums1.length];
+        for (int num: nums2) {
+            while( !stack.isEmpty() && stack.peek() < num) {
+                map.put(stack.pop(), num);
+            }
+            stack.push(num);
+        }
+
+        for (int i=0; i<nums1.length; i++ ) {
+            res[i] = map.getOrDefault(nums1[i], -1);
+        }
+        return res;
+    }*/
 
 
 }
