@@ -11,5 +11,5 @@ public class Base7 {
         return convertToBase7( num/7) + Integer.toString(num%7);
     }
 
-    
+
 }
