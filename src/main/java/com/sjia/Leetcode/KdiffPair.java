@@ -8,6 +8,8 @@ public class KdiffPair {
     // #532 https://leetcode.com/problems/k-diff-pairs-in-an-array/
     // Input: [3, 1, 4, 1, 5], k = 2,  Output: 2
 
+    // How to solve it using stream?
+
     // Runtime: 8 ms, faster than 77.02% of Java online submissions for K-diff Pairs in an Array.
     //Memory Usage: 40.1 MB, less than 70.95% of Java online submissions for K-diff Pairs in an Array.
     public int findPairs(int[] nums, int k) {
