@@ -8,13 +8,26 @@ public class ArrayPartition {
 
     //Runtime: 14 ms, faster than 46.28% of Java online submissions for Array Partition I.
     //Memory Usage: 41.4 MB, less than 82.23% of Java online submissions for Array Partition I.
+/*
     public int arrayPairSum(int[] nums) {
         Arrays.sort(nums);
         int result=0;
         for (int i=0; i< nums.length; i +=2)
             result += nums[i];
         return result;
-    }
+    }*/
 
+
+    // Runtime: 10 ms, faster than 95.53% of Java online submissions for Array Partition I.
+    //Memory Usage: 41.4 MB, less than 78.01% of Java online submissions for Array Partition I.
+    public int arrayPairSum(int[] nums) {
+        Arrays.sort(nums);
+        int result=0, i=0;
+        while (i< nums.length ) {
+            result += nums[i++];
+            i++;
+        }
+        return result;
+    }
 
 }
