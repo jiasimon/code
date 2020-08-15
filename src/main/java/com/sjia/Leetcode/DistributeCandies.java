@@ -19,4 +19,13 @@ public class DistributeCandies {
         return Math.min(candies.length/2, tmp.size());
     }
 
+
+    //Runtime: 85 ms, faster than 8.61% of Java online submissions for Distribute Candies.
+    //Memory Usage: 114.6 MB, less than 25.00% of Java online submissions for Distribute Candies.
+/*
+    public int distributeCandies(int[] candies) {
+        return Math.min(candies.length / 2, ((int) Arrays.stream(candies).distinct().count()));
+    }*/
+
+
 }
