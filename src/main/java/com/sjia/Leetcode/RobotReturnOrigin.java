@@ -1,5 +1,10 @@
 package com.sjia.Leetcode;
 
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class RobotReturnOrigin {
     // #657 https://leetcode.com/problems/robot-return-to-origin/
 
@@ -19,7 +24,6 @@ public class RobotReturnOrigin {
     }*/
 
 
-
     public boolean judgeCircle(String moves) {
         if (moves.length() %2 ==1) return false;
         int x=0, y=0;
@@ -34,6 +38,15 @@ public class RobotReturnOrigin {
     }
 
 
+    // Use Stream failed
+/*    public boolean judgeCircle(String moves) {
+        Map<String, Long> charCount = IntStream.range(0, moves.length())
+                .mapToObj(i -> moves.substring(i, i + 1))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        return charCount.get("U")==charCount.get("D") &&
+                charCount.get("L")==charCount.get("R");
+    }*/
 
 
 }
