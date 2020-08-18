@@ -21,7 +21,9 @@ public class LongestContinuousSubseq {
     }
 
 
-    
+    // perform Math.max(ans, i - anchor + 1); in every step is easier
+    // Runtime: 1 ms, faster than 99.84% of Java online submissions for Longest Continuous Increasing Subsequence.
+    //Memory Usage: 40.4 MB, less than 53.97% of Java online submissions for Longest Continuous Increasing Subsequence.
 
 /*    public int findLengthOfLCIS(int[] nums) {
         int ans = 0, anchor = 0;
