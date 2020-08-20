@@ -18,7 +18,17 @@ public class BSTreeSearch {
     }
 
 
-    
+    // iterative
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Search in a Binary Search Tree.
+    //Memory Usage: 48.8 MB, less than 25.72% of Java online submissions for Search in a Binary Search Tree.
+/*
+    public TreeNode searchBST(TreeNode root, int val) {
+        while (root!= null && root.val != val){
+            if (val < root.val) root = root.left;
+            else root = root.right;
+        }
+        return root;
+    }*/
 
 
 
