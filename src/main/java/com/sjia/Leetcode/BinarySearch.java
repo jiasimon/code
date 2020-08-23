@@ -8,6 +8,7 @@ public class BinarySearch {
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Binary Search.
     //Memory Usage: 53.5 MB, less than 5.02% of Java online submissions for Binary Search.
     public int search(int[] nums, int target) {
+        if (nums == null || nums.length == 0) return -1;
         int left=0, right= nums.length-1;
         while(left <= right) {
             int mid = (left + right) /2;
