@@ -32,8 +32,7 @@ public class LongestWordDic {
 
         String[] testData  = { "ts", "e", "x"};
         //String[] testData  = { "a", "banana", "app", "appl", "ap", "apply", "apple" };
-        // String[] testData  = { "b","br","bre","brea","break","breakf","breakfa","breakfas","breakfast",
-                "l","lu","lun","lunc","lunch","d","di","din","dinn","dinne","dinner"};
+        // String[] testData  = { "b","br","bre","brea","break","breakf","breakfa","breakfas","breakfast","l","lu","lun","lunc","lunch","d","di","din","dinn","dinne","dinner"};
 
         LongestWordDic solution = new LongestWordDic();
 
