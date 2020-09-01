@@ -8,7 +8,6 @@ public class TwoSumSorted {
 
     // Runtime: 3 ms, faster than 20.18% of Java online submissions for Two Sum II - Input array is sorted.
     //Memory Usage: 39.8 MB, less than 20.92% of Java online submissions for Two Sum II - Input array is sorted.
-/*
     public int[] twoSum(int[] numbers, int target) {
         int[] result = new int[2];
         HashMap<Integer, Integer> tmp = new HashMap<>();
@@ -21,12 +20,12 @@ public class TwoSumSorted {
             }
         }
         return result;
-    }*/
+    }
 
 
     //Runtime: 0 ms, faster than 100.00% of Java online submissions for Two Sum II - Input array is sorted.
     //Memory Usage: 39.8 MB, less than 15.38% of Java online submissions for Two Sum II - Input array is sorted.
-    public int[] twoSum(int[] numbers, int target) {
+/*    public int[] twoSum(int[] numbers, int target) {
         int[] result = new int[2];
         int left = 0, right = numbers.length-1;
         while (left < right) {
@@ -41,7 +40,7 @@ public class TwoSumSorted {
             }
         }
         return result;
-    }
+    }*/
 
 
     public static void main(String[] args) {
