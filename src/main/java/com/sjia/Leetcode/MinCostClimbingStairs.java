@@ -11,7 +11,7 @@ public class MinCostClimbingStairs {
 
     // Runtime: 1 ms, faster than 88.11% of Java online submissions for Min Cost Climbing Stairs.
     //Memory Usage: 41.6 MB, less than 5.01% of Java online submissions for Min Cost Climbing Stairs.
-    public int minCostClimbingStairs(int[] cost) {
+/*    public int minCostClimbingStairs(int[] cost) {
         int[] dp = new int[cost.length];
         dp[0] =cost[0];
         dp[1] = cost[1];
@@ -20,6 +20,20 @@ public class MinCostClimbingStairs {
         }
         return Math.min(dp[cost.length-1], dp[cost.length-2]);
 
+    }*/
+
+
+    // Runtime: 1 ms, faster than 88.11% of Java online submissions for Min Cost Climbing Stairs.
+    //Memory Usage: 38.7 MB, less than 98.75% of Java online submissions for Min Cost Climbing Stairs.
+    public int minCostClimbingStairs(int[] cost) {
+        int first = cost[0];
+        int pre = cost[1];
+        for (int i=2; i< cost.length; i++ ) {
+            int current = cost[i] + Math.min(first, pre);
+            first = pre;
+            pre = current;
+        }
+        return Math.min(first, pre);
     }
 
 
