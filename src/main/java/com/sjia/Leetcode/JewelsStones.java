@@ -2,6 +2,7 @@ package com.sjia.Leetcode;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class JewelsStones {
     // #771 https://leetcode.com/problems/jewels-and-stones/
@@ -36,6 +37,14 @@ public class JewelsStones {
             result += tmp[s - 'A'];
         }
         return result;
+    }*/
+
+
+    // Java8 Stream
+    // Runtime: 9 ms, faster than 5.88% of Java online submissions for Jewels and Stones.
+    //Memory Usage: 39.4 MB, less than 28.25% of Java online submissions for Jewels and Stones.
+/*    public int numJewelsInStones(String J, String S) {
+         return (int) Stream.of(S.split("")).filter(J::contains).count();
     }*/
 
 
