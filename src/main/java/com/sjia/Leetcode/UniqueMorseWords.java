@@ -13,7 +13,8 @@ public class UniqueMorseWords {
     // Runtime: 1 ms, faster than 100.00% of Java online submissions for Unique Morse Code Words.
     //Memory Usage: 37.3 MB, less than 90.25% of Java online submissions for Unique Morse Code Words.
     public int uniqueMorseRepresentations(String[] words) {
-        String[] morse = new String[] {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        //String[] morse = new String[] {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        String[] morse = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
         Set<String> res = new HashSet<>();
         for (String word : words) {
             StringBuilder sb = new StringBuilder();
