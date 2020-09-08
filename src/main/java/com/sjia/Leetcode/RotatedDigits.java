@@ -29,4 +29,26 @@ public class RotatedDigits {
     }
 
 
+
+
+    // Runtime: 4 ms, faster than 83.23% of Java online submissions for Rotated Digits.
+    //Memory Usage: 36.3 MB, less than 81.11% of Java online submissions for Rotated Digits.
+    // use mode %10
+    private boolean checkRotatedDigit(int i) {
+        boolean flag = false;
+        while (i>0) {
+            if (i%10==3) return false;
+            if (i%10==4) return false;
+            if (i%10==7) return false;
+            if (i%10==2) flag = true;
+            if (i%10==5) flag = true;
+            if (i%10==6) flag = true;
+            if (i%10==9) flag = true;
+            i = i/10;
+        }
+        return flag;
+    }
+
+
+
 }
