@@ -12,6 +12,6 @@ public class RotateString {
         return (A+A).contains(B);
     }
 
-    
+
 
 }
