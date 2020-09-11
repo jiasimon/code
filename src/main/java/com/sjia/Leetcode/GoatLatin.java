@@ -24,8 +24,13 @@ public class GoatLatin {
         return res.substring(1);
     }
 
+
+
+
     public static void main(String[] args) {
-        String testData  = "I speak Goat Latin";
+        String testData  = "simon";
+        System.out.println( "testData.matches(\"^[a-zA-Z0-9]+$\") is: "
+                + testData.matches("^[a-zA-Z][a-zA-Z0-9_]*$") ); ;
         GoatLatin solution = new GoatLatin();
         String result = solution.toGoatLatin(testData);
 
