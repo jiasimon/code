@@ -17,12 +17,19 @@ public class PositionsLargeGroups {
             for (j=i+1; j< s.length() ; j++ ) {
                 if(s.charAt(j) != s.charAt(i)) break;
             }
-            if (j-i >= 3) res.add( Arrays.asList(new Integer[]{i,j-1}));
+            // if (j-i >= 3) res.add( Arrays.asList(new Integer[]{i,j-1}));
+            if (j-i >= 3) res.add( Arrays.asList(i,j-1));
             i = j;
         }
         return res;
 
     }
+
+
+    // Runtime: 1 ms, faster than 100.00% of Java online submissions for Positions of Large Groups.
+    // Memory Usage: 39.5 MB, less than 83.14% of Java online submissions for Positions of Large Groups.
+    // use if (j-i >= 3) res.add( Arrays.asList(i,j-1));
+    // instead of if (j-i >= 3) res.add( Arrays.asList(new Integer[]{i,j-1}));
 
 
     public static void main(String[] args) {
