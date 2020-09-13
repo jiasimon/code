@@ -119,6 +119,11 @@ public class SubStringSolution {
 //        System.out.println(scanner.nextBigInteger().isProbablePrime(10) ? "prime" : "not prime");
 
 
+        // usernameRegex
+        // The username consists of 8 to 30 characters inclusive.
+        // username can only contain alphanumeric characters and underscores
+        // first character of the username must be an alphabetic character
+
         String regularExpression = "^[a-zA-Z]\\w{7,29}$";
 
 
