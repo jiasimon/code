@@ -126,6 +126,10 @@ public class SubStringSolution {
 
         String regularExpression = "^[a-zA-Z]\\w{7,29}$";
 
+        String regexUserName =  "^[a-zA-Z][a-zA-Z0-9_]{7,29}$" ;
+
+
+
 
 
 
