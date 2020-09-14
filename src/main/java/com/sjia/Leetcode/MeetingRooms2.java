@@ -28,5 +28,13 @@ public class MeetingRooms2 {
 
 
 
+    public static void main(String[] args) {
+        int[][] testData  =  { {0, 30}, {5, 10}, {15, 20}  };
+        MeetingRooms2 solution = new MeetingRooms2();
+        int result = solution.minMeetingRooms(testData);
+
+        System.out.printf("testData %s minimum number meeting room is %s \n",
+                Arrays.deepToString(testData),result);
+    }
 
 }
