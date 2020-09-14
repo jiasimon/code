@@ -10,6 +10,8 @@ public class BackspaceString {
     // Input: S = "ab##", T = "c#d#"
     // S = "a##c", T = "#a#c"
 
+    // Runtime: 2 ms, faster than 46.31% of Java online submissions for Backspace String Compare.
+    //Memory Usage: 38.3 MB, less than 32.68% of Java online submissions for Backspace String Compare.
     public boolean backspaceCompare(String S, String T) {
         return helper(S).equals(helper(T));
 
@@ -19,15 +21,17 @@ public class BackspaceString {
         Stack<Character> res = new Stack<>();
         for( char c: s.toCharArray()) {
             if(c!='#') res.push(c);
-            else res.pop();
+            else if (! res.isEmpty()) {
+                res.pop();
+            }
         }
         return String.valueOf(res);
     }
 
 
     public static void main(String[] args) {
-        String  testData  = "ab#c";  //
-        String  testData2 = "ad#c";
+        String  testData  = "a##c";  // "ab#c"
+        String  testData2 = "#a#c"; // "ad#c"
         BackspaceString solution = new BackspaceString();
         boolean result = solution.backspaceCompare(testData, testData2);
 
