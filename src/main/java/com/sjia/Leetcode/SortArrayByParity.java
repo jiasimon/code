@@ -1,6 +1,7 @@
 package com.sjia.Leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -27,6 +28,24 @@ public class SortArrayByParity {
         for (int j=0; j< odd.size(); j++) result[i++] = odd.get(j);
         return result;
     }
+
+
+
+    // Stream
+    // Runtime: 11 ms, faster than 5.61% of Java online submissions for Sort Array By Parity.
+    //Memory Usage: 40.3 MB, less than 75.62% of Java online submissions for Sort Array By Parity.
+/*
+    public int[] sortArrayByParity(int[] A) {
+        return Arrays.stream(A)
+                     .boxed()
+                     .sorted((a, b) -> Integer.compare(a%2, b%2))
+                     .mapToInt(i -> i)
+                     .toArray();
+    }*/
+
+
+
+
 
 
 }
