@@ -30,7 +30,7 @@ public class IncreasingOrderSearchTree {
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Increasing Order Search Tree.
     //Memory Usage: 36.7 MB, less than 95.75% of Java online submissions for Increasing Order Search Tree.
-    
+
     TreeNode current;
 
     public TreeNode increasingBST(TreeNode root) {
