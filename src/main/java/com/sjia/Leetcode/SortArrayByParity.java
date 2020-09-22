@@ -107,6 +107,6 @@ public class SortArrayByParity {
         return A;
     }*/
 
-    
+
 
 }
