@@ -11,7 +11,7 @@ public class SortArrayByParity2 {
 
     // Runtime: 5 ms, faster than 20.52% of Java online submissions for Sort Array By Parity II.
     // Memory Usage: 43 MB, less than 33.19% of Java online submissions for Sort Array By Parity II.
-    public int[] sortArrayByParityII(int[] A) {
+/*    public int[] sortArrayByParityII(int[] A) {
         List<Integer> odd = new ArrayList<>(), even = new ArrayList<>();
         for (int i : A) {
             if( i%2 ==0 ) even.add(i);
@@ -25,9 +25,27 @@ public class SortArrayByParity2 {
             else res[x] = odd.get(j++);
         }
         return res;
+    }*/
+
+
+
+    // new int[A.length]
+    // Runtime: 2 ms, faster than 99.60% of Java online submissions for Sort Array By Parity II.
+    //Memory Usage: 41.9 MB, less than 68.66% of Java online submissions for Sort Array By Parity II.
+    public int[] sortArrayByParityII(int[] A) {
+        int [] res = new int[A.length];
+        int i=0, j=1;
+        for (int x = 0 ; x < A.length; x++) {
+            if (A[x] %2 ==0) {
+                res[i] = A[x];
+                i += 2;
+            } else {
+                res[j] = A[x];
+                j +=2;
+            }
+        }
+        return res;
     }
-
-
 
 
 
