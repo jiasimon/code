@@ -48,6 +48,23 @@ public class SortArrayByParity2 {
     }
 
 
+    // two pointers , no additional space, if we can modify input
+    // Runtime: 2 ms, faster than 99.60% of Java online submissions for Sort Array By Parity II.
+    //Memory Usage: 40.6 MB, less than 92.18% of Java online submissions for Sort Array By Parity II.
+/*    public int[] sortArrayByParityII(int[] A) {
+        int i=0, j=1;
+        while (i< A.length && j < A.length) {
+            if (A[i] %2 == 0) i += 2;
+            else if (A[j] %2 == 1) j += 2;
+            else {
+                int tmp = A[i];
+                A[i] = A[j];
+                A[j] =tmp;
+            }
+        }
+        return A;
+    }*/
+
 
 
 }
