@@ -31,6 +31,20 @@ public class SortArrayByParity {
 
 
 
+
+    // Runtime: 1 ms, faster than 99.60% of Java online submissions for Sort Array By Parity.
+    //Memory Usage: 40.4 MB, less than 65.25% of Java online submissions for Sort Array By Parity.
+/*    public int[] sortArrayByParity(int[] A) {
+        int [] res = new int[A.length];
+        int i=0, j = A.length-1 ;
+        for (int x = 0 ; x < A.length; x++) {
+            if (A[x] %2 ==0) res[i++] = A[x];
+            else res[j--] = A[x];
+        }
+        return res;
+    }*/
+
+
     // Stream
     // Runtime: 11 ms, faster than 5.61% of Java online submissions for Sort Array By Parity.
     //Memory Usage: 40.3 MB, less than 75.62% of Java online submissions for Sort Array By Parity.
