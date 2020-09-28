@@ -1,6 +1,9 @@
 package com.sjia.Leetcode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TwoSum {
 
@@ -26,6 +29,21 @@ public class TwoSum {
 
     // Runtime: 6 ms, faster than 43.76% of Java online submissions for Two Sum.
     //Memory Usage: 41.7 MB, less than 5.44% of Java online submissions for Two Sum.
+
+    public List<String> checkDuplicateName( String[ ] input) {
+        Map<String, Integer> count = new HashMap<String, Integer>();
+        List <String> res = new ArrayList<>();
+        for (String name :  input) {
+            count.put(name, count.getOrDefault(name,0) +1);
+        }
+        for ( String name : count.keySet() ) {
+            if (count.get(name) > 1 ) {
+                String tmp = name + " : " + count.get(name);
+                res.add(tmp);
+            }
+        }
+        return res;
+    }
 
     public int[] twoSum(int[] nums, int target) {
         int[] result = new int[2];
