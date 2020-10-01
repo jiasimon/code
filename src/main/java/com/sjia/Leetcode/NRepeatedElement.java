@@ -19,7 +19,7 @@ public class NRepeatedElement {
             if(tmp.contains(n)) return n;
             else tmp.add(n);
         }
-        return 0;
+        return -1;
     }
 
     // new int array, less memory
@@ -33,6 +33,18 @@ public class NRepeatedElement {
         return -1;
     }*/
 
+    // Check if A[i] == A[i - 1] or A[i] == A[i - 2]
+    // we return A[i]
+    // If not, it must be [x, x, y, z] or [x, y, z, x], return A[0]
+
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for N-Repeated Element in Size 2N Array.
+    //Memory Usage: 40 MB, less than 79.68% of Java online submissions for N-Repeated Element in Size 2N Array.
+/*    public int repeatedNTimes(int[] A) {
+        for (int i = 2; i < A.length; i++ ) {
+            if (A[i]==A[i-1] || A[i]==A[i-2] ) return A[i];
+        }
+        return A[0];
+    }*/
 
 
 
