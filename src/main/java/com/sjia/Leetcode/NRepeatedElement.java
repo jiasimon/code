@@ -22,5 +22,18 @@ public class NRepeatedElement {
         return 0;
     }
 
+    // new int array, less memory
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for N-Repeated Element in Size 2N Array.
+    // Memory Usage: 39 MB, less than 99.95% of Java online submissions for N-Repeated Element in Size 2N Array.
+/*    public int repeatedNTimes(int[] A) {
+        int[] count = new int[10000];
+        for (Integer n : A) {
+            if (count[n]++ == 1) return n;
+        }
+        return -1;
+    }*/
+
+
+
 
 }
