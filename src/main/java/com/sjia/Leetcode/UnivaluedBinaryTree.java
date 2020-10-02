@@ -12,6 +12,6 @@ public class UnivaluedBinaryTree {
         return (root.val == tmp) && isUnivalTree(root.left) && isUnivalTree(root.right);
     }
 
-    
+
 
 }
