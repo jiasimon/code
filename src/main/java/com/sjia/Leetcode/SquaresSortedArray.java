@@ -42,9 +42,31 @@ public class SquaresSortedArray {
     // Stream
     // Runtime: 9 ms, faster than 13.59% of Java online submissions for Squares of a Sorted Array.
     // Memory Usage: 54.4 MB, less than 5.00% of Java online submissions for Squares of a Sorted Array.
-    public int[] sortedSquares(int[] A) {
+/*    public int[] sortedSquares(int[] A) {
         return Arrays.stream(A).map( x -> x*x).sorted().toArray();
+    }*/
+
+
+    // two pointer for already sorted input
+    // Runtime: 1 ms, faster than 100.00% of Java online submissions for Squares of a Sorted Array.
+    // Memory Usage: 41.2 MB, less than 56.12% of Java online submissions for Squares of a Sorted Array.
+/*
+    public int[] sortedSquares(int[] A) {
+        int n = A.length;
+        int[] res = new int[n];
+        int i=0, j=n-1;
+        for (int k = n-1; k>=0; k--) {
+            if (A[i]<0 && A[i] + A[j] <=0) {
+                res[k] =A[i] * A[i];
+                i++;
+            } else {
+                res[k] = A[j] * A[j];
+                j--;
+            }
+        }
+        return res;
     }
+*/
 
 
 
