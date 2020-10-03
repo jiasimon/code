@@ -22,6 +22,20 @@ public class SquaresSortedArray {
         return res;
     }
 
-    
+
+
+    // Runtime: 2 ms, faster than 71.02% of Java online submissions for Squares of a Sorted Array.
+    //Memory Usage: 41.3 MB, less than 45.86% of Java online submissions for Squares of a Sorted Array.
+    public int[] sortedSquares(int[] A) {
+/*        for (int i =0; i < A.length; i++){
+            A[i] = A[i] * A[i];
+        }
+        Arrays.sort(A);
+        return A;
+    }*/
+
+
+
+        
 
 }
