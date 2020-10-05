@@ -19,7 +19,7 @@ public class AddArrayInteger {
 
     // Runtime: 3 ms, faster than 94.69% of Java online submissions for Add to Array-Form of Integer.
     // Memory Usage: 40.6 MB, less than 79.45% of Java online submissions for Add to Array-Form of Integer.
-    public List<Integer> addToArrayForm(int[] A, int K) {
+/*    public List<Integer> addToArrayForm(int[] A, int K) {
         int n = A.length , i= n-1;
         int tmp = K;
         List <Integer> res = new ArrayList<>();
@@ -31,7 +31,24 @@ public class AddArrayInteger {
         }
         Collections.reverse(res);
         return res;
+    }*/
+
+
+    // for loop with K>0
+    // Runtime: 4 ms, faster than 68.76% of Java online submissions for Add to Array-Form of Integer.
+    //Memory Usage: 40.3 MB, less than 93.28% of Java online submissions for Add to Array-Form of Integer.
+    public List<Integer> addToArrayForm(int[] A, int K) {
+        int n = A.length;
+        List <Integer> res = new ArrayList<>();
+        for (int i=n-1; i>=0 || K>0; i--) {
+            if (i >= 0) K += A[i];
+            res.add( K % 10 );
+            K /= 10;
+        }
+        Collections.reverse(res);
+        return res;
     }
+
 
     public static void main(String[] args) {
         int[] testData = {0};
