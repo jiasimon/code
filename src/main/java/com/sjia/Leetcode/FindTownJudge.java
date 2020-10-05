@@ -14,7 +14,7 @@ public class FindTownJudge {
     // 1 <= trust[i][0], trust[i][1] <= N
 
 
-    // 
+    //
     // Runtime: 2 ms, faster than 99.90% of Java online submissions for Find the Town Judge.
     // Memory Usage: 46.6 MB, less than 94.97% of Java online submissions for Find the Town Judge.
     public int findJudge(int N, int[][] trust) {
