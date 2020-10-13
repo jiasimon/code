@@ -24,7 +24,7 @@ public class ComplementBase10Integer {
 
 
 
-    
+
 
     public static void main(String[] args) {
         int testData  = 7;  // 182
