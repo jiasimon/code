@@ -24,4 +24,10 @@ public class PairsDivisibleBy60 {
     }
 
 
+    // t % 60 gets the remainder from 0 to 59.
+    //  x % 60 = 60 - t % 60,
+    // But if t % 60 = 0, x % 60 = 0 instead of 60.
+    // x % 60 = (600 - t) % 60
+
+
 }
