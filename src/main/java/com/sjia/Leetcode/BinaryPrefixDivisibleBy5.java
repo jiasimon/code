@@ -11,7 +11,7 @@ public class BinaryPrefixDivisibleBy5 {
     // Input: [0,1,1]   Output: [true,false,false],  0, 01, 011; which are 0, 1, and 3
     // Input: [0,1,1,1,1,1] [true,false,false,false,true,false]
 
-    
+
     // Runtime: 2 ms, faster than 100.00% of Java online submissions for Binary Prefix Divisible By 5.
     // Memory Usage: 39.5 MB, less than 18.71% of Java online submissions for Binary Prefix Divisible By 5.
     public List<Boolean> prefixesDivBy5(int[] A) {
@@ -24,6 +24,19 @@ public class BinaryPrefixDivisibleBy5 {
         }
         return res;
     }
+
+
+    // Runtime: 3 ms, faster than 67.31% of Java online submissions for Binary Prefix Divisible By 5.
+    //Memory Usage: 39.3 MB, less than 18.71% of Java online submissions for Binary Prefix Divisible By 5.
+/*    public List<Boolean> prefixesDivBy5(int[] A) {
+        List <Boolean> res = new ArrayList<>();
+        int tmp = 0 ;
+        for (int i : A) {
+            tmp  = (tmp * 2 + i) %5;
+            res.add(tmp==0);
+        }
+        return res;
+    }*/
 
 
 
