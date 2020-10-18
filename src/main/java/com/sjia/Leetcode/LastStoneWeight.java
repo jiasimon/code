@@ -1,6 +1,8 @@
 package com.sjia.Leetcode;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.PriorityQueue;
 
 public class LastStoneWeight {
     // #1046 https://leetcode.com/problems/last-stone-weight/
@@ -12,7 +14,7 @@ public class LastStoneWeight {
     // if we can modify input, since array length is small
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Last Stone Weight.
     // Memory Usage: 36.2 MB, less than 19.85% of Java online submissions for Last Stone Weight.
-    public int lastStoneWeight(int[] stones) {
+/*    public int lastStoneWeight(int[] stones) {
         int N = stones.length;
         Arrays.sort(stones);
         for (int i=N-1; i>=1; i-- ) {
@@ -20,8 +22,27 @@ public class LastStoneWeight {
             Arrays.sort(stones);
         }
         return stones[0];
-    }
+    }*/
 
+
+    // PriorityQueue
+    // Runtime: 1 ms, faster than 92.21% of Java online submissions for Last Stone Weight.
+    // Memory Usage: 36.3 MB, less than 19.85% of Java online submissions for Last Stone Weight.
+    public int lastStoneWeight(int[] stones) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+
+        for (int i: stones) {
+            pq.add(i);
+        }
+        int x, y;
+        while (pq.size()>1){
+            x = pq.poll();
+            y = pq.poll();
+            if (y !=x)
+            pq.offer(x-y);
+        }
+        return pq.isEmpty() ? 0 : pq.poll();
+    }
 
 
 
