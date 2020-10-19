@@ -28,7 +28,7 @@ public class LastStoneWeight {
     // PriorityQueue
     // Runtime: 1 ms, faster than 92.21% of Java online submissions for Last Stone Weight.
     // Memory Usage: 36.3 MB, less than 19.85% of Java online submissions for Last Stone Weight.
-    public int lastStoneWeight(int[] stones) {
+/*    public int lastStoneWeight(int[] stones) {
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
 
         for (int i: stones) {
@@ -42,7 +42,20 @@ public class LastStoneWeight {
             pq.offer(x-y);
         }
         return pq.isEmpty() ? 0 : pq.poll();
+    }*/
+
+
+    // Runtime: 1 ms, faster than 92.04% of Java online submissions for Last Stone Weight.
+    //Memory Usage: 36.3 MB, less than 19.42% of Java online submissions for Last Stone Weight.
+    public int lastStoneWeight(int[] stones) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i : stones)
+            pq.offer(i);
+        while (pq.size() > 1)
+            pq.offer(pq.poll() - pq.poll());
+        return pq.poll();
     }
+
 
 
 
