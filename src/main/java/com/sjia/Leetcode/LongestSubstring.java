@@ -1,8 +1,6 @@
 package com.sjia.Leetcode;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class LongestSubstring {
     // #3 https://leetcode.com/problems/longest-substring-without-repeating-characters/
@@ -15,7 +13,7 @@ public class LongestSubstring {
     // HashSet,  j: right side; i: left side
     // Runtime: 7 ms, faster than 53.49% of Java online submissions for Longest Substring Without Repeating Characters.
     // Memory Usage: 39.5 MB, less than 5.69% of Java online submissions for Longest Substring Without Repeating Characters.
-    public int lengthOfLongestSubstring(String s) {
+/*    public int lengthOfLongestSubstring(String s) {
         int i = 0, j = 0, res = 0;
         Set<Character> tmp = new HashSet<>();
         while ( j < s.length()) {
@@ -29,7 +27,7 @@ public class LongestSubstring {
             }
         }
         return res;
-    }
+    }*/
 
     // Runtime: 8 ms, faster than 37.45% of Java online submissions for Longest Substring Without Repeating Characters.
     //Memory Usage: 39.8 MB, less than 5.69% of Java online submissions for Longest Substring Without Repeating Characters.
@@ -46,6 +44,25 @@ public class LongestSubstring {
         }
         return res;
     }*/
+
+
+    // HashMap get duplicate char position , then +1
+    // Runtime: 4 ms, faster than 90.72% of Java online submissions for Longest Substring Without Repeating Characters.
+    // Memory Usage: 39 MB, less than 5.69% of Java online submissions for Longest Substring Without Repeating Characters.
+
+    public int lengthOfLongestSubstring(String s) {
+        if (s.length() < 2 ) return s.length();
+        int j = 0, res = 0;
+        Map<Character, Integer> tmp = new HashMap<>();
+        for (int i=0; i< s.length(); i++) {
+            if (  tmp.containsKey(s.charAt(i))) {
+                j = Math.max( j, tmp.get(s.charAt(i)) + 1);
+            }
+            tmp.put(s.charAt(i),i);
+            res = Math.max(res, i-j+1);
+        }
+        return res;
+    }
 
 
 
