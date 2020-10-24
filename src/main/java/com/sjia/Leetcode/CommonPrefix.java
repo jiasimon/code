@@ -12,7 +12,7 @@ public class CommonPrefix {
     // add strs.length == 1 check
     //Runtime: 2 ms, faster than 38.54% of Java online submissions for Longest Common Prefix.
     //Memory Usage: 39.4 MB, less than 15.77% of Java online submissions for Longest Common Prefix.
-
+/*
     static String longestCommonPrefix(String[] strs) {
         if (strs == null || strs.length == 0) return "";
         if (strs.length == 1) return strs[0];
@@ -25,7 +25,7 @@ public class CommonPrefix {
             }
         }
         return strs[0].substring(0, length);
-    }
+    }*/
 
 
     // Runtime: 4 ms, faster than 24.30% of Java online submissions for Longest Common Prefix.
@@ -44,10 +44,26 @@ public class CommonPrefix {
     }*/
 
 
+    // Runtime: 1 ms, faster than 57.19% of Java online submissions for Longest Common Prefix.
+    //Memory Usage: 36.8 MB, less than 11.98% of Java online submissions for Longest Common Prefix.
+    public static String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length==0) return "";
+        if (strs.length == 1) return strs[0];
+        for (int i=0; i< strs[0].length(); i++)
+            for (int j=0; j < strs.length; j++) {
+                if ( i >= strs[j].length() || strs[j].charAt(i) != strs[0].charAt(i) ) {
+                    return strs[j].substring(0,i);
+                }
+            }
+        return strs[0];
+    }
+
+
+
     public static void main(String[] args) {
 
         //String[] testData  = {"flower","flow","flight"};
-        String[] testData  = {"flower","flow","cat"};
+        String[] testData  = {"ab","a"};
         String result = longestCommonPrefix(testData);
 
         System.out.printf(" longest Common Prefix is %s \n", result);
