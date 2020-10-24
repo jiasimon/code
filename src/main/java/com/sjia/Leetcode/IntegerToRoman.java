@@ -2,6 +2,7 @@ package com.sjia.Leetcode;
 
 public class IntegerToRoman {
 
+    // #12
     // https://leetcode.com/problems/integer-to-roman/
     //Symbol       Value
     //I             1
@@ -13,10 +14,11 @@ public class IntegerToRoman {
     //M             1000
     //V             5000
 
+    // code thousand , hundred...
     // Runtime: 21 ms, faster than 8.22% of Java online submissions for Integer to Roman.
     // Memory Usage: 43.9 MB, less than 5.01% of Java online submissions for Integer to Roman.
 
-    static String intToRoman(int num)
+/*    static String intToRoman(int num)
     {
         // storing roman values of digits from 0-9 in different position
 
@@ -36,7 +38,29 @@ public class IntegerToRoman {
         String result = thousand + hundered + ten + one;
 
         return result;
+    }*/
+
+
+    // greedy
+    // Runtime: 4 ms, faster than 88.28% of Java online submissions for Integer to Roman.
+    //Memory Usage: 38.2 MB, less than 6.38% of Java online submissions for Integer to Roman.
+    public static String intToRoman(int num) {
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] symbols = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < values.length && num >= 0; i++) {
+            // Repeat while the current symbol still fits into num.
+            while (values[i] <= num) {
+                num -= values[i];
+                sb.append(symbols[i]);
+            }
+        }
+        return sb.toString();
     }
+
+
+
 
 
     public static void main(String[] args) {
