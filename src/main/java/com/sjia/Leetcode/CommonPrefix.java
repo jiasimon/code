@@ -46,7 +46,7 @@ public class CommonPrefix {
 
     // Runtime: 1 ms, faster than 57.19% of Java online submissions for Longest Common Prefix.
     //Memory Usage: 36.8 MB, less than 11.98% of Java online submissions for Longest Common Prefix.
-    public static String longestCommonPrefix(String[] strs) {
+/*    public static String longestCommonPrefix(String[] strs) {
         if (strs == null || strs.length==0) return "";
         if (strs.length == 1) return strs[0];
         for (int i=0; i< strs[0].length(); i++)
@@ -56,8 +56,19 @@ public class CommonPrefix {
                 }
             }
         return strs[0];
-    }
+    }*/
 
+
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Longest Common Prefix.
+    //Memory Usage: 37 MB, less than 11.98% of Java online submissions for Longest Common Prefix.
+    public String longestCommonPrefix(String[] strs) {
+        if (strs.length == 0) return "";
+        String pre = strs[0];
+        for (int i = 1; i < strs.length; i++)
+            while ( !strs[i].startsWith(pre))
+                pre = pre.substring(0, pre.length() - 1);
+        return pre;
+    }
 
 
     public static void main(String[] args) {
