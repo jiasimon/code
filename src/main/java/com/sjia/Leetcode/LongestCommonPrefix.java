@@ -3,7 +3,7 @@ package com.sjia.Leetcode;
 
 import java.util.Arrays;
 
-public class CommonPrefix {
+public class LongestCommonPrefix {
     // #14 https://leetcode.com/problems/longest-common-prefix/
 
     //Runtime: 1 ms, faster than 65.55% of Java online submissions for Longest Common Prefix.
