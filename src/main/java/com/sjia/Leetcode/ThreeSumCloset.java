@@ -18,7 +18,7 @@ public class ThreeSumCloset {
     //Runtime: 3 ms, faster than 98.31% of Java online submissions for 3Sum Closest.
     //Memory Usage: 39.3 MB, less than 35.78% of Java online submissions for 3Sum Closest.
 
-
+/*
     static int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
         int closet = nums[0] + nums[1] + nums[2];
@@ -41,6 +41,35 @@ public class ThreeSumCloset {
         }
         return closet;
 
+    }*/
+
+
+
+
+    // Runtime: 5 ms, faster than 55.20% of Java online submissions for 3Sum Closest.
+    //Memory Usage: 38.5 MB, less than 16.94% of Java online submissions for 3Sum Closest.
+
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        int res =nums[0] + nums[1] + nums[2], n = nums.length;
+        if (res > target) return res;
+        for (int i = 0; i < n -2 ; i++) {
+            int l= i+1, r = n-1;
+            if (nums[i] + nums[l] + nums[r] == target) return target;
+            int tmp = Math.abs(target - res);
+            while ( l < r ) {
+                int sum = nums[i] + nums[l] + nums[r];
+                int diff = Math.abs(target - sum);
+                if (diff < tmp) {
+                    tmp = diff;
+                    res = sum;
+                }
+                if ( sum < target) l++;
+                else r--;
+
+            }
+        }
+        return res;
     }
 
 
