@@ -85,11 +85,10 @@ findAvailableTimes(schedules2)
             System.out.println("startTime is: " + startTime + ", endTime is: " + endTime);
             if (entry.get(i)[0] > endTime ) {
                 res.add(new int[] {endTime, entry.get(i)[0]});
-                startTime = entry.get(i)[0];
-                endTime = Math.max(endTime, entry.get(i)[1]);
-            } else {
-                endTime = Math.max(endTime, entry.get(i)[1]);
             }
+            startTime = entry.get(i)[0];
+            endTime = Math.max(endTime, entry.get(i)[1]);
+
         }
         if (entry.get(entry.size()-1)[1] < 2400) res.add(new int[] {entry.get(entry.size()-1)[1], 2400});
         System.out.println(Arrays.deepToString(res.toArray()));
@@ -100,12 +99,6 @@ findAvailableTimes(schedules2)
 
     public static void main(String[] argv) {
         int[][] p1Meetings = {
-/*       {845, 900} ,
-      {845, 915} ,
-      {1230, 1300},
-      {1235, 1245},
-      {1300, 1500},
-      {1515, 1545}      */
                 {1230, 1300},
                 { 845,  900},
                 {1300, 1500}
