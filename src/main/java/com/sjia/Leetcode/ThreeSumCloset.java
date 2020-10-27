@@ -49,10 +49,10 @@ public class ThreeSumCloset {
     // Runtime: 5 ms, faster than 55.20% of Java online submissions for 3Sum Closest.
     //Memory Usage: 38.5 MB, less than 16.94% of Java online submissions for 3Sum Closest.
 
-    public int threeSumClosest(int[] nums, int target) {
+/*    public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
         int res =nums[0] + nums[1] + nums[2], n = nums.length;
-        if (res > target) return res;
+        if (res >= target) return res;
         for (int i = 0; i < n -2 ; i++) {
             int l= i+1, r = n-1;
             if (nums[i] + nums[l] + nums[r] == target) return target;
@@ -70,14 +70,41 @@ public class ThreeSumCloset {
             }
         }
         return res;
-    }
+    }*/
 
+
+
+    // Runtime: 4 ms, faster than 86.25% of Java online submissions for 3Sum Closest.
+    //Memory Usage: 38.6 MB, less than 16.94% of Java online submissions for 3Sum Closest.
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        int res =nums[0] + nums[1] + nums[2], n = nums.length;
+        if (res > target) return res;
+        for (int i = 0; i < n -2 ; i++) {
+            if (i != 0 && nums[i] == nums[i - 1]) continue;
+            int l= i+1, r = n-1;
+            while ( l < r ) {
+                int sum = nums[i] + nums[l] + nums[r];
+                int diff = Math.abs(target - sum);
+                if (diff == 0) return target;
+                int min = Math.abs(target - res);
+                if (diff < min) {
+                    min = diff;
+                    res = sum;
+                }
+                if ( sum < target) l++;
+                else r--;
+            }
+        }
+        return res;
+    }
 
     public static void main(String[] args) {
 
         //int[] testData = {1, 1, 2, 4 ,10 ,20};
         int[] testData  = {0,2,1,-3};
-        int result = threeSumClosest(testData , 1);
+        ThreeSumCloset solution = new ThreeSumCloset();
+        int result = solution.threeSumClosest(testData , 1);
 
         System.out.printf(" Three sum result is %s \n", result);
     }
