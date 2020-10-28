@@ -62,6 +62,10 @@ public class GenerateParentheses {
     // Runtime: 8 ms, faster than 10.75% of Java online submissions for Generate Parentheses.
     // Memory Usage: 39.4 MB, less than 13.44% of Java online submissions for Generate Parentheses.
 
+    // LinkedList, similar perf as ArrayList
+    // Runtime: 8 ms, faster than 10.75% of Java online submissions for Generate Parentheses.
+    //Memory Usage: 39.1 MB, less than 13.44% of Java online submissions for Generate Parentheses.
+
     public List<String> generateParenthesis(int n) {
         List<ArrayList<String>> res = new ArrayList<ArrayList<String>>();
         if (n==0) return new ArrayList<String>();
