@@ -12,7 +12,7 @@ public class GenerateParentheses {
     // dfs String recursive
     // Runtime: 1 ms, faster than 83.20% of Java online submissions for Generate Parentheses.
     //Memory Usage: 39.2 MB, less than 13.42% of Java online submissions for Generate Parentheses.
-
+/*
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
         dfs(res, "", 0, 0, n);
@@ -30,8 +30,32 @@ public class GenerateParentheses {
         if ( right < left) {
             dfs(res, current + ")", left, right+1, n);
         }
+    }*/
+
+
+
+    // Runtime: 1 ms, faster than 83.20% of Java online submissions for Generate Parentheses.
+    //Memory Usage: 39.5 MB, less than 13.42% of Java online submissions for Generate Parentheses.
+
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        dfs(res, "", n, n);
+        return res;
     }
 
+    public void dfs(List<String> res, String current, int left, int right) {
+        if (left > right) return;
+        if( left ==0 && right ==0) {
+            res.add(current);
+            return;
+        }
+        if (left > 0) {
+            dfs(res, current + "(", left-1, right);
+        }
+        if ( right >0) {
+            dfs(res, current + ")", left, right-1);
+        }
+    }
 
 
 
