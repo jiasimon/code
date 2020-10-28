@@ -9,6 +9,32 @@ public class GenerateParentheses {
     // 1 <= n <= 8
 
 
+    // dfs String recursive
+    // Runtime: 1 ms, faster than 83.20% of Java online submissions for Generate Parentheses.
+    //Memory Usage: 39.2 MB, less than 13.42% of Java online submissions for Generate Parentheses.
+
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        dfs(res, "", 0, 0, n);
+        return res;
+    }
+
+    public void dfs(List<String> res, String current, int left, int right, int n ) {
+        if(current.length() == 2*n) {
+            res.add(current);
+            return;
+        }
+        if (left < n) {
+            dfs(res, current + "(", left+1, right, n );
+        }
+        if ( right < left) {
+            dfs(res, current + ")", left, right+1, n);
+        }
+    }
+
+
+
+
     // Runtime: 3 ms, faster than 28.99% of Java online submissions for Generate Parentheses.
     //Memory Usage: 40.9 MB, less than 12.20% of Java online submissions for Generate Parentheses.
 
@@ -65,7 +91,7 @@ public class GenerateParentheses {
     // LinkedList, similar perf as ArrayList
     // Runtime: 8 ms, faster than 10.75% of Java online submissions for Generate Parentheses.
     //Memory Usage: 39.1 MB, less than 13.44% of Java online submissions for Generate Parentheses.
-
+/*
     public List<String> generateParenthesis(int n) {
         List<ArrayList<String>> res = new ArrayList<ArrayList<String>>();
         if (n==0) return new ArrayList<String>();
@@ -94,7 +120,7 @@ public class GenerateParentheses {
             res.add(tmp);
         }
         return res.get(n);
-    }
+    }*/
 
     private void dfs(String curStr, int left, int right, List<String> res) {
         if (left > right || left < 0 || right < 0 ) return;
@@ -109,7 +135,8 @@ public class GenerateParentheses {
 
     public static void main(String[] args) {
         int testData  = 3;
-        List<String> result = generateParenthesis(testData);
+        GenerateParentheses solution = new GenerateParentheses();
+        List<String> result = solution.generateParenthesis(testData);
         System.out.printf(" Number %d  Generate Parentheses is: %s \n", testData, result);
     }
 
