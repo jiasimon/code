@@ -1,10 +1,14 @@
 package com.sjia.Leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class LongestContinuousSubseq {
     // #674 https://leetcode.com/problems/longest-continuous-increasing-subsequence/
     // 1,2   2,1   1,2,4,3    2,2,2,2
+
+
 
     // Runtime: 1 ms, faster than 99.84% of Java online submissions for Longest Continuous Increasing Subsequence.
     //Memory Usage: 40 MB, less than 86.69% of Java online submissions for Longest Continuous Increasing Subsequence.
