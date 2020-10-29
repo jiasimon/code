@@ -2,6 +2,7 @@ package com.sjia.Leetcode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CommonAncestor {
 
@@ -77,15 +78,22 @@ hasCommonAncestor(parentChildPairs2, 1, 12) => false
         // System.out.println(map);
 
         ArrayList<Integer> list1 = new ArrayList<Integer>();
+
+        // getAncestor(map, c1, map.get(c1));  // it cause "java.util.ConcurrentModificationException"
+
         getAncestor(map, c1, list1);
-        System.out.println("list1 is : " + list1);
+//        System.out.println("list1 is : " + list1);
 
         ArrayList<Integer> list2 = new ArrayList<Integer>();
         getAncestor(map, c2, list2);
 
-        System.out.println("list2 is : " + list2);
+//        System.out.println("list2 is : " + list2);
 
-        return list1.stream().anyMatch(list2::contains);
+        // return list1.stream().anyMatch(list2::contains);
+
+       list1.retainAll(list2);
+       return list1.size()>0;
+
 
 
     }
@@ -117,7 +125,7 @@ hasCommonAncestor(parentChildPairs2, 1, 12) => false
         };
 
         // Solution solution = new Solution();
-/*        hasCommonAncestor(parentChildPairs2, 4, 12);
+        hasCommonAncestor(parentChildPairs2, 4, 12);
         System.out.println("4, 12 CommonAncestor is: " + hasCommonAncestor(parentChildPairs2, 4, 12));
 
         System.out.println("1, 6 CommonAncestor is: " + hasCommonAncestor(parentChildPairs2, 1, 6));
@@ -131,7 +139,7 @@ hasCommonAncestor(parentChildPairs2, 1, 12) => false
                 hasCommonAncestor(parentChildPairs1, 5, 8));
 
         System.out.println("6, 8 CommonAncestor is: " +
-                hasCommonAncestor(parentChildPairs1, 6, 8));*/
+                hasCommonAncestor(parentChildPairs1, 6, 8));
 
         System.out.println("4, 14 CommonAncestor is: " +
                 hasCommonAncestor(parentChildPairs1, 4, 14));
