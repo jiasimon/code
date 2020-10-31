@@ -6,13 +6,45 @@ public class FindFLSortedArray {
 
     // #34 https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 
+    // FindFirstLastSortedArray
+
+
+    // normal scan
+    // Runtime: 1 ms, faster than 15.78% of Java online submissions for Find First and Last Position of Element in Sorted Array.
+    //Memory Usage: 44 MB, less than 5.51% of Java online submissions for Find First and Last Position of Element in Sorted Array.
+
+    public static int[] searchRange(int[] nums, int target) {
+        int [] res = {-1, -1};
+        if (nums.length < 1) return res;
+        if (nums.length  == 1) return nums[0] == target ? new int[] {0,0} : res;
+        int l =0, r = nums.length-1;
+        while ( l <= r) {
+            if(nums[l] != target) l++;
+            else  {
+                res[0] = l;
+                break;
+            }
+        }
+        while (r >= l) {
+            if(nums[r] != target) r--;
+            else {
+                res[1] = r;
+                break;
+            }
+        }
+        return res;
+
+    }
+
+
+
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Find First and Last Position of Element in Sorted Array.
     //Memory Usage: 42.6 MB, less than 72.07% of Java online submissions for Find First and Last Position of Element in Sorted Array.
 
     // Need follow up.
 
 
-    static int[] searchRange(int[] nums, int target) {
+/*    static int[] searchRange(int[] nums, int target) {
         int [] result = {-1 ,-1};
         int [] single = {1,1};
         if (nums.length == 0) return result;
@@ -47,7 +79,7 @@ public class FindFLSortedArray {
             }
 
             return lo;
-        }
+        }*/
 
 
 
