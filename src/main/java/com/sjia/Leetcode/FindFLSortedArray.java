@@ -7,12 +7,51 @@ public class FindFLSortedArray {
     // #34 https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 
     // FindFirstLastSortedArray
+    // erfen
+
+
+
+    // j=nums.length-1  while (i <= j)
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Find First and Last Position of Element in Sorted Array.
+    //Memory Usage: 42.5 MB, less than 5.51% of Java online submissions for Find First and Last Position of Element in Sorted Array.
+    public static int[] searchRange(int[] nums, int target) {
+        int [] res = {-1, -1};
+        if (nums.length < 1) return res;
+        if (nums.length  == 1) return nums[0] == target ? new int[] {0,0} : res;
+        res[0] = binarySearch(nums, target);
+        if (res[0] == -1) return res;
+        res[1] = binarySearchRightBoud(nums, target) ;
+        return res;
+
+    }
+
+    private static int binarySearch(int[] nums, int target) {
+        int i=0, j=nums.length-1;
+        while (i <= j) {
+            int mid = i + (j-i)/2;
+            if (nums[mid] >= target) j=mid-1;
+            else i = mid+1;
+        }
+        if (i != nums.length && nums[i] ==target ) return i;
+        return -1;
+    }
+
+    private static int binarySearchRightBoud(int[] nums, int target) {
+        int i=0, j=nums.length-1;
+        while (i <= j) {
+            int mid = i + (j-i)/2;
+            if (nums[mid] > target) j=mid-1;
+            else i = mid+1;
+        }
+        return j;
+    }
 
 
     // normal scan
     // Runtime: 1 ms, faster than 15.78% of Java online submissions for Find First and Last Position of Element in Sorted Array.
     //Memory Usage: 44 MB, less than 5.51% of Java online submissions for Find First and Last Position of Element in Sorted Array.
 
+/*
     public static int[] searchRange(int[] nums, int target) {
         int [] res = {-1, -1};
         if (nums.length < 1) return res;
@@ -35,6 +74,7 @@ public class FindFLSortedArray {
         return res;
 
     }
+*/
 
 
 
