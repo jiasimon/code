@@ -18,7 +18,7 @@ public class CombinationSum {
     //
     // Runtime: 4 ms, faster than 59.01% of Java online submissions for Combination Sum.
     //Memory Usage: 39.2 MB, less than 6.17% of Java online submissions for Combination Sum.
-    
+
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         Arrays.sort(candidates);
         List<List<Integer>> res = new ArrayList<List<Integer>>();
@@ -26,13 +26,33 @@ public class CombinationSum {
         return res;
     }
 
-    private void helperBacktrack(List<List<Integer>> res, List<Integer> tmp, int[] nums, int target, int start ) {
+/*    private void helperBacktrack(List<List<Integer>> res, List<Integer> tmp, int[] nums, int target, int start ) {
         if (target < 0) return;
         else if ( target == 0) {
             // res.add(tmp);   // [[], []]
             res.add(new ArrayList<> (tmp));
         } else {
             for (int i=start; i < nums.length; i++) {
+                tmp.add(nums[i]);
+                helperBacktrack(res, tmp, nums, target-nums[i],  i );
+                tmp.remove(tmp.size()-1);
+            }
+        }
+
+    }*/
+
+
+
+    // check whether to add before recursive call
+    // Runtime: 2 ms, faster than 99.11% of Java online submissions for Combination Sum.
+    //Memory Usage: 39.6 MB, less than 6.17% of Java online submissions for Combination Sum.
+    private void helperBacktrack(List<List<Integer>> res, List<Integer> tmp, int[] nums, int target, int start ) {
+        if ( target == 0) {
+            // res.add(tmp);   // [[], []]
+            res.add(new ArrayList<> (tmp));
+        } else {
+            for (int i=start; i < nums.length; i++) {
+                if (nums[i] > target) break;
                 tmp.add(nums[i]);
                 helperBacktrack(res, tmp, nums, target-nums[i],  i );
                 tmp.remove(tmp.size()-1);
