@@ -23,13 +23,15 @@ public class CombinationSum2 {
         return res;
     }
 
+    //  1,1,1,1,2   target 4
+    // without condition, it returns [[1, 1, 1, 1], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2]] 
     private void backtrack(List<List<Integer>> res, ArrayList<Integer> tmp, int[] nums, int target, int start) {
         if (target == 0) {
             res.add(new ArrayList<> (tmp));
         } else {
             for ( int i = start; i < nums.length; i++) {
                 if (nums[i] > target) break;
-                if (i > start && nums[i] == nums[i-1]) continue;
+                // if (i > start && nums[i] == nums[i-1]) continue;
                 tmp.add(nums[i]);
                 backtrack(res, tmp, nums, target - nums[i], i+1);
                 tmp.remove(tmp.size() - 1);
@@ -68,10 +70,11 @@ public class CombinationSum2 {
 
 
     public static void main(String[] args) {
+        // int[] testData  = {10,1,2,7,6,1,5}; 8
         // int[] testData  = {2,5,2,1,2}; 5
         // int[] testData  = {10,1,2,7,6,1,5}; 8
-        int[] testData  = {10,1,2,7,6,1,5};
-        int target = 8;
+        int[] testData  = {1,1,1,1,2};
+        int target = 4;
         CombinationSum2 solution = new CombinationSum2();
         List<List<Integer>> result = solution.combinationSum2(testData, target);
 
