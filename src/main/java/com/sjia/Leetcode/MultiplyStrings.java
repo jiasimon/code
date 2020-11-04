@@ -24,11 +24,14 @@ public class MultiplyStrings {
 
         }
         StringBuilder sb = new StringBuilder();
-        for (int i=0; i < res.length; i++) {
+/*        for (int i=0; i < res.length; i++) {
             if ( i==0 && res[i]==0 ) continue;
             sb.append(res[i]);
         }
-        return sb.toString();
+        return sb.toString(); */
+
+        for(int p : res) if(!(sb.length() == 0 && p == 0)) sb.append(p);
+        return sb.length() == 0 ? "0" : sb.toString();
 
     }
 
