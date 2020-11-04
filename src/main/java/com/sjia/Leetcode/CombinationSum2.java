@@ -24,7 +24,7 @@ public class CombinationSum2 {
     }
 
     //  1,1,1,1,2   target 4
-    // without condition, it returns [[1, 1, 1, 1], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2]] 
+    // without condition, it returns [[1, 1, 1, 1], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2]]
     private void backtrack(List<List<Integer>> res, ArrayList<Integer> tmp, int[] nums, int target, int start) {
         if (target == 0) {
             res.add(new ArrayList<> (tmp));
