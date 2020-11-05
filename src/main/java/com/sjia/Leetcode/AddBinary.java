@@ -2,7 +2,7 @@ package com.sjia.Leetcode;
 
 public class AddBinary {
 
-    // #67 https://leetcode.com/problems/add-binary/
+    // #67 https://leetcode.com/problems/add-binary/    #fb
     // a = "1010", b = "1011" , Output: "10101"
     // 1 <= a.length, b.length <= 10^4
 

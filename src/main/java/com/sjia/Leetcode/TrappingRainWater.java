@@ -7,6 +7,9 @@ public class TrappingRainWater {
     //0 <= n <= 3 * 104
     //0 <= height[i] <= 105
 
+    // height = [4,2,0,3,2,5]   output = 9   0 +2 +4 +1+2  =9
+    // [0,1,0,2,1,0,1,3,2,1,2,1] 1 + 1 +2 +1 +1 =6
+
 
     // Runtime: 1 ms, faster than 87.43% of Java online submissions for Trapping Rain Water.
     //Memory Usage: 38.3 MB, less than 6.63% of Java online submissions for Trapping Rain Water.

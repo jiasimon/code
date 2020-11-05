@@ -4,7 +4,9 @@ import java.util.Arrays;
 
 public class NextPermutation {
 
-    // #31 https://leetcode.com/problems/next-permutation/\
+    // #31 https://leetcode.com/problems/next-permutation/  #fb
+    // Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
+    //If such an arrangement is not possible, it must rearrange it as the lowest possible order
 
     // {1,2,7,4,3,1}
 

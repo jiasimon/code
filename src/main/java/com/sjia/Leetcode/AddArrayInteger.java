@@ -1,6 +1,7 @@
 package com.sjia.Leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class AddArrayInteger {
         int K = 10000;
         AddArrayInteger solution = new AddArrayInteger();
         List<Integer> result = solution.addToArrayForm(testData, K);
-        System.out.printf( "input %s plus %s  is : %s ", testData.toString(), K, result);
+        System.out.printf( "input %s plus %s  is : %s ", Arrays.toString(testData), K, result);
     }
 
 }
