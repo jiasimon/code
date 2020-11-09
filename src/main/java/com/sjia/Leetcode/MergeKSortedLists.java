@@ -1,6 +1,8 @@
 package com.sjia.Leetcode;
 
 
+import java.util.*;
+
 public class MergeKSortedLists {
 
     // #23 https://leetcode.com/problems/merge-k-sorted-lists/  #fb
@@ -10,7 +12,7 @@ public class MergeKSortedLists {
     // PriorityQueue Runtime: 4 ms, faster than 81.92% of Java online submissions for Merge k Sorted Lists.
     //Memory Usage: 41.6 MB, less than 36.78% of Java online submissions for Merge k Sorted Lists.
 
-
+/*
     public class ListNode {
         int val;
         ListNode next;
@@ -42,19 +44,24 @@ public class MergeKSortedLists {
             l2.next = mergeTwoLists(l1, l2.next);
             return l2;
         }
-    }
+    }*/
 
 
- /*       public ListNode mergeKLists(ListNode[] lists) {
+    // PriorityQueue Lambda
+    // Runtime: 4 ms, faster than 80.67% of Java online submissions for Merge k Sorted Lists.
+    //Memory Usage: 40.8 MB, less than 7.77% of Java online submissions for Merge k Sorted Lists.
+        public ListNode mergeKLists(ListNode[] lists) {
             if (lists == null || lists.length == 0) return null;
-            PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, new Comparator<ListNode>() {
+/*            PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, new Comparator<ListNode>() {
                 @Override
                 public int compare(ListNode o1, ListNode o2) {
                     if (o1.val < o2.val) return -1;
                     else if (o1.val == o2.val) return 0;
                     else return 1;
                 }
-            });
+            });*/
+
+            PriorityQueue<ListNode> queue = new PriorityQueue<>((p1,p2) -> p1.val - p2.val);
 
             ListNode dummy = new ListNode(0);
             ListNode p = dummy;
@@ -67,7 +74,7 @@ public class MergeKSortedLists {
                 if (p.next != null) queue.add(p.next);
             }
             return dummy.next;
-        }*/
+        }
 
 
 
