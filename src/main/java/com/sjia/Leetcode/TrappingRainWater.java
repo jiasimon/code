@@ -34,4 +34,26 @@ public class TrappingRainWater {
     }
 
 
+    // 执行用时：1 ms, 在所有 Java 提交中击败了99.99% 的用户
+    // 内存消耗：38.3 MB, 在所有 Java 提交中击败了78.87% 的用户
+/*
+    public int trap(int[] height) {
+        int a = 0 , b=height.length-1;
+        int res = 0;
+        int lMax =0, rMax=0;
+        while (a < b) {
+            lMax = Math.max(lMax, height[a]);
+            rMax = Math.max(rMax, height[b]);
+            if (lMax <= rMax) {
+                res += lMax - height[a];
+                a++;
+            } else {
+                res += rMax - height[b];
+                b--;
+            }
+        }
+        return res;
+    }*/
+
+
 }
