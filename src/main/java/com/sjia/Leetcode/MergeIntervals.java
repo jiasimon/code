@@ -7,6 +7,12 @@ import java.util.List;
 public class MergeIntervals {
     // #56 https://leetcode.com/problems/merge-intervals/ #fb
 
+
+
+
+
+
+
     // Runtime: 5 ms, faster than 96.05% of Java online submissions for Merge Intervals.
     //Memory Usage: 42.4 MB, less than 40.86% of Java online submissions for Merge Intervals.
 /*    public int[][] merge(int[][] intervals) {
@@ -44,25 +50,30 @@ public class MergeIntervals {
     // [1,6], [2,4]
     // [1,3], [5,8]
 
+
+    // res.toArray(new int[res.size()][])
+    // Runtime: 5 ms, faster than 94.24% of Java online submissions for Merge Intervals.
+    // Memory Usage: 41.6 MB, less than 66.18% of Java online submissions for Merge Intervals.
     public int[][] merge(int[][] intervals) {
-        if (intervals.length <= 1) return intervals;
-        List<int[]> result = new ArrayList<>();
-        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
-        // Arrays.sort(intervals, (i1, i2) -> Integer.compare(i1[0], i2[0]));
-        int N = intervals.length;
-        int[] tmp = intervals[0] ;
-        result.add(tmp);
-        for (int[] in: intervals) {
-            if (in[0] <= tmp[1]) {
-                tmp[1] = Math.max(tmp[1], in[1]);
+        if (intervals.length <=1) return intervals;
+        Arrays.sort(intervals, (a, b) -> a[0] -b[0]);
+        List<int[]> res = new ArrayList<>();
+
+        int[] tmp = intervals[0];
+        res.add(tmp);
+        for (int[] in : intervals)  {
+            if(in[0] <= tmp[1]) {
+                tmp[1] = Math.max(in[1], tmp[1]);
             } else {
                 tmp = in;
-                result.add(tmp);
+                res.add(tmp);
             }
-
         }
-        return result.toArray(new int[result.size()][]);
+
+        return res.toArray(new int[res.size()][]);
+
     }
+
 
 
 }
