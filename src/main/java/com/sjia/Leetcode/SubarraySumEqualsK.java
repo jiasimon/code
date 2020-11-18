@@ -34,7 +34,7 @@ public class SubarraySumEqualsK {
     // presum
     // Runtime: 1315 ms, faster than 5.04% of Java online submissions for Subarray Sum Equals K.
     //Memory Usage: 41.6 MB, less than 25.98% of Java online submissions for Subarray Sum Equals K.
-    public int subarraySum(int[] nums, int k) {
+/*    public int subarraySum(int[] nums, int k) {
         int res = 0 , N = nums.length;
         int[] tmp = new int[N];
         tmp[0] = nums[0];
@@ -48,13 +48,16 @@ public class SubarraySumEqualsK {
             }
         }
         return res;
-    }
+    }*/
 
 
 
-/*    public int subarraySum(int[] nums, int k) {
+    // presum + hashtable
+    // Runtime: 18 ms, faster than 44.70% of Java online submissions for Subarray Sum Equals K.
+    //Memory Usage: 41.5 MB, less than 30.58% of Java online submissions for Subarray Sum Equals K.
+    public int subarraySum(int[] nums, int k) {
         int sum = 0, result = 0;
-        Map<Integer, Integer> preSum = new HashMap<>();
+        Map<Integer, Integer> preSum = new HashMap<>(); // key: presum;  value: the count
         preSum.put(0, 1);
 
         for (int i = 0; i < nums.length; i++) {
@@ -66,7 +69,7 @@ public class SubarraySumEqualsK {
         }
 
         return result;
-    }*/
+    }
 
 
 
