@@ -14,9 +14,14 @@ public class NextPermutation {
     // Memory Usage: 41 MB, less than 5.00% of Java online submissions for Next Permutation.
 
 
+    // 1) from right to left , find first i, nums[i] < nums[i+1]
+    // 2) from right to left, find j, first nums[j] > nums[i], swap i and j
+    // 3) reverse i+1 to the end 
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Next Permutation.
+    //Memory Usage: 39 MB, less than 75.18% of Java online submissions for Next Permutation.
     public void nextPermutation(int[] nums) {
         int i = nums.length - 2;
-        while (i >= 0 && nums[i + 1] <= nums[i]) {
+        while (i >= 0 && nums[i] >= nums[i + 1] ) {
             i--;
         }
         if (i >= 0) {
