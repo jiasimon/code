@@ -16,7 +16,7 @@ public class NextPermutation {
 
     // 1) from right to left , find first i, nums[i] < nums[i+1]
     // 2) from right to left, find j, first nums[j] > nums[i], swap i and j
-    // 3) reverse i+1 to the end 
+    // 3) reverse i+1 to the end
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Next Permutation.
     //Memory Usage: 39 MB, less than 75.18% of Java online submissions for Next Permutation.
     public void nextPermutation(int[] nums) {
