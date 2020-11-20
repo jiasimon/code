@@ -35,6 +35,7 @@ public class MinimumRemoveValidParentheses {
 
 
 
+
     // solution2
     public String minRemoveToMakeValid2(String s) {
         StringBuilder sb = new StringBuilder(s);
@@ -52,8 +53,32 @@ public class MinimumRemoveValidParentheses {
     }
 
 
+    // String[] arr = s.split("")
+
+    public String minRemoveToMakeValid3(String s) {
+        Stack<Integer> stack = new Stack<Integer>();
+        String[] arr = s.split("");
+        for (int i = 0; i < arr.length; i++) {
+            if ("(".equals(arr[i])) {
+                stack.push(i);
+            } else if (")".equals(arr[i])) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                } else {
+                    arr[i] = "";
+                }
+            }
+        }
+        while(!stack.isEmpty()) {
+            arr[stack.pop()] = "";
+        }
+        return String.join("", arr);
+    }
+
+
     public static void main(String[] args) {
-        String testData  = "))((";  //
+        // String testData  = "))((";
+        String testData  = "lee(t(c)o)de)";
         MinimumRemoveValidParentheses solution = new MinimumRemoveValidParentheses();
         String result = solution.minRemoveToMakeValid(testData);
 
