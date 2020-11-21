@@ -22,6 +22,10 @@ public class AlienDictionary {
     // If the order is invalid, return an empty string.
     // There may be multiple valid order of letters, return any one of them is fine.
 
+    // ['eff', 'fg']
+    // ["abc","ab"]
+    // // ["z","x", "z"]
+
 
     public String alienOrder(String[] words) {
         Map<Character, Set<Character>> graph = new HashMap<>();
