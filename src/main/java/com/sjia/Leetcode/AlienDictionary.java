@@ -3,7 +3,25 @@ package com.sjia.Leetcode;
 import java.util.*;
 
 public class AlienDictionary {
-    // #269 https://leetcode.com/problems/alien-dictionary/ #fb
+    // #269 https://leetcode.com/problems/alien-dictionary/ #fb #graph
+    // You receive a list of non-empty words from the dictionary,
+    // where words are sorted lexicographically by the rules of this new language.
+    // Derive the order of letters in this language.
+
+    // [
+    //  "wrt",
+    //  "wrf",
+    //  "er",
+    //  "ett",
+    //  "rftt"
+    // ]
+    // The correct order is: "wertf".
+
+    // You may assume all letters are in lowercase.
+    // You may assume that if a is a prefix of b, then a must appear before b in the given dictionary.
+    // If the order is invalid, return an empty string.
+    // There may be multiple valid order of letters, return any one of them is fine.
+
 
     public String alienOrder(String[] words) {
         Map<Character, Set<Character>> graph = new HashMap<>();
@@ -61,4 +79,15 @@ public class AlienDictionary {
         }
         return sb.toString();
     }
+
+
+    public static void main(String[] args) {
+        String[] testData  =  {"wrt", "wrf", "er", "ett", "rftt"};
+        AlienDictionary solution = new AlienDictionary();
+        String result = solution.alienOrder(testData);
+
+        System.out.printf("testData %s Alien Dictionary  is %s \n", Arrays.toString(testData),result);
+    }
+
+
 }

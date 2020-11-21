@@ -53,8 +53,8 @@ public class MinimumRemoveValidParentheses {
     }
 
 
-    // String[] arr = s.split("")
-
+    // String[] arr = s.split("")   slow performance
+    // 102 ms	50.9 MB
     public String minRemoveToMakeValid3(String s) {
         Stack<Integer> stack = new Stack<Integer>();
         String[] arr = s.split("");
@@ -82,7 +82,7 @@ public class MinimumRemoveValidParentheses {
         MinimumRemoveValidParentheses solution = new MinimumRemoveValidParentheses();
         String result = solution.minRemoveToMakeValid(testData);
 
-        System.out.printf("testData %s add digits is %s \n", testData,result);
+        System.out.printf("testData %s MinimumRemove to get ValidParentheses is %s \n", testData,result);
     }
 
 }
