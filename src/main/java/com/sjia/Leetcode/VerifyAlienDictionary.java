@@ -1,7 +1,9 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class VerifyAlienDictionary {
-    // #953 https://leetcode.com/problems/verifying-an-alien-dictionary/
+    // #953 https://leetcode.com/problems/verifying-an-alien-dictionary/    #fb
 
     // Input: words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"
     // Output: true
@@ -31,6 +33,47 @@ public class VerifyAlienDictionary {
         }
         return a > b;
     }
+
+
+
+    //
+    public boolean isAlienSorted2(String[] words, String order) {
+        int[] tmp = new int[26];
+        for (int i=0; i< order.length(); i++) {
+            tmp[order.charAt(i) - 'a'] = i;
+        }
+        for (int i=1; i< words.length; i++) {
+            String word1 = words[i-1];
+            String word2 = words[i];
+
+            int k = Math.min(word1.length(), word2.length());
+            boolean flag = false;
+            for (int j=0; j < k; j++){
+                if( tmp[word1.charAt(j) - 'a'] > tmp[word2.charAt(j) - 'a'] ) {
+                    return false;
+                } else if ( tmp[word1.charAt(j) - 'a'] < tmp[word2.charAt(j) - 'a'] ) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag && word1.length() > word2.length()) return false;
+        }
+        return true;
+
+    }
+
+
+    public static void main(String[] args) {
+        String[] testData  = {"hello", "leetcode"};
+        String order = "hlabcdefgijkmnopqrstuvwxyz";
+        VerifyAlienDictionary solution = new VerifyAlienDictionary();
+        boolean result = solution.isAlienSorted2(testData, order);
+
+        System.out.printf("testData %s Verify AlienDictionary result is %s \n",
+                Arrays.toString(testData),result);
+    }
+
+
 
 
 }
