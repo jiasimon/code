@@ -7,6 +7,29 @@ public class AddStrings {
     //Both num1 and num2 does not contain any leading zero.
 
 
+    // Runtime: 2 ms, faster than 91.73% of Java online submissions for Add Strings.
+    //Memory Usage: 39.4 MB, less than 17.72% of Java online submissions for Add Strings.
+    public String addStrings2(String num1, String num2) {
+        int i = num1.length()-1, j= num2.length()-1, carry = 0;
+        StringBuilder res = new StringBuilder();
+
+        while (i >= 0 || j >= 0 || carry !=0) {
+            int a, b;
+            if (i>=0) a = Character.getNumericValue(num1.charAt(i));
+            else a =0;
+            if (j >= 0) b= Character.getNumericValue(num2.charAt(j));
+            else b=0;
+            int tmp = a+b+carry;
+            res.append(tmp%10);
+            carry = tmp/10;
+            i--;
+            j--;
+        }
+        return res.reverse().toString();
+
+    }
+
+
     // Runtime: 2 ms, faster than 96.67% of Java online submissions for Add Strings.
     //Memory Usage: 39.5 MB, less than 40.37% of Java online submissions for Add Strings.
     public String addStrings(String num1, String num2) {
