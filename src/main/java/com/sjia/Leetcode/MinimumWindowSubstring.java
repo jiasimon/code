@@ -5,11 +5,58 @@ import java.util.*;
 public class MinimumWindowSubstring {
     // #76  https://leetcode.com/problems/minimum-window-substring/ #fb
 
+    // Input: s = "ADOBECODEBANC", t = "ABC"    Output: "BANC"
+    // Input: s = "a", t = "a"  Output: "a"
+
+    // Given two strings s and t, return the minimum window in s which will contain all the characters in t.
+    // If there is no such window in s that covers all characters in t, return the empty string ""
+    // it is guaranteed that there will always be only one unique minimum window in s.
+
+    // 1 <= s.length, t.length <= 105
+    // s and t consist of English letters.
+    // note: t can have duplicate characters
+
+    // Runtime: 4 ms, faster than 85.34% of Java online submissions for Minimum Window Substring.
+    //Memory Usage: 38.8 MB, less than 97.89% of Java online submissions for Minimum Window Substring.
+    public String minWindow(String s, String t) {
+        if(s == null || s.length() < t.length() || s.length() == 0){
+            return "";
+        }
+        int[] map = new int[128];
+        for (char c: t.toCharArray()) {
+            map[c]++;
+        }
+
+        int start = 0, end = 0, minStart = 0, minLen = Integer.MAX_VALUE, counter = t.length();
+        while (end < s.length()) {
+            char tmp = s.charAt(end);
+            if(map[tmp] >0 ) counter--;
+            map[tmp]--;
+            end++;
+
+            while (counter == 0) {
+                if (minLen > end - start) {
+                    minLen = end - start;
+                    minStart = start;
+                }
+                char c2 = s.charAt(start);
+                map[c2]++;
+                if(map[c2] > 0) counter++;
+                start++;
+            }
+
+        }
+        return minLen == Integer.MAX_VALUE ? "" : s.substring(minStart, minStart + minLen);
+
+    }
 
 
 
 
 
+
+
+/*
     public String minWindow(String s, String t) {
         if(s == null || s.length() < t.length() || s.length() == 0){
             return "";
@@ -17,11 +64,6 @@ public class MinimumWindowSubstring {
         HashMap<Character,Integer> map = new HashMap<Character,Integer>();
         for(char c : t.toCharArray()){
             map.put(c, map.getOrDefault(c,0) + 11);
-/*            if(map.containsKey(c)){
-                map.put(c,map.get(c)+1);
-            }else{
-                map.put(c,1);
-            }*/
         }
         int left = 0;
         int minLeft = 0;
@@ -54,6 +96,17 @@ public class MinimumWindowSubstring {
         }
 
         return s.substring(minLeft,minLeft+minLen);
+    }*/
+
+
+    public static void main(String[] args) {
+        String testData  = "ADOBECODEBANC";
+        String testData2  = "ABC";
+        MinimumWindowSubstring solution = new MinimumWindowSubstring();
+        String result = solution.minWindow(testData, testData2);
+
+        System.out.printf("testData %s and testData2 %s minWindow is %s \n",
+                testData,testData2, result);
     }
 
 
