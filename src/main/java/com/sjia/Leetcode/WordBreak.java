@@ -29,13 +29,20 @@ public class WordBreak {
     }
 
 
+    // Optimize, use maxLength in wordDict, reverse check
+    // Runtime: 1 ms, faster than 97.93% of Java online submissions for Word Break.
+    //Memory Usage: 37.2 MB, less than 97.05% of Java online submissions for Word Break.
     public boolean wordBreak2(String s, List<String> wordDict) {
-        Set<String> wordDictSet = new HashSet(wordDict);
+        int maxL =0;
+        Set<String> wordSet = new HashSet<>(wordDict);
+        for (String word : wordDict) {
+            maxL = Math.max(maxL, word.length());
+        }
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
         for (int i = 1; i <= s.length(); i++) {
-            for (int j = 0; j < i; j++) {
-                if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
+            for (int j = i-1; j >=0 && j >= i - maxL; j--) {
+                if (dp[j] && wordSet.contains(s.substring(j, i))) {
                     dp[i] = true;
                     break;
                 }
