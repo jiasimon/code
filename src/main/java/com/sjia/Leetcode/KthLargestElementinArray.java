@@ -19,6 +19,18 @@ public class KthLargestElementinArray {
 
 
 
+    // PriorityQueue
+    // Runtime: 4 ms, faster than 59.76% of Java online submissions for Kth Largest Element in an Array.
+    //Memory Usage: 39 MB, less than 95.51% of Java online submissions for Kth Largest Element in an Array.
+    public int findKthLargest3(int[] nums, int k) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        for (int n : nums) {
+            queue.offer(n);
+            if(queue.size() > k) queue.poll();
+        }
+        return queue.peek();
+    }
+
 
     Random random = new Random();
 
