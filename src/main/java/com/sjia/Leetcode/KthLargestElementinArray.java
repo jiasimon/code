@@ -8,6 +8,17 @@ public class KthLargestElementinArray {
     // Note that it is the kth largest element in the sorted order, not the kth distinct element.
 
 
+    // Arrays.sort  O(N lgN) running time + O(1) memory
+    // Runtime: 1 ms, faster than 97.71% of Java online submissions for Kth Largest Element in an Array.
+    //Memory Usage: 39.1 MB, less than 77.44% of Java online submissions for Kth Largest Element in an Array.
+    public int findKthLargest2(int[] nums, int k) {
+        int N = nums.length;
+        Arrays.sort(nums);
+        return nums[N-k];
+    }
+
+
+
 
     Random random = new Random();
 
