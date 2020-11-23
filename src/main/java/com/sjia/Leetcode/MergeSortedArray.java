@@ -9,11 +9,13 @@ public class MergeSortedArray {
 
     //Runtime: 1 ms, faster than 20.93% of Java online submissions for Merge Sorted Array.
     //Memory Usage: 40.3 MB, less than 5.07% of Java online submissions for Merge Sorted Array.
-/*
-    public void merge(int[] nums1, int m, int[] nums2, int n) {
-        System.arraycopy(nums2, 0, nums1, m, n);
+
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Merge Sorted Array.
+    //Memory Usage: 39.1 MB, less than 61.19% of Java online submissions for Merge Sorted Array.
+    public void merge2(int[] nums1, int m, int[] nums2, int n) {
+        System.arraycopy(nums2, 0, nums1,m,n);
         Arrays.sort(nums1);
-    }*/
+    }
 
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Merge Sorted Array.
