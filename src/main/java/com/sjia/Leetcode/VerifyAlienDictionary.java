@@ -36,7 +36,9 @@ public class VerifyAlienDictionary {
 
 
 
-    //
+    // use flag to break inner loop and continue outer loop
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Verifying an Alien Dictionary.
+    //Memory Usage: 37.7 MB, less than 69.28% of Java online submissions for Verifying an Alien Dictionary.
     public boolean isAlienSorted2(String[] words, String order) {
         int[] tmp = new int[26];
         for (int i=0; i< order.length(); i++) {
