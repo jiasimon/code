@@ -9,7 +9,7 @@ public class PalindromeValidIgnore {
 
     // Runtime: 37 ms, faster than 14.21% of Java online submissions for Valid Palindrome.
     //Memory Usage: 44.8 MB, less than 5.01% of Java online submissions for Valid Palindrome.
-    
+
     // another run
     //Runtime: 24 ms, faster than 24.65% of Java online submissions for Valid Palindrome.
     //Memory Usage: 40.2 MB, less than 14.17% of Java online submissions for Valid Palindrome.
