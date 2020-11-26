@@ -9,6 +9,9 @@ public class AddBinary {
 
     // Runtime: 2 ms, faster than 86.61% of Java online submissions for Add Binary.
     //Memory Usage: 40.1 MB, less than 6.37% of Java online submissions for Add Binary.
+
+    // Runtime: 1 ms, faster than 100.00% of Java online submissions for Add Binary.
+    //Memory Usage: 37.8 MB, less than 69.28% of Java online submissions for Add Binary.
     static String addBinary(String a, String b) {
         StringBuilder result = new StringBuilder();
         int carry = 0;
@@ -42,11 +45,31 @@ public class AddBinary {
     }*/
 
 
+    // Runtime: 3 ms, faster than 25.88% of Java online submissions for Add Binary.
+    //Memory Usage: 39.2 MB, less than 16.78% of Java online submissions for Add Binary.
+    public static String addBinary2(String a, String b) {
+        int i= a.length()-1, j= b.length()-1, carry =0;
+        StringBuilder sb = new StringBuilder();
+        while (i>=0 || j>=0 || carry !=0) {
+            int x,y;
+            if (i>=0) x= a.charAt(i) - '0';
+            else x = 0;
+            if ( j >=0) y = b.charAt(j) - '0';
+            else y = 0;
+            int tmp = x+y+carry;
+            sb.append(tmp % 2);
+            carry = tmp / 2;
+            i--;
+            j--;
+        }
+        return sb.reverse().toString();
+
+    }
 
     public static void main(String[] args) {
         String testData = "11";
         String testData2 = "1";
-        String result = addBinary(testData,testData2);
+        String result = addBinary2(testData,testData2);
         System.out.printf( "Binary %s plus %s  is : %s ", testData,testData2, result);
     }
 
