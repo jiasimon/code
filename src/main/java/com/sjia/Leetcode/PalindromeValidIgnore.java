@@ -7,6 +7,28 @@ public class PalindromeValidIgnore {
     // considering only alphanumeric characters and ignoring cases.
     // Here we define empty string as valid palindrome
 
+
+
+    // two pointers
+    // Runtime: 4 ms, faster than 41.16% of Java online submissions for Valid Palindrome.
+    //Memory Usage: 38.4 MB, less than 99.98% of Java online submissions for Valid Palindrome.
+    public boolean isPalindrome(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i=0; i< s.length(); i++) {
+            char c = s.charAt(i);
+            if ( Character.isLetterOrDigit(c) ) sb.append(Character.toLowerCase(c));
+        }
+        String tmp = sb.toString();
+        int i=0, j=tmp.length()-1;
+        while(i < j) {
+            if(tmp.charAt(i) != tmp.charAt(j)) return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+
     // Runtime: 37 ms, faster than 14.21% of Java online submissions for Valid Palindrome.
     //Memory Usage: 44.8 MB, less than 5.01% of Java online submissions for Valid Palindrome.
 
@@ -14,7 +36,7 @@ public class PalindromeValidIgnore {
     //Runtime: 24 ms, faster than 24.65% of Java online submissions for Valid Palindrome.
     //Memory Usage: 40.2 MB, less than 14.17% of Java online submissions for Valid Palindrome.
 
-    public boolean isPalindrome(String s) {
+    public boolean isPalindrome3(String s) {
         String filterStr = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
         String revertStr = new StringBuilder(filterStr).reverse().toString();
         return filterStr.equals(revertStr) ;
