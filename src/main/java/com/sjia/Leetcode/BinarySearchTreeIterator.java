@@ -16,7 +16,7 @@ public class BinarySearchTreeIterator {
 
     // Runtime: 16 ms, faster than 38.27% of Java online submissions for Binary Search Tree Iterator.
     //Memory Usage: 44 MB, less than 65.65% of Java online submissions for Binary Search Tree Iterator.
-    
+
     private Stack<TreeNode> stack = new Stack<TreeNode>();
 
     public BinarySearchTreeIterator(TreeNode root) {
@@ -37,6 +37,39 @@ public class BinarySearchTreeIterator {
 
     private void pushAll(TreeNode node) {
         for (; node != null; stack.push(node), node = node.left);
+    }
+
+
+
+
+    // Runtime: 16 ms, faster than 38.27% of Java online submissions for Binary Search Tree Iterator.
+    //Memory Usage: 44.2 MB, less than 37.30% of Java online submissions for Binary Search Tree Iterator.
+    class BSTIterator {
+
+        Stack<TreeNode> stack = new Stack<>();
+        public BSTIterator(TreeNode root) {
+            leftChildrenInOrder(root);
+        }
+
+        /** @return the next smallest number */
+        public int next() {
+            TreeNode tmp = stack.pop();
+            if (tmp.right != null) leftChildrenInOrder(tmp.right);
+            return tmp.val;
+        }
+
+        /** @return whether we have a next smallest number */
+        public boolean hasNext() {
+            return stack.size() > 0 ;
+        }
+
+        private void leftChildrenInOrder(TreeNode node) {
+            while( node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+
+        }
     }
 
 
