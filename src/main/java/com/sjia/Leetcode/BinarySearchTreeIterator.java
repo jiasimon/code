@@ -14,6 +14,7 @@ public class BinarySearchTreeIterator {
     // just pop one element and process its right child as new root.
 
 
+    // left-root-right
     // Runtime: 16 ms, faster than 38.27% of Java online submissions for Binary Search Tree Iterator.
     //Memory Usage: 44 MB, less than 65.65% of Java online submissions for Binary Search Tree Iterator.
 
@@ -70,6 +71,31 @@ public class BinarySearchTreeIterator {
             }
 
         }
+    }
+
+
+
+    // PreOrder Iterator
+    class BSTPreOrderIterator {
+
+        Stack<TreeNode> stack = new Stack<>();
+        public BSTPreOrderIterator(TreeNode root) {
+            stack.add(root);
+        }
+
+        /** @return the next smallest number */
+        public int next() {
+            TreeNode tmp = stack.pop();
+            if (tmp.right != null) stack.push(tmp.right);
+            if (tmp.left != null) stack.push(tmp.left);
+            return tmp.val;
+        }
+
+        /** @return whether we have a next smallest number */
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+
     }
 
 
