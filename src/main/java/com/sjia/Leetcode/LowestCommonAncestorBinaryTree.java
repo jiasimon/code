@@ -27,6 +27,8 @@ public class LowestCommonAncestorBinaryTree {
     }
 
 
+    // Runtime: 4 ms, faster than 100.00% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
+    //Memory Usage: 41 MB, less than 73.30% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
 /*    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root == null || root == p || root == q)  return root;
         TreeNode left = lowestCommonAncestor(root.left, p, q);
