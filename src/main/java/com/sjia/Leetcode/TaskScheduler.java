@@ -42,8 +42,9 @@ public class TaskScheduler {
 
     }
 
-/*
-    public int leastInterval(char[] tasks, int n) {
+    // Runtime: 3 ms, faster than 55.12% of Java online submissions for Task Scheduler.
+    // Memory Usage: 40.4 MB, less than 49.74% of Java online submissions for Task Scheduler.
+    public int leastInterval2(char[] tasks, int n) {
         int[] counter = new int[26];
         int max = 0;
         int maxCount = 0;
@@ -65,7 +66,7 @@ public class TaskScheduler {
         int idles = Math.max(0, emptySlots - availableTasks);
 
         return tasks.length + idles;
-    }*/
+    }
 
 
 
