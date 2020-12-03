@@ -100,12 +100,15 @@ public class BinarySearchTreeIterator {
     }
 
 
+/*
 
     // Post Order
     public class PostOrderBinaryTreeIterator {
         Stack<TreeNode> stack = new Stack<TreeNode>();
 
-        /** find the first leaf in a tree rooted at cur and store intermediate nodes */
+        */
+/** find the first leaf in a tree rooted at cur and store intermediate nodes *//*
+
         private void findNextLeaf(TreeNode cur) {
             while (cur != null) {
                 stack.push(cur);
@@ -117,18 +120,24 @@ public class BinarySearchTreeIterator {
             }
         }
 
-        /** Constructor */
+        */
+/** Constructor *//*
+
         public PostOrderBinaryTreeIterator(TreeNode root) {
             findNextLeaf(root);
         }
 
-        /** {@inheritDoc} */
+        */
+/** {@inheritDoc} *//*
+
         @Override
         public boolean hasNext() {
             return !stack.isEmpty();
         }
 
-        /** {@inheritDoc} */
+        */
+/** {@inheritDoc} *//*
+
         @Override
         public Integer next() {
             if (!hasNext()) {
@@ -152,5 +161,6 @@ public class BinarySearchTreeIterator {
         }
     }
 
+*/
 
 }

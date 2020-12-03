@@ -1,6 +1,8 @@
 package com.sjia.Leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TaskScheduler {
     // #621 https://leetcode.com/problems/task-scheduler/   #fb
@@ -66,6 +68,19 @@ public class TaskScheduler {
         int idles = Math.max(0, emptySlots - availableTasks);
 
         return tasks.length + idles;
+    }
+
+    public static void main(String[] args) {
+        char[] testData = { 'A','A','A','A','A','A','B','C','D','E','F','G'};
+        int n = 2;
+        TaskScheduler solution = new TaskScheduler();
+        int result = solution.leastInterval(testData, n);
+
+
+
+
+
+        System.out.printf("testData %s TaskScheduler  is %s \n", Arrays.toString(testData),result);
     }
 
 
