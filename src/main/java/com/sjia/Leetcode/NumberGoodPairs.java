@@ -1,5 +1,8 @@
 package com.sjia.Leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class NumberGoodPairs {
     // #1512    https://leetcode.com/problems/number-of-good-pairs/
     // Given an array of integers nums.
@@ -26,6 +29,22 @@ public class NumberGoodPairs {
             }
         }
         return res;
+
+    }
+
+
+    // HashMap
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Number of Good Pairs.
+    // Memory Usage: 36.5 MB, less than 39.59% of Java online submissions for Number of Good Pairs.
+
+    public int numIdenticalPairs2(int[] nums) {
+        Map<Integer, Integer> map = new HashMap();
+        int count = 0;
+        for (int num : nums) {
+            count += map.getOrDefault(num, 0);
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        return count;
 
     }
 
