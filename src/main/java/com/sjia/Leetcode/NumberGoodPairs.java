@@ -1,5 +1,6 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +50,22 @@ public class NumberGoodPairs {
     }
 
 
+    // Sort and count
+    // Runtime: 1 ms, faster than 61.26% of Java online submissions for Number of Good Pairs.
+    //Memory Usage: 38.7 MB, less than 5.71% of Java online submissions for Number of Good Pairs.
+
+    public int numIdenticalPairs3(int[] nums) {
+        Arrays.sort(nums);
+        int count = 0;
+        int i = 0;
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[j] == nums[i])
+                count += j - i;
+            else i = j;
+        }
+        return count;
+
+    }
 
 
 }
