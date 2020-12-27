@@ -28,4 +28,20 @@ public class MakeStringGreat {
     }
 
 
+    // Runtime: 1 ms, faster than 100.00% of Java online submissions for Make The String Great.
+    // Memory Usage: 37.9 MB, less than 71.85% of Java online submissions for Make The String Great.
+    public String makeGood2(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0 ; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (sb.length() >0 && ( sb.charAt(sb.length()-1) ^ c) == 32 ) {
+                sb.deleteCharAt(sb.length()-1);
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+
 }
