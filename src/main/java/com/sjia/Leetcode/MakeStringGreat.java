@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Stack;
+
 public class MakeStringGreat {
     // #1544  https://leetcode.com/problems/make-the-string-great/
 
@@ -42,6 +44,29 @@ public class MakeStringGreat {
         }
         return sb.toString();
     }
+
+
+    // Stack
+    // Runtime: 2 ms, faster than 89.31% of Java online submissions for Make The String Great.
+    // Memory Usage: 37.6 MB, less than 89.53% of Java online submissions for Make The String Great.
+    public String makeGood3(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0 ; i < s.length(); i++) {
+            if (! stack.isEmpty()&& ( stack.peek() ^ s.charAt(i)) == 32 ) {
+                stack.pop();
+            } else {
+                stack.push(s.charAt(i));
+            }
+        }
+        char res[] = new char[stack.size()];
+        int j = stack.size() -1;
+        while (j>=0) {
+            res[j--] = stack.pop();
+        }
+        return new String(res);
+
+    }
+
 
 
 }
