@@ -41,5 +41,33 @@ public class WordsFormedByCharacters {
     }
 
 
+    // continue outer
+    // Runtime: 6 ms, faster than 77.80% of Java online submissions for Find Words That Can Be Formed by Characters.
+    //Memory Usage: 39 MB, less than 99.44% of Java online submissions for Find Words That Can Be Formed by Characters.
+    public int countCharacters2(String[] words, String chars) {
+        int[] count = new int[26];
+        int res =0;
+
+        for (char c : chars.toCharArray()){
+            count[c -'a']++;
+        }
+
+        outer:
+        for (String word : words) {
+            int[] tmp = count.clone();
+            for (char c : word.toCharArray()) {
+                tmp[c-'a']--;
+                if (tmp[c-'a']<0) {
+                    continue outer;
+                }
+            }
+            res += word.length();
+        }
+        return res;
+
+    }
+
+
+
 
 }
