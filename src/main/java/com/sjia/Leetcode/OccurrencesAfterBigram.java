@@ -33,4 +33,18 @@ public class OccurrencesAfterBigram {
     }
 
 
+    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Occurrences After Bigram.
+    //Memory Usage: 37.3 MB, less than 57.57% of Java online submissions for Occurrences After Bigram.
+    public String[] findOcurrences2(String text, String first, String second) {
+        String[] tmp = text.split(" ");
+        List<String> res = new ArrayList<>();
+        for (int i=2; i< tmp.length; i++) {
+            if(tmp[i-2].equals(first) && tmp[i-1].equals(second)){
+                res.add(tmp[i]);
+            }
+        }
+        return res.toArray(new String[0]);
+    }
+
+
 }
