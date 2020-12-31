@@ -2,6 +2,7 @@ package com.sjia.Leetcode;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class ReverseWordsInString {
     // #151 https://leetcode.com/problems/reverse-words-in-a-string/
@@ -21,5 +22,16 @@ public class ReverseWordsInString {
         return String.join(" ", tmp);
 
     }
+
+
+    // java8 Stream
+    // Runtime: 9 ms, faster than 30.71% of Java online submissions for Reverse Words in a String.
+    //Memory Usage: 39.5 MB, less than 35.02% of Java online submissions for Reverse Words in a String.
+    public String reverseWords2(String s) {
+        String[] tmp = s.trim().split("\\s+");
+        Collections.reverse(Arrays.asList(tmp));
+        return Arrays.stream(tmp).collect(Collectors.joining(" "));
+    }
+
 
 }
