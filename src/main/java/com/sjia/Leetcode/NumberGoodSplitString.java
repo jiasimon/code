@@ -39,6 +39,7 @@ public class NumberGoodSplitString {
 
         for (int i=1; i<n-1; i++) {
             if (prefix[i-1] == suffix[i]) res++;
+            if (prefix[i-1] > suffix[i]) break;
         }
         return res;
 
