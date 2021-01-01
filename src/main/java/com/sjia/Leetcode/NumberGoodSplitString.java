@@ -68,6 +68,21 @@ r
     }
 
 
+    // Runtime: 7 ms, faster than 79.32% of Java online submissions for Number of Good Ways to Split a String.
+    // Memory Usage: 39 MB, less than 89.76% of Java online submissions for Number of Good Ways to Split a String.
+    public int numSplits3(String s) {
+        int[] l=new int[26], r=new int[26];
+        int count_l=0, count_r=0, res=0;
+        for (char c: s.toCharArray()){
+            if (++r[c -'a']==1) count_r++;
+        }
+        for (int i=0; i < s.length(); i++){
+            if (++l[s.charAt(i)-'a'] == 1) count_l++;
+            if (--r[s.charAt(i) - 'a'] ==0) count_r--;
+            if (count_l== count_r) res++;
+        }
+        return res;
+    }
 
 
 }
