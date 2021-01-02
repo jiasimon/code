@@ -42,4 +42,24 @@ public class CardFlippingGame {
 
 
 
+    // Runtime: 2 ms, faster than 86.49% of Java online submissions for Card Flipping Game.
+    // Memory Usage: 39.2 MB, less than 37.84% of Java online submissions for Card Flipping Game.
+    public int flipgame2(int[] fronts, int[] backs) {
+        Set<Integer> tmp = new HashSet<>();
+        for (int i=0; i < fronts.length; i++) {
+            if(fronts[i] == backs[i]) tmp.add(fronts[i]);
+        }
+
+        int res= 2000;
+
+
+        for (int i=0; i < fronts.length; i++) {
+            if(!tmp.contains(fronts[i])) res = Math.min(res, fronts[i]);
+            if(!tmp.contains(backs[i])) res = Math.min(res, backs[i]);
+        }
+        return res % 2000;
+
+    }
+
+
 }
