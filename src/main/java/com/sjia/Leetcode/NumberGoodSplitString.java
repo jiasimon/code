@@ -45,7 +45,7 @@ public class NumberGoodSplitString {
 
     }
 
-r
+
     // int[26]
     // Runtime: 9 ms, faster than 70.68% of Java online submissions for Number of Good Ways to Split a String.
     // Memory Usage: 39.1 MB, less than 85.34% of Java online submissions for Number of Good Ways to Split a String.
