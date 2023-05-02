@@ -27,16 +27,15 @@ public class ReverseInteger {
 
     static int reverse(int x) {
         int result = 0;
-//        int lengh = String.valueOf(abs(x)).length();
-//        for (int i=0; i<lengh; i++) {
-        while (x !=0) {
-            if  ( abs(result) > Integer.MAX_VALUE/ 10 ) {
+        while (x != 0 ) {
+            if (Math.abs(result) > Integer.MAX_VALUE/10 ) {
                 System.out.println("reversed integer is out of Int range: ");
                 return 0;
             }
-            result = result * 10 + x%10;
+            result = result * 10 + x % 10;
             x = x/10;
         }
+
         return result;
 
     }
@@ -79,7 +78,7 @@ public class ReverseInteger {
         }
 
         return 0;
-        
+
 
     }
 
@@ -94,12 +93,12 @@ public class ReverseInteger {
         int testData  = -2147483648;
         int result = reverse(testData);
 
-        System.out.println("reversed integer is: " + result);
+        System.out.println("reversed integer: " + testData + " is: " + result);
 
         int testData3  = 1534236469;
         int result3 = reverseByString(testData3);
 
-        System.out.println("reverseByString integer: " + result3 + " is: " + result3);
+        System.out.println("reverseByString integer: " + testData3 + " is: " + result3);
 
     }
 
