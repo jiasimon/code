@@ -28,6 +28,7 @@ public class StringtoInteger {
         }
 
         while(index < s.length()) {
+            // check char , charAt - '0'
             int d = s.charAt(index) - '0';
             if (d < 0 || d > 9) break;
             if(Integer.MAX_VALUE/10 < total ||
