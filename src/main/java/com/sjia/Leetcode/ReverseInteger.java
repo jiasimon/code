@@ -13,6 +13,18 @@ public class ReverseInteger {
     // second run, Runtime: 1 ms, faster than 100.00% of Java online submissions for Reverse Integer.
     //Memory Usage: 39 MB, less than 5.04% of Java online submissions for Reverse Integer.
 
+
+    /*
+        Input
+        x =
+        1534236469
+        Use Testcase
+        Output
+        1056389759
+
+     */
+
+
     static int reverse(int x) {
         int result = 0;
 //        int lengh = String.valueOf(abs(x)).length();
@@ -49,6 +61,28 @@ public class ReverseInteger {
     }*/
 
 
+    static int reverseByString(int x) {
+        if (x==Integer.MIN_VALUE) return 0;  // resolve -2147483648 issue
+
+        Long result = 0L;
+
+        int flag =  x > 0 ? 1 : -1;
+
+        String tmp = String.valueOf(Math.abs(x));
+
+        String reverseTmp = new StringBuilder(tmp).reverse().toString();
+
+        result = flag * Long.valueOf(reverseTmp);
+
+        if (result>=Integer.MIN_VALUE && result<=Integer.MAX_VALUE) {
+            return result.intValue();
+        }
+
+        return 0;
+        
+
+    }
+
 
 
     public static void main(String[] args) {
@@ -61,6 +95,12 @@ public class ReverseInteger {
         int result = reverse(testData);
 
         System.out.println("reversed integer is: " + result);
+
+        int testData3  = 1534236469;
+        int result3 = reverseByString(testData3);
+
+        System.out.println("reverseByString integer: " + result3 + " is: " + result3);
+
     }
 
 
