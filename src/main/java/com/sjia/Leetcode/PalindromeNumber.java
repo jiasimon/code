@@ -2,6 +2,8 @@ package com.sjia.Leetcode;
 
 import static java.lang.StrictMath.abs;
 
+// #9. Palindrome Number  https://leetcode.com/problems/palindrome-number/
+
 public class PalindromeNumber {
 
 
@@ -25,7 +27,7 @@ public class PalindromeNumber {
 
 
 
-    // #9 https://leetcode.com/problems/palindrome-number/
+
     // Runtime: 20 ms, faster than 9.53% of Java online submissions for Palindrome Number.
     //Memory Usage: 38.9 MB, less than 54.92% of Java online submissions for Palindrome Number.
 
@@ -37,6 +39,22 @@ public class PalindromeNumber {
         String tmp = String.valueOf(x);
         String reverse = new StringBuilder(tmp).reverse().toString();
         return tmp.equals(reverse);
+    }
+
+
+    // Runtime 10 ms, 54.44%;  Memory 42 MB, 59.36%
+
+    static boolean isPalindrome2(int x) {
+        if ( x < 0 || ( (x%10)==0 && x!=0)) return  false;
+
+        String tmp = String.valueOf(x);
+        int length = tmp.length();
+        if ( length < 2) return true;
+        for (int i=0; i< length/2 ; i++) {
+            if ( tmp.charAt(i) != tmp.charAt(length-1-i)) return false;
+        }
+        return true;
+
     }
 
 
