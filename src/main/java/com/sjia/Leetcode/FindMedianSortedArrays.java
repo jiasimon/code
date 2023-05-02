@@ -82,7 +82,7 @@ If it is off, it is the middlemost element
     }
 
 
-    public double findMedianSortedArraysNew(int[] nums1, int[] nums2) {
+    public double findMedianSortedArraysArraycopy(int[] nums1, int[] nums2) {
         int n1 = nums1.length;
         int n2 = nums2.length;
         int size = n1 + n2;
@@ -113,7 +113,7 @@ If it is off, it is the middlemost element
         System.out.printf("The result is: %.5f \n", result);  
         System.out.printf("The result is: " + result  + " \n");
 
-        double result2 = solution.findMedianSortedArraysNew(nums1, nums2);
+        double result2 = solution.findMedianSortedArraysArraycopy(nums1, nums2);
         System.out.printf("The result by using arraycopy  is: %s \n", result2);
         System.out.printf("The result2 by using arraycopy is: %.5f \n", result2);
 
