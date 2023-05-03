@@ -60,7 +60,7 @@ public class IntegerToRoman {
     }
 
 
-    // 4ms, 42.7MB
+
     public static String intToRomanGreedy(int num) {
         int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
         String[] symbols = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
@@ -83,8 +83,9 @@ public class IntegerToRoman {
 
         //1994  MCMXCIV
         //2020  MMXXX
+        //135
 
-        int testData  = 2020;
+        int testData  = 135;
         String result = intToRoman(testData);
 
         System.out.printf(" %d ToRoman is %s \n", testData, result);
