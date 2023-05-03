@@ -2,7 +2,7 @@ package com.sjia.Leetcode;
 
 public class IntegerToRoman {
 
-    // #12
+    // #12  Integer to Roman
     // https://leetcode.com/problems/integer-to-roman/
     //Symbol       Value
     //I             1
@@ -59,6 +59,22 @@ public class IntegerToRoman {
         return sb.toString();
     }
 
+
+    // 4ms, 42.7MB
+    public static String intToRomanGreedy(int num) {
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+        String[] symbols = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+
+        StringBuilder sb = new StringBuilder();
+        for (int i=0; i < values.length && num >=0; i++) {
+            while (values[i] <= num) {
+                num = num - values[i];
+                sb.append(symbols[i]);
+            }
+        }
+        return sb.toString();
+
+    }
 
 
 

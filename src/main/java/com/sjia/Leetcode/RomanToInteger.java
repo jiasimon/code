@@ -1,10 +1,13 @@
 package com.sjia.Leetcode;
 
 public class RomanToInteger {
-    // https://leetcode.com/problems/roman-to-integer/
+    //  #13 Roman to Integer https://leetcode.com/problems/roman-to-integer/
 
     //Runtime: 3 ms, faster than 100.00% of Java online submissions for Roman to Integer.
     //Memory Usage: 39.9 MB, less than 56.64% of Java online submissions for Roman to Integer.
+
+    //         int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+    //        String[] symbols = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
 
     static int convertToValue(char r) {
         if (r == 'I')
@@ -54,14 +57,30 @@ public class RomanToInteger {
         return sum;
     }
 
+    public static int romanToInt2(String s) {
+
+        int result =0 , pre = convertToValue(s.charAt(0));
+        for ( int i =1; i < s.length(); i++) {
+            int tmp = convertToValue(s.charAt(i));
+            if (pre < tmp ) result -= pre;
+            else result += pre;
+            pre = tmp;
+        }
+        result = result + pre;
+        return result;
+    }
+
 
     public static void main(String[] args) {
 
         //1994  MCMXCIV
         //2020  MMXXX
+        // XIV
+        // LVIII
+        // III
 
-        String testData = "III";
-        int result = romanToInt(testData);
+        String testData = "LVIII";
+        int result = romanToInt2(testData);
 
         System.out.printf(" %s ToRoman is %d \n", testData, result);
 
