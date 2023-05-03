@@ -14,6 +14,7 @@ public class ContainerMostWater {
     // Runtime: 3 ms, faster than 41.47% of Java online submissions for Container With Most Water.
     //Memory Usage: 40.5 MB, less than 13.80% of Java online submissions for Container With Most Water.
     public int maxArea(int[] height) {
+        // l: left , r: right
         int l=0, r=height.length-1;
         int res =0;
         while ( l < r) {
@@ -22,6 +23,20 @@ public class ContainerMostWater {
             else r--;
         }
         return res;
+
+    }
+
+
+    public int maxArea2(int[] height) {
+        int left =0, right = height.length -1;
+        int result = 0;
+        while (left < right) {
+            int h = Math.min(height[left], height[right]);
+            result = Math.max(result, h*(right-left));
+            if (height[left] > height[right] ) right--;
+            else left++;
+        }
+        return result;
 
     }
 
