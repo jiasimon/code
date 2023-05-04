@@ -4,7 +4,7 @@ package com.sjia.Leetcode;
 import java.util.Arrays;
 
 public class LongestCommonPrefix {
-    // #14 https://leetcode.com/problems/longest-common-prefix/
+    // #14 Longest Common Prefix https://leetcode.com/problems/longest-common-prefix/
 
     //Runtime: 1 ms, faster than 65.55% of Java online submissions for Longest Common Prefix.
     //Memory Usage: 39.3 MB, less than 18.02% of Java online submissions for Longest Common Prefix.
@@ -12,8 +12,8 @@ public class LongestCommonPrefix {
     // add strs.length == 1 check
     //Runtime: 2 ms, faster than 38.54% of Java online submissions for Longest Common Prefix.
     //Memory Usage: 39.4 MB, less than 15.77% of Java online submissions for Longest Common Prefix.
-/*
-    static String longestCommonPrefix(String[] strs) {
+
+    static String longestCommonPrefix2(String[] strs) {
         if (strs == null || strs.length == 0) return "";
         if (strs.length == 1) return strs[0];
         Arrays.sort(strs);
@@ -25,7 +25,7 @@ public class LongestCommonPrefix {
             }
         }
         return strs[0].substring(0, length);
-    }*/
+    }
 
 
     // Runtime: 4 ms, faster than 24.30% of Java online submissions for Longest Common Prefix.
@@ -75,7 +75,8 @@ public class LongestCommonPrefix {
 
         //String[] testData  = {"flower","flow","flight"};
         String[] testData  = {"ab","a"};
-        String result = longestCommonPrefix(testData);
+        String[] testData2  = {"让我跑","让我们"};
+        String result = longestCommonPrefix(testData2);
 
         System.out.printf(" longest Common Prefix is %s \n", result);
     }
