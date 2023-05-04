@@ -1,5 +1,9 @@
 package com.sjia.Leetcode;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -82,6 +86,33 @@ public class TwoSum {
         int[] result = mySolution.twoSum(testData, target);
         System.out.println("The result is: " + result[0] + " and " + result[1]);
 
-    }
+
+/*
+
+        try (PrintWriter writer = new PrintWriter("mytest.csv")) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("FirstColumn");
+            sb.append(',');
+            sb.append("Name");
+            sb.append('\n');
+            sb.append("1");
+            sb.append(',');
+            sb.append("Sophie Simon");
+            sb.append('\n');
+            writer.write(sb.toString());
+            System.out.println("done!");
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+*/
+
+
+
+
+
+
+}
 
 }
