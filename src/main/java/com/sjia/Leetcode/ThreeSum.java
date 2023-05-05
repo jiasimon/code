@@ -58,6 +58,7 @@ public class ThreeSum {
 
     // Runtime: 20 ms, faster than 68.84% of Java online submissions for 3Sum.
     //Memory Usage: 42.8 MB, less than 5.08% of Java online submissions for 3Sum.
+    // Arrays.sort   two pointer
     public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         int n = nums.length;
@@ -120,7 +121,7 @@ public class ThreeSum {
 
         // int[] testData = {1, 1, 2, 4 ,8 ,10};
         int[] testData  = {-1, 0, 1, 2, -1, -4};
-        List<List<Integer>> result = threeSum2(testData);
+        List<List<Integer>> result = threeSum(testData);
 
         System.out.printf(" Three sum result is %s \n", result);
     }
