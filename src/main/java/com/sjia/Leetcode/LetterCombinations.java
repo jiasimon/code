@@ -3,9 +3,13 @@ package com.sjia.Leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class letterCombinations {
+public class LetterCombinations {
 
-    // #17 https://leetcode.com/problems/letter-combinations-of-a-phone-number/submissions/
+    // #17 Letter Combinations of a Phone Number https://leetcode.com/problems/letter-combinations-of-a-phone-number/submissions/
+
+    // 0 <= digits.length <= 4
+    // digits[i] is a digit in the range ['2', '9'].
+
 
     //BFS Runtime: 14 ms, faster than 5.34% of Java online submissions for Letter Combinations of a Phone Number.
     //Memory Usage: 40.4 MB, less than 5.07% of Java online submissions for Letter Combinations of a Phone Number.
@@ -81,11 +85,45 @@ public class letterCombinations {
     }*/
 
 
+    // backTracking
+    public static List<String> letterCombinations2(String digits) {
+
+        List<String> res = new ArrayList<>();
+
+        if (digits == null || digits.length() == 0) {
+            return res;
+        }
+
+        String[] lettersMap = {"0", "" ,"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        backtrack(res, new StringBuilder(), digits, lettersMap, 0);
+        return res;
+    }
+
+    public static void backtrack(List<String> res, StringBuilder sb, String digits, String[] lettersMap, int idx) {
+        if (idx == digits.length()) {
+            res.add(sb.toString());
+            return;
+        }
+
+
+        // int a = ch - '0';
+        // int a = Character.getNumericValue(ch);
+        // Integer.parseInt(String.valueOf(ch))
+        int tmp = Character.getNumericValue(digits.charAt(idx));
+        String numStr = lettersMap[tmp];
+        for (int i = 0; i < numStr.length(); i++) {
+            sb.append(numStr.charAt(i));
+            backtrack(res, sb, digits, lettersMap, idx + 1);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
+
+
     public static void main(String[] args) {
 
 
         String testData  = "23";
-        List result = letterCombinations(testData);
+        List result = letterCombinations2(testData);
 
         System.out.printf(" Three sum result is %s \n", result);
     }
