@@ -7,7 +7,7 @@ import static java.lang.Math.abs;
 
 public class ThreeSumCloset {
 
-    // #16 https://leetcode.com/problems/3sum-closest/
+    // #16 3Sum Closest https://leetcode.com/problems/3sum-closest/
 
     // Constraints:
     //3 <= nums.length <= 10^3
