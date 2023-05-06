@@ -41,6 +41,7 @@ public class LetterCombinations {
         return res;
     }
 
+    //  DFS , depth-first search
     private static void dfs(String digits, String[] mapTable, int i, char[] cur, List<String> res) {
         if (i == digits.length()) {
             if( i > 0 ) res.add(new String(cur) );
