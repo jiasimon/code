@@ -9,6 +9,11 @@ public class FourSum {
 
     // #18  4Sum  https://leetcode.com/problems/4sum/
 
+
+    // [1000000000,1000000000,1000000000,1000000000], Wrong Answer, -294967296
+
+
+
     // Move i,j to remove dup
     // Runtime: 13 ms, faster than 77.03% of Java online submissions for 4Sum.
     // Memory Usage: 39.7 MB, less than 77.46% of Java online submissions for 4Sum.
@@ -52,18 +57,22 @@ public class FourSum {
 
 
     // HashSet for dup
-    public List<List<Integer>> fourSum2(int[] num, int target) {
+    public static List<List<Integer>> fourSum2(int[] num, int target) {
         if (num.length < 3) return new ArrayList<>();
         Arrays.sort(num);
 
         //if (nums[0] * 4 > target) return new ArrayList<>();
 
         HashSet<ArrayList<Integer>> hSet = new HashSet<ArrayList<Integer>>();
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
+//        List<List<Integer>> result = new ArrayList<List<Integer>>();
         for (int i = 0; i < num.length; i++) {
             for (int j = i + 1; j < num.length; j++) {
                 for (int k = j + 1, l = num.length - 1; k < l;) {
-                    int sum = num[i] + num[j] + num[k] + num[l];
+//                    int sum = num[i] + num[j] + num[k] + num[l];
+                    long sum = num[i];
+                    sum += num[j];
+                    sum += num[k];
+                    sum += num[l];
                     if (sum > target) {
                         l--;
                     }
@@ -76,10 +85,8 @@ public class FourSum {
                         found.add(num[j]);
                         found.add(num[k]);
                         found.add(num[l]);
-                        if (!hSet.contains(found)) {
-                            hSet.add(found);
-                            result.add(found);
-                        }
+
+                        hSet.add(found);
 
                         k++;
                         l--;
@@ -88,7 +95,7 @@ public class FourSum {
                 }
             }
         }
-        return result;
+        return new ArrayList<>(hSet);
 
     }
 
@@ -100,10 +107,16 @@ public class FourSum {
         // int[] testData = {1, 0, -1, 0, -2, 2};
         // int[] testData  = {-3,-2,-1,0,0,1,2,3}; 0
         // int[] testData  = {1,-2,-5,-4,-3,3,3,5}; -11
-        int[] testData  = {-1,-5,-5,-3,2,5,0,4};
-        int target = -7;
-        List<List<Integer>> result = fourSum(testData, target);
+        int[] testData  = {1000000000,1000000000,1000000000,1000000000};
+        int target = -294967296;
 
-        System.out.printf(" Three sum result is %s \n", result);
+        List<List<Integer>> result = fourSum(testData, target);
+        System.out.printf(" Four sum result is %s \n", result);
+
+        int[] testData2  = {1000000000,1000000000,1000000000,1000000000};
+
+        List<List<Integer>> result2 = fourSum2(testData2, target);
+
+        System.out.printf(" Four sum result2 is %s \n", result2);
     }
 }
