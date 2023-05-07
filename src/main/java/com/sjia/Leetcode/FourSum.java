@@ -2,11 +2,12 @@ package com.sjia.Leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class FourSum {
 
-    // #18 https://leetcode.com/problems/4sum/
+    // #18  4Sum  https://leetcode.com/problems/4sum/
 
     // Move i,j to remove dup
     // Runtime: 13 ms, faster than 77.03% of Java online submissions for 4Sum.
@@ -48,6 +49,49 @@ public class FourSum {
         }
         return res;
     }
+
+
+    // HashSet for dup
+    public List<List<Integer>> fourSum2(int[] num, int target) {
+        if (num.length < 3) return new ArrayList<>();
+        Arrays.sort(num);
+
+        //if (nums[0] * 4 > target) return new ArrayList<>();
+
+        HashSet<ArrayList<Integer>> hSet = new HashSet<ArrayList<Integer>>();
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        for (int i = 0; i < num.length; i++) {
+            for (int j = i + 1; j < num.length; j++) {
+                for (int k = j + 1, l = num.length - 1; k < l;) {
+                    int sum = num[i] + num[j] + num[k] + num[l];
+                    if (sum > target) {
+                        l--;
+                    }
+                    else if (sum < target) {
+                        k++;
+                    }
+                    else if (sum == target) {
+                        ArrayList<Integer> found = new ArrayList<Integer>();
+                        found.add(num[i]);
+                        found.add(num[j]);
+                        found.add(num[k]);
+                        found.add(num[l]);
+                        if (!hSet.contains(found)) {
+                            hSet.add(found);
+                            result.add(found);
+                        }
+
+                        k++;
+                        l--;
+
+                    }
+                }
+            }
+        }
+        return result;
+
+    }
+
 
 
     public static void main(String[] args) {
