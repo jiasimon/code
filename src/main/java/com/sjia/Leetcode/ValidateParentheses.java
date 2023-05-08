@@ -5,8 +5,8 @@ import java.util.Stack;
 public class ValidateParentheses {
 
     // #20 Valid Parentheses https://leetcode.com/problems/valid-parentheses/submissions/
-    // Runtime: 1 ms, faster than 98.98% of Java online submissions for Valid Parentheses.
-    //Memory Usage: 37.4 MB, less than 75.78% of Java online submissions for Valid Parentheses.
+
+    // Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
     // add "if (s.isEmpty()) return true;"  for empty string
 
@@ -49,6 +49,29 @@ public class ValidateParentheses {
         return stack.isEmpty();
 
     }
+
+
+    // Stack store the matching char instead of the actual char
+    public boolean isValidParentheses(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        for (char c : s.toCharArray()) {
+            if (c == '(') // if the character is an opening parenthesis
+                stack.push(')'); // push the corresponding closing parenthesis onto the stack
+            else if (c == '{') // if the character is an opening brace
+                stack.push('}'); // push the corresponding closing brace onto the stack
+            else if (c == '[') // if the character is an opening bracket
+                stack.push(']'); // push the corresponding closing bracket onto the stack
+            else if (stack.isEmpty() || stack.pop() != c) // if the character is a closing bracket
+                // if the stack is empty (i.e., there is no matching opening bracket) or the top of the stack
+                // does not match the closing bracket, the string is not valid, so return false
+                return false;
+        }
+        // if the stack is empty, all opening brackets have been matched with their corresponding closing brackets,
+        // so the string is valid, otherwise, there are unmatched opening brackets, so return false
+        return stack.isEmpty();
+    }
+
+
 
     public static void main(String[] args) {
 
