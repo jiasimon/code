@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class ValidateParentheses {
 
-    // #20 https://leetcode.com/problems/valid-parentheses/submissions/
+    // #20 Valid Parentheses https://leetcode.com/problems/valid-parentheses/submissions/
     // Runtime: 1 ms, faster than 98.98% of Java online submissions for Valid Parentheses.
     //Memory Usage: 37.4 MB, less than 75.78% of Java online submissions for Valid Parentheses.
 
@@ -32,13 +32,30 @@ public class ValidateParentheses {
         return stack.empty();
     }
 
+    // stack
+    static boolean isValid2(String s) {
+        Stack<Character> stack = new Stack<>();
+        for ( char c: s.toCharArray()) {
+            if ( c=='(' || c=='[' || c== '{') {
+                stack.push(c);
+            } else {
+                if ( stack.isEmpty() ) return false;
+                if ( c==')' && stack.peek() == '(') stack.pop();
+                else if ( c==']' && stack.peek() == '[') stack.pop();
+                else if ( c=='}' && stack.peek() == '{') stack.pop();
+                else return false;
+            }
+        }
+        return stack.isEmpty();
+
+    }
 
     public static void main(String[] args) {
 
         //String testData = "([)]"
         //String testData  = "()[]{}";
-        String testData  = "";
-        boolean result = isValid(testData);
+        String testData  = "()[]{}";
+        boolean result = isValid2(testData);
 
         System.out.printf(" Validate Parentheses is %s \n", result);
     }
