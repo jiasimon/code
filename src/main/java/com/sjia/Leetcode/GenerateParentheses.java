@@ -36,11 +36,13 @@ public class GenerateParentheses {
     // Runtime: 1 ms, faster than 83.20% of Java online submissions for Generate Parentheses.
     //Memory Usage: 39.5 MB, less than 13.42% of Java online submissions for Generate Parentheses.
 
+    // every time pass new string,  need not remove last char
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
         dfs(res, "", n, n);
         return res;
     }
+
 
     public void dfs(List<String> res, String current, int left, int right) {
         if (left > right) return;
