@@ -5,9 +5,9 @@ import java.util.*;
 
 public class MergeKSortedLists {
 
-    // #23 https://leetcode.com/problems/merge-k-sorted-lists/  #fb
-    // Runtime: 3 ms, faster than 85.34% of Java online submissions for Merge k Sorted Lists.
-    // Memory Usage: 45.1 MB, less than 5.86% of Java online submissions for Merge k Sorted Lists.
+    // #23 Merge k Sorted Lists https://leetcode.com/problems/merge-k-sorted-lists/  #fb
+
+    // refer to #21
 
     // PriorityQueue Runtime: 4 ms, faster than 81.92% of Java online submissions for Merge k Sorted Lists.
     //Memory Usage: 41.6 MB, less than 36.78% of Java online submissions for Merge k Sorted Lists.
@@ -47,7 +47,7 @@ public class MergeKSortedLists {
     }*/
 
 
-    // PriorityQueue Lambda
+    // PriorityQueue Lambda compare
     // Runtime: 4 ms, faster than 80.67% of Java online submissions for Merge k Sorted Lists.
     //Memory Usage: 40.8 MB, less than 7.77% of Java online submissions for Merge k Sorted Lists.
         public ListNode mergeKLists(ListNode[] lists) {
