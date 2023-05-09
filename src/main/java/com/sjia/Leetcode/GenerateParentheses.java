@@ -5,32 +5,31 @@ import java.util.List;
 
 public class GenerateParentheses {
 
-    // #22 https://leetcode.com/problems/generate-parentheses/submissions/
+    // #22 Generate Parentheses https://leetcode.com/problems/generate-parentheses/submissions/
     // 1 <= n <= 8
 
 
     // dfs String recursive
     // Runtime: 1 ms, faster than 83.20% of Java online submissions for Generate Parentheses.
     //Memory Usage: 39.2 MB, less than 13.42% of Java online submissions for Generate Parentheses.
-/*
-    public List<String> generateParenthesis(int n) {
+    public List<String> generateParenthesis2(int n) {
         List<String> res = new ArrayList<>();
-        dfs(res, "", 0, 0, n);
+        dfs2(res, "", 0, 0, n);
         return res;
     }
 
-    public void dfs(List<String> res, String current, int left, int right, int n ) {
+    public void dfs2(List<String> res, String current, int left, int right, int n ) {
         if(current.length() == 2*n) {
             res.add(current);
             return;
         }
         if (left < n) {
-            dfs(res, current + "(", left+1, right, n );
+            dfs2(res, current + "(", left+1, right, n );
         }
         if ( right < left) {
-            dfs(res, current + ")", left, right+1, n);
+            dfs2(res, current + ")", left, right+1, n);
         }
-    }*/
+    }
 
 
 
