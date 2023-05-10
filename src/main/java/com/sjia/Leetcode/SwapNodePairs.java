@@ -15,7 +15,8 @@ public class SwapNodePairs {
     // Memory Usage: 37.2 MB, less than 49.15% of Java online submissions for Swap Nodes in Pairs.
 
 
-    // remove "ListNode firstNode = head;"
+
+    //  Explained with graph  https://leetcode.com/problems/swap-nodes-in-pairs/solutions/1775033/swapping-nodes-not-just-the-values-visual-explanation-well-explained-c/
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Swap Nodes in Pairs.
     //Memory Usage: 37.1 MB, less than 63.66% of Java online submissions for Swap Nodes in Pairs.
 
@@ -36,6 +37,23 @@ public class SwapNodePairs {
 
         return secondNode;
 
+    }
+
+
+    // iterative , dummy node
+    public ListNode swapPairs2(ListNode head) {
+        ListNode pre = new ListNode(0);
+        pre.next = head;
+        ListNode temp = pre;
+        while(temp.next != null && temp.next.next != null) {
+            ListNode start = temp.next;
+            ListNode end = temp.next.next;
+            temp.next = end;
+            start.next = end.next;
+            end.next = start;
+            temp = start;
+        }
+        return pre.next;
     }
 
 
