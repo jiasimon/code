@@ -11,7 +11,9 @@ public class ReverseNodesGroup {
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
-    // #25 https://leetcode.com/problems/reverse-nodes-in-k-group/
+    // #25 Reverse Nodes in k-Group https://leetcode.com/problems/reverse-nodes-in-k-group/
+    //  Compare to #24
+
     // Given this linked list: 1->2->3->4->5
     //For k = 2, you should return: 2->1->4->3->5
     //For k = 3, you should return: 3->2->1->4->5
