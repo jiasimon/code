@@ -56,7 +56,7 @@ public class ReverseNodesGroup {
 
 
 
-    // 
+    // recursive
     public ListNode reverseKGroup2(ListNode head, int k) {
         ListNode curr = head;
         int count = 0;
