@@ -18,17 +18,21 @@ public class RemoveElement27 {
     // switch last item  Runtime: 0 ms, faster than 100.00% of Java online submissions for Remove Element.
     //Memory Usage: 38 MB, less than 68.05% of Java online submissions for Remove Element.
 
-/*    static int removeElement(int[] nums, int val) {
-        if(nums.length ==0) return 0;
-        int i = 0;
-        for (int j = 0; j < nums.length; j++) {
+
+    // two pointer
+    static int removeElement2(int[] nums, int val) {
+        if (nums.length == 0) return 0;
+
+        int i = 0; // i points to the last non-duplicate element
+        for (int j=0; j < nums.length; j++) {
             if (nums[j] != val) {
                 nums[i] = nums[j];
                 i++;
             }
         }
-        return i;
-    }*/
+
+        return i ;
+    }
 
 
     static int removeElement(int[] nums, int val) {
