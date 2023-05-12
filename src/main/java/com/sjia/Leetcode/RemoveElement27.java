@@ -35,6 +35,7 @@ public class RemoveElement27 {
     }
 
 
+    // two pointer , swap last item
     static int removeElement(int[] nums, int val) {
         int n = nums.length;
         if (n==0) return 0;
