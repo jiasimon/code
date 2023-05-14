@@ -47,7 +47,7 @@ public class DivideTwoIInteger {
 
 
     // https://leetcode.com/problems/divide-two-integers/solutions/142849/c-java-python-should-not-use-long-int/
-    // follow up
+    // follow up lee215
     public int divide2(int A, int B) {
         if (A == 1 << 31 && B == -1) return (1 << 31) - 1;
         int a = Math.abs(A), b = Math.abs(B), res = 0, x = 0;
