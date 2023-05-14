@@ -23,7 +23,7 @@ public class DivideTwoIInteger {
     }
 
 
-    // 
+    //
     // Left Shift (<<) shall be considered as multiplication by 2^N
     // Similarly, Right Shift (>>) shall be considered as division by 2^N
     public int divideTwoIInteger(int dividend, int divisor) {
@@ -44,5 +44,19 @@ public class DivideTwoIInteger {
     }
 
 
+
+
+    // https://leetcode.com/problems/divide-two-integers/solutions/142849/c-java-python-should-not-use-long-int/
+    // follow up
+    public int divide2(int A, int B) {
+        if (A == 1 << 31 && B == -1) return (1 << 31) - 1;
+        int a = Math.abs(A), b = Math.abs(B), res = 0, x = 0;
+        while (a - b >= 0) {
+            for (x = 0; a - (b << x << 1) >= 0; x++);
+            res += 1 << x;
+            a -= b << x;
+        }
+        return (A > 0) == (B > 0) ? res : -res;
+    }
 
 }
