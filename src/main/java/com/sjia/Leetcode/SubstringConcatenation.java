@@ -12,8 +12,12 @@ public class SubstringConcatenation {
     // s and words[i] consist of lowercase English letters.
 
 
-    //
-    public List<Integer> findSubstring(String s, String[] words) {
+    // Input: s = "barfoothefoobarman", words = ["foo","bar"]
+    // Output: [0,9]
+
+
+
+    public static List<Integer> findSubstring(String s, String[] words) {
         final Map<String, Integer> counts = new HashMap<>();
         for (final String word : words) {
             counts.put(word, counts.getOrDefault(word, 0) + 1);
@@ -41,5 +45,17 @@ public class SubstringConcatenation {
         }
         return indexes;
     }
+
+
+
+
+    public static void main(String[] args) {
+        String s = "barfoofoobarthefoobarman";
+        String[] words = {"bar","foo","the"};
+        List result = findSubstring(s, words);
+        System.out.printf("The input  %s  can have result: %s", s, result);
+
+    }
+
 
 }
