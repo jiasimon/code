@@ -14,7 +14,7 @@ public class FindFLSortedArray {
     // -10^9 <= target <= 10^9
 
 
-    // j=nums.length  while (i<j)
+    // {5,7,7,8,8,10}
 
 
     public static int[] searchRange(int[] nums, int target) {
@@ -183,7 +183,7 @@ public class FindFLSortedArray {
         int[] testData = {5,7,7,8,8,10};
         int[] testData2 = {7};
         int target = 7;
-        int[] result = searchRange3(testData, target);
+        int[] result = searchRange(testData, target);
         System.out.println( "Number " + target + " result is: " + Arrays.toString(result));
     }
 
