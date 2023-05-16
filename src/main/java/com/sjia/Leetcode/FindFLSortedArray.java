@@ -125,12 +125,65 @@ public class FindFLSortedArray {
         }*/
 
 
+    // {5,7,7,8,8,10}
+    //
+    public static int[] searchRange3(int[] nums, int target) {
+        int firstPos = findFirstPosition(nums, target);
+        int lastPos = findLastPosition(nums, target);
+
+        return new int[]{firstPos, lastPos};
+    }
+
+    private static int findFirstPosition(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int result = -1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] >= target) {
+                right = mid - 1;
+                if (nums[mid] == target) {
+                    result = mid;
+                }
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return result;
+    }
+
+    private static int findLastPosition(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int result = -1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] <= target) {
+                left = mid + 1;
+                if (nums[mid] == target) {
+                    result = mid;
+                }
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return result;
+    }
+
+
+
 
     public static void main(String[] args) {
-        int[] testData2 = {5,7,7,8,8,10};
-        int[] testData = {7};
+        int[] testData = {5,7,7,8,8,10};
+        int[] testData2 = {7};
         int target = 7;
-        int[] result = searchRange2(testData, target);
+        int[] result = searchRange3(testData, target);
         System.out.println( "Number " + target + " result is: " + Arrays.toString(result));
     }
 
