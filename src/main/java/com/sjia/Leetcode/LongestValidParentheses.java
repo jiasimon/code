@@ -4,14 +4,14 @@ import java.util.Stack;
 
 public class LongestValidParentheses {
 
-    //#32 https://leetcode.com/problems/longest-valid-parentheses/
+    //#32 Longest Valid Parentheses https://leetcode.com/problems/longest-valid-parentheses/
 
     // Runtime: 3 ms, faster than 43.96% of Java online submissions for Longest Valid Parentheses.
     //Memory Usage: 40.3 MB, less than 12.75% of Java online submissions for Longest Valid Parentheses.
 
-    // did not change any code, second run with below info
-    // Runtime: 2 ms, faster than 75.83% of Java online submissions for Longest Valid Parentheses.
-    //Memory Usage: 38.3 MB, less than 89.24% of Java online submissions for Longest Valid Parentheses.
+
+    // 0 <= s.length <= 3 * 104
+
 
 /*
     static int longestValidParentheses(String s) {
@@ -69,6 +69,33 @@ public class LongestValidParentheses {
         return maxans;
     }
 
+    // brutal force
+    public static boolean isValidParentheses(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                stack.push('(');
+            } else if (!stack.isEmpty() && stack.peek() == '(') {
+                stack.pop();
+            } else {
+                return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    public static int longestValidParentheses2(String s) {
+        int maxlen = 0;
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i + 2; j <= s.length(); j+=2) {
+                if (isValidParentheses(s.substring(i, j))) {
+                    maxlen = Math.max(maxlen, j - i);
+                }
+            }
+        }
+        return maxlen;
+    }
+
 
     public static void main(String[] args) {
         // int range:  -2147483648～2147483647
@@ -76,7 +103,7 @@ public class LongestValidParentheses {
         //String testData = "()((())";
         //String testData  = ")()())";
         String testData  = "()((())";
-        int result = longestValidParentheses(testData);
+        int result = longestValidParentheses2(testData);
 
         System.out.printf(" input %s longest Valid Parentheses is: %s ", testData, result);
     }
