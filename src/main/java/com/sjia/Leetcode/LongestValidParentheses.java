@@ -13,8 +13,9 @@ public class LongestValidParentheses {
     // 0 <= s.length <= 3 * 104
 
 
-/*
-    static int longestValidParentheses(String s) {
+    // two pointer, two traversals
+    // First, we start traversing the string from the left towards the right and for every '(' encountered, we increment the left counter and for every ')' encountered, we increment the right counter. Whenever leftleftleft becomes equal to rightrightright, we calculate the length of the current valid string and keep track of maximum length substring found so far. If right becomes greater than left we reset tleft and right to 000.
+    static int longestValidParentheses3(String s) {
         int left = 0, right = 0, maxlength = 0;
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '(') {
@@ -43,7 +44,7 @@ public class LongestValidParentheses {
             }
         }
         return maxlength;
-    }*/
+    }
 
 
     // Stack solution
@@ -102,8 +103,8 @@ public class LongestValidParentheses {
         // int range:  -2147483648～2147483647
 
         //String testData = "()((())";
-        //String testData  = ")()())";
-        String testData  = "()((())";
+        String testData  = ")()())";
+//        String testData  = "()((())";
         int result = longestValidParentheses(testData);
 
         System.out.printf(" input %s longest Valid Parentheses is: %s ", testData, result);
