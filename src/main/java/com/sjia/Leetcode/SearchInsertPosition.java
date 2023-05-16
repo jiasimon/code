@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class SearchInsertPosition {
 
-    // #35 https://leetcode.com/problems/search-insert-position/
+    // #35 Search Insert Position https://leetcode.com/problems/search-insert-position/
 
     // normal scan
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Search Insert Position.
@@ -41,10 +41,26 @@ public class SearchInsertPosition {
     }
 
 
+    public static int searchInsert2(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        while ( left <= right ) {
+            int mid = left + (right-left)/2;
+            if (nums[mid] == target) return mid;
+            else if (target > nums[mid]) left = mid + 1;
+            else right =mid -1;
+        }
+
+        // Target not found, return the position where it would be inserted
+        return left;
+    }
+
+
     public static void main(String[] args) {
-        int[] testData = {1,3,5,6};
-        int target = 3;
-        int result = searchInsert(testData, target);
+        int[] testData3 = {1,3,5,6};
+        int[] testData = {1,3,5,6,8,15,20};
+        int target = 16;
+        int result = searchInsert2(testData, target);
         System.out.printf( "Number %d insert at : %d ", target, result);
     }
 
