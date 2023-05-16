@@ -56,11 +56,24 @@ public class SearchInsertPosition {
     }
 
 
+
+    // chat-gpt generated, incorrect
+    public static int searchInsert3(int[] nums, int target) {
+        int insertIndex = Arrays.stream(nums)
+                .filter(num -> num < target)
+                .reduce((a, b) -> b)
+                .orElse(-1);
+        return insertIndex ;
+    }
+
+
+
+
     public static void main(String[] args) {
-        int[] testData3 = {1,3,5,6};
-        int[] testData = {1,3,5,6,8,15,20};
-        int target = 16;
-        int result = searchInsert2(testData, target);
+        int[] testData = {1,3,5,6};
+        int[] testData2 = {1,3,5,6,8,15,20};
+        int target = 5;
+        int result = searchInsert3(testData, target);
         System.out.printf( "Number %d insert at : %d ", target, result);
     }
 
