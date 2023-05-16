@@ -4,11 +4,13 @@ import java.util.Arrays;
 
 public class NextPermutation {
 
-    // #31 https://leetcode.com/problems/next-permutation/  #fb
+    // #31 Next Permutation https://leetcode.com/problems/next-permutation/  #fb
     // Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
     //If such an arrangement is not possible, it must rearrange it as the lowest possible order
 
-    // {1,2,7,4,3,1}
+    // {1,2,7,4,3,1}   {0,1,2,5,3,3,0}
+    // Input: nums = [1,2,3], Output: [1,3,2]
+    // Input: nums = [3,2,1], Output: [1,2,3]
 
     // Runtime: 1 ms, faster than 51.91% of Java online submissions for Next Permutation.
     // Memory Usage: 41 MB, less than 5.00% of Java online submissions for Next Permutation.
