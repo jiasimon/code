@@ -50,8 +50,9 @@ public class LongestValidParentheses {
     // Runtime: 7 ms, faster than 16.34% of Java online submissions for Longest Valid Parentheses.
     //Memory Usage: 40.7 MB, less than 7.76% of Java online submissions for Longest Valid Parentheses.
 
+    // start by pushing −1 onto the stack. For every ‘(’  encountered, we push its index
     static int longestValidParentheses(String s) {
-        int maxans = 0;
+        int maxres = 0;
         Stack<Integer> stack = new Stack<>();
         stack.push(-1);
         for (int i = 0; i < s.length(); i++) {
@@ -62,11 +63,11 @@ public class LongestValidParentheses {
                 if (stack.empty()) {
                     stack.push(i);
                 } else {
-                    maxans = Math.max(maxans, i - stack.peek());
+                    maxres = Math.max(maxres, i - stack.peek());
                 }
             }
         }
-        return maxans;
+        return maxres;
     }
 
     // brutal force
@@ -103,7 +104,7 @@ public class LongestValidParentheses {
         //String testData = "()((())";
         //String testData  = ")()())";
         String testData  = "()((())";
-        int result = longestValidParentheses2(testData);
+        int result = longestValidParentheses(testData);
 
         System.out.printf(" input %s longest Valid Parentheses is: %s ", testData, result);
     }
