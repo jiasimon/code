@@ -2,7 +2,7 @@ package com.sjia.Leetcode;
 
 public class CountSay {
 
-    //#38 https://leetcode.com/problems/count-and-say/  google interview question in 2005
+    //#38 Count and Say https://leetcode.com/problems/count-and-say/  google interview question in 2005
 
     //1.     1
     //2.     11
@@ -59,10 +59,57 @@ public class CountSay {
     }*/
 
 
+    /*
+    The method starts with the base case where n = 1, and the initial string is "1". It then iterates from 2 to n to generate the subsequent count-and-say sequences.
+
+Within the loop, a StringBuilder sb is used to construct the next sequence. It iterates through the characters of the current sequence and counts the consecutive occurrences of each character. It appends the count and the character to sb.
+
+The resulting sb is converted to a string and assigned back to the result variable. This process is repeated n times to generate the desired count-and-say sequence.
+
+For example, if n = 5, the output will be "111221", which represents the fifth count-and-say sequence.
+
+Note: The count-and-say sequence is a sequence of integers where each term is obtained by reading the previous term and counting the number of digits in groups of the same digit.
+
+
+     */
+
+    public static String countAndSay2(int n) {
+        if (n <= 0)
+            return "";
+
+        String result = "1";
+        int count = 1;
+
+        while (count < n) {
+            StringBuilder sb = new StringBuilder();
+            int i = 0;
+
+            while (i < result.length()) {
+                char currentChar = result.charAt(i);
+                int countChar = 1;
+
+                while (i + 1 < result.length() && result.charAt(i) == result.charAt(i + 1)) {
+                    countChar++;
+                    i++;
+                }
+
+                sb.append(countChar);
+                sb.append(currentChar);
+                i++;
+            }
+
+            result = sb.toString();
+            count++;
+        }
+
+        return result;
+    }
+
 
     public static void main(String[] args) {
-        int testData = 5;
-        String result = countAndSay(testData);
+//        int testData = 5;
+        int testData = 7;
+        String result = countAndSay2(testData);
         System.out.printf( "Number %d CountandSay is : %s ", testData, result);
     }
 
