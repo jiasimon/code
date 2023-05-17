@@ -14,6 +14,7 @@ public class CountSay {
     // StringBuffer Runtime: 1 ms, faster than 94.13% of Java online submissions for Count and Say.
     // Memory Usage: 36.9 MB, less than 67.68% of Java online submissions for Count and Say.
 
+    // recursive
     static String countAndSay(int n) {
         if (n == 1) {
             return "1";
