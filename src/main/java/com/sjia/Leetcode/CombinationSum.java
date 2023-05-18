@@ -7,15 +7,17 @@ import java.util.List;
 
 public class CombinationSum {
 
-    // #39 https://leetcode.com/problems/combination-sum/
+    // #39 Combination Sum https://leetcode.com/problems/combination-sum/
     // 1 <= candidates.length <= 30
     //1 <= candidates[i] <= 200
     //Each element of candidate is unique.
     //1 <= target <= 500
 
+    // Input: candidates = [2,3,6,7], target = 7; Output: [[2,2,3],[7]]
 
 
-    //
+
+
     // Runtime: 4 ms, faster than 59.01% of Java online submissions for Combination Sum.
     //Memory Usage: 39.2 MB, less than 6.17% of Java online submissions for Combination Sum.
 
@@ -26,7 +28,7 @@ public class CombinationSum {
         return res;
     }
 
-/*    private void helperBacktrack(List<List<Integer>> res, List<Integer> tmp, int[] nums, int target, int start ) {
+    private void helperBacktrack2(List<List<Integer>> res, List<Integer> tmp, int[] nums, int target, int start ) {
         if (target < 0) return;
         else if ( target == 0) {
             // res.add(tmp);   // [[], []]
@@ -34,12 +36,12 @@ public class CombinationSum {
         } else {
             for (int i=start; i < nums.length; i++) {
                 tmp.add(nums[i]);
-                helperBacktrack(res, tmp, nums, target-nums[i],  i );
+                helperBacktrack(res, tmp, nums, target-nums[i],  i ); // not i + 1 because we can reuse same elements
                 tmp.remove(tmp.size()-1);
             }
         }
 
-    }*/
+    }
 
 
 
@@ -95,36 +97,7 @@ public class CombinationSum {
     }*/
 
 
-    // Runtime: 5 ms, faster than 50.66% of Java online submissions for Combination Sum.
-    //Memory Usage: 41.6 MB, less than 11.95% of Java online submissions for Combination Sum.
 
-    // Recursive backtracking
-    // Runtime: 3 ms, faster than 81.69% of Java online submissions for Combination Sum.
-    //Memory Usage: 39.6 MB, less than 68.37% of Java online submissions for Combination Sum.
-/*
-    public List<List<Integer>> combinationSum(int[] nums, int target) {
-        List<List<Integer>> list = new ArrayList<>();
-        Arrays.sort(nums);
-        backtrack(list, new ArrayList<>(), nums, target, 0);
-        return list;
-    }
-
-    private void backtrack(List<List<Integer>> result, ArrayList<Integer> tmp, int[] nums, int remain, int start) {
-        // if (remain < 0) return;
-        if ( remain == 0) {
-            result.add(new ArrayList<>(tmp));
-            return;
-        } else {
-            for ( int i = start; i< nums.length; i++) {
-                if (remain < nums[i]) {
-                    break;
-                }
-                tmp.add(nums[i]);
-                backtrack(result, tmp, nums, remain-nums[i], i);
-                tmp.remove(tmp.size()-1);
-            }
-        }
-    }*/
 
 
     public static void main(String[] args) {
