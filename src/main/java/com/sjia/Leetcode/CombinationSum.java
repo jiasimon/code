@@ -28,11 +28,12 @@ public class CombinationSum {
         return res;
     }
 
+    // (1) Why use sort() & (2) Why pass start argument
     private void helperBacktrack2(List<List<Integer>> res, List<Integer> tmp, int[] nums, int target, int start ) {
         if (target < 0) return;
         else if ( target == 0) {
             // res.add(tmp);   // [[], []]
-            res.add(new ArrayList<> (tmp));
+            res.add(new ArrayList<> (tmp)); // use a new object , so its value will not change
         } else {
             for (int i=start; i < nums.length; i++) {
                 tmp.add(nums[i]);
