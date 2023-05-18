@@ -29,6 +29,7 @@ public class CombinationSum2 {
         return res;
     }
 
+    // [10,1,2,7,6,1,5] =8 Output [[1,1,6],[1,2,5],[1,7],[1,2,5],[1,7],[2,6]]  Expected [[1,1,6],[1,2,5],[1,7],[2,6]]
     //  1,1,1,1,2   target 4
     // without condition, it returns [[1, 1, 1, 1], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2], [1, 1, 2]]
     private void backtrack(List<List<Integer>> res, ArrayList<Integer> tmp, int[] nums, int target, int start) {
@@ -37,7 +38,7 @@ public class CombinationSum2 {
         } else {
             for ( int i = start; i < nums.length; i++) {
                 if (nums[i] > target) break;
-                // if (i > start && nums[i] == nums[i-1]) continue;
+                if (i > start && nums[i] == nums[i-1]) continue; // Skip duplicates to avoid duplicate combinations
                 tmp.add(nums[i]);
                 backtrack(res, tmp, nums, target - nums[i], i+1);
                 tmp.remove(tmp.size() - 1);
