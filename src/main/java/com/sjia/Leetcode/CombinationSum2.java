@@ -7,9 +7,15 @@ import java.util.List;
 public class CombinationSum2 {
     // Each number in candidates may only be used once in the combination.
 
-    // #40 https://leetcode.com/problems/combination-sum-ii/
+    // #40 Combination Sum II  https://leetcode.com/problems/combination-sum-ii/
     // Each number in candidates may only be used once in the combination.
 
+    // Input: candidates = [10,1,2,7,6,1,5], target = 8
+    // [ [1,1,6],[1,2,5],[1,7],[2,6]  ]
+
+    // 1 <= candidates.length <= 100
+    // 1 <= candidates[i] <= 50
+    // 1 <= target <= 30
 
 
 
@@ -70,11 +76,11 @@ public class CombinationSum2 {
 
 
     public static void main(String[] args) {
-        // int[] testData  = {10,1,2,7,6,1,5}; 8
+         int[] testData  = {10,1,2,7,6,1,5};
         // int[] testData  = {2,5,2,1,2}; 5
         // int[] testData  = {10,1,2,7,6,1,5}; 8
-        int[] testData  = {1,1,1,1,2};
-        int target = 4;
+        int[] testData2  = {1,1,1,1,2};
+        int target = 8;
         CombinationSum2 solution = new CombinationSum2();
         List<List<Integer>> result = solution.combinationSum2(testData, target);
 
