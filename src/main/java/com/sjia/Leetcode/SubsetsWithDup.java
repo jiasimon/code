@@ -6,9 +6,10 @@ import java.util.List;
 
 public class SubsetsWithDup {
 
-    // #90 https://leetcode.com/problems/subsets-ii/
+    // #90. Subsets II  Subsets2 https://leetcode.com/problems/subsets-ii/
     // a collection of integers that might contain duplicates, nums,
     // return all possible subsets (the power set).
+    // Input: nums = [1,2,2] Output: [[],[1],[1,2],[1,2,2],[2],[2,2]]
 
 
     // Runtime: 1 ms, faster than 99.89% of Java online submissions for Subsets II.
@@ -24,7 +25,7 @@ public class SubsetsWithDup {
     private void backtrack(List<List<Integer>> result, ArrayList<Integer> tmp, int[] nums, int start) {
         result.add(new ArrayList<>(tmp));
         for ( int i = start; i< nums.length; i++) {
-            if ( i > start && nums[i]== nums[i-1]) continue;
+            if ( i > start && nums[i]== nums[i-1]) continue; // remove duplicate
             tmp.add(nums[i]);
             backtrack(result, tmp, nums, i+1);
             tmp.remove(tmp.size()-1);
