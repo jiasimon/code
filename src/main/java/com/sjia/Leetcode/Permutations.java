@@ -6,7 +6,10 @@ import java.util.List;
 
 public class Permutations {
 
-    // #46 https://leetcode.com/problems/permutations/
+    // #46. Permutations https://leetcode.com/problems/permutations/
+
+    // 1 <= nums.length <= 6
+    // -10 <= nums[i] <= 10
 
     // Runtime: 3 ms, faster than 35.95% of Java online submissions for Permutations.
     //Memory Usage: 41.8 MB, less than 6.44% of Java online submissions for Permutations.
@@ -22,7 +25,7 @@ public class Permutations {
     }
 
     private void backtrack(List<List<Integer>> result, ArrayList<Integer> tmp, int[] nums, int start) {
-        if (tmp.size() == nums.length) {
+        if (tmp.size() == nums.length) {  // if tmp/output is the same length as expected
             result.add(new ArrayList<>(tmp));
             return;
         } else {
@@ -40,7 +43,7 @@ public class Permutations {
     public static void main(String[] args) {
 
         // int[] testData  = {1,2,3};
-        int[] testData  = {1,2,3};
+        int[] testData  = {1,2,3,4};
         Permutations solution = new Permutations();
         List<List<Integer>> result = solution.permute(testData);
 
