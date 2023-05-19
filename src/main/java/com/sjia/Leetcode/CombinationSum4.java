@@ -45,13 +45,25 @@ public class CombinationSum4 {
     }
 
 
+    // recursive , Time Limit Exceeded
+    public int combinationSum4b(int[] nums, int target) {
+        if (target == 0) return 1;
+
+        int res =0;
+        for (int i : nums) {
+            if (i <= target) {  // it should be <=
+                res += combinationSum4b(nums,target -i);
+            }
+        }
+        return res;
+    }
 
 
     public static void main(String[] args) {
         CombinationSum4 cs = new CombinationSum4();
         int[] nums = {1, 2, 3};
         int target = 4;
-        int count = cs.combinationSum4(nums, target);
+        int count = cs.combinationSum4b(nums, target);
         System.out.println("Number of combinations for target " + target + ": " + count);
     }
 
