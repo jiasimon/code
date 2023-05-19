@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Subsets {
 
-    // #78 https://leetcode.com/problems/subsets/
+    // #78. Subsets https://leetcode.com/problems/subsets/
 
     // Runtime: 1 ms, faster than 76.03% of Java online submissions for Subsets.
     //Memory Usage: 39.7 MB, less than 52.33% of Java online submissions for Subsets.
