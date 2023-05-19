@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Permutations2 {
 
-    // #47 https://leetcode.com/problems/permutations-ii/
+    // #47. Permutations II https://leetcode.com/problems/permutations-ii/
     // collection of numbers that might contain duplicates, return all possible unique permutations
 
     // Runtime: 3 ms, faster than 50.16% of Java online submissions for Permutations II.
@@ -29,11 +29,12 @@ public class Permutations2 {
         } else {
             for (int i = 0; i < nums.length; i++) {
                 if (used[i]) continue;
+//                if (i > 0 && nums[i] == nums[i-1]  ) continue;
                 if (i > 0 && nums[i] == nums[i-1]  && (!used[i-1]) ) continue;
                 used[i] = true;
                 tmp.add(nums[i]);
                 backtrack(result, tmp, nums, used);
-                tmp.remove(tmp.size() - 1);
+                tmp.remove(tmp.size() - 1); // reset flag and remove last element
                 used[i] = false;
             }
 
