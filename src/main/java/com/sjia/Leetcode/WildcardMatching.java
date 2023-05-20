@@ -50,20 +50,33 @@ public class WildcardMatching {
         int i = 0;
         int j = 0;
 
+        int starIndex = -1;
+        int matchIndex = -1;
+
         while (i < s.length() && j < p.length()) {
             if (s.charAt(i) == p.charAt(j) || p.charAt(j) == '?') {
                 i++;
                 j++;
-            } else if (p.charAt(j) == '*') {
-                while (i < s.length()  && p.charAt(j) == '*') {
-                    i++;
-                }
+            } else if ((j < p.length()) && p.charAt(j) == '*' ) {
+                j++;
+                starIndex = i;
+                matchIndex = j;
+            } else if (starIndex != -1) {
+                j = starIndex + 1;
+                matchIndex++;
+                i = matchIndex;
             } else {
                 return false;
             }
         }
 
-        return i == s.length() && j == p.length();
+        while (j < p.length() && p.charAt(j) == '*') {
+            j++;
+        }
+
+        if (p.endsWith("*")) return j == p.length();
+        else return i == s.length() && j == p.length();
+
 
     }
 
@@ -74,7 +87,7 @@ public class WildcardMatching {
         String s = "adceb";
         String p = "*a*b";
 //        String s = "aa";
-//        String p = "*";
+//        String p = "a";
         boolean isMatch = solution.isMatch(s, p);
         boolean isMatch2 = solution.isMatchWildcard(s, p);
         System.out.println(isMatch);
