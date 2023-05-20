@@ -53,8 +53,8 @@ public class WildcardMatching {
         int starIndex = -1;
         int matchIndex = -1;
 
-        while (i < s.length() && j < p.length()) {
-//        while (i < s.length() ) {
+//        while (i < s.length() && j < p.length()) {
+        while (i < s.length() ) {
             if (s.charAt(i) == p.charAt(j) || p.charAt(j) == '?') {
                 i++;
                 j++;
@@ -85,10 +85,10 @@ public class WildcardMatching {
 
     public static void main(String[] args) {
         WildcardMatching solution = new WildcardMatching();
-        String s = "adceb";
-        String p = "*a*b";
-//        String s = "aa";
-//        String p = "a";
+//        String s = "adceb";
+//        String p = "*a*b";
+        String s = "aa";
+        String p = "a";
 //        String s = "leetcode";
 //        String p = "*e*t?d*";
         boolean isMatch = solution.isMatch(s, p);
