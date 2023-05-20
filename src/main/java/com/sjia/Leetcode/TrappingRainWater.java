@@ -1,11 +1,11 @@
 package com.sjia.Leetcode;
 
 public class TrappingRainWater {
-    // #42 https://leetcode.com/problems/trapping-rain-water/
+    // #42. Trapping Rain Water https://leetcode.com/problems/trapping-rain-water/
 
     // n == height.length
-    //0 <= n <= 3 * 104
-    //0 <= height[i] <= 105
+    //0 <= n <= 3 * 10^4
+    //0 <= height[i] <= 10^5
 
     // height = [4,2,0,3,2,5]   output = 9   0 +2 +4 +1+2  =9
     // [0,1,0,2,1,0,1,3,2,1,2,1] 1 + 1 +2 +1 +1 =6
@@ -36,8 +36,7 @@ public class TrappingRainWater {
 
     // 执行用时：1 ms, 在所有 Java 提交中击败了99.99% 的用户
     // 内存消耗：38.3 MB, 在所有 Java 提交中击败了78.87% 的用户
-/*
-    public int trap(int[] height) {
+    public int trap2(int[] height) {
         int a = 0 , b=height.length-1;
         int res = 0;
         int lMax =0, rMax=0;
@@ -53,7 +52,15 @@ public class TrappingRainWater {
             }
         }
         return res;
-    }*/
+    }
+
+
+    public static void main(String[] args) {
+        TrappingRainWater solution = new TrappingRainWater();
+        int[] height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        int result = solution.trap(height);
+        System.out.println(result);
+    }
 
 
 }
