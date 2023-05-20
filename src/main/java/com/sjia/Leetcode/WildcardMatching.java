@@ -55,7 +55,7 @@ public class WildcardMatching {
 
 //        while (i < s.length() && j < p.length()) {
         while (i < s.length() ) {
-            if (s.charAt(i) == p.charAt(j) || p.charAt(j) == '?') {
+            if( (j < p.length()) && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '?') ) {
                 i++;
                 j++;
             } else if ((j < p.length()) && p.charAt(j) == '*' ) {
@@ -77,7 +77,6 @@ public class WildcardMatching {
         }
 
         return j == p.length();
-
 
     }
 
