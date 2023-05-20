@@ -1,7 +1,7 @@
 package com.sjia.Leetcode;
 
 public class MultiplyStrings {
-    // #43 https://leetcode.com/problems/multiply-strings/
+    // 43. Multiply Strings https://leetcode.com/problems/multiply-strings/
 
 
 
@@ -33,6 +33,48 @@ public class MultiplyStrings {
         for(int p : res) if(!(sb.length() == 0 && p == 0)) sb.append(p);
         return sb.length() == 0 ? "0" : sb.toString();
 
+    }
+
+
+    public String multiplyStrings(String num1, String num2) {
+        int n1 = num1.length();
+        int n2 = num2.length();
+        int[] result = new int[n1 + n2];
+
+        // Perform digit-by-digit multiplication
+        for (int i = n1 - 1; i >= 0; i--) {
+            for (int j = n2 - 1; j >= 0; j--) {
+                int product = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+                int sum = product + result[i + j + 1];
+
+                result[i + j] += sum / 10;
+                result[i + j + 1] = sum % 10;
+            }
+        }
+
+        // Construct the final result string
+        StringBuilder sb = new StringBuilder();
+        for (int digit : result) {
+            if (!(sb.length() == 0 && digit == 0)) {
+                sb.append(digit);
+            }
+        }
+
+        // Handle the case of zero multiplication
+        if (sb.length() == 0) {
+            return "0";
+        }
+
+        return sb.toString();
+    }
+
+
+    public static void main(String[] args) {
+        MultiplyStrings solution = new MultiplyStrings();
+        String num1 = "123";
+        String num2 = "456";
+        String result = solution.multiply(num1, num2);
+        System.out.println(result);
     }
 
 
