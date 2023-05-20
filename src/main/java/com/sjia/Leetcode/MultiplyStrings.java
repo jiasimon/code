@@ -3,6 +3,9 @@ package com.sjia.Leetcode;
 public class MultiplyStrings {
     // 43. Multiply Strings https://leetcode.com/problems/multiply-strings/
 
+    // 1 <= num1.length, num2.length <= 200
+    // num1 and num2 consist of digits only.
+
 
 
     // Runtime: 3 ms, faster than 90.02% of Java online submissions for Multiply Strings.
