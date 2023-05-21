@@ -32,13 +32,26 @@ public class JumpGame {
 
 
 
+    // from start to end
+    public static boolean canJump2(int[] nums) {
+        int n = nums.length;
+        int farthest = 0;
+        for ( int i =0; i < n; i++) {
+            farthest = Math.max(farthest, i+nums[i]);
+            if (farthest < i+1) break;
+        }
+        if (farthest >= n-1) return true;
+        else return false;
+    }
+
+
 
     public static void main(String[] args) {
         int[] nums1 = {2, 3, 1, 1, 4};
-        System.out.println("Can jump? " + canJump(nums1)); // Output: true
+        System.out.println("Can jump? " + canJump2(nums1)); // Output: true
 
         int[] nums2 = {3, 2, 1, 0, 4};
-        System.out.println("Can jump? " + canJump(nums2)); // Output: false
+        System.out.println("Can jump? " + canJump2(nums2)); // Output: false
     }
 
 
