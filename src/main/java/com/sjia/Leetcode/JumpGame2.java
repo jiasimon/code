@@ -40,15 +40,39 @@ public class JumpGame2 {
         return jumps;
     }
 
+
+
+    public static int jump2(int[] nums) {
+        // The starting range of the first jump is [0, 0]
+        int res = 0, n = nums.length;
+        int curEnd = 0, curFar = 0;
+
+        for (int i = 0; i < n - 1; ++i) {
+            // Update the farthest reachable index of this jump.
+            curFar = Math.max(curFar, i + nums[i]);
+
+            // If we finish the starting range of this jump,
+            // Move on to the starting range of the next jump.
+            if (i == curEnd) {
+                res++;
+                curEnd = curFar;
+            }
+        }
+
+        return res;
+
+    }
+
+
     public static void main(String[] args) {
         int[] nums1 = {2, 3, 1, 1, 4};
-        System.out.println("Minimum jumps: " + jump(nums1)); // Output: 2
+        System.out.println("Minimum jumps: " + jump2(nums1)); // Output: 2
 
         int[] nums2 = {3, 2, 1, 0, 4};
-        System.out.println("Minimum jumps: " + jump(nums2)); // Output: -1
+        System.out.println("Minimum jumps: " + jump2(nums2)); // Output: -1
 
         int[] nums3 = {2,3,0,1,4};
-        System.out.println("Minimum jumps: " + jump(nums3)); // Output: 2
+        System.out.println("Minimum jumps: " + jump2(nums3)); // Output: 2
     }
 
 
