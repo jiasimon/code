@@ -18,6 +18,25 @@ public class JumpGame3 {
     index 5 -> index 6 -> index 4 -> index 1 -> index 3
      */
 
+    // 1 <= arr.length <= 5 * 104
+    // 0 <= arr[i] < arr.length
+
+
+    // boolean array, space: O(N)
+    public static boolean canReach2(int[] arr, int start) {
+        boolean[] visited = new boolean[arr.length];
+        return canReachdfs(arr, start, visited);
+    }
+
+    private static boolean canReachdfs(int[] arr, int start, boolean[] visited) {
+        if ( start < 0 || start >= arr.length || visited[start]) return false;
+        if( arr[start] == 0) return true;
+        visited[start] = true;
+        return canReachdfs(arr,start-arr[start],visited) || canReachdfs(arr,start+arr[start],visited);
+    }
+
+
+    // recursive dfs, hashset
     public static boolean canReach(int[] arr, int start) {
         if (arr == null || arr.length == 0) {
             return false;
@@ -27,7 +46,7 @@ public class JumpGame3 {
         return canReachHelper(arr, start, visited);
     }
 
-    // recursive dfs, hashset
+
     private static boolean canReachHelper(int[] arr, int index, Set<Integer> visited) {
         if (index < 0 || index >= arr.length || visited.contains(index)) {
             return false;
@@ -74,15 +93,15 @@ public class JumpGame3 {
     public static void main(String[] args) {
         int[] arr1 = {4, 2, 3, 0, 3, 1, 2};
         int start1 = 5;
-        System.out.println(Arrays.toString(arr1) + " Can reach? " + canReachBard(arr1, start1)); // Output: true
+        System.out.println(Arrays.toString(arr1) + " Can reach? " + canReach(arr1, start1)); // Output: true
 
         int[] arr2 = {4, 2, 3, 0, 3, 1, 2};
         int start2 = 0;
-        System.out.println(Arrays.toString(arr2) + " Can reach? " + canReachBard(arr2, start2)); // Output: true
+        System.out.println(Arrays.toString(arr2) + " Can reach? " + canReach(arr2, start2)); // Output: true
 
         int[] arr3 = {3, 0, 2, 1, 2};
         int start3 = 2;
-        System.out.println(Arrays.toString(arr3) + " Can reach? " + canReachBard(arr3, start3)); // Output: false
+        System.out.println(Arrays.toString(arr3) + " Can reach? " + canReach(arr3, start3)); // Output: false
     }
 
 
