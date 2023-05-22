@@ -82,6 +82,23 @@ public class JumpGame4 {
         return -1;
     }
 
+
+    public static int minJumpsbard(int[] arr) {
+        int n = arr.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j <= i + arr[i] && j < n; j++) {
+                dp[j] = Math.min(dp[j], dp[i] + 1);
+            }
+        }
+
+        return dp[n - 1];
+    }
+
+
     public static void main(String[] args) {
         int[] arr1 = {100, -23, -23, 404, 100, 23, 23, 23, 3, 404};
         System.out.println("Minimum jumps: " + minJumps(arr1)); // Output: 3
