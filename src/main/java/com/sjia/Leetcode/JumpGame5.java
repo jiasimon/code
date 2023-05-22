@@ -72,22 +72,53 @@ public class JumpGame5 {
         return maxJumps;
     }
 
+
+
+
+    public static int maxJumps2(int[] arr, int d) {
+        int res = 1; // when no jump , return 1
+        int n = arr.length;
+        int[] dp = new int[n];
+        for (int i=0; i < n ; i++) {
+            res = Math.max(res, dfsMaxJumps2(arr, d , dp, i) );
+        }
+        return res;
+    }
+
+    private static int dfsMaxJumps2(int[] arr, int d, int[] dp, int i) {
+        if ( dp[i] != 0) {
+            return dp[i]; // memorization
+        }
+        int res = 1;
+        for (int j=i+1; j<=i+d && j< arr.length && arr[j] < arr[i]; j++) {
+            res = Math.max(res, 1 + dfsMaxJumps2(arr, d , dp, j) );
+        }
+        for (int j=i-1; j>= i-d && j>=0 && arr[j] < arr[i]; j--) {
+            res = Math.max(res, 1 + dfsMaxJumps2(arr, d , dp, j) );
+        }
+        dp[i] = res;
+        return dp[i];
+
+    }
+
+
+
     public static void main(String[] args) {
         int[] arr1 = {6, 4, 14, 6, 8, 13, 9, 7, 10, 6, 12};
         int d1 = 2;
-        System.out.println("Max jumps: " + maxJumps(arr1, d1)); // Output: 4
+        System.out.println("Max jumps: " + maxJumps2(arr1, d1)); // Output: 4
 
         int[] arr2 = {3, 3, 3, 3, 3};
         int d2 = 3;
-        System.out.println("Max jumps: " + maxJumps(arr2, d2)); // Output: 1
+        System.out.println("Max jumps: " + maxJumps2(arr2, d2)); // Output: 1
 
         int[] arr3 = {7, 6, 5, 4, 3, 2, 1};
         int d3 = 1;
-        System.out.println("Max jumps: " + maxJumps(arr3, d3)); // Output: 7
+        System.out.println("Max jumps: " + maxJumps2(arr3, d3)); // Output: 7
 
         int[] arr4 = {7, 1, 7, 1, 7, 1};
         int d4 = 2;
-        System.out.println("Max jumps: " + maxJumps(arr4, d4)); // Output: 2
+        System.out.println("Max jumps: " + maxJumps2(arr4, d4)); // Output: 2
     }
 
 
