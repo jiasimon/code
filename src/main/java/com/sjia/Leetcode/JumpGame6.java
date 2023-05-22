@@ -1,5 +1,6 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -19,6 +20,8 @@ public class JumpGame6 {
     // Input: nums = [1,-1,-2,4,-7,3], k = 2  Output: 7
     // Explanation: You can choose your jumps forming the subsequence [1,-1,4,3] (underlined above). The sum is 7.
 
+    // 1 <= nums.length, k <= 105
+    // -10^4 <= nums[i] <= 10^4
 
 
     public static int maxResult(int[] nums, int k) {
@@ -46,18 +49,39 @@ public class JumpGame6 {
         return dp[n - 1];
     }
 
+
+
+    // Dynamic Programming, DP,  
+    public static int maxResult2(int[] nums, int k) {
+        int res = 0; // when no jump , return 1
+        int n = nums.length;
+        int[] dp = new int[n];
+
+        Arrays.fill(dp, -100000);
+        dp[0] = nums[0];
+        for (int i = 1; i < n; ++i)
+            for (int j = Math.max(0, i - k); j < i; ++j)
+                dp[i] = Math.max(dp[i], dp[j] + nums[i]);
+        return dp[n-1];
+
+    }
+
+
+
+
+
     public static void main(String[] args) {
         int[] nums1 = {1, -1, -2, 4, -7, 3};
         int k1 = 2;
-        System.out.println("Maximum result: " + maxResult(nums1, k1)); // Output: 7
+        System.out.println("Maximum result: " + maxResult2(nums1, k1)); // Output: 7
 
         int[] nums2 = {10, -5, -2, 4, 0, 3};
         int k2 = 3;
-        System.out.println("Maximum result: " + maxResult(nums2, k2)); // Output: 17
+        System.out.println("Maximum result: " + maxResult2(nums2, k2)); // Output: 17
 
         int[] nums3 = {1, -5, -20, 4, -1, 3, -6, -3};
         int k3 = 2;
-        System.out.println("Maximum result: " + maxResult(nums3, k3)); // Output: 0
+        System.out.println("Maximum result: " + maxResult2(nums3, k3)); // Output: 0
     }
 
 
