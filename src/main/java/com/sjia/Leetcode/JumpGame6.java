@@ -51,13 +51,14 @@ public class JumpGame6 {
 
 
 
-    // Dynamic Programming, DP,  
+    // Dynamic Programming, DP,  Time Limit Exceeded (TLE)
     public static int maxResult2(int[] nums, int k) {
         int res = 0; // when no jump , return 1
         int n = nums.length;
         int[] dp = new int[n];
 
-        Arrays.fill(dp, -100000);
+//        Arrays.fill(dp, -100000);
+        Arrays.fill(dp, Integer.MIN_VALUE);
         dp[0] = nums[0];
         for (int i = 1; i < n; ++i)
             for (int j = Math.max(0, i - k); j < i; ++j)
@@ -66,6 +67,23 @@ public class JumpGame6 {
 
     }
 
+
+
+    //
+    public static int maxResult3(int[] nums, int k) {
+        int res = 0; // when no jump , return 1
+        int n = nums.length;
+        int[] dp = new int[n];
+
+//        Arrays.fill(dp, -100000);
+        Arrays.fill(dp, Integer.MIN_VALUE);
+        dp[0] = nums[0];
+        for (int i = 1; i < n; ++i)
+            for (int j = Math.max(0, i - k); j < i; ++j)
+                dp[i] = Math.max(dp[i], dp[j] + nums[i]);
+        return dp[n-1];
+
+    }
 
 
 
