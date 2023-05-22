@@ -27,6 +27,7 @@ public class JumpGame7 {
 
     // DP,  counting the number of ways
     // i-maxJump  to i-minJump
+    // TLE for all 0, long string input
     public static boolean canReach2(String s, int minJump, int maxJump) {
         int n= s.length(), dp[]= new int[n];
         dp[0]= 1;
@@ -40,22 +41,72 @@ public class JumpGame7 {
     }
 
 
+
+
+    // (Backward) Quadratic DP , flagging instead of counting all ways
+    // TLE
+    public static boolean canReach3(String s, int minJump, int maxJump) {
+        int n= s.length();
+        int[] dp= new int[n];
+        dp[0]= 1;
+        for(int i=1; i<n; i++){
+            if(s.charAt(i)=='0') {
+                for (int j = Math.max(0, i - maxJump), j2 = i - minJump; j <= j2; j++){
+//                    dp[i] += dp[j];
+                    if ( dp[j] ==1) {
+                        dp[i] = 1;
+                        break;
+                    }
+                }
+
+            }
+        }
+        return dp[n-1]>0;
+    }
+
+
+    // Runtime 17 ms  Memory 44.7 MB
+    // Linear DP, sliding window
+    public static boolean canReach4(String s, int minJump, int maxJump) {
+        int n= s.length();
+        int[] dp= new int[n];
+        dp[0]= 1;
+        int psDiff = 0;
+        for(int i=1; i<n; i++){
+            int j = i-maxJump-1, k = i- minJump ;  // i-maxJump-1
+            if ( j > -1) {
+                psDiff -= dp[j];
+
+            }
+            if ( k > -1) {
+                psDiff += dp[k];
+            }
+            if(s.charAt(i)=='0') {
+                dp[i]= psDiff > 0 ? 1 : 0;
+            }
+
+        }
+        return dp[n-1]>0;
+    }
+
+
+
     public static void main(String[] args) {
         String s1 = "011010";
 //        String s1 = "0110000000010";  // dp[n-1] = 5
         int minJump1 = 2;
         int maxJump1 = 3;
-        System.out.println("Can reach the last index: " + canReach2(s1, minJump1, maxJump1)); // Output: true
+        System.out.println("Can reach the last index: " + canReach4(s1, minJump1, maxJump1)); // Output: true
 
         String s2 = "01101110";
         int minJump2 = 2;
         int maxJump2 = 3;
-        System.out.println("Can reach the last index: " + canReach2(s2, minJump2, maxJump2)); // Output: false
+        System.out.println("Can reach the last index: " + canReach4(s2, minJump2, maxJump2)); // Output: false
 
         String s3 = "010010";
         int minJump3 = 1;
         int maxJump3 = 2;
-        System.out.println("Can reach the last index: " + canReach2(s3, minJump3, maxJump3)); // Output: true
+        System.out.println("Can reach the last index: " + canReach4(s3, minJump3, maxJump3)); // Output: true
     }
 
 
