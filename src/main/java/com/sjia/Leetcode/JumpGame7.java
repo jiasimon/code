@@ -24,21 +24,38 @@ public class JumpGame7 {
         return dp[n - 1];
     }
 
+
+    // DP,  counting the number of ways
+    // i-maxJump  to i-minJump
+    public static boolean canReach2(String s, int minJump, int maxJump) {
+        int n= s.length(), dp[]= new int[n];
+        dp[0]= 1;
+        for(int i=1; i<n; i++){
+            if(s.charAt(i)=='0') {
+                for (int j = Math.max(0, i - maxJump), j2 = i - minJump; j <= j2; j++)
+                    dp[i] += dp[j];
+            }
+        }
+        return dp[n-1]>0;
+    }
+
+
     public static void main(String[] args) {
         String s1 = "011010";
+//        String s1 = "0110000000010";  // dp[n-1] = 5
         int minJump1 = 2;
         int maxJump1 = 3;
-        System.out.println("Can reach the last index: " + canReach(s1, minJump1, maxJump1)); // Output: true
+        System.out.println("Can reach the last index: " + canReach2(s1, minJump1, maxJump1)); // Output: true
 
         String s2 = "01101110";
         int minJump2 = 2;
         int maxJump2 = 3;
-        System.out.println("Can reach the last index: " + canReach(s2, minJump2, maxJump2)); // Output: false
+        System.out.println("Can reach the last index: " + canReach2(s2, minJump2, maxJump2)); // Output: false
 
         String s3 = "010010";
         int minJump3 = 1;
         int maxJump3 = 2;
-        System.out.println("Can reach the last index: " + canReach(s3, minJump3, maxJump3)); // Output: false
+        System.out.println("Can reach the last index: " + canReach2(s3, minJump3, maxJump3)); // Output: true
     }
 
 
