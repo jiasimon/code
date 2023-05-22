@@ -42,8 +42,8 @@ public class JumpGame4 {
 
         Map<Integer, List<Integer>> valueToIndices = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
-            valueToIndices.computeIfAbsent(arr[i], ArrayList::new).add(i);
-//            valueToIndices.computeIfAbsent(arr[i], v -> new ArrayList()).add(i);
+//            valueToIndices.computeIfAbsent(arr[i], ArrayList::new).add(i);
+            valueToIndices.computeIfAbsent(arr[i], v -> new ArrayList()).add(i);
         }
 
         Queue<Integer> queue = new LinkedList<>();
