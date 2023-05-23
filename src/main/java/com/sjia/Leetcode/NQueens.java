@@ -70,8 +70,28 @@ public class NQueens {
         return solution;
     }
 
+    private static List<String> constructEvenRowSolution(int n) {
+        char[][] board = new char[n][n];
+        for (char[] row : board) {
+            Arrays.fill(row, '.');
+        }
+        int start = 1, gap = 2;
+        for (int i=0; i < n; i ++) {
+            if ( start > n) {
+                start = start - n - 1;
+            }
+            board[i][start] = 'Q';
+            start = start + gap;
+        }
+        List<String> solution = new ArrayList<>();
+        for (char[] row : board) {
+            solution.add(new String(row));
+        }
+        return solution;
+    }
+
     public static void main(String[] args) {
-        int n = 4;
+        int n = 5;
         List<List<String>> solutions = solveNQueens(n);
         for (List<String> solution : solutions) {
             for (String row : solution) {
@@ -79,6 +99,15 @@ public class NQueens {
             }
             System.out.println();
         }
+
+        System.out.println("construct one of EvenRowSolution: ");
+
+        List<String> mySolution = constructEvenRowSolution(n);
+        for ( String row : mySolution) {
+            System.out.println(row);
+        }
+        System.out.println();
+
     }
 
 
