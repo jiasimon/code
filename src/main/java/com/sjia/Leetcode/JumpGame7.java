@@ -91,12 +91,30 @@ public class JumpGame7 {
 
 
 
+    // DP sliding window , boolean array
+    // "011010"
+    public static boolean canReach5(String s, int minJump, int maxJump) {
+        int n = s.length(), pre = 0; // pre: the number of previous position that we can jump from
+        boolean[] dp = new boolean[n];
+        dp[0] = true;   // other array member default value to false
+        for (int i = 1; i < n; ++i) {
+            if (i >= minJump && dp[i - minJump]) // i >= minJump  for initial boundary
+                pre++;
+            if (i > maxJump && dp[i - maxJump - 1])
+                pre--;
+            dp[i] = ( pre > 0 && s.charAt(i) == '0');
+        }
+        return dp[n - 1];
+    }
+
+
+
     public static void main(String[] args) {
         String s1 = "011010";
 //        String s1 = "0110000000010";  // dp[n-1] = 5
         int minJump1 = 2;
         int maxJump1 = 3;
-        System.out.println("Can reach the last index: " + canReach4(s1, minJump1, maxJump1)); // Output: true
+        System.out.println("Can reach the last index: " + canReach5(s1, minJump1, maxJump1)); // Output: true
 
         String s2 = "01101110";
         int minJump2 = 2;
