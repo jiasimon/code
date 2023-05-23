@@ -19,7 +19,7 @@ public class GroupAnagrams {
     public static List<List<String>> groupAnagrams(String[] strs) {
         if (strs.length < 1 ) return new ArrayList();
 
-        List<List <String>> res = new ArrayList<>();
+//        List<List <String>> res = new ArrayList<>();
 //        Map<String, List> map  = new HashMap<String, List>();
         Map<String, List<String>> map  = new HashMap<>();
 
@@ -34,8 +34,10 @@ public class GroupAnagrams {
             map.get(key).add(s);
         }
 
-        for ( List v: map.values()) res.add(v);
-        return res;
+//        for ( List v: map.values()) res.add(v);
+//        return res;
+        return new ArrayList<>(map.values());
+
 
     }
 
