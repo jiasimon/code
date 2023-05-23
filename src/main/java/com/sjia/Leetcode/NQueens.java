@@ -77,7 +77,7 @@ public class NQueens {
         }
         int start = 1, gap = 2;
         for (int i=0; i < n; i ++) {
-            if ( start > n) {
+            if ( start >= n) {
                 start = start - n - 1;
             }
             board[i][start] = 'Q';
@@ -90,9 +90,31 @@ public class NQueens {
         return solution;
     }
 
+
+    private static List<String> constructOddRowSolution(int n) {
+        char[][] board = new char[n][n];
+        for (char[] row : board) {
+            Arrays.fill(row, '.');
+        }
+        int start = 0 , gap = 2;
+        for (int i=0; i < n; i ++) {
+            if ( start >= n) {
+                start = start - n ;
+            }
+            board[i][start] = 'Q';
+            start = start + gap;
+        }
+        List<String> solution = new ArrayList<>();
+        for (char[] row : board) {
+            solution.add(new String(row));
+        }
+        return solution;
+    }
+
+
     public static void main(String[] args) {
-        int n = 5;
-        List<List<String>> solutions = solveNQueens(n);
+        int n = 4;
+        List<List<String>> solutions = solveNQueens(7);
         for (List<String> solution : solutions) {
             for (String row : solution) {
                 System.out.println(row);
@@ -102,14 +124,20 @@ public class NQueens {
 
         System.out.println("construct one of EvenRowSolution: ");
 
-        List<String> mySolution = constructEvenRowSolution(n);
+        List<String> mySolution = constructEvenRowSolution(6);
         for ( String row : mySolution) {
             System.out.println(row);
         }
         System.out.println();
 
+        System.out.println("construct one of EvenRowSolution: ");
+
+        List<String> mySolution2 = constructOddRowSolution(7);
+        for ( String row : mySolution2) {
+            System.out.println(row);
+        }
+        System.out.println();
+
+
     }
-
-
-
 }
