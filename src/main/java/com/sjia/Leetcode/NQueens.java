@@ -12,6 +12,12 @@ public class NQueens {
 
     // 1 <= n <= 9
 
+    public static int solveNQueensCount(int n) {
+        int res = 0;
+        res = solveNQueens(n).size();
+        return res;
+    }
+
     public static List<List<String>> solveNQueens(int n) {
         List<List<String>> result = new ArrayList<>();
         char[][] board = new char[n][n];
@@ -112,9 +118,12 @@ public class NQueens {
     }
 
 
+
+
+
     public static void main(String[] args) {
-        int n = 4;
-        List<List<String>> solutions = solveNQueens(7);
+        int n = 5;
+        List<List<String>> solutions = solveNQueens(n);
         for (List<String> solution : solutions) {
             for (String row : solution) {
                 System.out.println(row);
@@ -122,9 +131,12 @@ public class NQueens {
             System.out.println();
         }
 
+        int totalSolution = solveNQueensCount(n);
+        System.out.println("totalSolution for " + n + " NQueens is : " + totalSolution);
+
         System.out.println("construct one of EvenRowSolution: ");
 
-        List<String> mySolution = constructEvenRowSolution(6);
+        List<String> mySolution = constructEvenRowSolution(4);
         for ( String row : mySolution) {
             System.out.println(row);
         }
@@ -132,7 +144,7 @@ public class NQueens {
 
         System.out.println("construct one of EvenRowSolution: ");
 
-        List<String> mySolution2 = constructOddRowSolution(7);
+        List<String> mySolution2 = constructOddRowSolution(5);
         for ( String row : mySolution2) {
             System.out.println(row);
         }
