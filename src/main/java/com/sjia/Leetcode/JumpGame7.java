@@ -1,5 +1,8 @@
 package com.sjia.Leetcode;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class JumpGame7 {
     // #1871. Jump Game VII  https://leetcode.com/problems/jump-game-vii/
 
@@ -20,6 +23,17 @@ public class JumpGame7 {
         boolean[] dp = new boolean[n];
         dp[0] = true;
 
+        int prevTrueCount = 0;
+
+        for (int i = 1; i < n; i++) {
+            if (i >= minJump && dp[i - minJump]) {
+                prevTrueCount++;
+            }
+            if (i > maxJump && dp[i - maxJump - 1]) {
+                prevTrueCount--;
+            }
+            dp[i] = prevTrueCount > 0 && s.charAt(i) == '0';
+        }
 
         return dp[n - 1];
     }
