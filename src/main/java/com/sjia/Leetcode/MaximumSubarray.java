@@ -53,14 +53,32 @@ public class MaximumSubarray {
     }
 
 
+
+    // Kadane's Algorithm
+    public static int maxSubArray3(int[] nums) {
+        int maxSum = nums[0];
+        int currentSum = nums[0];
+
+        for (int i=1 ; i < nums.length; i++) {
+            // Choose the maximum between the current element and the current element plus the previous sum
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+
+            // Update the maximum sum if the current sum is greater
+            maxSum = Math.max(maxSum, currentSum);
+        }
+        return maxSum;
+
+    }
+
+
     public static void main(String[] args) {
 
-        int[] testData = {-1, 1, 2, 4 ,-5 ,10};
-//        int[] testData  = {-2,1,-3,4,-1,2,1,-5,4};
+//        int[] testData = {-1, 1, 2, 4 ,-5 ,10};
+        int[] testData  = {-2,1,-3,4,-1,2,1,-5,4};
 
 
         MaximumSubarray solution = new MaximumSubarray();
-        int result = solution.maxSubArray2(testData);
+        int result = solution.maxSubArray3(testData);
         System.out.printf(" testData %s MaximumSubarray is %s \n", Arrays.toString(testData), result);
     }
 
