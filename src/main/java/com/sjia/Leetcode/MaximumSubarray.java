@@ -5,10 +5,13 @@ import java.util.List;
 
 public class MaximumSubarray {
 
-    // #53 https://leetcode.com/problems/maximum-subarray/
+    // #53. Maximum Subarray https://leetcode.com/problems/maximum-subarray/
 
-    // Runtime: 2 ms, faster than 17.21% of Java online submissions for Maximum Subarray.
-    //Memory Usage: 41.7 MB, less than 5.39% of Java online submissions for Maximum Subarray.
+    // Input: nums = [-2,1,-3,4,-1,2,1,-5,4]  Output: 6
+    // 1 <= nums.length <= 10^5, -10^4 <= nums[i] <= 10^4
+
+
+
 /*
     public int maxSubArray(int[] nums) {
         int result = nums[0] , sum = 0;
@@ -33,14 +36,31 @@ public class MaximumSubarray {
     }
 
 
+    // brutal force
+    public static int maxSubArray2(int[] nums) {
+        int maxSum = Integer.MIN_VALUE;
+
+        // Iterate through all possible subarrays
+        for (int i = 0; i < nums.length; i++) {
+            int currentSum = 0;
+            for (int j = i; j < nums.length; j++) {
+                currentSum += nums[j];
+                maxSum = Math.max(maxSum, currentSum);
+            }
+        }
+
+        return maxSum;
+    }
+
+
     public static void main(String[] args) {
 
-        //int[] testData = {1, 1, 2, 4 ,8 ,10};
-        int[] testData  = {-2,1,-3,4,-1,2,1,-5,4};
+        int[] testData = {-1, 1, 2, 4 ,-5 ,10};
+//        int[] testData  = {-2,1,-3,4,-1,2,1,-5,4};
 
 
         MaximumSubarray solution = new MaximumSubarray();
-        int result = solution.maxSubArray(testData);
+        int result = solution.maxSubArray2(testData);
         System.out.printf(" testData %s MaximumSubarray is %s \n", Arrays.toString(testData), result);
     }
 
