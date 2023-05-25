@@ -32,7 +32,7 @@ public class MergeIntervals {
             int nextStart = interval[0];
             int nextEnd = interval[1];
 
-            if (currentEnd >= nextStart) {
+            if (currentEnd >= nextStart) { //  "=" is for Input: intervals = [[1,4],[4,5]]  [[1,5]]
                 currentInterval[1] = Math.max(currentEnd, nextEnd);
             } else {
                 currentInterval = interval;
