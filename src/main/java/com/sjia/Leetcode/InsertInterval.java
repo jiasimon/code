@@ -27,6 +27,7 @@ public class InsertInterval {
     }
 
     public static void main(String[] args) {
+        int[][] intervals0 = {{1, 3}, {2, 4}};
         int[][] intervals = {{1, 3}, {6, 9}};
         int[] newInterval = {2, 5};
         int[][] mergedIntervals = insert(intervals, newInterval);
