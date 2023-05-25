@@ -16,6 +16,52 @@ public class SpiralMatrix {
     // -100 <= matrix[i][j] <= 100
 
 
+    // left , right, top , bottom,
+    public static List<Integer> spiralOrder2(int[][] matrix) {
+        List<Integer> res = new ArrayList<>();
+
+        int right = matrix[0].length -1;
+        int bottom  = matrix.length -1;
+        int left =0, top=0;
+
+        while ( left <= right && top <= bottom) {
+            // Traverse to right
+            for (int i = left; i <= right; i++ ){
+                res.add(matrix[top][i]);
+            }
+            top++;
+
+            // Traverse to bottom
+            for (int i = top; i <= bottom; i++ ){
+                res.add(matrix[i][right]);
+            }
+            right--;
+
+            // Traverse to left
+            if (top <= bottom) {   // need check condition
+                for (int i = right; i >=left ; i-- ){
+                    res.add(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+
+
+            // Traverse to top
+            if (left <= right) {
+                for (int i = bottom; i >=top ; i-- ){
+                    res.add(matrix[i][left]);
+                }
+                left++;
+            }
+
+        }
+
+        return res;
+
+    }
+
+
+
     // four pointers, rowBegin, rowEnd, colBegin, colEnd
     public static List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> result = new ArrayList<>();
@@ -62,9 +108,12 @@ public class SpiralMatrix {
     }
 
     public static void main(String[] args) {
-        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int[][] matrix0 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
         List<Integer> spiral = spiralOrder(matrix);
         System.out.println("Spiral Matrix: " + spiral); // Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+        System.out.println("Spiral Matrix Row: " + matrix.length);
+        System.out.println("Spiral Matrix Column: " + matrix[0].length);
     }
 
 
