@@ -5,7 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MergeIntervals {
-    // #56 https://leetcode.com/problems/merge-intervals/ #fb
+    // #56. Merge Intervals  https://leetcode.com/problems/merge-intervals/ #fb
+
+    // 1 <= intervals.length <= 10^4 , intervals[i].length == 2
+    // 0 <= starti <= endi <= 104
+
+    // Input: intervals = [[1,3],[2,6],[8,10],[15,18]]  [[1,6],[8,10],[15,18]]
+    // Input: intervals = [[1,4],[4,5]]  [[1,5]]
 
 
 
@@ -54,7 +60,7 @@ public class MergeIntervals {
     // res.toArray(new int[res.size()][])
     // Runtime: 5 ms, faster than 94.24% of Java online submissions for Merge Intervals.
     // Memory Usage: 41.6 MB, less than 66.18% of Java online submissions for Merge Intervals.
-    public int[][] merge(int[][] intervals) {
+    public static int[][] merge(int[][] intervals) {
         if (intervals.length <=1) return intervals;
         Arrays.sort(intervals, (a, b) -> a[0] -b[0]);
         List<int[]> res = new ArrayList<>();
@@ -71,6 +77,23 @@ public class MergeIntervals {
         }
 
         return res.toArray(new int[res.size()][]);
+
+    }
+
+
+    public static void main(String[] args) {
+        // init values for int[][]
+        int[][] intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+        int[][] mergedIntervals = merge(intervals);
+
+        for (int[] interval : mergedIntervals) {
+            System.out.println(Arrays.toString(interval));
+        }
+        // Output: [1, 6], [8, 10], [15, 18]
+
+        // Arrays.deepToString output two dimensional array
+        System.out.println(Arrays.deepToString(mergedIntervals));
+        // Output:   [[1, 6], [8, 10], [15, 18]]
 
     }
 
