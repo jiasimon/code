@@ -15,6 +15,7 @@ public class MergeIntervals {
 
 
 
+
     public static int[][] mergeIntervals(int[][] intervals) {
         if (intervals == null || intervals.length <= 1) {
             return intervals;
@@ -47,6 +48,7 @@ public class MergeIntervals {
 
 
     // res.toArray(new int[res.size()][])
+    // sort (a, b) -> a[0] -b[0]
     // Runtime: 5 ms, faster than 94.24% of Java online submissions for Merge Intervals.
     // Memory Usage: 41.6 MB, less than 66.18% of Java online submissions for Merge Intervals.
     public static int[][] merge(int[][] intervals) {
