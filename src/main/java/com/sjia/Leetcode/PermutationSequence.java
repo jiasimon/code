@@ -42,6 +42,40 @@ public class PermutationSequence {
 
 
 
+    public static String getPermutation2(int n, int k) {
+        List <Integer> numbers = new ArrayList<>();
+        int[] fact = new int[n+1];
+
+        StringBuilder sb = new StringBuilder();
+
+        // Create a list of numbers from 1 to n
+        for (int i = 1; i <= n; i++) {
+            numbers.add(i);
+        }
+
+        // Calculate factorials
+        calculateFact(fact);
+
+
+        // Adjust k to be 0-based index
+        k--;
+
+        for (int i = n; i > 0; i--) {
+            int index = k / fact[i - 1];
+            sb.append(numbers.get(index));
+            numbers.remove(index);
+            k -= index * fact[i - 1];
+        }
+
+        return sb.toString();
+    }
+
+    private static void calculateFact(int[] factorial) {
+        factorial[0] = 1;
+        for (int i = 1; i < factorial.length; i++) {
+            factorial[i] = factorial[i - 1] * i;
+        }
+    }
 
 
 
@@ -50,7 +84,7 @@ public class PermutationSequence {
 //        int k = 3; //  Output: "213"
         int n = 4;
         int k = 9; //  Output: "2314"
-        String permutation = getPermutation(n, k);
+        String permutation = getPermutation2(n, k);
         System.out.println(permutation);
     }
 
