@@ -53,10 +53,43 @@ public class SpiralMatrix2 {
     }
 
 
+    public static int[][] generateMatrix2(int n) {
+        int[][] res = new int[n][n];
+
+        int top = 0, bottom = n - 1;
+        int left = 0, right = n - 1;
+
+        int num = 1;
+        while (left <= right && top <= bottom) {
+            for (int i = left; i <= right; i++) {
+                res[top][i] = num++;
+            }
+            top++;
+
+            for (int i = top; i <= bottom; i++) {
+                res[i][right] = num++;
+            }
+            right--;
+
+            for (int i = right; i >= left; i--) {
+                res[bottom][i] = num++;
+            }
+            bottom--;
+
+            for (int i = bottom; i >= top; i--) {
+                res[i][left] = num++;
+            }
+            left++;
+
+        }
+        return res;
+    }
+
+
         public static void main (String[]args){
 //            int n = 3;  // [[1, 2, 3], [8, 9, 4], [7, 6, 5]]
             int n = 4; // [[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]
-            int[][] matrix = generateMatrix(n);
+            int[][] matrix = generateMatrix2(n);
             System.out.println("n= " + n + " , generated Spiral Matrix is :" + Arrays.deepToString(matrix));
         }
 
