@@ -8,11 +8,11 @@ public class LengthLastWord {
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Length of Last Word.
     //Memory Usage: 39.2 MB, less than 7.46% of Java online submissions for Length of Last Word.
-/*
-    static int lengthOfLastWord(String s) {
+
+    static int lengthOfLastWord4(String s) {
         s = s.trim();
         return s.length() -1 - s.lastIndexOf(' ') ;
-    }*/
+    }
 
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Length of Last Word.
@@ -38,7 +38,7 @@ public class LengthLastWord {
 
     }
 
-    public int lengthOfLastWord2(String s) {
+    public static int lengthOfLastWord2(String s) {
         s = s.trim();
         if (s.length() == 0 ) return 0;
         int i = s.length() -1, res=0;
@@ -52,17 +52,38 @@ public class LengthLastWord {
         return res;
     }
 
+    public static int lengthOfLastWord3(String s) {
+        s = s.trim();
+        int res = 0;
+        for (int i = s.length()-1; i>=0; i--) {
+            if (s.charAt(i) == ' ') break;
+            res++;
+        }
+        return res;
+    }
+
 
     public static void main(String[] args) {
 
         //String testData  = "Hello World";
         String testData  = "Hello My World  ";
-        int result = lengthOfLastWord(testData);
+        int result = lengthOfLastWord3(testData);
 
         // String[] eachWord = testData.split(" ");
         // System.out.println( eachWord[eachWord.length - 1].length());
 
         System.out.printf(" %s : lengthOfLastWord is %s \n",testData, result);
+
+        String s1 = "Hello World";
+        System.out.println("Length of last word: " + lengthOfLastWord3(s1)); // Output: 5
+
+        String s2 = "   fly me to the moon   ";
+        System.out.println("Length of last word: " + lengthOfLastWord3(s2)); // Output: 4
+
+        String s3 = "Hello";
+        System.out.println("Length of last word: " + lengthOfLastWord3(s3)); // Output: 5
+
+
     }
 
 
