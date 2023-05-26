@@ -13,7 +13,7 @@ public class LongestSubstring {
     // HashSet,  j: right side; i: left side
     // Runtime: 7 ms, faster than 53.49% of Java online submissions for Longest Substring Without Repeating Characters.
     // Memory Usage: 39.5 MB, less than 5.69% of Java online submissions for Longest Substring Without Repeating Characters.
-/*    public int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstring(String s) {
         int i = 0, j = 0, res = 0;
         Set<Character> tmp = new HashSet<>();
         while ( j < s.length()) {
@@ -27,7 +27,7 @@ public class LongestSubstring {
             }
         }
         return res;
-    }*/
+    }
 
     // Runtime: 8 ms, faster than 37.45% of Java online submissions for Longest Substring Without Repeating Characters.
     //Memory Usage: 39.8 MB, less than 5.69% of Java online submissions for Longest Substring Without Repeating Characters.
@@ -50,6 +50,7 @@ public class LongestSubstring {
     // Runtime: 4 ms, faster than 90.72% of Java online submissions for Longest Substring Without Repeating Characters.
     // Memory Usage: 39 MB, less than 5.69% of Java online submissions for Longest Substring Without Repeating Characters.
 
+/*
     public static int lengthOfLongestSubstring(String s) {
         if (s.length() < 2 ) return s.length();
         int j = 0, res = 0;
@@ -64,6 +65,7 @@ public class LongestSubstring {
         return res;
     }
 
+*/
 
 
 
