@@ -46,7 +46,7 @@ public class RotateList {
     private static int getLength(ListNode head) {
         int length = 0;
         ListNode current = head;
-        while (current != null) {
+        while (current != null) {  // while (current.next != null)
             length++;
             current = current.next;
         }
