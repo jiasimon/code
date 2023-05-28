@@ -20,7 +20,7 @@ public interface UniquePaths2 {
      */
 
 
-    // dp[m][n]  row1, line1
+    // dp[m][n]  row1, line1;  run result 100% 40.8MB
     public static int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;
@@ -68,9 +68,70 @@ public interface UniquePaths2 {
                 }
             }
         }
-        
+
         return dp[m - 1][n - 1];
     }
+
+
+
+
+    public static int uniquePathsWithObstacles2(int[][] obstacleGrid) {
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+
+        // Check if the start or destination cell is an obstacle
+        if (obstacleGrid[0][0] == 1 || obstacleGrid[m - 1][n - 1] == 1) {
+            return 0;
+        }
+
+        // Create a 2D dp array to store the number of unique paths for each cell
+        int[][] dp = new int[m][n];
+
+        // Initialize the first cell with 1 since there is only one way to reach it
+        dp[0][0] = 1;
+
+        // Fill the first column
+        for (int i = 1; i < m; i++) {
+            if (obstacleGrid[i][0] == 1) {
+                // If the current cell is an obstacle, set the number of paths to 0
+                dp[i][0] = 0;
+                break;
+            } else {
+                // Otherwise, the number of paths is the same as the cell above
+                dp[i][0] = 1;
+            }
+        }
+
+        // Fill the first row
+        for (int j = 1; j < n; j++) {
+            if (obstacleGrid[0][j] == 1) {
+                // If the current cell is an obstacle, set the number of paths to 0
+                dp[0][j] = 0;
+                break;
+            } else {
+                // Otherwise, the number of paths is the same as the cell to the left
+                dp[0][j] = 1;
+            }
+        }
+
+        // Fill the rest of the dp array using dynamic programming
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (obstacleGrid[i][j] == 1) {
+                    // If the current cell is an obstacle, set the number of paths to 0
+                    dp[i][j] = 0;
+                } else {
+                    // Otherwise, the number of paths is the sum of the paths from above and from the left
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+            }
+        }
+
+        return dp[m - 1][n - 1];
+
+
+    }
+
 
     public static void main(String[] args) {
         int[][] obstacleGrid = {
@@ -79,8 +140,19 @@ public interface UniquePaths2 {
                 {0, 0, 0}
         };
 
-        int uniquePaths = uniquePathsWithObstacles(obstacleGrid);
+        int uniquePaths = uniquePathsWithObstacles2(obstacleGrid);
         System.out.println("Number of unique paths: " + uniquePaths); // Output: 2
+
+        int[][] obstacleGridTwo = {
+                {0, 0, 0,0},
+                {0, 1, 0,0},
+                {0, 0, 0,0}
+        };
+
+        int res = uniquePathsWithObstacles2(obstacleGridTwo);
+        System.out.println("Number of unique paths: " + res); // Output: 4
+
+
     }
 
 
