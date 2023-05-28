@@ -38,7 +38,7 @@ public class UniquePaths {
     }
 
 
-    // DP, Tabulation,  iterative 
+    // DP, Tabulation,  iterative
     public static int uniquePaths3(int m, int n) {
         int[][] res = new int[m][n];
 
@@ -56,6 +56,37 @@ public class UniquePaths {
     }
 
 
+
+    // recursive
+    public static int uniquePaths4(int m, int n) {
+        return countPaths(0, 0, m, n);
+    }
+
+    private static int countPaths(int row, int col, int m, int n) {
+        // Base case: if we reach the bottom-right cell, return 1
+        if (row == m - 1 && col == n - 1) {
+            return 1;
+        }
+
+        // Recursive calls
+        int rightPaths = 0;
+        int downPaths = 0;
+
+        // If we can move right, count the paths from the cell to the right
+        if (col < n - 1) {
+            rightPaths = countPaths(row, col + 1, m, n);
+        }
+
+        // If we can move down, count the paths from the cell below
+        if (row < m - 1) {
+            downPaths = countPaths(row + 1, col, m, n);
+        }
+
+        // Return the total number of paths
+        return rightPaths + downPaths;
+    }
+
+
     // math, (m-1 + n-1)!  / (m-1)!(n-1)!
     public static int uniquePaths(int m, int n) {
         long res = 1;  // int might out of range
@@ -68,7 +99,7 @@ public class UniquePaths {
     public static void main(String[] args) {
         int m = 3;
         int n = 7;
-        int uniquePaths = uniquePaths3(m, n);
+        int uniquePaths = uniquePaths4(m, n);
         System.out.println("Number of unique paths: " + uniquePaths); // Output: 28
     }
 
