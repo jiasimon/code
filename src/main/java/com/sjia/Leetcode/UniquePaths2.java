@@ -129,6 +129,28 @@ public interface UniquePaths2 {
 
         return dp[m - 1][n - 1];
 
+    }
+
+
+
+    // resurcive , refer to uniquePaths4
+    // Time Limit Exceeded, TLE  30 / 41 testcases passed
+    public static int uniquePathsWithObstacles3(int[][] obstacleGrid) {
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+
+        return helper(obstacleGrid,0,0,m,n);
+
+    }
+
+    static int helper(int[][] grid, int row, int col, int m, int n) {
+        if (row == m || col == n || grid[row][col] == 1) return 0;   // grid[row][col] == 1
+        if (row == m - 1 && col == n - 1) {
+            if ( grid[row][col] ==1 ) return 0;
+            return 1;
+        }
+
+        return helper(grid,row+1,col,m,n) + helper(grid,row,col+1,m,n);
 
     }
 
@@ -140,17 +162,17 @@ public interface UniquePaths2 {
                 {0, 0, 0}
         };
 
-        int uniquePaths = uniquePathsWithObstacles2(obstacleGrid);
+        int uniquePaths = uniquePathsWithObstacles3(obstacleGrid);
         System.out.println("Number of unique paths: " + uniquePaths); // Output: 2
 
         int[][] obstacleGridTwo = {
-                {0, 0, 0,0},
-                {0, 1, 0,0},
-                {0, 0, 0,0}
+                {0, 0, 0,0,0},
+                {0, 1, 0,0,0},
+                {0, 0, 0,0,0}
         };
 
-        int res = uniquePathsWithObstacles2(obstacleGridTwo);
-        System.out.println("Number of unique paths: " + res); // Output: 4
+        int res = uniquePathsWithObstacles3(obstacleGridTwo);
+        System.out.println("Number of unique paths: " + res); // Output: 7
 
 
     }
