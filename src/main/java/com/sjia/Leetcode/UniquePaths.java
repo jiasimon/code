@@ -14,7 +14,7 @@ public class UniquePaths {
     // 1 <= m, n <= 100
 
 
-    // DP
+    // DP, fill row 1, column 1
     public static int uniquePaths2(int m, int n) {
         int[][] dp = new int[m][n];
 
@@ -38,6 +38,24 @@ public class UniquePaths {
     }
 
 
+    // DP, Tabulation,  iterative 
+    public static int uniquePaths3(int m, int n) {
+        int[][] res = new int[m][n];
+
+        for ( int row=0;  row < m ; row++) {
+            for (int col=0; col < n ; col++) {
+                if (row==0 || col==0) {
+                    res[row][col]=1;
+                } else {
+                    res[row][col] = res[row-1][col]+res[row][col-1];
+                }
+            }
+        }
+        return res[m-1][n-1];
+
+    }
+
+
     // math, (m-1 + n-1)!  / (m-1)!(n-1)!
     public static int uniquePaths(int m, int n) {
         long res = 1;  // int might out of range
@@ -50,7 +68,7 @@ public class UniquePaths {
     public static void main(String[] args) {
         int m = 3;
         int n = 7;
-        int uniquePaths = uniquePaths2(m, n);
+        int uniquePaths = uniquePaths3(m, n);
         System.out.println("Number of unique paths: " + uniquePaths); // Output: 28
     }
 
