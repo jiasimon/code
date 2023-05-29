@@ -45,6 +45,33 @@ public class MinimumPathSum {
     }
 
 
+    // DP, O(1) ,modify input
+    public static int minPathSum3(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+
+        // Fill the first row
+        for (int j = 1; j < n; j++) {
+            grid[0][j] = grid[0][j - 1] + grid[0][j];
+        }
+
+        // Fill the first column
+        for (int i = 1; i < m; i++) {
+            grid[i][0] = grid[i - 1][0] + grid[i][0];
+        }
+
+        // Fill the rest of the dp array using dynamic programming
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                grid[i][j] = Math.min(grid[i - 1][j], grid[i][j - 1]) + grid[i][j];
+            }
+        }
+
+        // Return the minimum path sum to reach the bottom-right cell
+        return grid[m - 1][n - 1];
+    }
+
 
     // recursive,
     // TLE,   25 / 61  passed
@@ -81,7 +108,7 @@ public class MinimumPathSum {
                 {4, 2, 1}
         };
 
-        int minPathSum = minPathSum2(grid);
+        int minPathSum = minPathSum3(grid);
         System.out.println("Minimum path sum: " + minPathSum); // Output: 7
     }
 
