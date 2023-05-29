@@ -44,6 +44,36 @@ public class MinimumPathSum {
         return dp[m - 1][n - 1];
     }
 
+
+
+    // recursive,
+    // TLE,   25 / 61  passed
+    public static int minPathSum2(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length ;
+        return minPathSumRecursive(grid, m - 1, n - 1); // m-1 instead of m
+    }
+
+    private static int minPathSumRecursive(int[][] grid, int i, int j) {
+        if ( i==0 && j==0) {
+            return grid[i][j];
+        }
+
+//        if(i < 0 || j < 0) return Integer.MAX_VALUE;
+        if ( i==0) {
+            return grid[i][j] + minPathSumRecursive(grid, i, j - 1);
+        }
+
+        if (j==0) {
+            return grid[i][j] + minPathSumRecursive(grid, i-1, j );
+        }
+
+        return grid[i][j] + Math.min(minPathSumRecursive(grid, i, j - 1), minPathSumRecursive(grid, i-1, j ));
+
+
+    }
+
+
     public static void main(String[] args) {
         int[][] grid = {
                 {1, 3, 1},
@@ -51,7 +81,7 @@ public class MinimumPathSum {
                 {4, 2, 1}
         };
 
-        int minPathSum = minPathSum(grid);
+        int minPathSum = minPathSum2(grid);
         System.out.println("Minimum path sum: " + minPathSum); // Output: 7
     }
 
