@@ -33,14 +33,14 @@ public class ValidNumber {
                     return false;
                 }
                 pointSeen = true;
-            } else if (c == 'e') {
+            } else if (c == 'e' || c== 'E') {
                 if (eSeen || !numberSeen) {
                     return false;
                 }
                 eSeen = true;
                 numberAfterE = false;
             } else if (c == '-' || c == '+') {
-                if (i != 0 && s.charAt(i - 1) != 'e') {
+                if (i != 0 && (s.charAt(i - 1) != 'e' && s.charAt(i - 1) != 'E')) {
                     return false;
                 }
             } else {
@@ -57,7 +57,8 @@ public class ValidNumber {
         String s3 = "abc"; // false
         String s4 = "1 a"; // false
         String s5 = "2e10"; // true
-
+        String s6 = "2E9"; // true
+        String s7 = "2E+9"; // true
 
 
         System.out.println("Valid Number: " + isNumber(s1));
@@ -65,7 +66,8 @@ public class ValidNumber {
         System.out.println("Valid Number: " + isNumber(s3));
         System.out.println("Valid Number: " + isNumber(s4));
         System.out.println("Valid Number: " + isNumber(s5));
-
+        System.out.println("Valid Number: " + isNumber(s6));
+        System.out.println("Valid Number: " + isNumber(s7));
     }
 
 
