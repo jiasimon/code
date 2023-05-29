@@ -1,6 +1,6 @@
 package com.sjia.Leetcode;
 
-public interface UniquePaths2 {
+public class UniquePaths2 {
     // #63. Unique Paths II  https://leetcode.com/problems/unique-paths-ii/
     // refer to #62  uniquePaths2
     /*

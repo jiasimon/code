@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class MinimumPathSum {
     //  #64. Minimum Path Sum  https://leetcode.com/problems/minimum-path-sum/
     /*
@@ -101,6 +103,40 @@ public class MinimumPathSum {
     }
 
 
+    // memorization, memoization
+    public static int minPathSum4(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length ;
+        int[][] dp = new int[m][n];
+        for ( int[] row : dp) {
+            Arrays.fill(row,-1);
+        }
+
+        return minPathSumDP(grid, m - 1, n - 1, dp); // m-1 instead of m
+    }
+
+    private static int minPathSumDP(int[][] grid, int i, int j, int[][] dp) {
+        if ( i==0 && j==0) {
+            return grid[i][j];
+        }
+
+        if ( i==0) {
+            return grid[i][j] + minPathSumDP(grid, i, j - 1, dp);
+        }
+
+        if (j==0) {
+            return grid[i][j] + minPathSumDP(grid, i-1, j,dp );
+        }
+        if (dp[i][j] != -1)  {
+            return dp[i][j];
+        }
+
+        dp[i][j] = grid[i][j] + Math.min(minPathSumDP(grid, i, j - 1, dp), minPathSumDP(grid, i-1, j, dp ));
+        return dp[i][j];
+
+    }
+
+
     public static void main(String[] args) {
         int[][] grid = {
                 {1, 3, 1},
@@ -108,7 +144,7 @@ public class MinimumPathSum {
                 {4, 2, 1}
         };
 
-        int minPathSum = minPathSum3(grid);
+        int minPathSum = minPathSum4(grid);
         System.out.println("Minimum path sum: " + minPathSum); // Output: 7
     }
 
