@@ -133,8 +133,8 @@ public interface UniquePaths2 {
 
 
 
-    // resurcive , refer to uniquePaths4
-    // Time Limit Exceeded, TLE  30 / 41 testcases passed
+    // recursive , refer to uniquePaths4
+    // Time Limit Exceeded, TLE  30 / 41 test cases passed
     public static int uniquePathsWithObstacles3(int[][] obstacleGrid) {
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;
@@ -155,6 +155,31 @@ public interface UniquePaths2 {
     }
 
 
+
+    // Memoization
+    // 4ms, 11.34% , 41 MB  73.75%
+    public static int uniquePathsWithObstacles4(int[][] obstacleGrid) {
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        int[][] dp = new int[m][n];
+
+        return helperDFS(obstacleGrid,0,0,m,n, dp);
+
+    }
+
+    static int helperDFS(int[][] grid, int row, int col, int m, int n, int[][] dp) {
+        if (row == m || col == n || grid[row][col] == 1) return 0;   // grid[row][col] == 1
+        if (row == m - 1 && col == n - 1) {
+            if ( grid[row][col] ==1 ) return 0;
+            return 1;
+        }
+        if(dp[row][col] > 0) return dp[row][col]; // if calculated, direct return
+
+        return dp[row][col]  = helperDFS(grid,row+1,col,m,n, dp) + helperDFS(grid,row,col+1,m,n, dp);
+
+    }
+
+
     public static void main(String[] args) {
         int[][] obstacleGrid = {
                 {0, 0, 0},
@@ -162,7 +187,7 @@ public interface UniquePaths2 {
                 {0, 0, 0}
         };
 
-        int uniquePaths = uniquePathsWithObstacles3(obstacleGrid);
+        int uniquePaths = uniquePathsWithObstacles4(obstacleGrid);
         System.out.println("Number of unique paths: " + uniquePaths); // Output: 2
 
         int[][] obstacleGridTwo = {
@@ -171,7 +196,7 @@ public interface UniquePaths2 {
                 {0, 0, 0,0,0}
         };
 
-        int res = uniquePathsWithObstacles3(obstacleGridTwo);
+        int res = uniquePathsWithObstacles4(obstacleGridTwo);
         System.out.println("Number of unique paths: " + res); // Output: 7
 
 
