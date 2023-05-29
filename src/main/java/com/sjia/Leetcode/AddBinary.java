@@ -2,9 +2,10 @@ package com.sjia.Leetcode;
 
 public class AddBinary {
 
-    // #67 https://leetcode.com/problems/add-binary/    #fb
+    // #67. Add Binary  https://leetcode.com/problems/add-binary/    #fb
     // a = "1010", b = "1011" , Output: "10101"
     // 1 <= a.length, b.length <= 10^4
+    // FB interview
 
 
     // Runtime: 2 ms, faster than 86.61% of Java online submissions for Add Binary.
@@ -66,11 +67,45 @@ public class AddBinary {
 
     }
 
+
+    // sb.insert(0, sum % 2)
+    public static String addBinary3(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+        int carry = 0;
+        int i = a.length() - 1;
+        int j = b.length() - 1;
+
+        while (i >= 0 || j >= 0 || carry > 0) {
+            int sum = carry;
+
+            if (i >= 0) {
+                sum += a.charAt(i) - '0';
+                i--;
+            }
+
+            if (j >= 0) {
+                sum += b.charAt(j) - '0';
+                j--;
+            }
+
+            sb.insert(0, sum % 2);
+            carry = sum / 2;
+        }
+
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         String testData = "11";
         String testData2 = "1";
-        String result = addBinary2(testData,testData2);
+        String result = addBinary3(testData,testData2);
         System.out.printf( "Binary %s plus %s  is : %s ", testData,testData2, result);
+
+        System.out.println();
+        String c = "1010";
+        String d = "1011";
+        String result2 = addBinary3(c, d);
+        System.out.println("Binary Sum: " + result2); // Output: "10101"
     }
 
 }
