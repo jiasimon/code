@@ -16,6 +16,8 @@ public class ValidNumber {
     public static boolean isNumber(String s) {
         s = s.trim();
 
+        s.toLowerCase(); // Did not work
+        s = s.toLowerCase(); // working
 
         boolean numberSeen = false;
         boolean pointSeen = false;
@@ -33,14 +35,14 @@ public class ValidNumber {
                     return false;
                 }
                 pointSeen = true;
-            } else if (c == 'e' || c== 'E') {
+            } else if (c == 'e' ) {
                 if (eSeen || !numberSeen) {
                     return false;
                 }
                 eSeen = true;
                 numberAfterE = false;
             } else if (c == '-' || c == '+') {
-                if (i != 0 && (s.charAt(i - 1) != 'e' && s.charAt(i - 1) != 'E')) {
+                if (i != 0 && (s.charAt(i - 1) != 'e' )) {
                     return false;
                 }
             } else {
@@ -50,6 +52,8 @@ public class ValidNumber {
 
         return numberSeen && numberAfterE;
     }
+
+
 
     public static void main(String[] args) {
         String s1 = "0"; // true
