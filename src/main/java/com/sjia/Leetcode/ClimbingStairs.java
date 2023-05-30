@@ -19,10 +19,29 @@ public class ClimbingStairs {
         if ( n == 2 ) return 2;
 
         return climbStairs2(n-1) + climbStairs2(n-2);
+    }
+
+    // top down, memorization
+    static int climbStairs3(int n) {
+        if ( n == 1) return 1;
+        if ( n == 2 ) return 2;
+
+        int[] dp = new int[n+1];
+
+        int res = dfs(n, dp);
+        return res;
 
     }
 
+    private static int dfs(int n, int[] dp) {
+        if ( n == 1) return 1;
+        if ( n == 2 ) return 2;
+        if ( dp[n] !=0 ) {
+            return dp[n];
+        }
+        return dp[n] = climbStairs2(n-1) + climbStairs2(n-2);
 
+    }
 
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Climbing Stairs.
@@ -57,7 +76,7 @@ public class ClimbingStairs {
 
         //testData  = 10 :89, 6 :13
         int testData  = 6;
-        int result = climbStairs2(testData);
+        int result = climbStairs3(testData);
 
         System.out.printf(" testData %s  fibo is %s \n", testData,result);
 
