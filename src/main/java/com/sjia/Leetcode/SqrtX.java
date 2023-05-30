@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SqrtX {
 
-    // #69 https://leetcode.com/problems/sqrtx/
+    // #69. Sqrt(x)  https://leetcode.com/problems/sqrtx/
 
 
     // Newton
@@ -33,7 +33,7 @@ public class SqrtX {
         int left = 1, right =x, result =0;
         while(left <= right) {
             int mid = left + (right-left) /2;
-            if ( mid <= x/mid) {
+            if ( mid <= x/mid) {  // keep in bound, Not using mid*mid <= x
                 result = mid;
                 left =mid + 1;
             } else {
@@ -52,6 +52,13 @@ public class SqrtX {
         int result = mySqrt(testData);
 
         System.out.printf(" testData %s mySqrt is %s \n", testData,result);
+
+        int x1 = 4;
+        System.out.println("Square root of " + x1 + " is: " + mySqrt(x1)); // Output: 2
+
+        int x2 = 8;
+        System.out.println("Square root of " + x2 + " is: " + mySqrt(x2)); // Output: 2
+
     }
 
 }
