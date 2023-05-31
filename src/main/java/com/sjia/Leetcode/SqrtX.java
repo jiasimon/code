@@ -11,15 +11,14 @@ public class SqrtX {
     // Newton
     // Runtime: 2 ms, faster than 43.15% of Java online submissions for Sqrt(x).
     //Memory Usage: 38.6 MB, less than 5.07% of Java online submissions for Sqrt(x).
-/*
-    static int mySqrt(int x) {
+    static int mySqrt2(int x) {
         if (x==0) return 0;
         long root = x;
         while (root*root > x) {
             root = (root+x/root)/2;
         }
         return (int) root;
-    }*/
+    }
 
 
     // binary search Runtime: 2 ms, faster than 43.15% of Java online submissions for Sqrt(x).
