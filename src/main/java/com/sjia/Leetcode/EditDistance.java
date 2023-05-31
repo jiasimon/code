@@ -47,7 +47,7 @@ public class EditDistance {
         // Create a 2D array to store the edit distances
         int[][] dp = new int[m + 1][n + 1];
 
-        // Initialize the base cases
+        // Initialize the base cases, i for row, j for column
         for (int i = 0; i <= m; i++) {
             dp[i][0] = i;
         }
