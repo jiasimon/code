@@ -14,6 +14,8 @@ public class Search2DMatrix {
     You must write a solution in O(log(m * n)) time complexity.
      */
 
+    // n * m matrix convert to an array => matrix[x][y] => a[x * m + y]
+    // an array convert to n * m matrix => a[x] =>matrix[x / m][x % m];
     public static boolean searchMatrix(int[][] matrix, int target) {
         int m = matrix.length;
         int n = matrix[0].length;
@@ -35,6 +37,24 @@ public class Search2DMatrix {
             }
         }
 
+        return false;
+    }
+
+
+    // from matrix[0][n-1] i++, j--
+    public static boolean searchMatrix2(int[][] matrix, int target) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        int i=0, j= n-1;
+        while (i<m && j>=0 ) {
+            if(matrix[i][j] == target) return true;
+            else if (matrix[i][j] < target) {
+                i++;
+            } else {
+                j--;
+            }
+        }
         return false;
     }
 
