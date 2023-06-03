@@ -3,7 +3,7 @@ package com.sjia.Leetcode;
 import java.util.*;
 
 public class MinimumWindowSubstring {
-    // #76  https://leetcode.com/problems/minimum-window-substring/ #fb
+    // #76. Minimum Window Substring  https://leetcode.com/problems/minimum-window-substring/ #fb
 
     // Input: s = "ADOBECODEBANC", t = "ABC"    Output: "BANC"
     // Input: s = "a", t = "a"  Output: "a"
@@ -18,6 +18,7 @@ public class MinimumWindowSubstring {
 
     // Runtime: 4 ms, faster than 85.34% of Java online submissions for Minimum Window Substring.
     //Memory Usage: 38.8 MB, less than 97.89% of Java online submissions for Minimum Window Substring.
+    
     public String minWindow(String s, String t) {
         if(s == null || s.length() < t.length() || s.length() == 0){
             return "";
@@ -99,11 +100,61 @@ public class MinimumWindowSubstring {
     }*/
 
 
+
+
+    public static String minWindow2(String s, String t) {
+        if (s.length() < t.length()) {
+            return "";
+        }
+
+        Map<Character, Integer> targetMap = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            targetMap.put(c, targetMap.getOrDefault(c, 0) + 1);
+        }
+
+        int left = 0;
+        int right = 0;
+        int minLen = Integer.MAX_VALUE;
+        int minStart = 0;
+        int count = t.length();
+
+        while (right < s.length()) {
+            char rightChar = s.charAt(right);
+            if (targetMap.containsKey(rightChar)) {
+                if (targetMap.get(rightChar) > 0) {
+                    count--;
+                }
+                targetMap.put(rightChar, targetMap.get(rightChar) - 1);
+            }
+            right++;
+
+            while (count == 0) {
+                if (right - left < minLen) {
+                    minLen = right - left;
+                    minStart = left;
+                }
+
+                char leftChar = s.charAt(left);
+                if (targetMap.containsKey(leftChar)) {
+                    targetMap.put(leftChar, targetMap.get(leftChar) + 1);
+                    if (targetMap.get(leftChar) > 0) {
+                        count++;
+                    }
+                }
+                left++;
+            }
+        }
+
+        return minLen == Integer.MAX_VALUE ? "" : s.substring(minStart, minStart + minLen);
+    }
+
+
+
     public static void main(String[] args) {
         String testData  = "ADOBECODEBANC";
         String testData2  = "ABC";
         MinimumWindowSubstring solution = new MinimumWindowSubstring();
-        String result = solution.minWindow(testData, testData2);
+        String result = solution.minWindow2(testData, testData2);
 
         System.out.printf("testData %s and testData2 %s minWindow is %s \n",
                 testData,testData2, result);
