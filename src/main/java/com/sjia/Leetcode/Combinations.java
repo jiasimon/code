@@ -23,7 +23,7 @@ public class Combinations {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> currentCombination = new ArrayList<>();
 
-        backtrack(res, currentCombination, 1, n, k);
+        backtrack2(res, currentCombination, 1, n, k);
 
         return res;
     }
@@ -40,6 +40,21 @@ public class Combinations {
             currentCombination.remove(currentCombination.size() - 1);
         }
     }
+
+
+    private static void backtrack2(List<List<Integer>> combinations, List<Integer> currentCombination, int start, int n, int k) {
+        if (k == 0) {
+            combinations.add(new ArrayList<>(currentCombination));
+            return;
+        }
+
+        for (int i = start; i <= n; i++) {
+            currentCombination.add(i);
+            backtrack2(combinations, currentCombination, i + 1, n, k-1);
+            currentCombination.remove(currentCombination.size() - 1);
+        }
+    }
+
 
     public static void main(String[] args) {
         int n = 4;

@@ -18,7 +18,7 @@ public class MinimumWindowSubstring {
 
     // Runtime: 4 ms, faster than 85.34% of Java online submissions for Minimum Window Substring.
     //Memory Usage: 38.8 MB, less than 97.89% of Java online submissions for Minimum Window Substring.
-    
+
     public String minWindow(String s, String t) {
         if(s == null || s.length() < t.length() || s.length() == 0){
             return "";
