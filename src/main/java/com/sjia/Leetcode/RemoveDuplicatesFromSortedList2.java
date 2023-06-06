@@ -27,9 +27,10 @@ public class RemoveDuplicatesFromSortedList2 {
                 curr = curr.next;
             }
 
+            // if no duplicates, move prev Node
             if (prev.next == curr) {
                 prev = prev.next;
-            } else {
+            } else {  // skip all duplicates to next
                 prev.next = curr.next;
             }
 
