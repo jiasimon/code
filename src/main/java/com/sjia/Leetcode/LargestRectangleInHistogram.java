@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Stack;
+
 public class LargestRectangleInHistogram {
     //  #84. Largest Rectangle in Histogram  https://leetcode.com/problems/largest-rectangle-in-histogram/
     /*
@@ -29,7 +31,7 @@ public class LargestRectangleInHistogram {
             int prev = i - 1; // previous for comparing the heights
             while(prev >= 0 && heights[prev] >= heights[i]){
 //                prev--;
-                prev = left[prev]; // we have done this to minimise the jumps we make to the left
+                prev = left[prev]; // we have done this to minimise the jumps we make to the left, O(n^2) to O(n)
             }
             left[i] = prev;
         }
@@ -49,9 +51,39 @@ public class LargestRectangleInHistogram {
         return maxArea;
     }
 
+
+    // stack
+    public static int largestRectangleArea2(int[] heights) {
+        if (heights == null || heights.length == 0) {
+            return 0;
+        }
+
+        int n = heights.length;
+        int maxArea = 0;
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i <= n; i++) {   // note: i <= n
+
+            int h = (i == n) ? 0 : heights[i];
+
+            while (!stack.isEmpty() && h < heights[stack.peek()]) { // heights[stack.peek()] =2
+                int height = heights[stack.pop()];
+                int width = stack.isEmpty() ? i : i - stack.peek() - 1;
+                maxArea = Math.max(maxArea, height * width);
+            }
+
+            stack.push(i);
+        }
+
+        return maxArea;
+    }
+
+
+
+
     public static void main(String[] args) {
         int[] heights = {2, 1, 5, 6, 2, 3};
-        int maxArea = largestRectangleArea(heights);
+        int maxArea = largestRectangleArea2(heights);
         System.out.println("Largest rectangle area: " + maxArea);
     }
 
