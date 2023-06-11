@@ -64,6 +64,36 @@ public class MergeSortedArray {
         }
     }
 
+
+
+    public void merge4(int[] nums1, int m, int[] nums2, int n) {
+        int p1 = m - 1; // Pointer for nums1 array
+        int p2 = n - 1; // Pointer for nums2 array
+        int p = m + n - 1; // Pointer for merged array
+
+        while (p1 >= 0 && p2 >= 0) {
+            // Compare the elements from the end of both arrays
+            // and place the larger element at the end of nums1
+            if (nums1[p1] > nums2[p2]) {
+                nums1[p] = nums1[p1];
+                p1--;
+            } else {
+                nums1[p] = nums2[p2];
+                p2--;
+            }
+            p--;
+        }
+
+        // If there are any remaining elements in nums2,
+        // copy them to the beginning of nums1
+        while (p2 >= 0) {
+            nums1[p] = nums2[p2];
+            p2--;
+            p--;
+        }
+    }
+
+
     public static void main(String[] args) {
         int[] m = {1, 2, 3, 0, 0, 0};
         int[] n = {2, 5, 6};
