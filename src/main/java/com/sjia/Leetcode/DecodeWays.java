@@ -28,7 +28,34 @@ public class DecodeWays {
     public static int numDecodings(String s) {
         int n = s.length();
 
-        return n;
+        // Edge case: if the string is empty or starts with '0', return 0
+        if (n == 0 || s.charAt(0) == '0') {
+            return 0;
+        }
+
+        // dp[i] represents the number of ways to decode the substring s[0...i-1]
+        int[] dp = new int[n + 1];
+
+        // Base case: there is only one way to decode an empty string
+        dp[0] = 1;
+
+        // Initialize the dp array for the first character
+        dp[1] = 1;
+
+        for (int i = 2; i <= n; i++) {
+            // Check if we can decode the current character alone
+            if (s.charAt(i - 1) != '0') {
+                dp[i] = dp[i - 1];
+            }
+
+            // Check if we can decode the current and previous character together
+            int twoDigits = Integer.parseInt(s.substring(i - 2, i));
+            if (twoDigits >= 10 && twoDigits <= 26) {
+                dp[i] += dp[i - 2];
+            }
+        }
+
+        return dp[n];
     }
 
     public static void main(String[] args) {
@@ -38,7 +65,7 @@ public class DecodeWays {
 
         String s2 = "06";
         int res = numDecodings(s2);
-        System.out.println("Number of Decodings: " + res); // output 0
+        System.out.println("Number of Decodings: " + res);
     }
 
 }
