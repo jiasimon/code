@@ -13,9 +13,9 @@ public class ReverseLinkedList2 {
     1 <= left <= right <= n
      */
 
-    
-    public ListNode reverseBetween(ListNode head, int m, int n) {
-        if (head == null || head.next == null || m == n) {
+
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if (head == null || head.next == null || left == right) {
             return head;
         }
 
@@ -24,15 +24,15 @@ public class ReverseLinkedList2 {
         ListNode prev = dummy;
 
         // Move prev to the node before the starting point of the sublist
-        for (int i = 1; i < m; i++) {
+        for (int i = 1; i < left; i++) {
             prev = prev.next;
         }
 
         ListNode curr = prev.next;
         ListNode next = curr.next;
 
-        // Reverse the sublist from m to n
-        for (int i = 0; i < n - m; i++) {
+        // Reverse the sublist from left to right
+        for (int i = 0; i < right - left; i++) {
             curr.next = next.next;
             next.next = prev.next;
             prev.next = next;
