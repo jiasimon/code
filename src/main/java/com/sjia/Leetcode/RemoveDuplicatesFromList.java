@@ -26,6 +26,18 @@ public class RemoveDuplicatesFromList {
         return head;
     }
 
+    public ListNode deleteDuplicatesNode(ListNode head) {
+        ListNode tmp = head;
+        while (tmp != null && tmp.next != null) {
+            if (tmp.val == tmp.next.val) {
+                tmp.next = tmp.next.next;
+            } else {
+                tmp = tmp.next;
+            }
+        }
+        return head;
+    }
+
     public static void main(String[] args) {
         // Create a sorted list: 1 -> 1 -> 2 -> 3 -> 3
         ListNode head = new ListNode(1);
