@@ -58,7 +58,7 @@ public class RestoreIPAddresses {
     }
 
 
-    // Iterative  
+    // Iterative
     private boolean isValid(String s, int start, int length) {
         return length == 1 ||
                 (s.charAt(start) != '0' &&
