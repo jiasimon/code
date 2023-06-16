@@ -68,13 +68,26 @@ public class UniqueBinarySearchTrees {
     }
 
 
+
+
+
+    // math
+    public static int numTreesMath(int n) {
+        long res = 1;
+        for (int i =0; i <n; i++) {
+            res *= (4*i+2) / (i+2.0); // need use 2.0 instead of 2
+        }
+        return (int) res;
+    }
+
+
     public static void main(String[] args) {
         UniqueBinarySearchTrees solution = new UniqueBinarySearchTrees();
         int n = 3;
-        int numUniqueTrees = solution.numTreesCatalan(n);
+        int numUniqueTrees = solution.numTreesMath(n);
         System.out.println("Number of unique binary search trees for n = " + n + ": " + numUniqueTrees);
         int n2 = 5;
-        int numUniqueTrees2 = solution.numTreesCatalan(n2);
+        int numUniqueTrees2 = solution.numTreesMath(n2);
         System.out.println("Number of unique binary search trees for n2 = " + n2 + ": " + numUniqueTrees2);
     }
 
