@@ -29,6 +29,16 @@ public class UniqueBinarySearchTrees {
 
 
 
+    // recursive
+    public int numTreesRecursive(int n) {
+        if (n <= 1) return 1;
+        int res = 0;
+        for (int i =1; i <= n; i++ ) {
+            res += numTreesRecursive(i-1) * numTreesRecursive(n-i);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         UniqueBinarySearchTrees solution = new UniqueBinarySearchTrees();
         int n = 3;
