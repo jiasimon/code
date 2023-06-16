@@ -39,6 +39,21 @@ public class UniqueBinarySearchTrees {
         return res;
     }
 
+
+    // Memoization
+    int[] memo = new int[20]; // 1 <= n <= 19  n+1 = 20
+    public int numTreesMemo(int n) {
+        if (n <= 1) return 1;
+        if (memo[n] != 0) {
+            return memo[n];
+        }
+        for (int i =1; i <= n; i++ ) {
+            memo[n] += numTreesMemo(i-1) * numTreesMemo(n-i);
+        }
+        return memo[n];
+    }
+
+
     public static void main(String[] args) {
         UniqueBinarySearchTrees solution = new UniqueBinarySearchTrees();
         int n = 3;
