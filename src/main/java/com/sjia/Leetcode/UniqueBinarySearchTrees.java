@@ -54,13 +54,27 @@ public class UniqueBinarySearchTrees {
     }
 
 
+    //  Catalan Numbers , need change type for big number: n
+    public static int numTreesCatalan(int n) {
+        return calculateFact(2*n) / (calculateFact(n) * calculateFact(n+1));
+    }
+
+    private static int  calculateFact(int num) {
+        int res = 1;
+        for (int i = 1; i <= num; i++) {
+            res *= i;
+        }
+        return res;
+    }
+
+
     public static void main(String[] args) {
         UniqueBinarySearchTrees solution = new UniqueBinarySearchTrees();
         int n = 3;
-        int numUniqueTrees = solution.numTrees(n);
+        int numUniqueTrees = solution.numTreesCatalan(n);
         System.out.println("Number of unique binary search trees for n = " + n + ": " + numUniqueTrees);
         int n2 = 5;
-        int numUniqueTrees2 = solution.numTrees(n2);
+        int numUniqueTrees2 = solution.numTreesCatalan(n2);
         System.out.println("Number of unique binary search trees for n2 = " + n2 + ": " + numUniqueTrees2);
     }
 
