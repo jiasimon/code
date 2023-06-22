@@ -19,6 +19,15 @@ public class SameTree {
 
     }
 
+    public boolean isSameTree2(TreeNode p, TreeNode q) {
+        if (p == null || q == null)
+            return p == q;
+        return p.val == q.val &&
+                isSameTree2(p.left, q.left) &&
+                isSameTree2(p.right, q.right);
+
+    }
+
 
     public static void main(String[] args) {
         SameTree solution = new SameTree();
@@ -32,7 +41,7 @@ public class SameTree {
         q.left = new TreeNode(2);
         q.right = new TreeNode(3);
 
-        boolean isSame = solution.isSameTree(p, q);
+        boolean isSame = solution.isSameTree2(p, q);
         System.out.println("Are the given trees the same? " + isSame);
     }
 
