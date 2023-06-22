@@ -32,6 +32,21 @@ public class ValidateBinarySearchTree {
         return isValidBST(node.left, min, node.val) && isValidBST(node.right, node.val, max);
     }
 
+
+
+    // use long
+    public boolean isValidBST2(TreeNode root) {
+        return isValidBST2(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    public boolean isValidBST2(TreeNode root, long minVal, long maxVal) {
+        if (root == null) return true;
+        if (root.val >= maxVal || root.val <= minVal) return false;
+        return isValidBST2(root.left, minVal, root.val) && isValidBST2(root.right, root.val, maxVal);
+    }
+
+
+
     public static void main(String[] args) {
         ValidateBinarySearchTree solution = new ValidateBinarySearchTree();
 
@@ -40,7 +55,7 @@ public class ValidateBinarySearchTree {
         root.left = new TreeNode(1);
         root.right = new TreeNode(3);
 
-        boolean isValid = solution.isValidBST(root);
+        boolean isValid = solution.isValidBST2(root);
         System.out.println("Is the given tree a valid binary search tree? " + isValid);
     }
 
