@@ -26,7 +26,7 @@ public class SymmetricTree {
     The number of nodes in the tree is in the range [1, 1000].
     -100 <= Node.val <= 100
      */
-    
+
 
     // Runtime: 1 ms, faster than 39.46% of Java online submissions for Symmetric Tree.
     //Memory Usage: 40.3 MB, less than 5.05% of Java online submissions for Symmetric Tree.
@@ -46,6 +46,13 @@ public class SymmetricTree {
         else return (left.val == right.val) && checkSymmetric(left.left, right.right)
                     && checkSymmetric(left.right, right.left);
     }
+
+    public boolean checkMirror(TreeNode left, TreeNode right) {
+        if (left == null || right == null) return left == right;
+        else return (left.val == right.val) && checkMirror(left.left, right.right) && checkMirror(left.right, right.left);
+    }
+
+
 
     public static void main(String[] args) {
         SymmetricTree solution = new SymmetricTree();
