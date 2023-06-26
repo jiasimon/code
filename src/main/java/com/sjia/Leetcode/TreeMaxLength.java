@@ -3,7 +3,7 @@ package com.sjia.Leetcode;
 public class TreeMaxLength {
 
     // #104. Maximum Depth of Binary Tree https://leetcode.com/problems/maximum-depth-of-binary-tree/
-    public class TreeNode {
+/*    public class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -20,7 +20,7 @@ public class TreeMaxLength {
             this.left = left;
             this.right = right;
         }
-    }
+    }*/
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Maximum Depth of Binary Tree.
     //Memory Usage: 39.3 MB, less than 71.77% of Java online submissions for Maximum Depth of Binary Tree.
@@ -29,6 +29,17 @@ public class TreeMaxLength {
     public int maxDepth(TreeNode root) {
         if (root== null) return  0;
         else return (1 + Math.max(maxDepth(root.left), maxDepth(root.right)) );
+
+    }
+
+    public int maxDepthTree(TreeNode root) {
+        if (root== null) {
+            return  0;
+        }
+        int leftDepth = maxDepthTree(root.left);
+        int rightDepth = maxDepthTree(root.right);
+        return Math.max(leftDepth, rightDepth) + 1;
+
 
     }
 
