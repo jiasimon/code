@@ -50,4 +50,22 @@ public class BinaryTreeLevelOrderTraversal2 {
 
 
 
+
+
+
+    public static void main(String[] args) {
+        BinaryTreeLevelOrderTraversal2 solution = new BinaryTreeLevelOrderTraversal2();
+
+        // Example tree: [3,9,20,null,null,15,7]
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
+
+        List<List<Integer>> levelOrderTraversal = solution.levelOrderBottom(root);
+        System.out.println("Level order traversal: " + levelOrderTraversal);
+    }
+
+
 }
