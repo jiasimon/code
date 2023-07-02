@@ -50,6 +50,23 @@ public class BinaryTreeLevelOrderTraversal2 {
 
 
 
+    // recursive
+    public List<List<Integer>> levelOrderBottom2(TreeNode root) {
+        List<List<Integer>> resultList = new LinkedList<List<Integer>>();
+
+        levelTraversal(resultList, root, 0);
+        return resultList;
+    }
+
+    private void levelTraversal(List<List<Integer>> resultList, TreeNode root, int level) {
+        if (root == null) return ;
+        if ( level >= resultList.size() ) {
+            resultList.add(0, new LinkedList<Integer>());
+        }
+        levelTraversal(resultList,root.left, level+1);
+        levelTraversal(resultList,root.right, level+1);
+        resultList.get(resultList.size()-level-1).add(root.val);
+    }
 
 
 
@@ -63,7 +80,7 @@ public class BinaryTreeLevelOrderTraversal2 {
         root.right.left = new TreeNode(15);
         root.right.right = new TreeNode(7);
 
-        List<List<Integer>> levelOrderTraversal = solution.levelOrderBottom(root);
+        List<List<Integer>> levelOrderTraversal = solution.levelOrderBottom2(root);
         System.out.println("Level order traversal: " + levelOrderTraversal);
     }
 
