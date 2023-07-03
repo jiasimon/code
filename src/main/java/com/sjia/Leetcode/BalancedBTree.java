@@ -2,7 +2,7 @@ package com.sjia.Leetcode;
 
 public class BalancedBTree {
 
-    // #110. https://leetcode.com/problems/balanced-binary-tree/
+    // #110. Balanced Binary Tree  https://leetcode.com/problems/balanced-binary-tree/
 
     // top down
     // Runtime: 1 ms, faster than 68.36% of Java online submissions for Balanced Binary Tree.
@@ -39,6 +39,36 @@ public class BalancedBTree {
         int r = helper(root.right);
         if(l==-1 || r==-1 || Math.abs(l-r)>1) return -1;
         return Math.max(l,r) +1;
+    }
+
+
+
+    
+    public boolean isBalancedBTree(TreeNode root) {
+        return checkHeight(root) != -1;
+    }
+
+    // If the subtree is balanced, it returns the height of the subtree. If the subtree is unbalanced, it returns -1.
+    private int checkHeight(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int leftHeight = checkHeight(node.left);
+        if (leftHeight == -1) {
+            return -1;
+        }
+
+        int rightHeight = checkHeight(node.right);
+        if (rightHeight == -1) {
+            return -1;
+        }
+
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        }
+
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 
 
