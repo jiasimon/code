@@ -95,4 +95,24 @@ public class SortedListBST {
     }
 
 
+
+
+    // pre pointer, init same for slow and fast pointer
+    public TreeNode sortedListToBST3(ListNode head) {
+        if (head == null) return null;
+        if (head.next == null) return new TreeNode(head.val);
+        ListNode pre = null, slow = head,  fast = head;
+        while (fast != null && fast.next != null) {
+            pre = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        pre.next = null; //cut left sub list here
+        TreeNode res = new TreeNode(slow.val);
+        res.left = sortedListToBST3(head);
+        res.right = sortedListToBST3(slow.next);
+        return res;
+    }
+
+
 }
