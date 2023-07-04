@@ -41,6 +41,12 @@ public class BTreeMinDepth {
     }
 
 
+    // 10ms, 61.8 MB
+    public int minDepth2(TreeNode root) {
+        if (root == null) return 0;
+        int L = minDepth2(root.left), R = minDepth2(root.right), m = Math.min(L, R);
+        return 1 + (m > 0 ? m : Math.max(L, R));
+    }
 
 
 }
