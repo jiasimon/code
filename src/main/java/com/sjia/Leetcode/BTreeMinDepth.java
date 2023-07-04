@@ -2,7 +2,7 @@ package com.sjia.Leetcode;
 
 public class BTreeMinDepth {
 
-    // #111 https://leetcode.com/problems/minimum-depth-of-binary-tree/
+    // #111. Minimum Depth of Binary Tree https://leetcode.com/problems/minimum-depth-of-binary-tree/
 
     // [3,9,20,null,null,15,7], [-9,-3,2,null,4,4,0,-6,null,-5]
 
@@ -21,6 +21,23 @@ public class BTreeMinDepth {
 
         return Math.min(m1,m2) + 1;
 
+    }
+
+    // 12 ms , 62.2 MB
+    public int minDepthDfs(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        // If only one of child is non-null, then go into that recursion.
+        if (root.left == null) {
+            return 1 + minDepthDfs(root.right);
+        } else if (root.right == null) {
+            return 1 + minDepthDfs(root.left);
+        }
+
+        // Both children are non-null, hence call for both childs.
+        return 1 + Math.min(minDepthDfs(root.left), minDepthDfs(root.right));
     }
 
 
