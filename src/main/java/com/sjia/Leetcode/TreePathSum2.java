@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TreePathSum2 {
-    // #113 https://leetcode.com/problems/path-sum-ii/
+    // #113. Path Sum II  https://leetcode.com/problems/path-sum-ii/
     // Given a binary tree and a sum, find all root-to-leaf paths
     // where each path's sum equals the given sum.
 
@@ -30,8 +30,8 @@ public class TreePathSum2 {
 
         if (root.left==null & root.right==null && sum == root.val ) {
             result.add(new ArrayList<Integer> (path));
-            path.remove(path.size()-1);
-            return;
+//            path.remove(path.size()-1);
+//            return;
         } else {
             treePathSum(root.left, sum - root.val, result, path);
             treePathSum(root.right, sum - root.val, result, path);
