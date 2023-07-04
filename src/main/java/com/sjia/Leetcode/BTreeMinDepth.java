@@ -1,5 +1,8 @@
 package com.sjia.Leetcode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BTreeMinDepth {
 
     // #111. Minimum Depth of Binary Tree https://leetcode.com/problems/minimum-depth-of-binary-tree/
@@ -47,6 +50,37 @@ public class BTreeMinDepth {
         int L = minDepth2(root.left), R = minDepth2(root.right), m = Math.min(L, R);
         return 1 + (m > 0 ? m : Math.max(L, R));
     }
+
+
+
+
+    //  BFS, 1ms, 99.31% ; 61.4MB, 87.10%
+    public int minDepthBFS(TreeNode root) {
+        if(root == null) return 0;
+        int depth = 1;
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            int size = q.size();
+            // for each level
+            for(int i=0;i<size;i++){
+                TreeNode node = q.poll();
+                if(node.left == null && node.right == null){
+                    return depth;
+                }
+                if(node.left != null){
+                    q.offer(node.left);
+                }
+                if(node.right != null){
+                    q.offer(node.right);
+                }
+            }
+            depth++;
+        }
+        return depth;
+    }
+
+
 
 
 }
