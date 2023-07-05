@@ -39,4 +39,36 @@ public class TreePathSum2 {
         path.remove(path.size()-1);
     }
 
+
+
+    //  add test cases
+    public static void main(String[] args) {
+        TreePathSum2 solution = new TreePathSum2();
+
+        // [5,4,8,11,null,13,4,7,2,null,null,5,1]
+        TreeNode root = new TreeNode(5);
+        root.left = new TreeNode(4);
+        root.right = new TreeNode(8);
+
+        root.left.left = new TreeNode(11);
+
+        root.right.left = new TreeNode(13);
+        root.right.right = new TreeNode(4);
+
+        root.left.left.left = new TreeNode(7);
+        root.left.left.right = new TreeNode(2);
+
+        root.right.right.left = new TreeNode(5);
+        root.right.right.right = new TreeNode(1);
+
+
+        // root = [5,4,8,11,null,13,4,7,2,null,null,5,1]  targetSum = 22
+        // Output: [[5,4,11,2],[5,8,4,5]]
+        System.out.print("pathSum tree: " + solution.pathSum(root,22));
+
+
+    }
+
+
+
 }
