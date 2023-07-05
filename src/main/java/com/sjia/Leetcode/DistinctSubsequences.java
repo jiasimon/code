@@ -48,6 +48,23 @@ public class DistinctSubsequences {
     }
 
 
+    public static void main(String[] args) {
+        DistinctSubsequences solution = new DistinctSubsequences();
+
+        // Test Case 1
+        String s1 = "rabbbit";
+        String t1 = "rabbit";
+        int result1 = solution.numDistinct(s1, t1);
+        System.out.println("Distinct Subsequences: " + result1);  // Output: 3
+
+        // Test Case 2
+        String s2 = "babgbag";
+        String t2 = "bag";
+        int result2 = solution.numDistinct(s2, t2);
+        System.out.println("Distinct Subsequences: " + result2);  // Output: 5
+    }
+
+
 
 
 }
