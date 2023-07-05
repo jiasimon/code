@@ -48,19 +48,50 @@ public class DistinctSubsequences {
     }
 
 
+    // recursive
+    public int numDistinctRecursive(String s, String t) {
+        return countDistinctSubsequences(s, t, 0, 0);
+    }
+
+    private int countDistinctSubsequences(String s, String t, int sIndex, int tIndex) {
+        // Base cases
+        if (tIndex == t.length()) {
+            return 1; // Found a valid subsequence
+        }
+        if (sIndex == s.length()) {
+            return 0; // Reached the end of s but still have unmatched characters in t
+        }
+
+        int count = 0;
+
+        if (s.charAt(sIndex) == t.charAt(tIndex)) {
+            // If the characters match, we have two choices:
+            // 1. Include the current character in both s and t
+            // 2. Exclude the current character from s but keep it in t
+            count += countDistinctSubsequences(s, t, sIndex + 1, tIndex + 1);
+            count += countDistinctSubsequences(s, t, sIndex + 1, tIndex);
+        } else {
+            // If the characters don't match, we can only exclude the current character from s
+            count += countDistinctSubsequences(s, t, sIndex + 1, tIndex);
+        }
+
+        return count;
+    }
+
+
     public static void main(String[] args) {
         DistinctSubsequences solution = new DistinctSubsequences();
 
         // Test Case 1
         String s1 = "rabbbit";
         String t1 = "rabbit";
-        int result1 = solution.numDistinct(s1, t1);
+        int result1 = solution.numDistinctRecursive(s1, t1);
         System.out.println("Distinct Subsequences: " + result1);  // Output: 3
 
         // Test Case 2
         String s2 = "babgbag";
         String t2 = "bag";
-        int result2 = solution.numDistinct(s2, t2);
+        int result2 = solution.numDistinctRecursive(s2, t2);
         System.out.println("Distinct Subsequences: " + result2);  // Output: 5
     }
 
