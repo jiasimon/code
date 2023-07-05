@@ -13,7 +13,7 @@ public class FlattenBinaryTree {
      */
 
 
-    //  
+    //
     public void flatten(TreeNode root) {
         if (root == null) {
             return;
@@ -34,6 +34,45 @@ public class FlattenBinaryTree {
         }
 
         current.right = right;
+    }
+
+
+    private void printTree(TreeNode node) {
+        if (node == null) {
+//            System.out.print("null ");
+            return;
+        }
+
+        System.out.print(node.val + " ");
+        printTree(node.left);
+
+        printTree(node.right);
+    }
+
+    public static void main(String[] args) {
+        FlattenBinaryTree solution = new FlattenBinaryTree();
+
+        // Example tree: [1,2,5,3,4,null,6]
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(5);
+
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(4);
+
+//        root.right.left = null;
+        root.right.right = new TreeNode(6);
+
+
+        System.out.print("Original tree: ");
+        solution.printTree(root);
+
+        solution.flatten(root);
+
+        System.out.print("flattened tree: ");
+        solution.printTree(root);
+
+
     }
 
 
