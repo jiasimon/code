@@ -16,7 +16,7 @@ public class PopulatingNextRightPointers {
      */
 
 // Definition for a Node.
-class Node {
+static class Node {
     public int val;
     public Node left;
     public Node right;
@@ -48,7 +48,46 @@ class Node {
         return root;
     }
 
-    
+
+
+    public static void main(String[] args) {
+        PopulatingNextRightPointers solution = new PopulatingNextRightPointers();
+
+        // Create the tree
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
+
+        // Connect the nodes
+        Node result = solution.connect(root);
+
+        // Validate the next pointers
+        validateNextPointers(result);
+    }
+
+    private static void validateNextPointers(Node root) {
+        Node levelStart = root;
+
+        while (levelStart != null) {
+            Node currentNode = levelStart;
+
+            while (currentNode != null) {
+                if (currentNode.next != null) {
+                    System.out.println("Node " + currentNode.val + " -> Next: " + currentNode.next.val);
+                } else {
+                    System.out.println("Node " + currentNode.val + " -> Next: null");
+                }
+
+                currentNode = currentNode.next;
+            }
+
+            levelStart = levelStart.left;
+        }
+    }
 
 
 }
