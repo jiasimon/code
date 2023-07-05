@@ -9,9 +9,10 @@ public class BTreeMinDepth {
 
     // [3,9,20,null,null,15,7], [-9,-3,2,null,4,4,0,-6,null,-5]
 
-    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Minimum Depth of Binary Tree.
+    // submission 2020-7-23 Runtime: 0 ms, faster than 100.00% of Java online submissions for Minimum Depth of Binary Tree.
     //Memory Usage: 39.7 MB, less than 18.39% of Java online submissions for Minimum Depth of Binary Tree.
 
+    // 16ms, 62.3MB submission 2023-7-5
     public int minDepth(TreeNode root) {
         if(root == null) return 0;
 
@@ -81,6 +82,47 @@ public class BTreeMinDepth {
     }
 
 
+
+    //  add test cases
+    public static void main(String[] args) {
+        BTreeMinDepth solution = new BTreeMinDepth();
+
+        // Input: rt = [3,9,20,null,null,15,7]
+        TreeNode rt = new TreeNode(3);
+        rt.left = new TreeNode(9);
+        rt.right = new TreeNode(20);
+
+        rt.right.left = new TreeNode(15);
+        rt.right.right = new TreeNode(7);
+
+        int res1 = solution.minDepthBFS(rt);
+        System.out.println("pathSum tree: " + res1);
+
+
+        // [5,4,8,11,null,13,4,7,2,null,null,5,1]
+        TreeNode root = new TreeNode(5);
+        root.left = new TreeNode(4);
+        root.right = new TreeNode(8);
+
+        root.left.left = new TreeNode(11);
+
+        root.right.left = new TreeNode(13);
+        root.right.right = new TreeNode(4);
+
+        root.left.left.left = new TreeNode(7);
+        root.left.left.right = new TreeNode(2);
+
+        root.right.right.left = new TreeNode(5);
+        root.right.right.right = new TreeNode(1);
+
+
+        // root = [5,4,8,11,null,13,4,7,2,null,null,5,1]  targetSum = 22
+        // Output: [[5,4,11,2],[5,8,4,5]]
+        int res2 = solution.minDepthBFS(root);
+        System.out.println("pathSum tree: " + res2);
+
+
+    }
 
 
 }
