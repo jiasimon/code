@@ -79,6 +79,28 @@ public class DistinctSubsequences {
     }
 
 
+
+    // recursive, match from end to start
+    public int numDistinct2(String s, String t)
+    {
+        return findSubS(s.length()-1, t.length()-1, s, t);
+    }
+    public int findSubS(int i, int j, String s, String t)
+    {
+        // base-case
+        if(j<0) return 1;
+        if(i<0) return 0;
+        // match
+        if(s.charAt(i)==t.charAt(j))
+        {
+            // take + notTake
+            return findSubS(i-1, j-1, s, t) + findSubS(i-1, j, s, t);
+        }
+        // not-match
+        return findSubS(i-1, j, s, t);
+    }
+
+
     public static void main(String[] args) {
         DistinctSubsequences solution = new DistinctSubsequences();
 
