@@ -1,5 +1,8 @@
 package com.sjia.Leetcode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class PopulatingNextRightPointers {
     // #116. Populating Next Right Pointers in Each Node  https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
     /*
@@ -49,6 +52,32 @@ static class Node {
     }
 
 
+    // BFS, right to left
+    public Node connectBFS(Node root) {
+        if(root == null) return null;
+        Queue<Node> q = new LinkedList<>();
+        q.offer(root);
+        while(!q.isEmpty()) {
+            Node rightNode = null;
+            int levelSize = q.size();
+            for(int i = 0; i < levelSize; i++) {
+//            for(int i = q.size(); i > 0; i--) {
+                Node cur = q.poll();
+                cur.next = rightNode;
+                rightNode = cur;
+                if(cur.right != null) {
+                    q.offer(cur.right);
+//                    q.offer(cur.left);
+                }
+                if(cur.left != null) {
+                    q.offer(cur.left);
+                }
+            }
+        }
+        return root;
+    }
+
+
 
     public static void main(String[] args) {
         PopulatingNextRightPointers solution = new PopulatingNextRightPointers();
@@ -63,7 +92,7 @@ static class Node {
         root.right.right = new Node(7);
 
         // Connect the nodes
-        Node result = solution.connect(root);
+        Node result = solution.connectBFS(root);
 
         // Validate the next pointers
         validateNextPointers(result);
