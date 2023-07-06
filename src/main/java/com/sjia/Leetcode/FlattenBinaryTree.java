@@ -13,7 +13,7 @@ public class FlattenBinaryTree {
      */
 
 
-    //
+    // recursive
     public void flatten(TreeNode root) {
         if (root == null) {
             return;
@@ -37,15 +37,34 @@ public class FlattenBinaryTree {
     }
 
 
+    // Morris Traversal
+    public void flattenMorris(TreeNode root) {
+        TreeNode cur = root;
+        while (cur != null) {
+            if (cur.left != null) {
+                TreeNode last = cur.left;
+                while (last.right != null) last = last.right;
+                last.right = cur.right;
+                cur.right = cur.left;
+                cur.left = null;
+            }
+            cur = cur.right;
+        }
+    }
+
+
+
+
+
     private void printTree(TreeNode node) {
         if (node == null) {
 //            System.out.print("null ");
             return;
         }
 
-        System.out.print(node.val + " ");
-        printTree(node.left);
 
+        printTree(node.left);
+        System.out.print(node.val + " ");
         printTree(node.right);
     }
 
@@ -64,10 +83,11 @@ public class FlattenBinaryTree {
         root.right.right = new TreeNode(6);
 
 
+        // Original tree: 3 2 4 1 5 6 flattened tree: 1 2 3 4 5 6
         System.out.print("Original tree: ");
         solution.printTree(root);
 
-        solution.flatten(root);
+        solution.flattenMorris(root);
 
         System.out.print("flattened tree: ");
         solution.printTree(root);
