@@ -5,13 +5,38 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PascalTriangle2 {
-    // #119 https://leetcode.com/problems/pascals-triangle-ii/
+    // #119. Pascal's Triangle II  https://leetcode.com/problems/pascals-triangle-ii/
 
+    /*
+    Given an integer rowIndex, return the rowIndexth (0-indexed) row of the Pascal's triangle.
+
+    In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+     */
+
+
+    public List<Integer> getRowPascalTriangle(int rowIndex) {
+        return generate(rowIndex+1).get(rowIndex);
+    }
+
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        for ( int i =0; i<numRows; i++ ) {
+            List <Integer> tmp = new ArrayList<Integer>();
+            for (int j=0; j<=i; j++) {
+                if ( ( j==0) || ( j==i) ) tmp.add(1);
+                else {
+                    tmp.add(result.get(i-1).get(j-1) +  result.get(i-1).get(j));
+                }
+
+            }
+            result.add(tmp);
+        }
+        return  result;
+    }
 
     // Runtime: 1 ms, faster than 84.24% of Java online submissions for Pascal's Triangle II.
     //Memory Usage: 37 MB, less than 53.89% of Java online submissions for Pascal's Triangle II.
-/*
-    public List<Integer> getRow(int rowIndex) {
+/*    public List<Integer> getPascalRow(int rowIndex) {
         if (rowIndex==0) return Arrays.asList(1);
         int pre = 1;
         List<Integer> result = new ArrayList<>();
@@ -47,10 +72,11 @@ public class PascalTriangle2 {
 
     public static void main(String[] args) {
 
+        // [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]
         // int testData  = 4; //{1, 4, 6, 4, 1}
         int testData  = 4;
         PascalTriangle2 solution = new PascalTriangle2();
-        List<Integer> result = solution.getRow(testData);
+        List<Integer> result = solution.getRowPascalTriangle(testData);
 
         System.out.printf(" testData %s Subsets result is %s \n", testData, result);
     }
