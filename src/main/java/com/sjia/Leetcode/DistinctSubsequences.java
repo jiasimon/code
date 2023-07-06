@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class DistinctSubsequences {
     // #115. Distinct Subsequences  https://leetcode.com/problems/distinct-subsequences/
     /*
@@ -98,6 +100,33 @@ public class DistinctSubsequences {
         }
         // not-match
         return findSubS(i-1, j, s, t);
+    }
+
+
+
+
+    // DP memoization
+    // 20 ms, 79.14% ; 47.3 MB, 39.4%
+    public int numDistinctMemo(String s, String t)
+    {
+        int [][]dp = new int[s.length()][t.length()];
+        for(int []row: dp) Arrays.fill(row, -1);
+        return findSubS(s.length()-1, t.length()-1, s, t, dp);
+    }
+    public int findSubS(int i, int j, String s, String t, int [][]dp)
+    {
+        // base-case
+        if(j<0) return 1;
+        if(i<0) return 0;
+        if(dp[i][j]!=-1) return dp[i][j];
+        // match
+        if(s.charAt(i)==t.charAt(j))
+        {
+            // take + notTake
+            return dp[i][j]= findSubS(i-1, j-1, s, t, dp) + findSubS(i-1, j, s, t, dp);
+        }
+        // not-match
+        return dp[i][j]= findSubS(i-1, j, s, t, dp);
     }
 
 
