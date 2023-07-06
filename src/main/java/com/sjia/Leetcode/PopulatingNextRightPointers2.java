@@ -60,6 +60,43 @@ public class PopulatingNextRightPointers2 {
     }
 
 
+
+    // BFS, normal left to right
+    public Node connectBFS2(Node root) {
+        if (root == null) {
+            return null;
+        }
+
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+
+            Node prev = null;
+            for(int i = 0; i < levelSize; i++) {
+                Node cur = queue.poll();
+                if (prev != null) {
+                    prev.next = cur;
+                }
+                prev = cur;
+
+                if (cur.left != null) {
+                    queue.add(cur.left);
+                }
+                if (cur.right != null) {
+                    queue.add(cur.right);
+                }
+
+            }
+
+        }
+        return root;
+    }
+
+
+
     public static void main(String[] args) {
         PopulatingNextRightPointers2 solution = new PopulatingNextRightPointers2();
 
@@ -73,7 +110,7 @@ public class PopulatingNextRightPointers2 {
         root.right.right = new Node(7);
 
         // Connect the nodes
-        Node result = solution.connectBFS(root);
+        Node result = solution.connectBFS2(root);
 
         // Validate the next pointers
         validateNextPointers(result);
