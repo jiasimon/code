@@ -75,7 +75,8 @@ public class TriangleMinimumTotal {
     //Top down, 1 ms, 99.95%, Memory 44.3 MB 27.49%
     public int minimumTotalTopDown(List<List<Integer>> triangle) {
         if (triangle == null || triangle.size() == 0) return 0;
-        Integer[][] cache = new Integer[triangle.size()][triangle.size()];  // use Integer instead of int, so default to null
+        // use Integer instead of int, so default to null
+        Integer[][] cache = new Integer[triangle.size()][triangle.size()];
         return dfs(0, 0,triangle, cache);
     }
 
