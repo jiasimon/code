@@ -36,9 +36,8 @@ public class PascalTriangle2 {
 
     // Runtime: 1 ms, faster than 84.24% of Java online submissions for Pascal's Triangle II.
     //Memory Usage: 37 MB, less than 53.89% of Java online submissions for Pascal's Triangle II.
-/*    public List<Integer> getPascalRow(int rowIndex) {
+    public List<Integer> getPascalRow(int rowIndex) {
         if (rowIndex==0) return Arrays.asList(1);
-        int pre = 1;
         List<Integer> result = new ArrayList<>();
         result.add(1);
         for (int i = 1; i <= rowIndex; i++) {
@@ -49,7 +48,7 @@ public class PascalTriangle2 {
         }
         return result;
 
-    }*/
+    }
 
 
     // pre * (N - k + 1) / k
