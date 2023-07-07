@@ -4,7 +4,14 @@ import java.util.Arrays;
 
 public class BuySellStock2 {
 
-    // #122 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+    // #122. Best Time to Buy and Sell Stock II https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+    /*
+    On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can buy it then immediately sell it on the same day.
+
+    Find and return the maximum profit you can achieve.
+    1 <= prices.length <= 3 * 104
+    0 <= prices[i] <= 104
+     */
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Best Time to Buy and Sell Stock II.
     //Memory Usage: 39.1 MB, less than 87.27% of Java online submissions for Best Time to Buy and Sell Stock II.
