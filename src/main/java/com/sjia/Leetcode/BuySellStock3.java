@@ -4,7 +4,13 @@ import java.util.Arrays;
 
 public class BuySellStock3 {
 
-    // #123 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
+    // #123. Best Time to Buy and Sell Stock III https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
+
+    /*
+    Find the maximum profit you can achieve. You may complete at most two transactions.
+    Input: prices = [3,3,5,0,0,3,1,4]   Output: 6
+    Input: prices = [1,2,3,4,5] Output: 4
+     */
 
     // Runtime: 2 ms, faster than 92.43% of Java online submissions for Best Time to Buy and Sell Stock III.
     //Memory Usage: 39.8 MB, less than 12.50% of Java online submissions for Best Time to Buy and Sell Stock III.
@@ -21,6 +27,25 @@ public class BuySellStock3 {
 
         return dp_i20;
     }
+
+
+    // buy1,buy2,sell1,sell2
+    public int maxProfit(int[] prices) {
+        int buy1 = Integer.MIN_VALUE;
+        int buy2 = Integer.MIN_VALUE;
+        int sell1 = 0;
+        int sell2 = 0;
+
+        for (int price : prices) {
+            buy1 = Math.max(buy1, -price);
+            sell1 = Math.max(sell1, buy1 + price);
+            buy2 = Math.max(buy2, sell1 - price);
+            sell2 = Math.max(sell2, buy2 + price);
+        }
+
+        return sell2;
+    }
+
 
     public static void main(String[] args) {
 
