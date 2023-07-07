@@ -29,6 +29,20 @@ public class BuySellStock {
     }
 
 
+
+    // use Leetcode#123 method
+    public int maxProfitBuySell(int[] prices) {
+        int buy1 = Integer.MIN_VALUE;
+        int sell1 = 0;
+
+        for (int i=0; i < prices.length; i++) {
+            buy1 = Math.max(buy1, -prices[i]);
+            sell1 = Math.max(sell1, buy1 + prices[i]) ;
+        }
+        return sell1;
+    }
+
+
     // Time Limit Exceeded, 202 / 211 testcases passed
     public int maxProfitTwoLoops(int[] prices) {
         if (prices.length <2) return 0;
@@ -58,7 +72,7 @@ public class BuySellStock {
         int[] testData  = {7,1,5,3,6,4};
 //        int[] testData  = {7,6,4,3,1};
         BuySellStock solution = new BuySellStock();
-        int result = solution.maxProfitKadane(testData);
+        int result = solution.maxProfitBuySell(testData);
 
         System.out.printf("BuySellStock testData %s the max profit is %s \n", Arrays.toString(testData),result);
     }
