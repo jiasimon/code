@@ -51,6 +51,21 @@ public class TriangleMinimumTotal {
     }
 
 
+    // recursive TLE
+    public int minimumTotalRecursive(List<List<Integer>> triangle) {
+        if ( triangle == null || triangle.size() == 0) return 0;
+        return dfs(triangle, 0,0);
+    }
+
+    int dfs(List<List<Integer>> triangle, int row, int pos) {
+        if (row >= triangle.size() -1) {
+            return triangle.get(row).get(pos);
+        }
+        return  triangle.get(row).get(pos) + Math.min (dfs(triangle,row+1, pos), dfs(triangle, row+1, pos+1));
+    }
+
+
+
     public static void main(String[] args) {
         TriangleMinimumTotal solution = new TriangleMinimumTotal();
 
@@ -58,11 +73,11 @@ public class TriangleMinimumTotal {
         List<List<Integer>> triangle = new ArrayList<>();
         triangle.add(Arrays.asList(2));
         triangle.add(Arrays.asList(3, 4));
-        triangle.add(Arrays.asList(6, 5, 7));
-        triangle.add(Arrays.asList(4, 1, 8, 3));
+//        triangle.add(Arrays.asList(6, 5, 7));
+//        triangle.add(Arrays.asList(4, 1, 8, 3));
 
         // Calculate the minimum path sum
-        int result = solution.minimumTotal(triangle);
+        int result = solution.minimumTotalRecursive(triangle);
 
         // Print the result
         System.out.println("Minimum Path Sum: " + result);  // Output: 11
