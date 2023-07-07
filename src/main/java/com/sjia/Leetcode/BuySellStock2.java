@@ -27,12 +27,28 @@ public class BuySellStock2 {
     }
 
 
+
+    // WithBuySell Day Info
+    public int maxProfitWithBuyDay(int[] prices) {
+        int i = 0, buy, sell, profit = 0, N = prices.length - 1;
+        while (i < N) {
+            while (i < N && prices[i + 1] <= prices[i]) i++;
+            buy = prices[i];
+
+            while (i < N && prices[i + 1] > prices[i]) i++;
+            sell = prices[i];
+
+            profit += sell - buy;
+        }
+        return profit;
+    }
+
     public static void main(String[] args) {
 
         int[] testData  = {7,1,5,3,6,4};
         //int[] testData  = {7,6,4,3,1};
         BuySellStock2 solution = new BuySellStock2();
-        int result = solution.maxProfit(testData);
+        int result = solution.maxProfitWithBuyDay(testData);
 
         System.out.printf("BuySellStock multi time, testData %s the max profit is %s \n", Arrays.toString(testData),result);
     }
