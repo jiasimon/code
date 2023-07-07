@@ -79,6 +79,19 @@ static class Node {
 
 
 
+    // BFS without queue, Space-Optimized
+    public Node connect2(Node root) {
+        Node head = root;
+        for(; root != null; root = root.left)
+            for(Node cur = root; cur != null; cur = cur.next)
+                if(cur.left != null) {
+                    cur.left.next = cur.right;
+                    if(cur.next != null) cur.right.next = cur.next.left;
+                } else break;
+
+        return head;
+    }
+
     public static void main(String[] args) {
         PopulatingNextRightPointers solution = new PopulatingNextRightPointers();
 
@@ -92,7 +105,7 @@ static class Node {
         root.right.right = new Node(7);
 
         // Connect the nodes
-        Node result = solution.connectBFS(root);
+        Node result = solution.connect2(root);
 
         // Validate the next pointers
         validateNextPointers(result);
