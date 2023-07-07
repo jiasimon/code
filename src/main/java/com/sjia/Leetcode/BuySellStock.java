@@ -42,12 +42,23 @@ public class BuySellStock {
     }
 
 
+    // Kadane Algorithm
+    public int maxProfitKadane(int[] prices) {
+        int maxCur = 0, maxSoFar = 0;
+        for(int i = 1; i < prices.length; i++) {
+            maxCur = Math.max(0, maxCur += prices[i] - prices[i-1]);
+            maxSoFar = Math.max(maxCur, maxSoFar);
+        }
+        return maxSoFar;
+    }
+
+
     public static void main(String[] args) {
 
-        //int[] testData  = {7,1,5,3,6,4};
-        int[] testData  = {7,6,4,3,1};
+        int[] testData  = {7,1,5,3,6,4};
+//        int[] testData  = {7,6,4,3,1};
         BuySellStock solution = new BuySellStock();
-        int result = solution.maxProfit(testData);
+        int result = solution.maxProfitKadane(testData);
 
         System.out.printf("BuySellStock testData %s the max profit is %s \n", Arrays.toString(testData),result);
     }
