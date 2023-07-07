@@ -97,6 +97,33 @@ public class PopulatingNextRightPointers2 {
 
 
 
+
+    // without Queue, two loop
+    public Node connect2(Node root) {
+        Node result = root;
+        while(root!=null) {
+            Node head=new Node(0), end=head;
+            while(root!=null) {
+                if(root.left!=null) {
+                    end.next=root.left;
+                    end=root.left;
+                }
+                if(root.right!=null) {
+                    end.next=root.right;
+                    end=root.right;
+                }
+                root=root.next;
+            }
+            root=head.next;
+        }
+        return result;
+    }
+
+
+
+
+
+
     public static void main(String[] args) {
         PopulatingNextRightPointers2 solution = new PopulatingNextRightPointers2();
 
@@ -110,7 +137,7 @@ public class PopulatingNextRightPointers2 {
         root.right.right = new Node(7);
 
         // Connect the nodes
-        Node result = solution.connectBFS2(root);
+        Node result = solution.connect2(root);
 
         // Validate the next pointers
         validateNextPointers(result);
