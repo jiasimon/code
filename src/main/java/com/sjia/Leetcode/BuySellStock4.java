@@ -19,6 +19,23 @@ public class BuySellStock4 {
 
     // based on #123, sell[0] for edge case
     public int maxProfit(int k, int[] prices) {
+
+        int n = prices.length;
+
+        // If k is large enough, we can perform as many transactions as we want to reach maxProfit
+        if (k >= n / 2) {
+            int maxProfit = 0;
+
+            for (int i = 1; i < n; i++) {
+                if (prices[i] > prices[i - 1]) {
+                    maxProfit += prices[i] - prices[i - 1];
+                }
+            }
+
+            return maxProfit;
+        }
+
+
         int[] buy = new int[k + 1], sell = new int[k + 1];
         Arrays.fill(buy, Integer.MIN_VALUE);
         for (int price : prices) {
