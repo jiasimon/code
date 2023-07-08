@@ -2,7 +2,8 @@ package com.sjia.Leetcode;
 
 public class PalindromeValidIgnore {
 
-    // #125 https://leetcode.com/problems/valid-palindrome/ #fb
+    // #125. Valid Palindrome https://leetcode.com/problems/valid-palindrome/ #fb
+    // ValidPalindrome
 
     // considering only alphanumeric characters and ignoring cases.
     // Here we define empty string as valid palindrome
@@ -25,6 +26,35 @@ public class PalindromeValidIgnore {
             i++;
             j--;
         }
+        return true;
+    }
+
+
+
+    public boolean isPalindrome4(String s) {
+        if (s == null || s.isEmpty()) {
+            return true;
+        }
+
+        int left = 0;
+        int right = s.length() - 1;
+
+        while (left < right) {
+            char leftChar = Character.toLowerCase(s.charAt(left));
+            char rightChar = Character.toLowerCase(s.charAt(right));
+
+            if (!Character.isLetterOrDigit(leftChar)) {
+                left++;
+            } else if (!Character.isLetterOrDigit(rightChar)) {
+                right--;
+            } else if (leftChar != rightChar) {
+                return false;
+            } else {
+                left++;
+                right--;
+            }
+        }
+
         return true;
     }
 
@@ -66,13 +96,18 @@ public class PalindromeValidIgnore {
 
         //String testData  = " a  ";
         //String testData  = "This is ht";
-        //String testData  = "race a car";
-        String testData  = "A man, a plan, a canal: Panama";
+        String testData  = "race a car";
+//        String testData  = "A man, a plan, a canal: Panama";
         PalindromeValidIgnore solution = new PalindromeValidIgnore();
 
         boolean result = solution.isPalindrome(testData);
 
         System.out.printf(" input %s isPalindrome: %b ", testData, result);
+
+        String s1 = "A man, a plan, a canal: Panama";
+        boolean result1 = solution.isPalindrome(s1);
+        System.out.printf(" input %s isPalindrome: %b ", s1, result1);
+
     }
 
 }
