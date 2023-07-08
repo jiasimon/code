@@ -1,13 +1,21 @@
 package com.sjia.Leetcode;
 
 public class BinaryTreeMaximumPathSum {
-    // #124 https://leetcode.com/problems/binary-tree-maximum-path-sum/ #fb
-    // Given a non-empty binary tree, find the maximum path sum.
-    //
-    // For this problem, a path is defined as any node sequence from some starting node to any node in the tree along the parent-child connections.
-    // The path must contain at least one node and does not need to go through the root.
-    // The number of nodes in the tree is in the range [0, 3 * 104].
-    // -1000 <= Node.val <= 1000
+    // #124. Binary Tree Maximum Path Sum https://leetcode.com/problems/binary-tree-maximum-path-sum/ #fb
+
+
+    /*
+    A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.
+
+    The path sum of a path is the sum of the node's values in the path.
+
+    Given the root of a binary tree, return the maximum path sum of any non-empty path.
+
+    Input: root = [-10,9,20,null,null,15,7] Output: 42
+
+    The number of nodes in the tree is in the range [0, 3 * 10^4].
+    -1000 <= Node.val <= 1000
+     */
 
 
     //
@@ -45,5 +53,34 @@ public class BinaryTreeMaximumPathSum {
         return Math.max(left, right) + node.val;
     }
     */
+
+    public static void main(String[] args) {
+        BinaryTreeMaximumPathSum solution = new BinaryTreeMaximumPathSum();
+
+        // Create the binary tree, refer to #113 https://leetcode.com/problems/path-sum-ii/
+        // [5,4,8,11,null,13,4,7,2,null,null,5,1]
+        TreeNode root = new TreeNode(5);
+        root.left = new TreeNode(4);
+        root.right = new TreeNode(8);
+
+        root.left.left = new TreeNode(11);
+
+        root.right.left = new TreeNode(13);
+        root.right.right = new TreeNode(4);
+
+        root.left.left.left = new TreeNode(7);
+        root.left.left.right = new TreeNode(2);
+
+        root.right.right.left = new TreeNode(5);
+        root.right.right.right = new TreeNode(1);
+
+        // Add more nodes to the tree if needed
+
+        // Calculate the maximum path sum
+        int result = solution.maxPathSum(root);
+
+        // Print the result: 48
+        System.out.println("Maximum Path Sum: " + result);
+    }
 
 }
