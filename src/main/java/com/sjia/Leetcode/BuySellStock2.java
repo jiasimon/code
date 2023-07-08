@@ -43,12 +43,29 @@ public class BuySellStock2 {
         return profit;
     }
 
+
+    // use Leetcode#714 state change
+    public int maxProfitStateDP(int[] prices) {
+        int n = prices.length;
+        int[] free = new int[n];  // free : no stock
+        int[] hold = new int[n];  // hold : have stock
+
+        hold[0] = -prices[0];
+
+        for (int i=1; i < prices.length; i++) {
+            hold[i] = Math.max(hold[i - 1], free[i - 1] - prices[i]);
+            free[i] = Math.max(free[i - 1], hold[i - 1] + prices[i] );
+        }
+        return free[n-1];
+    }
+
+
     public static void main(String[] args) {
 
         int[] testData  = {7,1,5,3,6,4};
-        //int[] testData  = {7,6,4,3,1};
+//        int[] testData  = {7,6,4,3,1};
         BuySellStock2 solution = new BuySellStock2();
-        int result = solution.maxProfitWithBuyDay(testData);
+        int result = solution.maxProfitStateDP(testData);
 
         System.out.printf("BuySellStock multi time, testData %s the max profit is %s \n", Arrays.toString(testData),result);
     }
