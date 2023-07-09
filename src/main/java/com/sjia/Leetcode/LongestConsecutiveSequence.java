@@ -1,6 +1,8 @@
 package com.sjia.Leetcode;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LongestConsecutiveSequence {
     // #128. Longest Consecutive Sequence  https://leetcode.com/problems/longest-consecutive-sequence/
@@ -42,22 +44,52 @@ public class LongestConsecutiveSequence {
     }
 
 
+    // HashSet, contains(num - 1)
+    // 464 ms, 15.31% ; 62.8 MB, 7.4%
+    public int longestConsecutiveHashSet(int[] nums) {
+        Set<Integer> numSet = new HashSet<>();
+        for (int num : nums) {
+            numSet.add(num);
+        }
+
+        int res = 0;
+
+        for (int num : nums) {
+            if (!numSet.contains(num - 1)) {
+                int currentNum = num;
+                int currentStreak = 1;
+
+                while (numSet.contains(currentNum + 1)) {
+                    currentNum++;
+                    currentStreak++;
+                }
+                res = Math.max(res, currentStreak);
+            }
+        }
+        return res;
+    }
+
+
     public static void main(String[] args) {
         LongestConsecutiveSequence solution = new LongestConsecutiveSequence();
 
         // Test case
-//        int[] nums = {100, 4, 200, 1,1, 3,3, 2};
-//        int result = solution.longestConsecutive(nums);
-//        System.out.println("Longest Consecutive Sequence: " + result);  // Output: 4
+        int[] nums = {100, 4, 200, 1,1, 3,3, 2};
+        int result = solution.longestConsecutive(nums);
+        System.out.println("Longest Consecutive Sequence: " + result);  // Output: 4
 
         int[] nums2 = {0,3,7,2,5,8,4,6,0,1};
-        int result2 = solution.longestConsecutive(nums2);
+        int result2 = solution.longestConsecutiveHashSet(nums2);
         System.out.println("Longest Consecutive Sequence: " + result2);  // Output: 9
 
 
         int[] nums3 = {0,3,7,2,5,8,4,6,0,10};
         int result3 = solution.longestConsecutive(nums3);
         System.out.println("Longest Consecutive Sequence: " + result3);  // Output: 7
+
+        int[] nums4 = {2,1};
+        int result4 = solution.longestConsecutiveHashSet(nums4);
+        System.out.println("Longest Consecutive Sequence: " + result4);  // Output: 7
 
     }
 
