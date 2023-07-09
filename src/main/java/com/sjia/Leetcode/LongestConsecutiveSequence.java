@@ -54,7 +54,7 @@ public class LongestConsecutiveSequence {
 
         int res = 0;
 
-        for (int num : nums) {
+        for (int num : nums) {  // this caused slow running
             if (!numSet.contains(num - 1)) {
                 int currentNum = num;
                 int currentStreak = 1;
@@ -69,6 +69,27 @@ public class LongestConsecutiveSequence {
         return res;
     }
 
+
+    // better hashset solution
+    // 34 ms , 68.56% ; 56 MB, 90.5%
+    public int longestConsecutiveHashSet2(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for(int n : nums) {
+            set.add(n);
+        }
+        int best = 0;
+        for(int n : set) {  // remove duplicates , increase performance
+            if(!set.contains(n - 1)) {  // only check for one direction
+                int m = n + 1;
+                while(set.contains(m)) {
+                    m++;
+                }
+                best = Math.max(best, m - n);
+            }
+        }
+        return best;
+
+    }
 
     public static void main(String[] args) {
         LongestConsecutiveSequence solution = new LongestConsecutiveSequence();
