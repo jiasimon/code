@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PalindromePartitioning {
 
-    // #131 https://leetcode.com/problems/palindrome-partitioning/
+    // #131. Palindrome Partitioning https://leetcode.com/problems/palindrome-partitioning/
     // Given a string s, partition s such that every substring of the partition is a palindrome.
     //Return all possible palindrome partitioning of s.
 
@@ -31,19 +31,28 @@ public class PalindromePartitioning {
             }
         }
     }
-    public boolean isPalindrome(String s, int low, int high){
-        while(low < high)
-            if(s.charAt(low++) != s.charAt(high--)) return false;
+    public boolean isPalindrome(String s, int start, int end){
+//        while(low < high)
+//            if(s.charAt(low++) != s.charAt(high--)) return false;
+//        return true;
+        while (start < end) {
+            if (s.charAt(start) != s.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
         return true;
+
     }
 
 
 
     public static void main(String[] args) {
 
-        //String testData = "aBa";
+        String testData = "aab";
         //String testData  = " a  ";
-        String testData  = " a  ";
+//        String testData  = " a  ";
         PalindromePartitioning solution = new PalindromePartitioning();
         List<List<String>> result = solution.partition(testData);
 
