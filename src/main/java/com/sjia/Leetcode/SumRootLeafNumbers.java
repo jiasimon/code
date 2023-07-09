@@ -37,4 +37,22 @@ public class SumRootLeafNumbers {
     }
 
 
+
+    public static void main(String[] args) {
+        SumRootLeafNumbers solution = new SumRootLeafNumbers();
+
+        // Test case
+        TreeNode root = new TreeNode(4);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(0);
+
+        root.left.left = new TreeNode(5);
+        root.left.right = new TreeNode(1);
+        int result = solution.sumNumbers(root);
+
+        // Print the result
+        System.out.println("Sum of Root to Leaf Numbers: " + result);  // Output: 1026
+    }
+
+
 }
