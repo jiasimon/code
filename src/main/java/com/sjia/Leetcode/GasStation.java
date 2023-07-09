@@ -18,7 +18,7 @@ public class GasStation {
      */
 
 
-    // 2 pass , stream
+    // 2 pass , stream sum
     // 11 ms, 7.90%; 55.2 MB, 84.97%
     public int canCompleteCircuit(int[] gas, int[] cost) {
         if (Arrays.stream(gas).sum() - Arrays.stream(cost).sum() < 0) return -1;
@@ -34,6 +34,36 @@ public class GasStation {
         }
         return start;
     }
+
+
+    // 2 passes, for loop instead of stream sum
+    // 2 ms, 99.88%; 55.6 MB, 38.19%
+    public int canCompleteCircuit2(int[] gas, int[] cost) {
+        //determine if we have a solution
+        int total = 0;
+        for (int i = 0; i < gas.length; i++) {
+            total += gas[i] - cost[i];
+        }
+        if (total < 0) {
+            return -1;
+        }
+
+        // find out where to start
+        int tank = 0;
+        int start = 0;
+        for (int i = 0; i < gas.length;i++) {
+            tank += gas[i] - cost[i];
+            if (tank < 0) {
+                start = i + 1;
+                tank = 0;
+            }
+        }
+        return start;
+    }
+
+
+
+
 
 
     public static void main(String[] args) {
