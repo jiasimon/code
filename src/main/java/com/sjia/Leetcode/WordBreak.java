@@ -100,16 +100,53 @@ public class WordBreak {
 
 
 
+    // BFS , queue
+    // 10 ms, 28.19% ; 43.7 MB, 37.98%
+    public boolean wordBreakQueue(String s, List<String> wordDict) {
+        Set<String> words = new HashSet<>(wordDict);
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] seen = new boolean[s.length() + 1];
+        queue.add(0);
+
+
+        while (!queue.isEmpty()) {
+            int start = queue.poll();
+            if (start == s.length()) {
+                return true;
+            }
+
+            for (int end = start + 1; end <= s.length(); end++) {
+                if (seen[end]) {
+                    continue;
+                }
+
+                if (words.contains(s.substring(start, end))) {
+                    queue.add(end);
+                    seen[end] = true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
     public static void main(String[] args) {
         WordBreak solution = new WordBreak();
 
         // Test case
         String s = "leetcodeleet";
         List<String> wordDict = Arrays.asList("leet", "code");
-        boolean result = solution.wordBreak(s, wordDict);
+        boolean result = solution.wordBreakQueue(s, wordDict);
 
         // Print the result
-        System.out.println("Can Break Word: " + result);  // Output: true
+        System.out.println("Can Break Word: " + s + " , result: "  + result);  // Output: true
+
+//        String s2 = "catsandog";
+//        List<String> wordDict2 = Arrays.asList("cats", "dog", "sand", "and", "cat");
+//        boolean result2 = solution.wordBreakQueue(s2, wordDict2);
+//        System.out.println("Can Break Word: " + s2 + " , result: " + result2);  // Output: false
+
     }
 
 
