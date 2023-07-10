@@ -149,6 +149,33 @@ public class WordBreak {
         return false;
     }
 
+    // DP top-down memo
+    // 7 ms, 64.13%; 43.8 MB, 29.56%
+    public boolean wordBreakMemo(String s, List<String> wordDict) {
+        Set<String> set = new HashSet<>(wordDict);
+        Boolean[] memo = new Boolean[s.length()];
+        return wordBreakHelper(s, set, memo, 0);
+    }
+    private boolean wordBreakHelper(String s, Set<String> set, Boolean[] memo, int start) {
+        if (start == s.length()) {
+            return true;
+        }
+
+        if (memo[start] != null) {
+            return memo[start];
+        }
+
+        for (int end = start + 1; end <= s.length(); end++) {
+            if (set.contains(s.substring(start, end)) && wordBreakHelper(s, set, memo, end)) {
+                memo[start] = true;
+                return true;
+            }
+        }
+
+        memo[start] = false;
+        return false;
+    }
+
 
     public static void main(String[] args) {
         WordBreak solution = new WordBreak();
@@ -156,14 +183,14 @@ public class WordBreak {
         // Test case
         String s = "leetcodeleet";
         List<String> wordDict = Arrays.asList("leet", "code");
-        boolean result = solution.wordBreakRecursive(s, wordDict);
+        boolean result = solution.wordBreakMemo(s, wordDict);
 
         // Print the result
         System.out.println("Can Break Word: " + s + " , result: "  + result);  // Output: true
 
         String s2 = "catsandog";
         List<String> wordDict2 = Arrays.asList("cats", "dog", "sand", "and", "cat");
-        boolean result2 = solution.wordBreakRecursive(s2, wordDict2);
+        boolean result2 = solution.wordBreakMemo(s2, wordDict2);
         System.out.println("Can Break Word: " + s2 + " , result: " + result2);  // Output: false
 
     }
