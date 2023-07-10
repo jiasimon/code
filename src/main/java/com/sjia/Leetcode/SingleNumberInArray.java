@@ -1,8 +1,6 @@
 package com.sjia.Leetcode;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class SingleNumberInArray {
 
@@ -52,15 +50,36 @@ public class SingleNumberInArray {
     }
 
 
+    // HashMap
+    // 12 ms, 27.77%; 44.1 MB, 74.24%
+    public int singleNumberHashMap(int[] nums) {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        for (int num : nums) {
+            if(hashMap.containsKey(num)) {
+                hashMap.put(num,2);
+            } else {
+                hashMap.put(num,1);
+            }
+        }
+
+        for(Map.Entry<Integer, Integer> set : hashMap.entrySet()) {
+            if (set.getValue() == 1) {
+                return set.getKey();
+            }
+        }
+        return -1;
+    }
+
+
     public static void main(String[] args) {
 
         int[] testData  = {7,1,7,1,6};
         //int[] testData  = {7,6,4,3,1};
         SingleNumberInArray solution = new SingleNumberInArray();
 
-        int result = solution.singleNumber(testData);
+        int result = solution.singleNumberHashMap(testData);
 
-        System.out.printf("BuySellStock multi time, testData %s the max profit is %s \n", Arrays.toString(testData),result);
+        System.out.printf(" array testData %s the singleNumberis %s \n", Arrays.toString(testData),result);
     }
 
 }
