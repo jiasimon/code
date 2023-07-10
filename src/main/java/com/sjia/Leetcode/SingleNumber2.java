@@ -1,6 +1,8 @@
 package com.sjia.Leetcode;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SingleNumber2 {
     // #137. Single Number II   https://leetcode.com/problems/single-number-ii/description/
@@ -24,6 +26,29 @@ public class SingleNumber2 {
             }
         }
         return nums[nums.length-1];
+    }
+
+
+    // HashMap
+    //
+    public int singleNumberHashMap(int[] nums) {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        for (int num : nums) {
+            hashMap.put(num,hashMap.getOrDefault(num,0) +1);
+
+//            if(hashMap.containsKey(num)) {
+//                hashMap.put(num,hashMap.get(num)+1);
+//            } else {
+//                hashMap.put(num,1);
+//            }
+        }
+
+        for(Map.Entry<Integer, Integer> set : hashMap.entrySet()) {
+            if (set.getValue() == 1) {
+                return set.getKey();
+            }
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
