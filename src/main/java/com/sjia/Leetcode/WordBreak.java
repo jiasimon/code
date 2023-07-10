@@ -131,21 +131,40 @@ public class WordBreak {
     }
 
 
+    // recursive, TLE
+    public boolean wordBreakRecursive(String s, List<String> wordDict) {
+        Set<String> set = new HashSet<>(wordDict);
+        return wb(s, set);
+    }
+    private boolean wb(String s, Set<String> set) {
+        int len = s.length();
+        if (len == 0) {
+            return true;
+        }
+        for (int i = 1; i <= len; ++i) {
+            if (set.contains(s.substring(0, i)) && wb(s.substring(i), set)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public static void main(String[] args) {
         WordBreak solution = new WordBreak();
 
         // Test case
         String s = "leetcodeleet";
         List<String> wordDict = Arrays.asList("leet", "code");
-        boolean result = solution.wordBreakQueue(s, wordDict);
+        boolean result = solution.wordBreakRecursive(s, wordDict);
 
         // Print the result
         System.out.println("Can Break Word: " + s + " , result: "  + result);  // Output: true
 
-//        String s2 = "catsandog";
-//        List<String> wordDict2 = Arrays.asList("cats", "dog", "sand", "and", "cat");
-//        boolean result2 = solution.wordBreakQueue(s2, wordDict2);
-//        System.out.println("Can Break Word: " + s2 + " , result: " + result2);  // Output: false
+        String s2 = "catsandog";
+        List<String> wordDict2 = Arrays.asList("cats", "dog", "sand", "and", "cat");
+        boolean result2 = solution.wordBreakRecursive(s2, wordDict2);
+        System.out.println("Can Break Word: " + s2 + " , result: " + result2);  // Output: false
 
     }
 
