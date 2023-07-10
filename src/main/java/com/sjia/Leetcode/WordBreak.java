@@ -3,12 +3,24 @@ package com.sjia.Leetcode;
 import java.util.*;
 
 public class WordBreak {
-    // #139 https://leetcode.com/problems/word-break/   #fb #dp
+    // #139. Word Break  https://leetcode.com/problems/word-break/   #fb #dp
 
     // dp[i] 表示字符串 s 前 i 个字符组成的字符串 s[0..i−1]是否能被空格拆分成若干个字典中出现的单词
 
-    // Input: s = "applepenapple", wordDict = ["apple", "pen"]
-    // Output: true     Note that you are allowed to reuse a dictionary word
+    /*
+    Input: s = "applepenapple", wordDict = ["apple", "pen"]
+    Output: true     Note that you are allowed to reuse a dictionary word
+
+    Input: s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]
+    Output: false
+
+    1 <= s.length <= 300
+    1 <= wordDict.length <= 1000
+    1 <= wordDict[i].length <= 20
+    s and wordDict[i] consist of only lowercase English letters.
+     */
+
+
 
 
     // list to Hashset, dynamic Programming
@@ -87,6 +99,18 @@ public class WordBreak {
     }*/
 
 
+
+    public static void main(String[] args) {
+        WordBreak solution = new WordBreak();
+
+        // Test case
+        String s = "leetcodeleet";
+        List<String> wordDict = Arrays.asList("leet", "code");
+        boolean result = solution.wordBreak(s, wordDict);
+
+        // Print the result
+        System.out.println("Can Break Word: " + result);  // Output: true
+    }
 
 
 
