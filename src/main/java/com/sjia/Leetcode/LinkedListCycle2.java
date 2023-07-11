@@ -19,7 +19,7 @@ public class LinkedListCycle2 {
 
     // HashSet
     // 3 ms, 16.80%; 43.2 MB, 88.86%
-    public ListNode detectCycle(ListNode head) {
+    public ListNode detectCycleHashSet(ListNode head) {
         HashSet<ListNode> visitedNodes = new HashSet<>();
 
         ListNode cur = head;
@@ -36,5 +36,39 @@ public class LinkedListCycle2 {
     }
 
 
+    // fast slow pointer
+    public ListNode detectCycle(ListNode head) {
+        // Initialize slow and fast pointers
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // Move tortoise one step and fast two steps
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            // Check if the fast meets the tortoise
+            if (slow == fast) {
+                break;
+            }
+        }
+
+        // Check if there is no cycle
+        if (fast == null || fast.next == null) {
+            return null;
+        }
+
+        // Reset either tortoise or fast pointer to the head
+        fast = head;
+
+        // Move both pointers one step until they meet again
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // Return the node where the cycle begins
+        return slow;
+    }
 
 }
