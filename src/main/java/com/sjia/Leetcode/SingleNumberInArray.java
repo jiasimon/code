@@ -71,6 +71,24 @@ public class SingleNumberInArray {
     }
 
 
+    // sumSet * 2 - sumArray
+    // 9 ms, 29.46% ; 44.1 MB, 78.50%
+    public int singleNumberHashSet(int[] nums) {
+        HashSet<Integer> hashset = new HashSet<>();
+        // int sum1 = Arrays.stream(nums).sum();
+        int sum = 0;
+        for (int n : nums) {
+            sum += n;
+            hashset.add(n);
+        }
+        int sumSet = 0;
+        for (int n : hashset) {
+            sumSet += n;
+        }
+        return sumSet * 2 - sum;
+    }
+
+
     public static void main(String[] args) {
 
         int[] testData  = {7,1,7,1,6};
