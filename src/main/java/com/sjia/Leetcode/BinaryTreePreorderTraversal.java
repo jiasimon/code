@@ -2,6 +2,7 @@ package com.sjia.Leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class BinaryTreePreorderTraversal {
     // #144. Binary Tree Preorder Traversal https://leetcode.com/problems/binary-tree-preorder-traversal/
@@ -28,6 +29,27 @@ public class BinaryTreePreorderTraversal {
 
 
 
+
+
+    // Stack
+    // 1ms, 5.78% ; 41 MB, 28.42%
+    public List<Integer> preorderTraversalStack(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) return res;
+
+        Stack<TreeNode> stack = new Stack<>();
+//        stack.add(root);
+        stack.push(root);
+
+        while(!stack.isEmpty()) {
+            TreeNode currNode = stack.pop();
+            res.add(currNode.val);
+            if(currNode.right != null) stack.push(currNode.right);  // The node we add last is visited first. we need add the right child before the left child.
+            if(currNode.left != null) stack.push(currNode.left);
+//            if(currNode.right != null) stack.push(currNode.right);
+        }
+        return res;
+    }
 
 
 
