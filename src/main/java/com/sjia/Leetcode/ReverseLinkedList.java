@@ -28,7 +28,7 @@ public class ReverseLinkedList {
     //Memory Usage: 40.7 MB, less than 5.01% of Java online submissions for Reverse Linked List.
     public ListNode reverseListRecursive(ListNode head) {
         if (head == null || head.next == null) return head;
-        ListNode tmp = reverseList(head.next);
+        ListNode tmp = reverseListRecursive(head.next);
         head.next.next = head;
         head.next = null;
         return tmp;
@@ -63,7 +63,7 @@ public class ReverseLinkedList {
         node3.next = node4;
         node4.next = node5;
 
-        ListNode reversedHead = solution.reverseList(head);
+        ListNode reversedHead = solution.reverseListRecursive(head);
 
         // Print the reversed linked list
         printList(reversedHead);
