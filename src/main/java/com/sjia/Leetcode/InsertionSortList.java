@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class InsertionSortList {
     // #147. Insertion Sort List    https://leetcode.com/problems/insertion-sort-list/
     /*
@@ -9,6 +11,9 @@ public class InsertionSortList {
     The number of nodes in the list is in the range [1, 5000].
      */
 
+
+    // dummy, prev, curr, two while
+    // 20 ms, 58.33%; 43.4 MB, 53.27%
     public ListNode insertionSortList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
@@ -36,6 +41,29 @@ public class InsertionSortList {
 
         return dummy.next;
     }
+
+
+    // convert to array
+    // 2 ms, 97.57%; 43.1 MB, 77.61%
+    public ListNode insertionSortListArray(ListNode head) {
+        int[] nums=new int[5000];
+        int idx=0;
+        ListNode temp=head;
+        while (head!=null){
+            nums[idx++]= head.val;
+            head=head.next;
+        }
+        Arrays.sort(nums,0,idx);
+        idx=0;
+        ListNode res=temp;
+        while(temp!=null){
+            temp.val=nums[idx++];
+            temp=temp.next;
+        }
+        return res;
+    }
+
+
 
     public static void main(String[] args) {
         InsertionSortList solution = new InsertionSortList();
