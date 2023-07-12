@@ -177,20 +177,54 @@ public class WordBreak {
     }
 
 
+
+
+    // faster DP, s.substring(i - word.length() + 1, i + 1)
+    public boolean wordBreakDP(String s, List<String> wordDict) {
+        int[] memo = new int[s.length()];
+        Arrays.fill(memo, -1);
+        return dp(s, wordDict, memo, s.length() - 1);
+    }
+
+    private boolean dp(String s,List<String> wordDict, int[] memo, int i) {
+        if (i < 0) return true;
+
+        if (memo[i] != -1) {
+            return memo[i] == 1;
+        }
+
+        for (String word: wordDict) {
+            // Handle out of bounds case
+            if (i - word.length() + 1 < 0) {
+                continue;
+            }
+
+            if (s.substring(i - word.length() + 1, i + 1).equals(word) && dp(s,wordDict, memo,i - word.length())) {
+                memo[i] = 1;
+                return true;
+            }
+        }
+
+        memo[i] = 0;
+        return false;
+    }
+
+
+
     public static void main(String[] args) {
         WordBreak solution = new WordBreak();
 
         // Test case
         String s = "leetcodeleet";
         List<String> wordDict = Arrays.asList("leet", "code");
-        boolean result = solution.wordBreakMemo(s, wordDict);
+        boolean result = solution.wordBreakDP(s, wordDict);
 
         // Print the result
         System.out.println("Can Break Word: " + s + " , result: "  + result);  // Output: true
 
         String s2 = "catsandog";
         List<String> wordDict2 = Arrays.asList("cats", "dog", "sand", "and", "cat");
-        boolean result2 = solution.wordBreakMemo(s2, wordDict2);
+        boolean result2 = solution.wordBreakDP(s2, wordDict2);
         System.out.println("Can Break Word: " + s2 + " , result: " + result2);  // Output: false
 
     }
