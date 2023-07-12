@@ -12,7 +12,7 @@ public class CopyListRandomPointer {
     0 <= n <= 1000, -10^4 <= Node.val <= 10^4
      */
 
-    class Node {
+    static class Node {
         int val;
         Node next;
         Node random;
@@ -63,6 +63,37 @@ public class CopyListRandomPointer {
         }
 
         return clonedHead;
+    }
+
+    public static void main(String[] args) {
+        CopyListRandomPointer solution = new CopyListRandomPointer();
+
+        // Test case
+        Node head = new Node(1);
+        Node node2 = new Node(2);
+        Node node3 = new Node(3);
+        head.next = node2;
+        head.random = node3;
+        node2.next = node3;
+        node2.random = head;
+        node3.random = node2;
+
+        Node clonedHead = solution.copyRandomList(head);
+
+        // Print the cloned list
+        printList(clonedHead);
+    }
+
+    private static void printList(Node head) {
+        Node current = head;
+        while (current != null) {
+            System.out.print("Node(" + current.val + ")");
+            if (current.random != null) {
+                System.out.print(" -> Random(" + current.random.val + ")");
+            }
+            System.out.println();
+            current = current.next;
+        }
     }
 
 
