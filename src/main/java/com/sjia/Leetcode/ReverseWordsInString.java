@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class ReverseWordsInString {
-    // #151 https://leetcode.com/problems/reverse-words-in-a-string/
+    // 151. Reverse Words in a String https://leetcode.com/problems/reverse-words-in-a-string/
 
     // Input: s = "  hello world  " Output: "world hello"
     // Input: s = "a good   example"    Output: "example good a"
@@ -16,8 +16,8 @@ public class ReverseWordsInString {
 
     // Runtime: 8 ms, faster than 45.07% of Java online submissions for Reverse Words in a String.
     // Memory Usage: 39.3 MB, less than 54.46% of Java online submissions for Reverse Words in a String.
-    public String reverseWords(String s) {
-        String[] tmp = s.trim().split("\\s+");
+    public String reverseWordsStringJoin(String s) {
+        String[] tmp = s.trim().split("\\s+"); // s.trim().split(" +");
         Collections.reverse(Arrays.asList(tmp));
         return String.join(" ", tmp);
 
