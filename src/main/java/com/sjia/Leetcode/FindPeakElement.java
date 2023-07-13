@@ -30,4 +30,26 @@ public class FindPeakElement {
 
 
 
+
+    // binary search
+    // 0 ms, 100% ; 41.5 MB, 41.58%,
+    public int findPeakElement(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            // If the middle element is greater than its right neighbor,
+            // there is a peak on the left side, so move right pointer to mid
+            if (nums[mid] > nums[mid + 1]) {
+                right = mid;
+            }
+            // Otherwise, there is a peak on the right side, so move left pointer to mid + 1
+            else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+
+
 }
