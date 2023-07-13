@@ -16,7 +16,7 @@ public class MinimumRotatedSortedArray2 {
     or example:  [1, 0, 1, 1, 1] and [1, 1, 1, 0, 1].
      */
 
-    // right--, return nums[left]
+    // right--, return nums[left], Binary
     // 0 ms, 100% ; 43.1 MB, 65.94%
     public int findMin(int[] nums) {
         int left = 0, right = nums.length-1;
