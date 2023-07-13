@@ -17,14 +17,55 @@ public class MinStack {
     You must implement a solution with O(1) time complexity for each function.
      */
 
+    private Node head;
+
+    public void push(int x) {
+        if (head == null)
+            head = new Node(x, x, null);
+        else
+            head = new Node(x, Math.min(x, head.min), head);
+    }
+
+    public void pop() {
+        head = head.next;
+    }
+
+    public int top() {
+        return head.val;
+    }
+
+    public int getMin() {
+        return head.min;
+    }
+
+    private class Node {
+        int val;
+        int min;
+        Node next;
+
+        private Node(int val, int min, Node next) {
+            this.val = val;
+            this.min = min;
+            this.next = next;
+        }
+    }
 
 
 
+
+
+}
+
+
+/*
+
+public class MinStack {
     //  double stack
     private Stack<Integer> stack;
     private Stack<Integer> minStack;
 
-    /** initialize your data structure here. */
+
+
     public MinStack() {
         stack = new Stack<>();
         minStack = new Stack<>();
@@ -51,5 +92,4 @@ public class MinStack {
     public int getMin() {
         return minStack.peek();
     }
-
-}
+}*/
