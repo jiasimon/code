@@ -157,5 +157,25 @@ public class IntersectionTwoLinkedLists {
     }
 
 
+    // reach End, switch to another HeadNode
+    public ListNode getIntersectionNodeWithoutLength(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+
+        ListNode a = headA;
+        ListNode b = headB;
+
+        // Traverse both lists until they meet or reach the end (null)
+        while (a != b) {
+            // Move pointers to the next node
+            a = a == null ? headB : a.next;
+            b = b == null ? headA : b.next;
+        }
+
+        return a; // Return the intersection node (or null if no intersection)
+    }
+
+
 
 }
