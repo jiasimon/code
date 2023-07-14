@@ -18,9 +18,9 @@ public class ExcelSheetColumn {
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Excel Sheet Column Title.
     //Memory Usage: 39.2 MB, less than 5.29% of Java online submissions for Excel Sheet Column Title.
 
-    // Runtime: 0 ms, faster than 100.00% of Java online submissions for Excel Sheet Column Title.
-    //Memory Usage: 36.6 MB, less than 51.92% of Java online submissions for Excel Sheet Column Title.
 
+    // StringBuilder
+    // 0 ms, 100% ; 39.4 MB, 97.56%
     public String convertToTitle(int n) {
         StringBuilder sb = new StringBuilder("");
         while (n > 0) {
@@ -31,6 +31,20 @@ public class ExcelSheetColumn {
         return sb.reverse().toString();
 
     }
+
+
+    // use String, instead StringBuilder
+    // 6 ms, 31.51%, 39.7 MB, 81.59%
+    public String convertToTitle2(int n) {
+        String res= "";
+        while ( n>0) {
+            n--;
+            res =  (char) ('A' + n %26)+ res ;
+            n = n/26;
+        }
+        return res;
+    }
+
 
     public static void main(String[] args) {
 
