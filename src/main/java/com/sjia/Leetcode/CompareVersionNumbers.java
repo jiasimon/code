@@ -42,4 +42,18 @@ public class CompareVersionNumbers {
 
 
 
+
+    public static void main(String[] args) {
+        CompareVersionNumbers solution = new CompareVersionNumbers();
+
+        // Test case 1
+        String version1 = "1.01";
+        String version2 = "1.001";
+        int result1 = solution.compareVersion(version1, version2);
+        System.out.println("Compare Version Numbers Test Case 1: " + result1);  // Expected output: 0
+
+
+    }
+
+
 }
