@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class MajorityElement {
 
-    // #169 https://leetcode.com/problems/majority-element/
+    // #169. Majority Element https://leetcode.com/problems/majority-element/
 
     // Runtime: 4 ms, faster than 54.89% of Java online submissions for Majority Element.
     //Memory Usage: 51.1 MB, less than 5.06% of Java online submissions for Majority Element.
@@ -37,17 +37,26 @@ public class MajorityElement {
 
 
 
-    // Runtime: 1 ms, faster than 99.89% of Java online submissions for Majority Element.
-    //Memory Usage: 42.9 MB, less than 57.33% of Java online submissions for Majority Element.
+    // Moore Voting Algorithm
     public int majorityElement(int[] nums) {
-        int count =0, tmp=0;
-        for (int num: nums) {
-            if (count ==0) tmp =num;
-            count += (num == tmp) ? 1:-1;
-        }
-        return tmp;
+        int count = 0;
+        int candidate = 0;
 
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+
+            if (num == candidate) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+
+        return candidate;
     }
+
 
 
 
