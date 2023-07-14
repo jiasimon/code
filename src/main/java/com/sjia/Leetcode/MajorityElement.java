@@ -27,17 +27,18 @@ public class MajorityElement {
     }*/
 
 
-    // Runtime: 3 ms, faster than 62.79% of Java online submissions for Majority Element.
-    //Memory Usage: 50.6 MB, less than 5.06% of Java online submissions for Majority Element.
-/*
-    public int majorityElement(int[] nums) {
+
+    // Arrays.sort
+    // 3 ms, 51.17%; 48.6 MB, 49.41%
+    public int majorityElement2(int[] nums) {
         Arrays.sort(nums);
         return nums[nums.length/2];
-    }*/
+    }
 
 
 
     // Moore Voting Algorithm
+    // 1 ms, 99.79% ; 48.8 MB, 32.62%
     public int majorityElement(int[] nums) {
         int count = 0;
         int candidate = 0;
