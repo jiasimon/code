@@ -22,6 +22,52 @@ public class MaximumGap {
      */
 
 
+    // bucket sort
+    public int maximumGap(int[] nums) {
+        if (nums == null || nums.length < 2) {
+            return 0;
+        }
+
+        // Find the maximum and minimum values in the array
+        int minVal = nums[0];
+        int maxVal = nums[0];
+        for (int num : nums) {
+            minVal = Math.min(minVal, num);
+            maxVal = Math.max(maxVal, num);
+        }
+
+        // Calculate the bucket size and number of buckets
+        int n = nums.length;
+        int bucketSize = Math.max(1, (maxVal - minVal) / (n - 1));
+        int bucketCount = (maxVal - minVal) / bucketSize + 1;
+
+        // Initialize the buckets
+        int[] minBucket = new int[bucketCount];
+        int[] maxBucket = new int[bucketCount];
+        Arrays.fill(minBucket, Integer.MAX_VALUE);
+        Arrays.fill(maxBucket, Integer.MIN_VALUE);
+
+        // Put the numbers into their respective buckets
+        for (int num : nums) {
+            int bucketIndex = (num - minVal) / bucketSize;
+            minBucket[bucketIndex] = Math.min(minBucket[bucketIndex], num);
+            maxBucket[bucketIndex] = Math.max(maxBucket[bucketIndex], num);
+        }
+
+        // Calculate the maximum gap by comparing adjacent buckets
+        int maxGap = 0;
+        int prevMax = minVal;
+        for (int i = 0; i < bucketCount; i++) {
+            if (minBucket[i] != Integer.MAX_VALUE) {
+                maxGap = Math.max(maxGap, minBucket[i] - prevMax);
+                prevMax = maxBucket[i];
+            }
+        }
+
+        return maxGap;
+    }
+
+
 
     public int maximumGapSort(int[] nums) {
         if (nums == null || nums.length < 2) {
