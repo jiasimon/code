@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class BinarySearchTreeIterator {
 
-    // #173 https://leetcode.com/problems/binary-search-tree-iterator/  #fb
+    // #173. Binary Search Tree Iterator https://leetcode.com/problems/binary-search-tree-iterator/  #fb
     // Implement an iterator over a binary search tree (BST).
     // Your iterator will be initialized with the root node of a BST
     // Calling next() will return the next smallest number in the BST
@@ -22,11 +22,13 @@ public class BinarySearchTreeIterator {
     private Stack<TreeNode> stack = new Stack<TreeNode>();
 
     public BinarySearchTreeIterator(TreeNode root) {
+
         pushAll(root);
     }
 
     /** @return whether we have a next smallest number */
     public boolean hasNext() {
+
         return !stack.isEmpty();
     }
 
@@ -38,7 +40,11 @@ public class BinarySearchTreeIterator {
     }
 
     private void pushAll(TreeNode node) {
-        for (; node != null; stack.push(node), node = node.left);
+
+        while (node != null) {
+            stack.push(node);
+            node = node.left;
+        }
     }
 
 
