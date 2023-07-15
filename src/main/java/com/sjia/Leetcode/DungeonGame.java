@@ -75,15 +75,13 @@ public class DungeonGame {
     public  int calculateMinimumHPRecursive(int[][] dungeon) {
         int m = dungeon.length;
         int n = dungeon[0].length;
-        int [][]dp = new int[m+1][n+1];
-        for (int [] d : dp) Arrays.fill(d,-1);
+
         return helperRecursive(dungeon,0,0,dungeon.length,dungeon[0].length);
 
     }
 
     // TLE 41 / 45 testcases passed
     public  int helperRecursive(int [][] dungeon, int i, int j , int m , int n){
-
 
         // base case 1
         if (i== m || j==n) return Integer.MAX_VALUE;
@@ -93,9 +91,6 @@ public class DungeonGame {
             else return 1;
         }
 
-
-
-
         int healthPointDown = helperRecursive(dungeon,i+1,j,m,n);
         int healthPointRight = helperRecursive(dungeon,i,j+1,m,n);
         int healthPoint = Math.min(healthPointRight,healthPointDown) - dungeon[i][j]; // this will give the minimum health point to survive in (i,j)
@@ -103,9 +98,37 @@ public class DungeonGame {
     }
 
 
+    // recursive with memo
+    public  int calculateMinimumHPMemo(int[][] dungeon) {
+        int m = dungeon.length;
+        int n = dungeon[0].length;
+        int [][]dp = new int[m+1][n+1];
+        for (int [] d : dp) Arrays.fill(d,-1);
+        return helperRecursiveMemo(dungeon,0,0,dungeon.length,dungeon[0].length, dp);
+    }
+
+    public  int helperRecursiveMemo(int [][] dungeon, int i, int j , int m , int n, int[][] dp){
+
+        // base case 1
+        if (i== m || j==n) return Integer.MAX_VALUE;
+
+        if(i == m-1 && j == n-1) {
+            if (dungeon[i][j] < 0) return -dungeon[i][j] + 1;
+            else return 1;
+        }
+        if (dp[i][j] != -1) return dp[i][j];
+
+        int healthPointDown = helperRecursiveMemo(dungeon,i+1,j,m,n, dp);
+        int healthPointRight = helperRecursiveMemo(dungeon,i,j+1,m,n, dp);
+        int healthPoint = Math.min(healthPointRight,healthPointDown) - dungeon[i][j]; // this will give the minimum health point to survive in (i,j)
+        dp[i][j] =healthPoint >0 ? healthPoint : 1; //if healthpoint is negative that means the cell(i,j) had positive HPs, so the minimum health needed to survive in cell(i,j) is 1
+        return dp[i][j];
+    }
+
+
+
     public static void main(String[] args) {
         DungeonGame solution = new DungeonGame();
-/*
 
         // Test case
         int[][] dungeon = {
@@ -115,13 +138,12 @@ public class DungeonGame {
         };
         int minHealth = solution.calculateMinimumHPRecursive(dungeon);
         System.out.println("Minimum Initial Health: " + minHealth);  // Expected output: 7
-*/
 
         int[][] dungeon2 = {
                 {0, 0}
         };
 
-        int minHealth2 = solution.calculateMinimumHPRecursive(dungeon2);
+        int minHealth2 = solution.calculateMinimumHPMemo(dungeon2);
         System.out.println("Minimum Initial Health: " + minHealth2);  // Expected output: 1
 
     }
