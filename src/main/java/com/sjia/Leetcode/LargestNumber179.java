@@ -4,7 +4,13 @@ import java.util.*;
 
 public class LargestNumber179 {
 
-    // #179 https://leetcode.com/problems/largest-number/
+    // #179. Largest Number https://leetcode.com/problems/largest-number/
+
+    /*
+    Given a list of non-negative integers nums, arrange them such that they form the largest number and return it.
+    Input: nums = [10,2]    Output: "210"
+    Input: nums = [3,30,34,5,9] Output: "9534330"
+     */
 
     // [0,0]. output "00", Expected "0"
 
@@ -46,6 +52,28 @@ public class LargestNumber179 {
         String result = solution.largestNumber(testData);
 
         System.out.printf(" testData %s LargestNumber179 is %s \n",Arrays.toString(testData), result);
+
+
+        // Test case 1
+        int[] nums1 = {10, 2};
+        String largestNumber1 = solution.largestNumber(nums1);
+        System.out.println("Largest Number Test Case 1: " + largestNumber1);  // Expected output: "210"
+
+        // Test case 2
+        int[] nums2 = {3, 30, 34, 5, 9};
+        String largestNumber2 = solution.largestNumber(nums2);
+        System.out.println("Largest Number Test Case 2: " + largestNumber2);  // Expected output: "9534330"
+
+        // Test case 3
+        int[] nums3 = {1};
+        String largestNumber3 = solution.largestNumber(nums3);
+        System.out.println("Largest Number Test Case 3: " + largestNumber3);  // Expected output: "1"
+
+        // Test case 4
+        int[] nums4 = {10};
+        String largestNumber4 = solution.largestNumber(nums4);
+        System.out.println("Largest Number Test Case 4: " + largestNumber4);  // Expected output: "10"
+
     }
 
 }
