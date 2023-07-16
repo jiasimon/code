@@ -39,6 +39,26 @@ public class HouseRobber {
     }
 
 
+
+
+    // DP, memo
+    // 0 ms, 100% ; 40 MB, 67.44%
+    public int robRecursiveMemo(int[] nums) {
+        int[] memo = new int[nums.length];
+        Arrays.fill(memo, -1);
+        return robMemo(nums, nums.length - 1, memo);
+    }
+    private int robMemo(int[] nums, int i, int[] memo) {
+        if (i < 0) {
+            return 0;
+        }
+        if(memo[i] != -1) return memo[i];
+        int res = Math.max(robMemo(nums, i - 2, memo) + nums[i], robMemo(nums, i - 1, memo));
+        memo[i] = res;
+        return res;
+    }
+
+
     public static void main(String[] args) {
 
         //int[] testData  = {0,0};
