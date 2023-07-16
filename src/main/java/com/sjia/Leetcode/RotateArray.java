@@ -46,7 +46,7 @@ public class RotateArray {
 
 
 
-    // System.arraycopy 
+    // System.arraycopy
     public void rotateArraycopy(int[] nums, int k) {
         int length = nums.length;
         int[] tmp = new int[length];
@@ -63,6 +63,8 @@ public class RotateArray {
     // three reverse, Runtime: 0 ms, faster than 100.00% of Java online submissions for Rotate Array.
     //Memory Usage: 39.9 MB, less than 53.45% of Java online submissions for Rotate Array.
 
+    // rotate to right: 1. 反转整个字符串; 2. 反转区间为前k的子串; 3. 反转区间为k到末尾的子串
+    // rotate to left: 1. 反转区间为前n的子串; 2. 反转区间为n到末尾的子; 3. 反转整个字符串
     public void rotate(int[] nums, int k) {
         k %= nums.length;
         reverseArray(nums, 0, nums.length - 1);
