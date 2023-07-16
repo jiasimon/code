@@ -4,7 +4,14 @@ import java.util.Arrays;
 
 public class RotateArray {
 
-    // #189 https://leetcode.com/problems/rotate-array/
+    // #189. Rotate Array https://leetcode.com/problems/rotate-array/
+    /*
+    Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+    Input: nums = [1,2,3,4,5,6,7], k = 3    Output: [5,6,7,1,2,3,4]
+    Input: nums = [-1,-100,3,99], k = 2     Output: [3,99,-1,-100]
+
+
+     */
 
     // Runtime: 1 ms, faster than 53.97% of Java online submissions for Rotate Array.
     //Memory Usage: 43 MB, less than 5.08% of Java online submissions for Rotate Array.
@@ -20,6 +27,22 @@ public class RotateArray {
         }
     }*/
 
+
+
+    // tmp[(i+k) % length]
+    // 1 ms, 50.88%; 55.2 MB, 88.54%
+    public void rotateStep(int[] nums, int k) {
+        int length = nums.length;
+        int[] tmp = new int[length];
+        int step = k % length;
+
+        for (int i=0; i < length; i++ ) {
+            tmp[(i+step) % length] = nums[i];
+        }
+        for (int i=0; i < length; i++ ) {
+            nums[i] = tmp[i];
+        }
+    }
 
     // three reverse, Runtime: 0 ms, faster than 100.00% of Java online submissions for Rotate Array.
     //Memory Usage: 39.9 MB, less than 53.45% of Java online submissions for Rotate Array.
