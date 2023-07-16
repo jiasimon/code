@@ -37,13 +37,28 @@ public class RepeatedDNASequences {
     }
 
 
+    // !seen.add(dnaSeq)
+    // 20ms , 66.05%; 52.29mb, 27.16%
+    public List<String> findRepeatedDnaSequencesDoubleSets(String s) {
+        Set<String> seen = new HashSet<>();
+        Set<String> repeat = new HashSet<>();
+
+        for (int i=0; i<=s.length() - 10; i++) {
+            String dnaSeq = s.substring(i, i+10);
+            if (!seen.add(dnaSeq)) {
+                repeat.add(dnaSeq);
+            }
+        }
+        return new ArrayList<>(repeat);
+    }
+
 
     public static void main(String[] args) {
         RepeatedDNASequences solution = new RepeatedDNASequences();
 
         // Test case
         String s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
-        List<String> repeatedSequences = solution.findRepeatedDnaSequences(s);
+        List<String> repeatedSequences = solution.findRepeatedDnaSequencesDoubleSets(s);
         System.out.println("Repeated DNA Sequences: " + repeatedSequences);  // Expected output: ["AAAAACCCCC", "CCCCCAAAAA"]
     }
 
