@@ -27,6 +27,19 @@ public class Numberof1Bits {
     }
 
 
+
+    // bit operation, n & 1
+    // 0ms 100%; 39.3 MB 92.87%
+    public int hammingWeight(int n) {
+        int count = 0;
+        while (n != 0) {
+            count += n & 1;
+            n >>>= 1;   // We need to use bit shifting unsigned operation >>> (while >> depends on sign extension)
+        }
+        return count;
+    }
+
+
     public static void main(String[] args) {
         Numberof1Bits solution = new Numberof1Bits();
 
