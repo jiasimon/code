@@ -36,7 +36,7 @@ public class LargestNumber179 {
             tmp.add(String.valueOf(num));
         }
         tmp.sort(new MyComparator());
-        if (tmp.get(0).equals("0")) return "0";
+        if (tmp.get(0).equals("0")) return "0"; // {0,0};
         for ( String part: tmp) {
             sb.append(part);
         }
@@ -47,6 +47,8 @@ public class LargestNumber179 {
 
         //int[] testData  = {0,0};
         int[] testData  = {3,30,34,5,9};
+
+
 
         LargestNumber179 solution = new LargestNumber179();
         String result = solution.largestNumber(testData);
