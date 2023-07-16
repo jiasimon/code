@@ -44,6 +44,22 @@ public class RotateArray {
         }
     }
 
+
+
+    // System.arraycopy 
+    public void rotateArraycopy(int[] nums, int k) {
+        int length = nums.length;
+        int[] tmp = new int[length];
+        int step = k % length;
+
+        for (int i=0; i < length; i++ ) {
+            tmp[(i+step) % length] = nums[i];
+        }
+        System.arraycopy(tmp, 0, nums, 0, length);
+
+    }
+
+
     // three reverse, Runtime: 0 ms, faster than 100.00% of Java online submissions for Rotate Array.
     //Memory Usage: 39.9 MB, less than 53.45% of Java online submissions for Rotate Array.
 
