@@ -13,7 +13,7 @@ public class ReverseBits {
 
     // String reverse
     // 2ms, 6.19%; 41.04mb, 46.97%
-    public int reverseBitsString(int n) {
+    public int reverseBitsByString(int n) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(Integer.toBinaryString(n));  // 10100101000001111010011100
@@ -36,12 +36,31 @@ public class ReverseBits {
     }
 
 
+
+    // Integer.reverse
+    // 1ms, 96.40%; 40.88mb, 72.05%
+    public int reverseBitsByInteger(int num) {
+        return Integer.reverse(num);
+
+        /*
+        num = ((num & 0xffff0000) >>> 16) | ((num & 0x0000ffff) << 16);
+        num = ((num & 0xff00ff00) >>> 8) | ((num & 0x00ff00ff) << 8);
+        num = ((num & 0xf0f0f0f0) >>> 4) | ((num & 0x0f0f0f0f) << 4);
+        num = ((num & 0xcccccccc) >>> 2) | ((num & 0x33333333) << 2);
+        num = ((num & 0xaaaaaaaa) >>> 1) | ((num & 0x55555555) << 1);
+
+        return num;
+         */
+
+    }
+
+
     public static void main(String[] args) {
         ReverseBits solution = new ReverseBits();
 
         // Test case
         int n = 43261596;
-        int reversedBits = solution.reverseBitsString(n);
+        int reversedBits = solution.reverseBitsByInteger(n);
         System.out.println("Reversed Bits: " + reversedBits);  // Expected output: 964176192
     }
 
