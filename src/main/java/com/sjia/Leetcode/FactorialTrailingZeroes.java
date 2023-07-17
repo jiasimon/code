@@ -18,6 +18,8 @@ public class FactorialTrailingZeroes {
 
     // Runtime: 1 ms, faster than 47.58% of Java online submissions for Factorial Trailing Zeroes.
     //Memory Usage: 38.6 MB, less than 5.65% of Java online submissions for Factorial Trailing Zeroes.
+
+    // 1 ms, 39.71% ; 39.4 MB, 74.29%
     static int trailingZeroes(int n) {
         int result=0;
         while (n > 0) {
@@ -36,6 +38,11 @@ public class FactorialTrailingZeroes {
         }
     }
 
+
+    static int trailingZeroesHardCode(int n) {
+        return n/5+n/25+n/125+n/625+n/3125+n/15625+n/78125+n/390625
+                +n/1953125+n/9765625+n/48828125 + n/244140625;
+    }
 
 /*    public int trailingZeroes(int n) {
         int result=0;
