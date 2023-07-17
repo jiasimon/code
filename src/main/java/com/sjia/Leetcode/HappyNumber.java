@@ -2,6 +2,7 @@ package com.sjia.Leetcode;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 public class HappyNumber {
     // #202. Happy Number https://leetcode.com/problems/happy-number/submissions/
@@ -47,41 +48,15 @@ public class HappyNumber {
 
 
 
-
-/*    HashSet<Integer> tmp = new HashSet<>();
-
+    // getNextNumber
     public boolean isHappy(int n) {
-        int result =0;
-        //HashSet<Integer> tmp = new HashSet<>();
-        while (n >0) {
-            result +=  (n %10)*(n %10);
-            n /= 10 ;
-        }
-        if ( result ==1) return true;
-        else {
-            if (tmp.contains(result)) return false;
-            else {
-                tmp.add(result);
-                return isHappy(result);
-            }
-        }
-    }*/
-
-
-    // private static HashSet<Integer> tmp =
-    //        new HashSet<>(Arrays.asList(4, 16, 37, 58, 89, 145, 42, 20));
-
-
-    // update while loop
-    // Runtime: 2 ms, faster than 41.71% of Java online submissions for Happy Number.
-    //Memory Usage: 36.7 MB, less than 35.32% of Java online submissions for Happy Number.
-    public boolean isHappy(int n) {
-        HashSet<Integer> tmp = new HashSet<>();
-        while(n !=1 && !tmp.contains(n)) {
-            tmp.add(n);
+        Set<Integer> seen = new HashSet<>();
+        while (n != 1 ) {
+            if (seen.contains(n)) return false;
+            seen.add(n);
             n = getNextNumber(n);
         }
-        return n==1;
+        return true;
     }
 
     private int getNextNumber(int n) {
