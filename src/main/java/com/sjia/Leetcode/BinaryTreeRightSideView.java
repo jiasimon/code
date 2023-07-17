@@ -17,7 +17,7 @@ public class BinaryTreeRightSideView {
      */
 
 
-    // BFS, refer to #102. Binary Tree Level Order Traversal
+    // BFS, i == size -1  refer to #102. Binary Tree Level Order Traversal
     // 1ms, 66.69% ; 41.79mb, 11.20%
     public List<Integer> rightSideView(TreeNode root) {
         if (root == null) return new ArrayList<>();
