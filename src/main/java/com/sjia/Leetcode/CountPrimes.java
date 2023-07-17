@@ -4,11 +4,19 @@ import java.util.Arrays;
 
 public class CountPrimes {
 
-    // #204 https://leetcode.com/problems/count-primes/
-    // Count the number of prime numbers less than a non-negative number, n
+    // #204. Count Primes   https://leetcode.com/problems/count-primes/
+    /*
+    Given an integer n, return the number of prime numbers that are strictly less than n.
+    Input: n = 10   Output: 4
+    Input: n = 0    Output: 0
+    Input: n = 1    Output: 0
+    0 <= n <= 5 * 106
+     */
+
+
 
     // Time Limit Exceeded
-/*    public int countPrimes(int n) {
+    public int countPrimesNormal(int n) {
         if (n<2) return 0;
         int result =0;
         for ( int i=2; i < n;  i++ ) {
@@ -23,7 +31,7 @@ public class CountPrimes {
             if (N%i ==0) return false;
         }
         return true;
-    }*/
+    }
 
 
     // Runtime: 19 ms, faster than 55.19% of Java online submissions for Count Primes.
