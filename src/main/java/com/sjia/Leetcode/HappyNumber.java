@@ -4,10 +4,50 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class HappyNumber {
-    // #202 https://leetcode.com/problems/happy-number/submissions/
+    // #202. Happy Number https://leetcode.com/problems/happy-number/submissions/
+    /*
+    A happy number is a number defined by the following process:
+    Starting with any positive integer, replace the number by the sum of the squares of its digits.
+    Input: n = 19   Output: true
+    1^2 + 9^2 = 82
+    8^2 + 2^2 = 68
+    6^2 + 8^2 = 100
+    1^2 + 0^2 + 0^2 = 1
 
-    //Runtime: 2 ms, faster than 41.71% of Java online submissions for Happy Number.
-    //Memory Usage: 38.4 MB, less than 8.40% of Java online submissions for Happy Number.
+    Input: n = 2    Output: false
+
+     */
+
+
+
+    public static boolean isHappyHashset(int n) {
+        HashSet<Integer> set = new HashSet<>();
+
+        while (n != 1) {
+            int current = n;
+            int sum = 0;
+
+            while (current != 0) {
+                int digit = current % 10;
+                sum += digit * digit;
+                current /= 10;
+            }
+
+            if (set.contains(sum)) {
+                return false;
+            }
+
+            set.add(sum);
+            n = sum;
+        }
+
+        return true;
+    }
+
+
+
+
+
 /*    HashSet<Integer> tmp = new HashSet<>();
 
     public boolean isHappy(int n) {
@@ -31,8 +71,6 @@ public class HappyNumber {
     // private static HashSet<Integer> tmp =
     //        new HashSet<>(Arrays.asList(4, 16, 37, 58, 89, 145, 42, 20));
 
-    //Runtime: 4 ms, faster than 13.94% of Java online submissions for Happy Number.
-    //Memory Usage: 38.6 MB, less than 6.83% of Java online submissions for Happy Number.
 
     // update while loop
     // Runtime: 2 ms, faster than 41.71% of Java online submissions for Happy Number.
