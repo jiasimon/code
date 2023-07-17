@@ -45,6 +45,39 @@ public class BinaryTreeRightSideView {
     }
 
 
+    // dfs, root -> r -> l
+    // 0ms , 100% ; 41.3 MB, 58.60%
+    public List<Integer> rightSideViewDFS(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        dfs(root, res, 0);
+        return res;
+    }
 
+    private void dfs(TreeNode node, List<Integer> res, int level) {
+        if(node == null) return;
+        if ( level == res.size()) {
+            res.add(node.val);
+        }
+        dfs(node.right, res, level +1);
+        dfs(node.left, res, level +1);
+    }
+
+
+    public static void main(String[] args) {
+        BinaryTreeRightSideView solution = new BinaryTreeRightSideView();
+
+        // Create a binary tree
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.right = new TreeNode(5);
+        root.right.right = new TreeNode(4);
+
+        // Get the right side view of the binary tree
+        List<Integer> rightSideView = solution.rightSideViewDFS(root);
+
+        // Print the right side view
+        System.out.println("Right Side View: " + rightSideView);  // Expected output: [1, 3, 4]
+    }
 
 }
