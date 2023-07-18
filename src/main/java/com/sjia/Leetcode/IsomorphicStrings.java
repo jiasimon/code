@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class IsomorphicStrings {
 
-    // #205  https://leetcode.com/problems/isomorphic-strings/
+    // #205. Isomorphic Strings  https://leetcode.com/problems/isomorphic-strings/
 
     // egg:add  foo:bar paper:title good:cooks
 
@@ -13,7 +13,6 @@ public class IsomorphicStrings {
 
     // second run, Runtime: 5 ms, faster than 85.54% of Java online submissions for Isomorphic Strings.
     //Memory Usage: 40.7 MB, less than 5.24% of Java online submissions for Isomorphic Strings.
-/*
     public boolean isIsomorphic(String s, String t) {
         if (s.length() != t.length()) return false;
         int[] map1 = new int [256], map2 = new int[256];
@@ -25,13 +24,13 @@ public class IsomorphicStrings {
             }
         }
         return true;
-    }*/
+    }
 
 
     // Runtime: 19 ms, faster than 19.09% of Java online submissions for Isomorphic Strings.
     //Memory Usage: 40.6 MB, less than 5.24% of Java online submissions for Isomorphic Strings.
 
-    public boolean isIsomorphic(String s, String t) {
+    public boolean isIsomorphicHashMap(String s, String t) {
         if(s == null || s.length() <= 1) return true;
         HashMap<Character, Character> tmp = new HashMap<>();
         for (int i=0; i< s.length(); i++) {
@@ -46,8 +45,8 @@ public class IsomorphicStrings {
     }
 
     public static void main(String[] args) {
-        String s = "good";
-        String t = "cooks";
+        String s = "egg";
+        String t = "add";
         IsomorphicStrings solution = new IsomorphicStrings();
 
         boolean result = solution.isIsomorphic(s, t);
