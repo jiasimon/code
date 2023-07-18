@@ -36,7 +36,7 @@ public class LinkedListCycle2 {
     }
 
 
-    // fast slow pointer
+    // fast slow pointer, Floyd Cycle Detection
     public ListNode detectCycle(ListNode head) {
         // Initialize slow and fast pointers
         ListNode slow = head;
@@ -71,4 +71,33 @@ public class LinkedListCycle2 {
         return slow;
     }
 
+
+    public static void main(String[] args) {
+        LinkedListCycle2 solution = new LinkedListCycle2();
+
+        // Test case: No cycle
+        ListNode head1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
+        head1.next = node2;
+        node2.next = node3;
+        ListNode result1 = solution.detectCycle(head1);
+        System.out.println("Cycle Start Node: " + (result1 != null ? result1.val : null));  // Output: null
+
+        // Test case: Cycle exists
+        ListNode head2 = new ListNode(1);
+        ListNode node4 = new ListNode(2);
+        ListNode node5 = new ListNode(3);
+        ListNode node6 = new ListNode(4);
+        ListNode node7 = new ListNode(5);
+        head2.next = node4;
+        node4.next = node5;
+        node5.next = node6;
+        node6.next = node7;
+        node7.next = node4;  // Creates a cycle
+        ListNode result2 = solution.detectCycle(head2);
+        System.out.println("Cycle Start Node: " + (result2 != null ? result2.val : null));  // Output: 2
+    }
 }
+
+
