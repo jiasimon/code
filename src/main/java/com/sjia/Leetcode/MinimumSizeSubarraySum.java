@@ -13,10 +13,24 @@ public class MinimumSizeSubarraySum {
      */
 
 
+    // Brute force, two loop, TLE
     public static int minSubArrayLen(int target, int[] nums) {
-        
+        int n = nums.length;
+        if( n==0) return 0;
 
-        return 0;
+        int res = Integer.MAX_VALUE;
+        for ( int i =0; i < n; i++){
+            int sum =0;   // reset to 0 after
+            for (int j=i; j < n ; j++) {
+                sum = sum + nums[j];
+                if (sum >= target) {
+                    res = Math.min(res, j-i+1);
+                    break;
+                }
+            }
+        }
+        if (res == Integer.MAX_VALUE) return 0;
+        else return res;
     }
 
     // Test the code
