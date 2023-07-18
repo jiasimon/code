@@ -12,6 +12,7 @@ public class BitwiseANDNumbersRange {
      */
 
 
+    // find common prefix
     // 6ms, 100.00% ; 42.63mb, 87.56%
     static public int rangeBitwiseAnd(int left, int right) {
         int shift =0;
@@ -23,6 +24,15 @@ public class BitwiseANDNumbersRange {
         }
         return left << shift ;
 
+    }
+
+
+    // n & (n-1)
+    // Bitwise-AND of any two numbers will always produce a number less than or equal to the smaller number.
+    // n & (n-1) is a simple operation that removes the rightmost 1 in n
+    public int rangeBitwiseAnd2(int left, int right) {
+        while (right > left) right &= right - 1;
+        return right;
     }
 
 
