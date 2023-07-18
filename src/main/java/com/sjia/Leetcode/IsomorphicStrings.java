@@ -1,6 +1,7 @@
 package com.sjia.Leetcode;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class IsomorphicStrings {
 
@@ -53,16 +54,34 @@ public class IsomorphicStrings {
 
 
 
+    // Double Map
+    // 25 ms, 14.70%, 41.6 MB, 47.91%
+    public boolean isIsomorphicDoubleMap(String s, String t) {
+        Map<Character, Character> s2t = new HashMap<Character, Character>();
+        Map<Character, Character> t2s = new HashMap<Character, Character>();
+        int len = s.length();
+        for (int i = 0; i < len; ++i) {
+            char x = s.charAt(i), y = t.charAt(i);
+            if ((s2t.containsKey(x) && s2t.get(x) != y) || (t2s.containsKey(y) && t2s.get(y) != x)) {
+                return false;
+            }
+            s2t.put(x, y);
+            t2s.put(y, x);
+        }
+        return true;
+
+    }
+
+
 
     public static void main(String[] args) {
-        String s = "foo";
-        String t = "bar";
+        String s = "egg";
+        String t = "add";
         IsomorphicStrings solution = new IsomorphicStrings();
 
         boolean result = solution.isIsomorphic(s, t);
         System.out.printf("%s and %s isIsomorphic: %s", s, t, result);
         System.out.println();
-/*
 
         // Test Case 2: "foo" and "bar" are not isomorphic
         String s2 = "foo";
@@ -75,7 +94,6 @@ public class IsomorphicStrings {
         String t3 = "title";
         boolean result3 = solution.isIsomorphicHashMap(s3, t3);
         System.out.println("Are \"" + s3 + "\" and \"" + t3 + "\" isomorphic? " + result3);
-*/
 
     }
 
