@@ -54,12 +54,12 @@ public class HappyNumber {
         while (n != 1 ) {
             if (seen.contains(n)) return false;
             seen.add(n);
-            n = getNextNumber(n);
+            n = getNext(n);
         }
         return true;
     }
 
-    private int getNextNumber(int n) {
+    private int getNext(int n) {
         int result =0;
         while (n >0) {
             result +=  (n %10)*(n %10);
@@ -67,6 +67,20 @@ public class HappyNumber {
         }
         return result;
     }
+
+
+    // Floyd Cycle Detection, fast, slow pointer
+    public boolean isHappyFastSlow(int n) {
+        int slow = n;
+        int fast = getNext(n); // fast one step ahead, ready for while
+        while (fast != 1 && slow != fast) {
+            slow = getNext(slow);
+            fast = getNext(getNext(fast));
+        }
+        return fast == 1;
+    }
+
+
 
 
     public static void main(String[] args) {
