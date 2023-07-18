@@ -11,18 +11,7 @@ public class ReverseLinkedList {
      */
 
 
-    // iterative, Runtime: 0 ms, faster than 100.00% of Java online submissions for Reverse Linked List.
-    //Memory Usage: 40.5 MB, less than 5.01% of Java online submissions for Reverse Linked List.
-/*    public ListNode reverseList(ListNode head) {
-        ListNode pre = null;
-        while (head != null) {
-            ListNode tmp = head.next;
-            head.next = pre;
-            pre = head;
-            head = tmp;
-        }
-        return pre;
-    }*/
+
 
     // recursive Runtime: 0 ms, faster than 100.00% of Java online submissions for Reverse Linked List.
     //Memory Usage: 40.7 MB, less than 5.01% of Java online submissions for Reverse Linked List.
@@ -37,13 +26,12 @@ public class ReverseLinkedList {
 
     // iterative, use another currentNode so head will not be changed
     public ListNode reverseList(ListNode head) {
-        ListNode pre = null;
-        ListNode current = head;
-        while (current != null) {
-            ListNode tmpNext = current.next;
-            current.next = pre;
-            pre = current;
-            current = tmpNext;
+        ListNode pre =null, cur = head;
+        while (cur != null) {
+            ListNode tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
         }
         return pre;
     }
@@ -63,7 +51,7 @@ public class ReverseLinkedList {
         node3.next = node4;
         node4.next = node5;
 
-        ListNode reversedHead = solution.reverseListRecursive(head);
+        ListNode reversedHead = solution.reverseList(head);
 
         // Print the reversed linked list
         printList(reversedHead);
