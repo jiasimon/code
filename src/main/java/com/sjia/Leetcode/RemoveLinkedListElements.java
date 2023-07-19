@@ -34,6 +34,21 @@ public class RemoveLinkedListElements {
     }
 
 
+
+    // recursive,
+    /*
+    When the input node is an empty node, then there is nothing to delete, so we just return a null node back. (That's the first line)
+    When the head of the input node is the target we want to delete, we just return head.next instead of head to skip it. (That's the third line), else we will return head.
+    apply the same thing to every other node until it reaches null. (That's the second line).
+     */
+    public static ListNode removeElementsRecursive(ListNode head, int val) {
+        if (head == null) return null;
+        head.next = removeElementsRecursive(head.next, val);
+        return head.val == val ? head.next : head;
+    }
+
+
+
     public static void main(String[] args) {
         // Test Case 1: Remove all occurrences of 2 from the linked list: 1 -> 2 -> 6 -> 3 -> 4 -> 5 -> 2
         ListNode head1 = new ListNode(1);
@@ -52,7 +67,7 @@ public class RemoveLinkedListElements {
         node5.next = node6;
 
         int val1 = 2;
-        ListNode result1 = removeElements(head1, val1);
+        ListNode result1 = removeElementsRecursive(head1, val1);
 
         System.out.print("After removing " + val1 + ": ");
         printLinkedList(result1);
