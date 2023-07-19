@@ -2,17 +2,21 @@ package com.sjia.Leetcode;
 
 public class PalindromeShortest {
 
-    // #214 https://leetcode.com/problems/shortest-palindrome/
+    // #214. Shortest Palindrome https://leetcode.com/problems/shortest-palindrome/
+    /*
+    You are given a string s. You can convert s to a palindrome by adding characters in front of it.
 
-    // Input: "aacecaaa"
-    //Output: "aaacecaaa"
+    Return the shortest palindrome you can find by performing this transformation.
+    Input: "aacecaaa"   Output: "aaacecaaa"
+    Input: s = "abcd"   Output: "dcbabcd"
 
-    // Runtime: 210 ms, faster than 34.95% of Java online submissions for Shortest Palindrome.
-    //Memory Usage: 39.8 MB, less than 41.73% of Java online submissions for Shortest Palindrome.
+     */
 
-    // second run, Runtime: 213 ms, faster than 33.64% of Java online submissions for Shortest Palindrome.
-    //Memory Usage: 40.2 MB, less than 17.58% of Java online submissions for Shortest Palindrome.
-/*
+
+
+
+    // 325ms, 18.81%; 44.40mb, 19.94%
+    // aacecaaab, baaacecaa
     static String shortestPalindrome(String s) {
         String reverse = new StringBuilder(s).reverse().toString();
         int n = s.length();
@@ -22,7 +26,7 @@ public class PalindromeShortest {
             }
         }
         return "";
-    }*/
+    }
 
 
     // Convert to "find the longest palindrome substring starts from index 0"
@@ -30,7 +34,7 @@ public class PalindromeShortest {
     //Runtime: 5 ms, faster than 90.09% of Java online submissions for Shortest Palindrome.
     //Memory Usage: 39.6 MB, less than 60.10% of Java online submissions for Shortest Palindrome.
 
-    static String shortestPalindrome(String s) {
+    static String shortestPalindromeKMP(String s) {
         String ss = s + '#' + new StringBuilder(s).reverse();
         int max = getLastKMP(ss);
         return new StringBuilder(s.substring(max)).reverse() + s;
