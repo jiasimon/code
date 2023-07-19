@@ -5,9 +5,18 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class ContainsDuplicateK {
-    // #219 https://leetcode.com/problems/contains-duplicate-ii/
-    // there are two distinct indices i and j in the array
-    // such that nums[i] = nums[j] and the absolute difference between i and j is at most k
+    // #219. Contains Duplicate II  https://leetcode.com/problems/contains-duplicate-ii/
+
+    /*
+    there are two distinct indices i and j in the array
+    such that nums[i] = nums[j] and the absolute difference between i and j is at most k
+
+    Input: nums = [1,2,3,1], k = 3  Output: true
+    Input: nums = [1,0,1,1], k = 1  Output: true
+    Input: nums = [1,2,3,1,2,3], k = 2  Output: false
+
+     */
+
 
 
     // Runtime: 6 ms, faster than 76.44% of Java online submissions for Contains Duplicate II.
@@ -44,6 +53,13 @@ public class ContainsDuplicateK {
         ContainsDuplicateK solution = new ContainsDuplicateK();
         boolean result = solution.containsNearbyDuplicate(testData, k);
         System.out.printf("array %s  in %s contain duplicate : %s", Arrays.toString(testData), k, result);
+        System.out.println();
+
+        int[] nums2 = {1, 0, 1, 1}; // true, since 1 and 1 are duplicates and their distance is 3 - 2 = 1 <= 1 (k).
+        System.out.println(solution.containsNearbyDuplicate(nums2, 1));
+
+        int[] nums3 = {1, 2, 3, 4, 5}; // false, no duplicates with distance <= 3 (k).
+        System.out.println(solution.containsNearbyDuplicate(nums3, 3));
 
     }
 
