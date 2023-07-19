@@ -29,6 +29,7 @@ public class HouseRobber {
 
     // Recursive, TLE, Time Limit Exceeded
     public int robRecursive(int[] nums) {
+
         return rob(nums, nums.length - 1);
     }
     private int rob(int[] nums, int i) {
@@ -80,6 +81,20 @@ public class HouseRobber {
         }
 
         return dp[n - 1];
+    }
+
+
+    // DP without array
+    public int robDP(int[] nums) {
+        if (nums.length == 0) return 0;
+        int prev1 = 0;
+        int prev2 = 0;
+        for (int i =0; i< nums.length; i++) {
+            int tmp = prev1;
+            prev1 = Math.max(prev2 + nums[i], prev1);
+            prev2 = tmp;
+        }
+        return prev1;
     }
 
 
