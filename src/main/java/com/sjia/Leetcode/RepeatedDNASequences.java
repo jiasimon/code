@@ -1,9 +1,6 @@
 package com.sjia.Leetcode;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class RepeatedDNASequences {
     // #187. Repeated DNA Sequences     https://leetcode.com/problems/repeated-dna-sequences/description/
@@ -52,6 +49,19 @@ public class RepeatedDNASequences {
         return new ArrayList<>(repeat);
     }
 
+
+    // HashMap
+    public List<String> findRepeatedDnaSequencesHashMap(String s) {
+        List<String> res = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        for (int i=0; i + 10 <= s.length(); i++) {
+            String seq = s.substring(i, i + 10);
+            int count = map.getOrDefault(seq, 0);
+            if (count == 1) res.add(seq);
+            map.put(seq, count+1);
+        }
+        return res;
+    }
 
     public static void main(String[] args) {
         RepeatedDNASequences solution = new RepeatedDNASequences();
