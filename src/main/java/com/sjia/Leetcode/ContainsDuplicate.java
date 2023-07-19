@@ -4,20 +4,28 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class ContainsDuplicate {
-    // #217 check duplicate in array
+    // #217. Contains Duplicate https://leetcode.com/problems/contains-duplicate/description/
+
+    /*
+    Given an integer array nums, return true if any value appears at least twice in the array,
+    and return false if every element is distinct.
+
+    Input: nums = [1,2,3,1]     Output: true
+    Input: nums = [1,2,3,4]     Output: false
+
+     */
 
 
     // Sort changes original array, may work on a copy
     // Runtime: 4 ms, faster than 88.85% of Java online submissions for Contains Duplicate.
     //Memory Usage: 43.1 MB, less than 94.99% of Java online submissions for Contains Duplicate.
-/*
-    public boolean containsDuplicate(int[] nums) {
+    public boolean containsDuplicateSort(int[] nums) {
         Arrays.sort(nums);
         for(int i=1; i<nums.length; i++) {
             if(nums[i] == nums[i-1]) return true;
         }
         return false;
-    }*/
+    }
 
     // HashSet
     // Runtime: 5 ms, faster than 82.22% of Java online submissions for Contains Duplicate.
