@@ -25,6 +25,13 @@ public class CountCompleteTreeNodes {
     }
 
 
+    public int countNodes2(TreeNode root) {
+        if (root == null) return 0;
+        return countNodes2(root.left) + countNodes2(root.right) + 1;
+
+    }
+
+
     public static void main(String[] args) {
         CountCompleteTreeNodes counter = new CountCompleteTreeNodes();
 
