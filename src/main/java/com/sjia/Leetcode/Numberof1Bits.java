@@ -40,6 +40,16 @@ public class Numberof1Bits {
     }
 
 
+    // n & (n-1)
+    public int hammingWeightBit(int n) {
+        int count = 0;
+        while (n != 0) {
+            n = n & (n-1);
+            count++;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         Numberof1Bits solution = new Numberof1Bits();
 
