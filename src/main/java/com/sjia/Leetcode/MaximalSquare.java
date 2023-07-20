@@ -49,6 +49,19 @@ public class MaximalSquare {
     }
 
 
+    public static void main(String[] args) {
+        MaximalSquare maximalSquare = new MaximalSquare();
+
+        char[][] matrix = {
+                {'1', '0', '1', '0', '0'},
+                {'1', '0', '1', '1', '1'},
+                {'1', '1', '1', '1', '1'},
+                {'1', '0', '0', '1', '0'}
+        };
+
+        int result = maximalSquare.maximalSquare(matrix);
+        System.out.println("The area of the largest square: " + result); // Output: 4
+    }
 
 
 }
