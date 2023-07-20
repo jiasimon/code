@@ -36,6 +36,7 @@ public class ContainsDuplicateK {
 
     // Runtime: 10 ms, faster than 46.12% of Java online submissions for Contains Duplicate II.
     //Memory Usage: 50.4 MB, less than 5.47% of Java online submissions for Contains Duplicate II.
+    // HashMap, prevIndex
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         HashMap<Integer, Integer> tmp = new HashMap<>();
         for (int i=0; i< nums.length; i++) {
