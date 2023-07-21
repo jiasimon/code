@@ -14,24 +14,30 @@ public class PalindromeLinkedList {
 
     // Runtime: 3 ms, faster than 33.04% of Java online submissions for Palindrome Linked List.
     //Memory Usage: 43.3 MB, less than 26.87% of Java online submissions for Palindrome Linked List.
-/*
-    public boolean isPalindrome(ListNode head) {
-        List<Integer> tmpList = new ArrayList<>();
+
+    // copy to ArrayList, two pointer
+    public boolean isPalindromeArrayList(ListNode head) {
+        List<Integer> tmp = new ArrayList<>();
         ListNode cur = head;
-        while (cur !=null) {
-            tmpList.add(cur.val);
+        while (cur != null) {
+            tmp.add(cur.val);
             cur = cur.next;
         }
-        int left=0, right = tmpList.size()-1;
+
+        int left =0, right = tmp.size()-1;
         while(left < right) {
-            if (tmpList.get(left) != tmpList.get(right)) return false;
-            else {
-                left++;
-                right--;
+            // Integer object, if we use tmp.get(left) !=  tmp.get(right) , test case failed in 2020, but passed now
+            // better to use equals method
+//             if( tmp.get(left) != tmp.get(right)) {
+            if( ! tmp.get(left).equals( tmp.get(right))) {
+                return false;
             }
+            left++;
+            right--;
         }
         return true;
-    }*/
+
+    }
 
 
     // fast, slow pointers Runtime: 1 ms, faster than 97.19% of Java online submissions for Palindrome Linked List.
@@ -80,7 +86,7 @@ public class PalindromeLinkedList {
         head.next.next.next = new ListNode(2);
         head.next.next.next.next = new ListNode(1);
 
-        System.out.println("Is Palindrome: " + palindromeLinkedList.isPalindrome(head)); // Output: true
+        System.out.println("Is Palindrome: " + palindromeLinkedList.isPalindromeArrayList(head)); // Output: true
     }
 
 
