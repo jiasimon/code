@@ -44,6 +44,7 @@ public class CountCompleteTreeNodes {
         if (leftHeight == rightHeight) {
             // If the left and right heights are the same, the tree is a full binary tree
             return (1 << leftHeight) - 1;
+            //  return (1 << leftHeight - 1);   will get wrong answer
         } else {
             // If the left and right heights are different, the tree is not full
             // Calculate the node count recursively for left and right subtrees
