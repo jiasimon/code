@@ -1,7 +1,6 @@
 package com.sjia.Leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class MajorityElement2 {
     // #229. Majority Element II    https://leetcode.com/problems/majority-element-ii/
@@ -15,10 +14,20 @@ public class MajorityElement2 {
 
      */
 
+    // HashMap, HashSet
+    // 13ms, 33.37%; 46.54mb; 72.40%
     public List<Integer> majorityElement(int[] nums) {
-        List<Integer> result = new ArrayList<>();
-
-        return result;
+        int total = nums.length;
+        Set<Integer> result = new HashSet<>();
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int n : nums) {
+            int count = map.getOrDefault(n,0) + 1;
+            map.put(n, count);
+            if (count > total/3) {
+                result.add(n);
+            }
+        }
+        return new ArrayList<>(result) ;
     }
 
 
