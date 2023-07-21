@@ -9,6 +9,22 @@ public class NumberOfDigitOne {
     Input: n = 0    Output: 0
     0 <= n <= 10^9
 
+    2304   : 1761
+
+    个位： (230 +1 ) x 1
+    十位： 23 x 10  =230
+    百位：（2+1） x 100 =300
+    千位： 1 x 1000
+
+
+    90182 :
+    (9018+1) x 1 = 9019
+    (901 +1) x 10 = 9020
+    90 x 100 + 82 +1 =9083
+    9 x 1000 = 9000
+    1 x 10000 =10000
+    10000 + 9000 + 9083 + 9020 + 9019 = 46122
+
      */
 
     public int countDigitOne(int n) {
@@ -34,7 +50,15 @@ public class NumberOfDigitOne {
 //        int n = 13; // Output: 6 (Explanation: The numbers with digit '1' in the range from 1 to 13 are 1, 10, 11, 12, 13, 1 appears 6 times.)
 //        System.out.println("Number of digit '1': " + numberOfDigitOne.countDigitOne(n));
 
-        int n2 = 1314; // Output: 782
+//        int n2 = 1314; // Output: 782
+
+        int n2 = 99; // Output: 782
         System.out.println("Number of digit '1': " + numberOfDigitOne.countDigitOne(n2));
+
+        int n3 = 2304; // Output: 1761
+        System.out.println("Number of digit '1': " + numberOfDigitOne.countDigitOne(n3));
+
+        int n4 = 90182; // Output: 46122
+        System.out.println("Number of digit '1': " + numberOfDigitOne.countDigitOne(n4));
     }
 }
