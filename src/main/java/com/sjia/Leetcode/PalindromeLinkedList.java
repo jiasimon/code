@@ -5,7 +5,12 @@ import java.util.List;
 
 public class PalindromeLinkedList {
 
-    // #234 https://leetcode.com/problems/palindrome-linked-list/
+    // #234. Palindrome Linked List https://leetcode.com/problems/palindrome-linked-list/
+    /*
+    Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+    Input: head = [1,2,2,1]     Output: true
+
+     */
 
     // Runtime: 3 ms, faster than 33.04% of Java online submissions for Palindrome Linked List.
     //Memory Usage: 43.3 MB, less than 26.87% of Java online submissions for Palindrome Linked List.
@@ -64,6 +69,19 @@ public class PalindromeLinkedList {
         return prev;
     }
 
+
+    public static void main(String[] args) {
+        PalindromeLinkedList palindromeLinkedList = new PalindromeLinkedList();
+
+        // Create a palindrome linked list: 1 -> 2 -> 3 -> 2 -> 1
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(2);
+        head.next.next.next.next = new ListNode(1);
+
+        System.out.println("Is Palindrome: " + palindromeLinkedList.isPalindrome(head)); // Output: true
+    }
 
 
 }
