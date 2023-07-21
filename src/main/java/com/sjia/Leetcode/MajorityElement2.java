@@ -16,7 +16,7 @@ public class MajorityElement2 {
 
     // HashMap, HashSet
     // 13ms, 33.37%; 46.54mb; 72.40%
-    public List<Integer> majorityElement(int[] nums) {
+    public List<Integer> majorityElement2(int[] nums) {
         int total = nums.length;
         Set<Integer> result = new HashSet<>();
         Map<Integer, Integer> map = new HashMap<>();
@@ -31,6 +31,62 @@ public class MajorityElement2 {
     }
 
 
+
+    // Boyer-Moore Voting
+    // 2ms 97.97%; 47.39mb, 5.36%
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+
+        // Initialize two candidate numbers and their corresponding counts
+        int candidate1 = nums[0];
+        int candidate2 = nums[0];
+        int count1 = 0;
+        int count2 = 0;
+
+        // Voting process
+        for (int num : nums) {
+            if (num == candidate1) {
+                count1++;
+            } else if (num == candidate2) {
+                count2++;
+            } else if (count1 == 0) {
+                candidate1 = num;
+                count1 = 1;
+            } else if (count2 == 0) {
+                candidate2 = num;
+                count2 = 1;
+            } else {
+                count1--;
+                count2--;
+            }
+        }
+
+        // Count occurrences of the candidates to determine if they are majority elements
+        count1 = 0;
+        count2 = 0;
+        for (int num : nums) {
+            if (num == candidate1) {
+                count1++;
+            } else if (num == candidate2) {
+                count2++;
+            }
+        }
+
+        // Add the majority elements to the result list
+        int n = nums.length;
+        if (count1 > n / 3) {
+            result.add(candidate1);
+        }
+        if (count2 > n / 3) {
+            result.add(candidate2);
+        }
+
+        return result;
+    }
 
     // Test the code
     public static void main(String[] args) {
