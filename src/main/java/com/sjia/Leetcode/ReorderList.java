@@ -23,7 +23,7 @@ public class ReorderList {
             fast = fast.next.next;
         }
 
-        // Step 2: Reverse the second half of the linked list
+        // Step 2: Reverse the second half of the linked list, refer #206 Reverse Linked List
         ListNode prev = null;
         ListNode current = slow.next;
 
@@ -50,6 +50,53 @@ public class ReorderList {
         }
     }
 
+
+    public void reorderListWith3Methods(ListNode head) {
+        if (head == null || head.next == null)
+            return;
+
+        ListNode mid = findMid(head);
+        ListNode reversed = reverse(mid);
+        merge(head, reversed);
+    }
+
+    private ListNode findMid(ListNode head) {
+        ListNode prev = null;
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        prev.next = null;
+
+        return slow;
+    }
+
+    private ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
+    }
+
+    private void merge(ListNode l1, ListNode l2) {
+        while (l2 != null) {
+            ListNode next = l1.next;
+            l1.next = l2;
+            l1 = l2;
+            l2 = next;
+        }
+    }
 
     public static void main(String[] args) {
         ReorderList solution = new ReorderList();
