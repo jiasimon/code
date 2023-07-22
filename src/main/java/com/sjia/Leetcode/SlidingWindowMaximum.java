@@ -1,5 +1,8 @@
 package com.sjia.Leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class SlidingWindowMaximum {
     // #239. Sliding Window Maximum     https://leetcode.com/problems/sliding-window-maximum/   #hard
     /*
@@ -16,7 +19,7 @@ public class SlidingWindowMaximum {
 
 
     // brute force, TLE
-    public int[] maxSlidingWindow(int[] nums, int k) {
+    public int[] maxSlidingWindowBrute(int[] nums, int k) {
         int n = nums.length;
         int[] res = new int[n-k+1];
         for (int i=0; i < n-k+1; i++) {
@@ -29,6 +32,43 @@ public class SlidingWindowMaximum {
         }
 
         return res;
+    }
+
+
+    // ArrayDeque
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if (nums == null || nums.length == 0) {
+            return new int[0];
+        }
+
+        int n = nums.length;
+        int[] result = new int[n - k + 1];
+        int resultIndex = 0;
+
+        Deque<Integer> deque = new ArrayDeque<>();
+
+        for (int i = 0; i < n; i++) {
+            // Remove elements that are out of the current window from the front of the deque
+            while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
+                deque.pollFirst();
+            }
+
+            // Remove smaller elements from the end of the deque as they won't be candidates for maximum
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                deque.pollLast();
+            }
+
+            // Add the current index to the end of the deque
+            deque.offerLast(i);
+
+            // Start recording maximum values when the window reaches size k
+            if (i >= k - 1) {
+                result[resultIndex] = nums[deque.peekFirst()];
+                resultIndex++;
+            }
+        }
+
+        return result;
     }
 
 
