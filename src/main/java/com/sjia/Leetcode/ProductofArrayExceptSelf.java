@@ -3,12 +3,33 @@ package com.sjia.Leetcode;
 import java.util.Arrays;
 
 public class ProductofArrayExceptSelf {
-    // #238 https://leetcode.com/problems/product-of-array-except-self/ #fb
-    // Given an array nums of n integers where n > 1,
-    // return the product of all the elements of nums except nums[i]
-    // Note: Please solve it without division and in O(n).
+    // #238. Product of Array Except Self https://leetcode.com/problems/product-of-array-except-self/ #fb
+    /*
+         Given an array nums of n integers where n > 1,
+         return the product of all the elements of nums except nums[i]
+         Note: Please solve it without division and in O(n).
+
+     */
+
 
     // Input:  [1,2,3,4]    Output: [24,12,8,6]
+
+
+    // Brute Force
+    public int[] productExceptSelfBrute(int[] nums) {
+        int n = nums.length;
+        int[] res = new int[n];
+        for ( int i =0; i < n ; i++) {
+            int tmp =1;
+            for (int j = 0; j < n; j++ ) {
+                if (j != i) {
+                    tmp *= nums[j];
+                }
+            }
+            res[i] = tmp;
+        }
+        return res;
+    }
 
 
     // Runtime: 1 ms, faster than 99.99% of Java online submissions for Product of Array Except Self.
