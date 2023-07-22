@@ -1,6 +1,8 @@
 package com.sjia.Leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ProductofArrayExceptSelf {
     // #238. Product of Array Except Self https://leetcode.com/problems/product-of-array-except-self/ #fb
@@ -63,11 +65,48 @@ public class ProductofArrayExceptSelf {
         return res;
     }
 
+
+    // 2ms, 52.52%; 53.22mb, 42.33%
+    public int[] productExceptSelfFromDivide(int[] nums) {
+        int n = nums.length, total=1;
+        int[] res = new int[n];
+        List<Integer> indexZero = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            total *= nums[i];
+            if(nums[i] == 0) {
+                indexZero.add(i);
+            }
+        }
+        if ( total != 0) {
+            for (int i = 0; i < n; i++) {
+                res[i] = total / nums[i];
+            }
+        } else {
+            if (indexZero.size() > 1) {
+//                Arrays.fill(res, 0);
+                return res;
+            } else {
+                int p = indexZero.get(0);
+                total = 1;
+                for (int i = 0; i < n; i++) {
+                    if(i != p) {
+                        total *= nums[i];
+                    }
+                }
+                res[p] = total;
+            }
+        }
+        return res;
+    }
+
+
     public static void main(String[] args) {
-        int[] testData = {1,2,3,4,5};
-        //int[] testData = {0,0};
+//        int[] testData = {1,2,3,4,5};
+        int[] testData = {-1,1,0,-3,3};
+        int[] testData3 = {-1,1,0,0,-3,3};
         ProductofArrayExceptSelf solution = new ProductofArrayExceptSelf();
-        int[] result = solution.productExceptSelf(testData);
+        int[] result = solution.productExceptSelfFromDivide(testData);
         System.out.println("testData is: " + Arrays.toString(testData));
         System.out.println("result is: " + Arrays.toString(result));
 
