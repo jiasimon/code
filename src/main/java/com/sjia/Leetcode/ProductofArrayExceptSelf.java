@@ -49,8 +49,8 @@ public class ProductofArrayExceptSelf {
         return res;
     }
 
-/*
-    public int[] productExceptSelf(int[] nums) {
+    // if no 0 element, divide
+    public int[] productExceptSelfFromTotal(int[] nums) {
         int n = nums.length, total=1;
         int[] res = new int[n];
 
@@ -61,7 +61,7 @@ public class ProductofArrayExceptSelf {
             res[i] = total / nums[i];
         }
         return res;
-    }*/
+    }
 
     public static void main(String[] args) {
         int[] testData = {1,2,3,4,5};
