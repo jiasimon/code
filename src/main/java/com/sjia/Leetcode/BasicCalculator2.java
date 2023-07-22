@@ -69,6 +69,19 @@ public class BasicCalculator2 {
 
 
 
+    public static void main(String[] args) {
+        BasicCalculator2 calculatorII = new BasicCalculator2();
+
+        String expression = "3+2*2+10"; // Output: 7
+        System.out.println("Result: " + calculatorII.calculate(expression));
+
+        expression = " 3/2 "; // Output: 1
+        System.out.println("Result: " + calculatorII.calculate(expression));
+
+        expression = " 3+5 / 2 "; // Output: 5
+        System.out.println("Result: " + calculatorII.calculate(expression));
+    }
+
 
 
 }
