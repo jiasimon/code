@@ -1,5 +1,10 @@
 package com.sjia.Leetcode;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 public class LowestCommonAncestorBinaryTree {
     // #236. Lowest Common Ancestor of a Binary Tree https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/  #fb
     // The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants
@@ -54,6 +59,38 @@ public class LowestCommonAncestorBinaryTree {
 
 
 
+    // HashMap Store parentNode
+    public void dfs(TreeNode root, Map parent) {
+        if (root.left != null) {
+            parent.put(root.left.val, root);
+            dfs(root.left,parent);
+        }
+        if (root.right != null) {
+            parent.put(root.right.val, root);
+            dfs(root.right, parent);
+        }
+    }
+
+    public TreeNode lowestCommonAncestorHashMap(TreeNode root, TreeNode p, TreeNode q) {
+        Map<Integer, TreeNode> parent = new HashMap<Integer, TreeNode>();
+        Set<Integer> visited = new HashSet<Integer>();
+        dfs(root, parent);
+        while (p != null) {
+            visited.add(p.val);
+            p = parent.get(p.val);
+        }
+        while (q != null) {
+            if (visited.contains(q.val)) {
+                return q;
+            }
+            q = parent.get(q.val);
+        }
+        return null;
+    }
+
+
+
+
     public static void main(String[] args) {
         LowestCommonAncestorBinaryTree lcaBT = new LowestCommonAncestorBinaryTree();
 
@@ -71,7 +108,7 @@ public class LowestCommonAncestorBinaryTree {
         TreeNode p = root.left; // Node with value 5
         TreeNode q = root.left.right.right; // Node with value 4
 
-        TreeNode lowestCommonAncestor = lcaBT.lowestCommonAncestor(root, p, q);
+        TreeNode lowestCommonAncestor = lcaBT.lowestCommonAncestorHashMap(root, p, q);
         System.out.println("Lowest Common Ancestor: " + lowestCommonAncestor.val); // Output: 5
 
     }
