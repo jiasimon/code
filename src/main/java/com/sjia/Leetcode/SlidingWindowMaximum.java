@@ -72,6 +72,38 @@ public class SlidingWindowMaximum {
     }
 
 
+    // two pass, MaxLeft, MaxRight
+    public int[] maxSlidingWindowTwoPass(int[] nums, int k) {
+        int n = nums.length;
+        int[] MaxLeft = new int[n];
+        int[] MaxRight = new int[n];
+        int[] res = new int[n - k + 1];
+
+        for (int i=0; i < n ; i++) {
+            if(i %k == 0) {
+                MaxLeft[i] = nums[i];
+            } else {
+                MaxLeft[i] = Math.max(MaxLeft[i-1], nums[i]);
+            }
+        }
+
+        for (int i =n-1; i >=0; i--) {
+            if ( i == n-1 || ( i +1) % k == 0 ) {
+                MaxRight[i] = nums[i];
+            } else {
+                MaxRight[i] = Math.max(MaxRight[i+1], nums[i]);
+            }
+        }
+
+        for (int i = 0; i <= n - k; i++) {
+            res[i] = Math.max(MaxLeft[i + k-1], MaxRight[i]);  //note:  MaxLeft[i + k-1]
+        }
+
+        return res;
+
+    }
+
+
 
 
     public static void main(String[] args) {
