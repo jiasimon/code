@@ -10,7 +10,8 @@ public class InvertBinaryTree {
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Invert Binary Tree.
     //Memory Usage: 39.6 MB, less than 5.07% of Java online submissions for Invert Binary Tree.
 
-    // postOrder ? bottom up, first recur then switch
+    // postOrder ? bottom up, first recur then swap
+    // invert 2, invert 1, invert 3, swap 1-3; invert 7, invert 6, invert 9, swap 6-9; swap 2-7
     public TreeNode invertTree(TreeNode root) {
         if ( root == null ) {
             return null;
@@ -23,6 +24,24 @@ public class InvertBinaryTree {
     }
 
 
+    // top down, first swap, then recur
+    // 2 - 7  swap, invert 7, 6-9 swap; invert 2, swap 1-3
+    public TreeNode invertTreeTopDown(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+
+        // Swap the left and right children of the current node
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+        // Recursively invert the left and right subtrees
+        invertTreeTopDown(root.left);
+        invertTreeTopDown(root.right);
+
+        return root;
+    }
 
 
 
