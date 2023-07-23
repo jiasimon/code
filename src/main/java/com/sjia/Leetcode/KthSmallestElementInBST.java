@@ -20,7 +20,7 @@ public class KthSmallestElementInBST {
 
     // recursive, inorderTraversal
     // 0ms 100.00% ; 44.07mb, 78.96%
-    public int kthSmallest(TreeNode root, int k) {
+    public int kthSmallestInorder(TreeNode root, int k) {
         count = 0;
         result = 0;
         inorderTraversal(root, k);
@@ -42,5 +42,40 @@ public class KthSmallestElementInBST {
     }
 
 
+
+    // countNodes, leftCount, binary Search
+    public int kthSmallest(TreeNode root, int k) {
+        final int leftCount = countNodes(root.left);
+
+        if (leftCount == k - 1)
+            return root.val;
+        if (leftCount >= k)
+            return kthSmallest(root.left, k);
+        return kthSmallest(root.right, k - 1 - leftCount); // LeftCount < k
+    }
+
+    private int countNodes(TreeNode root) {
+        if (root == null)
+            return 0;
+        return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+
+
+
+    public static void main(String[] args) {
+        KthSmallestElementInBST kthSmallestElementInBST = new KthSmallestElementInBST();
+
+        // Create a Binary Search Tree
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(4);
+        root.left.right = new TreeNode(2);
+
+        int k = 1;
+        System.out.println("Kth smallest element: " + kthSmallestElementInBST.kthSmallest(root, k)); // Output: 1
+
+        k = 3;
+        System.out.println("Kth smallest element: " + kthSmallestElementInBST.kthSmallest(root, k)); // Output: 3
+    }
 
 }
