@@ -14,7 +14,7 @@ public class MinimumSizeSubarraySum {
 
 
     // Brute force, two loop, TLE
-    public static int minSubArrayLen(int target, int[] nums) {
+    public static int minSubArrayLenBrute(int target, int[] nums) {
         int n = nums.length;
         if( n==0) return 0;
 
@@ -32,6 +32,27 @@ public class MinimumSizeSubarraySum {
         if (res == Integer.MAX_VALUE) return 0;
         else return res;
     }
+
+
+    // sliding window, two pointers, right to target, increase left
+    public static int minSubArrayLen(int target, int[] nums) {
+        int n = nums.length;
+        int left =0, right =0, sum=0;
+        int res = Integer.MAX_VALUE;
+
+        while (right < n) {
+            sum += nums[right];
+            while (sum >= target) {
+                res = Math.min(res, right - left +1);
+                sum -= nums[left];
+                left++;
+            }
+            right++;
+        }
+        return res == Integer.MAX_VALUE ? 0 : res;
+    }
+
+
 
     // Test the code
     public static void main(String[] args) {
