@@ -17,10 +17,26 @@ public class BinaryTreePaths {
 
 
 
+    // null check out of recursive, compare to preorder,
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList<>();
+        if ( root != null) {
+            pathHelper(root, "", result);
+        }
 
         return result;
+    }
+
+    private void pathHelper(TreeNode root, String path, List<String> result) {
+        if( root.left == null && root.right == null) {
+            result.add(path + root.val);
+        }
+        if ( root.left != null) {
+            pathHelper(root.left, path + root.val + "->", result);
+        }
+        if ( root.right != null) {
+            pathHelper(root.right, path + root.val + "->", result);
+        }
     }
 
 
@@ -37,6 +53,7 @@ public class BinaryTreePaths {
         List<String> paths = solution.binaryTreePaths(root);
 
         // Print the root-to-leaf paths
+        // 1->2->5 , 1->3
         System.out.println("Binary Tree Paths:");
         for (String path : paths) {
             System.out.println(path);
