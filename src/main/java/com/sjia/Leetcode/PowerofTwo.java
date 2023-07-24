@@ -31,10 +31,12 @@ public class PowerofTwo {
 
     // Runtime: 1 ms, faster than 100.00% of Java online submissions for Power of Two.
     //Memory Usage: 36.4 MB, less than 79.52% of Java online submissions for Power of Two.
+
+    // n & (n-1), remove most right side "1" in bit
     public boolean isPowerOfTwo(int n) {
-        if (n <= 0) return false;
-        long x = (long) n;
-        return (x & (x - 1)) == 0;
+        if (n <=0 ) return false;
+        return ( n & (n-1)) == 0;
     }
+
 
 }
