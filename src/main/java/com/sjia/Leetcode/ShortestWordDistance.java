@@ -4,21 +4,34 @@ import static java.lang.Math.abs;
 
 public class ShortestWordDistance {
 
-    // #243 https://leetcode.com/problems/shortest-word-distance/
-    public int shortestDistance(String[] words, String word1, String word2) {
-        int a = -1, b = -1, result = Integer.MAX_VALUE;
-        for (int i = 0; i < words.length; i++) {
-            if (word1.equals(words[i])) a = i;
-            else if (word2.equals(words[i])) {
-                b = i;
-            }
-            if (a != -1 && b != -1) {
-                result = Math.min(result, Math.abs(b - a));
-                if (result == 1) return result;
-            }
+    // #243. Shortest Word Distance https://leetcode.com/problems/shortest-word-distance/   #premium
+    // https://leetcode.ca/2016-07-30-243-Shortest-Word-Distance/
 
+    /*
+    Given an array of strings wordsDict and two different strings that already exist in the array word1 and word2, return the shortest distance between these two words in the list.
+    Input: wordsDict = ["practice", "makes", "perfect", "coding", "makes"], word1 = "coding", word2 = "practice"
+    Output: 3
+
+     */
+
+
+    // 
+    public int shortestDistance(String[] words, String word1, String word2) {
+        int index1 = -1;
+        int index2 = -1;
+        int res = Integer.MAX_VALUE;
+
+        for (int i =0; i < words.length; i++) {
+            if(words[i].equals(word1)) {
+                index1 = i;
+            } else if (words[i].equals(word2)) {
+                index2 = i;
+            }
+            if (index1 != -1 && index2 != -1) {
+                res = Math.min(res, Math.abs(index2 - index1));
+            }
         }
-        return result;
+        return res;
     }
 
 }
