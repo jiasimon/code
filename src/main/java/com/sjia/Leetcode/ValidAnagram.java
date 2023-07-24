@@ -24,7 +24,7 @@ public class ValidAnagram {
     // HashMap
     // Runtime: 21 ms, faster than 11.72% of Java online submissions for Valid Anagram.
     //Memory Usage: 39.8 MB, less than 33.14% of Java online submissions for Valid Anagram.
-    public boolean isAnagram(String s, String t) {
+    public boolean isAnagramHashMap(String s, String t) {
         if(s.length() != t.length()) {
             return false;
         }
@@ -41,13 +41,57 @@ public class ValidAnagram {
 
 
 
+    // int[26] , lowercase English letters.
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        int[] charFrequency = new int[26];
+
+        // Count character frequencies in the first string
+        for (char c : s.toCharArray()) {
+            charFrequency[c - 'a']++;
+        }
+
+        // Decrement character frequencies for the second string
+        for (char c : t.toCharArray()) {
+            charFrequency[c - 'a']--;
+        }
+
+        // Check if all character frequencies are zero (both strings have the same characters)
+        for (int freq : charFrequency) {
+            if (freq != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
 
-        String s = "太阳雨";
-        String t = "雨太阳";
         ValidAnagram solution = new ValidAnagram();
+
+        String s = "anagram";
+        String t = "nagaram";
+        System.out.println("Are strings valid anagrams? " + solution.isAnagram(s, t)); // Output: true
+
+        s = "rat";
+        t = "car";
+        System.out.println("Are strings valid anagrams? " + solution.isAnagram(s, t)); // Output: false
+
+
+        // int[26] fail on UTF char
+        // Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 22729 out of bounds for length 26
+/*
+        s = "太阳雨";
+        t = "雨太阳";
+
         boolean result = solution.isAnagram(s,t);
         System.out.printf(" %s and %s anagram is : %s  \n", s, t, result);
+*/
+
     }
 
 }
