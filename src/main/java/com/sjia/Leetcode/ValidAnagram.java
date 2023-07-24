@@ -7,11 +7,10 @@ import java.util.List;
 public class ValidAnagram {
     // #242 https://leetcode.com/problems/valid-anagram/
 
-    // Arrays.equals
+    // Arrays.equals, sort
     // Runtime: 2 ms, faster than 97.37% of Java online submissions for Valid Anagram.
     //Memory Usage: 39.4 MB, less than 66.28% of Java online submissions for Valid Anagram.
-/*
-    public boolean isAnagram(String s, String t) {
+    public boolean isAnagram2(String s, String t) {
         if(s.length() != t.length()) {
             return false;
         }
@@ -20,7 +19,7 @@ public class ValidAnagram {
         Arrays.sort(a);
         Arrays.sort(b);
         return Arrays.equals(a, b);
-    }*/
+    }
 
     // HashMap
     // Runtime: 21 ms, faster than 11.72% of Java online submissions for Valid Anagram.
