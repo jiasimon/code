@@ -12,7 +12,7 @@ public class UglyNumber2 {
 
 
 
-    // three pointer p2, p3, p5
+    // three pointer p2, p3, p5, use if instead of else if
     // 3ms, 70.84%; 40.66mb, 62.83%
     public int nthUglyNumber(int n) {
         if (n <= 0) {
