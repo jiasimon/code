@@ -18,6 +18,7 @@ public class BinaryTreePaths {
 
 
     // null check out of recursive, compare to preorder,
+    // 8ms, 61.84% ; 41.84mb, 43.74%
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList<>();
         if ( root != null) {
@@ -40,6 +41,26 @@ public class BinaryTreePaths {
     }
 
 
+
+    // preorder, root.left == null && root.right == null
+    public List<String> binaryTreePathsPreorder(TreeNode root) {
+        List<String> res = new ArrayList<>();
+        helperPreorder(root, "", res);
+        return res;
+    }
+
+    private void helperPreorder(TreeNode root, String path, List<String> res) {
+        if (root == null ) return;
+
+        String tmpPath = path + root.val + "->";
+        if( root.left == null && root.right == null) {
+            tmpPath = path + root.val;
+            res.add(tmpPath);
+        }
+
+        helperPreorder(root.left,tmpPath, res);
+        helperPreorder(root.right, tmpPath, res);
+    }
 
 
     public static void main(String[] args) {
