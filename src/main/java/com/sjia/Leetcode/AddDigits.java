@@ -4,7 +4,17 @@ import java.util.Arrays;
 
 public class AddDigits {
 
-    // #258 https://leetcode.com/problems/add-digits/
+    // #258. Add Digits https://leetcode.com/problems/add-digits/
+
+
+
+    // Math pattern
+    public int addDigits2(int num) {
+        if( num ==0) return 0;
+        if ( num %9 == 0) return 9;
+        return num % 9;
+    }
+
 
     // Runtime: 1 ms, faster than 100.00% of Java online submissions for Add Digits.
     //Memory Usage: 36.2 MB, less than 94.62% of Java online submissions for Add Digits.
