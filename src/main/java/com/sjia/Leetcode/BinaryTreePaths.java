@@ -63,6 +63,50 @@ public class BinaryTreePaths {
     }
 
 
+    // Memory Limit Exceeded, root should not have recur
+    //
+    private void dfsPreorder(TreeNode root, String path, List<String> res) {
+        if (root == null) return ;
+
+        // root
+        if (root.left == null && root.right == null) {
+            res.add(path + root.val);
+        }
+        // left subtree
+        dfsPreorder(root.left ,path + root.val + "->",res);
+        // right subtree
+        dfsPreorder(root.right ,path + root.val + "->",res);
+    }
+
+
+
+    // StringBuilder, backtrack required
+    /*
+    no backtracking, 1->2->2->5 ; 1->2->2->51->3
+
+     */
+    public List<String> binaryTreePathsSB(TreeNode root) {
+        List<String> ans = new ArrayList<>();
+        dfs(root, new StringBuilder(), ans);
+        return ans;
+    }
+
+    private void dfs(TreeNode root, StringBuilder sb, List<String> ans) {
+        if (root == null)
+            return;
+        if (root.left == null && root.right == null) {
+            ans.add(sb.append(root.val).toString());
+            return;
+        }
+        final int length = sb.length();
+        dfs(root.left, sb.append(root.val).append("->"), ans);
+        sb.setLength(length);
+        dfs(root.right, sb.append(root.val).append("->"), ans);
+        sb.setLength(length);
+    }
+
+
+
     public static void main(String[] args) {
         // Create a sample binary tree
         TreeNode root = new TreeNode(1);
@@ -71,7 +115,7 @@ public class BinaryTreePaths {
         root.left.right = new TreeNode(5);
 
         BinaryTreePaths solution = new BinaryTreePaths();
-        List<String> paths = solution.binaryTreePaths(root);
+        List<String> paths = solution.binaryTreePathsSB(root);
 
         // Print the root-to-leaf paths
         // 1->2->5 , 1->3
