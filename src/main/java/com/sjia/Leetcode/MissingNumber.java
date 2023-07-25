@@ -3,18 +3,19 @@ package com.sjia.Leetcode;
 import java.util.stream.Stream;
 
 public class MissingNumber {
-    // #268 https://leetcode.com/problems/missing-number/
+    // #268. Missing Number https://leetcode.com/problems/missing-number/
 
     // Runtime: 0 ms, faster than 100.00% of Java online submissions for Missing Number.
     //Memory Usage: 40.4 MB, less than 8.72% of Java online submissions for Missing Number.
- /*
-    public int missingNumber(int[] nums) {
+
+    // Total - Sum
+    public int missingNumber2(int[] nums) {
         int result = 0;
         for (int num : nums) {
             result += num;
         }
         return (nums.length + 1) * nums.length/2 - result;
-    }*/
+    }
 
 
     //Runtime: 0 ms, faster than 100.00% of Java online submissions for Missing Number.
