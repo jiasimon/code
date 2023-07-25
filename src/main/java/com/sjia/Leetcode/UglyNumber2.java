@@ -11,8 +11,41 @@ public class UglyNumber2 {
      */
 
 
-    // TLE ,  failed on n=1352
+
+    // three pointer p2, p3, p5
+    // 3ms, 70.84%; 40.66mb, 62.83%
     public int nthUglyNumber(int n) {
+        if (n <= 0) {
+            return 0;
+        }
+
+        int[] uglyNumbers = new int[n];
+        uglyNumbers[0] = 1;
+        int p2 = 0, p3 = 0, p5 = 0;
+
+        for (int i = 1; i < n; i++) {
+            int nextUgly = Math.min(uglyNumbers[p2] * 2, Math.min(uglyNumbers[p3] * 3, uglyNumbers[p5] * 5));
+            uglyNumbers[i] = nextUgly;
+
+            if (nextUgly == uglyNumbers[p2] * 2) {
+                p2++;
+            }
+            if (nextUgly == uglyNumbers[p3] * 3) {
+                p3++;
+            }
+            if (nextUgly == uglyNumbers[p5] * 5) {
+                p5++;
+            }
+        }
+
+        return uglyNumbers[n - 1];
+    }
+
+
+
+
+    // TLE ,  failed on n=1352
+    public int nthUglyNumberCheckUgly(int n) {
         int count=0, res;
         for (int i=1; i< Integer.MAX_VALUE; i++) {
             if(isUgly(i)) {
