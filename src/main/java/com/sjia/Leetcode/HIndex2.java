@@ -13,7 +13,7 @@ public class HIndex2 {
 
 
     // use HIndex method
-    public int hIndex(int[] citations) {
+    public int hIndex2(int[] citations) {
         int n = citations.length;
 
         for ( int i= n-1; i>=0; i--) {
@@ -23,6 +23,24 @@ public class HIndex2 {
         }
         return n;
 
+    }
+
+
+    // binary search, l < r
+    public int hIndex(int[] citations) {
+        int n = citations.length;
+        int l = 0;
+        int r = n;
+
+        while ( l < r) {
+            int m = ( l + r) /2 ;
+            if ( citations[m] >= n -m) {
+                r = m;
+            } else {
+                l = m+1;
+            }
+        }
+        return n-l;
     }
 
 
