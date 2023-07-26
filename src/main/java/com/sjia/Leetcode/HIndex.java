@@ -47,6 +47,26 @@ public class HIndex {
 
 
 
+    // bucket sort
+    public int hIndexBucket(int[] citations) {
+        int n = citations.length;
+        int[] buckets = new int[n+1];
+        for(int c : citations) {
+            if(c >= n) {
+                buckets[n]++;
+            } else {
+                buckets[c]++;
+            }
+        }
+        int count = 0;
+        for(int i = n; i >= 0; i--) {
+            count += buckets[i];
+            if(count >= i) {
+                return i;
+            }
+        }
+        return 0;
+    }
 
 
 
@@ -56,16 +76,16 @@ public class HIndex {
         HIndex solution = new HIndex();
 
         int[] citations = {3, 0, 6, 1, 5};
-        int hIndex = solution.hIndex(citations);
+        int hIndex = solution.hIndexBucket(citations);
         System.out.println("The H-Index is: " + hIndex); // Output: The H-Index is: 3
 
         int[] citations2 = {3, 0, 6, 1, 5,21, 15};
-        int hIndex2 = solution.hIndex(citations2);
+        int hIndex2 = solution.hIndexBucket(citations2);
         System.out.println("The H-Index is: " + hIndex2); // Output: The H-Index is: 4
 
 
         int[] citations3 = {6, 6, 6, 6, 6, 6};
-        int hIndex3 = solution.hIndex(citations3);
+        int hIndex3 = solution.hIndexBucket(citations3);
         System.out.println("The H-Index is: " + hIndex3); // Output: The H-Index is: 4
     }
 
