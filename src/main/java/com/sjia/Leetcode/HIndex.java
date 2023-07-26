@@ -31,6 +31,27 @@ public class HIndex {
         return res;
     }
 
+
+
+    // h++, i--
+    public int hIndex2(int[] citations) {
+        Arrays.sort(citations);
+        int h = 0, i = citations.length - 1;
+        while (i >= 0 && citations[i] > h) {
+            h++;
+            i--;
+        }
+        return h;
+    }
+
+
+
+
+
+
+
+
+
     public static void main(String[] args) {
         HIndex solution = new HIndex();
 
