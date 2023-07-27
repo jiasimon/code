@@ -42,6 +42,30 @@ public class PerfectSquares {
 
 
 
+    // top down memo
+    // 61ms, 44.12%; 42.44mb, 82.02%
+    public int numSquaresMemo(int n) {
+        int[] memo = new int [n+1];
+        return numSquaresHelper(n, memo);
+    }
+
+    public int numSquaresHelper(int n, int[] memo ) {
+        if ( n < 4) return n;
+
+        if(memo[n] != 0) return memo[n];
+
+        int res = n;
+
+        for (int i = 1; i * i <= n; i++) {
+            int square = i * i;
+            res = Math.min(res, 1 + numSquaresHelper(n - square, memo));
+        }
+
+        memo[n] = res;
+        return res;
+    }
+
+
     public static void main(String[] args) {
         int n = 64;
         PerfectSquares solution = new PerfectSquares();
