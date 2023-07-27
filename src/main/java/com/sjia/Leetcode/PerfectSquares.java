@@ -66,15 +66,35 @@ public class PerfectSquares {
     }
 
 
+
+    // dp bottom up
+    // 33ms,  85.22%; 42.82mb, 48.30%
+    public int numSquaresDP(int n) {
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, 9);
+        dp[0] = 0;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j * j <= i; j++) {
+                dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
+            }
+        }
+
+        return dp[n];
+    }
+
+
+
+
     public static void main(String[] args) {
-        int n = 64;
+        int n = 101;
         PerfectSquares solution = new PerfectSquares();
-        int result = solution.numSquares(n);
+        int result = solution.numSquaresDP(n);
         System.out.println("The least number of perfect squares required to sum up to " + n + " is: " + result);
         // Output: The least number of perfect squares required to sum up to 12 is: 3
 
         n= 10;
-        result = solution.numSquares(n);
+        result = solution.numSquaresDP(n);
         System.out.println("The least number of perfect squares required to sum up to " + n + " is: " + result);
         //
 
