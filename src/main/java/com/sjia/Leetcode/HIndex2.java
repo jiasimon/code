@@ -44,6 +44,26 @@ public class HIndex2 {
     }
 
 
+    // l <= r, r=n-1
+    public int hIndexBinarySearch(int[] citations) {
+        int n = citations.length;
+        int left = 0, right = n - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int h = n - mid;
+            if (citations[mid] == h) {
+                return h;
+            } else if (citations[mid] < h) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return n - left;
+    }
+
+
+
     public static void main(String[] args) {
         HIndex2 solution = new HIndex2();
 
