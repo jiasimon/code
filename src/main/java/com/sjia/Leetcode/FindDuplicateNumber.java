@@ -1,5 +1,6 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -90,6 +91,18 @@ public class FindDuplicateNumber {
             nums[tmp] = - nums[tmp];
         }
 
+        return n;
+    }
+
+
+    // Sort
+    // 36ms, 22.76% ; 56.31mb, 84.71%
+    public static int findDuplicateBySort(int[] nums) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        for (int i=1; i < n; i++) {
+            if(nums[i] == nums[i-1]) return nums[i];
+        }
         return n;
     }
 
