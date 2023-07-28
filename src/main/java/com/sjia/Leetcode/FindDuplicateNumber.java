@@ -19,6 +19,7 @@ public class FindDuplicateNumber {
      */
 
     // HashSet !set.add(n)
+    // 14 ms, 42.95%; 59.1 MB, 13.14%
     public int findDuplicate(int[] nums) {
         Set<Integer> set = new HashSet<>();
 
@@ -31,6 +32,7 @@ public class FindDuplicateNumber {
 
 
     // set.contains
+    // 19 ms, 39.49%; 60.8 MB,6.11%
     public int findDuplicateSet(int[] nums) {
         Set<Integer> set = new HashSet<>();
 
@@ -51,6 +53,22 @@ public class FindDuplicateNumber {
                 if (nums[i] == nums[j]) {
                     return nums[i];
                 }
+            }
+        }
+
+        return len;
+    }
+
+
+    // count O(N)
+    // 2 ms, 98.67%; 56.9 MB, 28.98%
+    public static int findDuplicateByCount(int[] nums) {
+        int len = nums.length;
+        int[] cnt = new int[len + 1];
+        for (int i = 0; i < len; i++) {
+            cnt[nums[i]]++;
+            if (cnt[nums[i]] > 1) {
+                return nums[i];
             }
         }
 
