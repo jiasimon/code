@@ -107,10 +107,63 @@ public class FindDuplicateNumber {
     }
 
 
+    // Binary Search
+    public static int findDuplicate_BinarySearch(int[] nums) {
+        int len = nums.length;
+        int low = 1;
+        int high = len - 1;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            int cnt = 0;
+            for (int i = 0; i < len; i++) {
+                if (nums[i] <= mid) {
+                    cnt++;
+                }
+            }
+
+            if (cnt <= mid) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+
+        return low;
+    }
+
+
+
+    // Floyd, cycle detection, fast slow
+    public int findDuplicateByCycle(int[] nums) {
+        int slow = nums[0];
+        int fast = nums[nums[0]];
+
+
+        // Phase 1: Find the intersection point of the two pointers
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }
+
+        // Phase 2: Find the start of the cycle
+        slow = 0;
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
+        return slow;
+    }
+
+
+
+
+
+
     public static void main(String[] args) {
         int[] nums = {1, 3, 4, 2, 2};
         FindDuplicateNumber solution = new FindDuplicateNumber();
-        int duplicate = solution.findDuplicateByMarkNegative(nums);
+        int duplicate = solution.findDuplicateByCycle(nums);
         System.out.println("The duplicate number is: " + duplicate); // Output: The duplicate number is: 2
     }
 
