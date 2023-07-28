@@ -78,10 +78,26 @@ public class FindDuplicateNumber {
 
 
 
+    // Mark visited negative, modify input
+    // 3ms, 92.36%; 55.99mb, 97.76%
+    public static int findDuplicateByMarkNegative(int[] nums) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            int tmp = Math.abs(nums[i]);
+            if(nums[tmp] < 0) {
+                return tmp;
+            }
+            nums[tmp] = - nums[tmp];
+        }
+
+        return n;
+    }
+
+
     public static void main(String[] args) {
         int[] nums = {1, 3, 4, 2, 2};
         FindDuplicateNumber solution = new FindDuplicateNumber();
-        int duplicate = solution.findDuplicate(nums);
+        int duplicate = solution.findDuplicateByMarkNegative(nums);
         System.out.println("The duplicate number is: " + duplicate); // Output: The duplicate number is: 2
     }
 
