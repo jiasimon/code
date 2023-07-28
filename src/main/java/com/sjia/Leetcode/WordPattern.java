@@ -21,7 +21,7 @@ public class WordPattern {
 
     // Two HashMap
     // 1ms, 61.66% ; 40.25mb, 91.83%
-    public boolean TwoMap(String pattern, String str) {
+    public boolean wordPatternTwoMap(String pattern, String str) {
         String[] words = str.split(" ");
         if (pattern.length() != words.length) {
             return false;
@@ -46,6 +46,31 @@ public class WordPattern {
         }
         return true;
 
+    }
+
+
+    public boolean wordPatternTwoMap2(String pattern, String str) {
+        String[] words = str.split(" ");
+        if (pattern.length() != words.length) {
+            return false;
+        }
+
+        HashMap<Character, String> charToWord = new HashMap<>();
+        HashMap<String, Character> wordToChar = new HashMap<>();
+
+        for (int i = 0; i < pattern.length(); i++) {
+            char ch = pattern.charAt(i);
+            String word = words[i];
+
+            if ( ( charToWord.containsKey(ch) && !charToWord.get(ch).equals(word) ) ||
+                    ( wordToChar.containsKey(word) && wordToChar.get(word) != ch ) ) {
+                return false;
+            } else {
+                charToWord.put(ch, word);
+                wordToChar.put(word, ch);
+            }
+        }
+        return true;
     }
 
     // Map both to Integer
@@ -76,7 +101,7 @@ public class WordPattern {
         String pattern = "abba";
         String s = "dog cat cat dog";
         WordPattern solution = new WordPattern();
-        boolean result = solution.wordPattern(pattern, s);
+        boolean result = solution.wordPatternTwoMap2(pattern, s);
         System.out.println("The pattern and string follow the word pattern: " + result); // Output:  true
     }
 
