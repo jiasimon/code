@@ -29,6 +29,21 @@ public class FindDuplicateNumber {
         return -1;
     }
 
+
+    // set.contains
+    public int findDuplicateSet(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+
+        for ( int n: nums) {
+            if (set.contains(n)) return n;
+            else set.add(n);
+        }
+
+        return -1;
+    }
+
+
+
     public static void main(String[] args) {
         int[] nums = {1, 3, 4, 2, 2};
         FindDuplicateNumber solution = new FindDuplicateNumber();
