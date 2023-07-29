@@ -40,7 +40,7 @@ public class LongestIncreasingSubsequence {
 
 
     //  memo
-
+    // 343ms, 15.89%; 99.63mb, 6.89%
     public int lengthOfLIS_Memo(int[] nums) {
         int n = nums.length;
         int[][] memo = new int[n][n];
@@ -63,6 +63,8 @@ public class LongestIncreasingSubsequence {
         if(prev != -1) memo[prev][i] = Math.max(takeCurrent, notTakeCurrent);
         return Math.max(takeCurrent, notTakeCurrent);
     }
+
+
 
 
     public static void main(String[] args) {
