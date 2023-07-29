@@ -50,19 +50,18 @@ public class MoveZeroes {
         }
     }*/
 
-    //Runtime: 0 ms, faster than 100.00% of Java online submissions for Move Zeroes.
-    //Memory Usage: 39.3 MB, less than 97.15% of Java online submissions for Move Zeroes.
 
-    public void moveZeroes(int[] nums) {
-        if (nums == null || nums.length == 1) return;
-        int j = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0) {
-                if (i > j) {
-                    nums[j] = nums[i];
-                    nums[i] = 0;
-                }
-                j++;
+    // Snowball
+    public void moveZeroesSnowball(int[] nums) {
+        int snowball = 0;
+        for (int i=0;i<nums.length;i++){
+            if (nums[i]==0){
+                snowball++;
+            }
+            else if (snowball > 0) {
+                int t = nums[i];
+                nums[i]=0;
+                nums[i-snowball]=t;
             }
         }
     }
@@ -72,7 +71,7 @@ public class MoveZeroes {
          int[] testData = { 0,1,0,3,12 };
 //        int[] testData = { 1,2,3,0,12 };
         MoveZeroes solution = new MoveZeroes();
-        solution.moveZeroesByInsert(testData);
+        solution.moveZeroesSnowball(testData);
         System.out.println("The result is: " + Arrays.toString(testData));
 
     }
