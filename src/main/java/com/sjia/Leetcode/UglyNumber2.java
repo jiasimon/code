@@ -1,5 +1,9 @@
 package com.sjia.Leetcode;
 
+import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Set;
+
 public class UglyNumber2 {
     // #264. Ugly Number II     https://leetcode.com/problems/ugly-number-ii/
     /*
@@ -42,6 +46,24 @@ public class UglyNumber2 {
     }
 
 
+    // PriorityQueue
+    public int nthUglyNumberPriorityQueue(int n) {
+        Set<Long> seen = new HashSet<Long>();
+        PriorityQueue<Long> heap = new PriorityQueue<Long>();
+        seen.add(1L);
+        heap.offer(1L);
+        int ugly = 0;
+        for (int i = 0; i < n; i++) {
+            long curr = heap.poll();
+            ugly = (int) curr;
+
+            if (seen.add(curr * 2)) heap.offer(curr * 2);
+            if (seen.add(curr * 3)) heap.offer(curr * 3);
+            if (seen.add(curr * 5)) heap.offer(curr * 5);
+
+        }
+        return ugly;
+    }
 
 
     // TLE ,  failed on n=1352
@@ -68,9 +90,13 @@ public class UglyNumber2 {
     public static void main(String[] args) {
         int n = 10;
         UglyNumber2 solution = new UglyNumber2();
-        int result = solution.nthUglyNumber(n);
+        int result = solution.nthUglyNumberPriorityQueue(n);
         System.out.println("The " + n + "th Ugly Number is: " + result); // Output: The 10th Ugly Number is: 12
         // n = 20; res = 36
+
+        n = 1352;
+        result = solution.nthUglyNumberPriorityQueue(n);
+        System.out.println("The " + n + "th Ugly Number is: " + result);
 
     }
 
