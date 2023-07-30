@@ -21,7 +21,7 @@ public class SummaryRanges {
      */
 
 
-    public List<String> summaryRanges(int[] nums) {
+    public List<String> summaryRanges2(int[] nums) {
 
         List<String> result = new ArrayList<>();
         if (nums == null || nums.length == 0) return result;
@@ -29,15 +29,17 @@ public class SummaryRanges {
         int start = nums[0];
         int end = nums[0];
         for (int i=1; i < nums.length; i++) {
-            if (nums[i] != end + 1) {
+            if( nums[i] == end +1) {
+                end = nums[i];
+            } else {
                 if (start == end) {
                     result.add(start + "");
                 } else {
                     result.add(start + "->" + end);
                 }
                 start = nums[i];
+                end = nums[i];
             }
-            end = nums[i];
         }
         // out of loop, do not forget last range
         if (start == end) {
@@ -48,6 +50,41 @@ public class SummaryRanges {
         return result;
     }
 
+
+
+    public List<String> summaryRanges(int[] nums) {
+        List<String> result = new ArrayList<>();
+
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+
+        int start = nums[0];
+        int end = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == end + 1) {
+                end = nums[i];
+            } else {
+                result.add(getRange(start, end));
+                start = nums[i];
+                end = nums[i];
+            }
+        }
+
+        // Add the last range after the loop
+        result.add(getRange(start, end));
+
+        return result;
+    }
+
+    private String getRange(int start, int end) {
+        if (start == end) {
+            return String.valueOf(start);
+        } else {
+            return start + "->" + end;
+        }
+    }
 
 
     // Test the code
