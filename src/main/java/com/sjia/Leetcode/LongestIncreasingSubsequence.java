@@ -14,12 +14,8 @@ public class LongestIncreasingSubsequence {
 
      */
 
-    public int lengthOfLIS(int[] nums) {
-        int res = 1;
 
 
-        return res;
-    }
 
     // Brute Force, TLE
     public int lengthOfLIS_Brute(int[] nums) {
@@ -65,6 +61,27 @@ public class LongestIncreasingSubsequence {
     }
 
 
+
+    // dp
+    // 40ms, 75.54%; 43.52mb, 37.11%
+    public int lengthOfLIS(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+
+        int res = 1;
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+            res = Math.max(res, dp[i]);
+        }
+
+        return res;
+    }
 
 
     public static void main(String[] args) {
