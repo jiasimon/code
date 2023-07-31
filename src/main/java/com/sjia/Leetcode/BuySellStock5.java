@@ -39,6 +39,35 @@ public class BuySellStock5 {
 
 
 
+    // remove cooldown, only buy, sell dp
+    public int maxProfit2(int[] prices) {
+        int n = prices.length;
+
+        if (n <= 1) {
+            return 0;
+        }
+
+        int[] buy = new int[n];
+        int[] sell = new int[n];
+//        int[] cooldown = new int[n];
+
+        buy[0] = -prices[0];
+        buy[1] = Math.max( buy[0], -prices[1]);
+        sell[1] = Math.max(0, prices[1] - prices[0]);
+
+
+        for (int i = 2; i < n; i++) {
+//            cooldown[i] = Math.max(cooldown[i - 1], sell[i - 1]);
+            buy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i]);
+            sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);
+
+//            cooldown[i] = Math.max(cooldown[i - 1], sell[i - 1]);
+        }
+
+        return sell[n - 1];
+    }
+
+
     // state machine
     // https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/solutions/75928/share-my-dp-solution-by-state-machine-thinking/
     public int maxProfitStateGraph(int[] prices) {
@@ -70,18 +99,18 @@ public class BuySellStock5 {
 
         // Test case 1
         int[] prices1 = {1, 2, 3, 0, 2};
-        int result1 = solution.maxProfitStateGraph(prices1);
+        int result1 = solution.maxProfit2(prices1);
         System.out.println("Maximum Profit for Test Case 1: " + result1);  // Output: 3
 
         // Test case 2
         int[] prices2 = {2, 1, 4};
-        int result2 = solution.maxProfitStateGraph(prices2);
+        int result2 = solution.maxProfit2(prices2);
         System.out.println("Maximum Profit for Test Case 2: " + result2);  // Output: 3
 
 
         // Test case 3
         int[] prices3 = {3,3,5,0,0,3,1,4};
-        int result3 = solution.maxProfitStateGraph(prices3);
+        int result3 = solution.maxProfit2(prices3);
         System.out.println("Maximum Profit for Test Case 2: " + result3);  // Output: 6
 
     }
