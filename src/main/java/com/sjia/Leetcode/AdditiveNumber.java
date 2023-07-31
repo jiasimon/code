@@ -20,8 +20,46 @@ public class AdditiveNumber {
 
 
     public boolean isAdditiveNumber(String num) {
+        int n = num.length();
+
+        for (int i = 1; i <= n / 2; i++) { // i is the length of the first number
+            if (num.charAt(0) == '0' && i > 1) {
+                break;
+            }
+
+            long firstNum = Long.parseLong(num.substring(0,i));
+            // j is the length of the second number
+            for (int j=1; Math.max(i,j) <= n-i-j; j++ ) {
+                if (num.charAt(i) == '0' && j > 1) {
+                    break;
+                }
+                long secondNum = Long.parseLong((num.substring(i,i+j)));
+                if (isAdditive(num.substring(i + j), firstNum, secondNum)) {
+                    return true;
+                }
+            }
+
+        }
 
         return false;
+    }
+
+    private boolean isAdditive(String num, long firstNum, long secondNum) {
+        // If there's nothing left, empty  in the string, it means all parts are additive.
+        if (num.length() == 0) {
+            return true;
+        }
+
+        long sum = firstNum + secondNum;
+        String sumStr = String.valueOf(sum);
+
+        if (!num.startsWith(sumStr)) {
+            return false; // The remaining string should start with the sum of the first two numbers.
+        }
+
+        // recursive
+        return isAdditive(num.substring(sumStr.length()), secondNum, sum);
+
     }
 
 
