@@ -40,6 +40,25 @@ public class VerifyPreorderSequence {
 
 
 
+    public boolean verifyPreorder_Stack(int[] preorder) {
+        int minValue = Integer.MIN_VALUE;
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(preorder[0]);
+
+        for (int i=1; i < preorder.length ; i++) {
+            if( preorder[i] < minValue) {
+                return false;
+            }
+
+            while(!stack.isEmpty() && stack.peek() < preorder[i] ) {
+                minValue = stack.pop();
+            }
+
+            stack.push(preorder[i]);
+        }
+        return true;
+    }
 
 
 
