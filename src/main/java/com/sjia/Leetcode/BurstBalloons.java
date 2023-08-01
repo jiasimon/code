@@ -47,7 +47,7 @@ public class BurstBalloons {
         }
 
         int maxCoins = 0;
-        for (int i = left; i <= right; i++) {
+        for (int i = left; i <= right; i++) { // from 1 to n inclusive
             int coins = balloons[left - 1] * balloons[i] * balloons[right + 1];
             coins += burstBalloons(balloons, left, i - 1, memo);
             coins += burstBalloons(balloons, i + 1, right, memo);
@@ -58,18 +58,54 @@ public class BurstBalloons {
         return maxCoins;
     }
 
-    
 
+
+    // memo , (i,j) exclusive, inside range, burst the last one
+    public int maxCoins_memo(int[] nums) {
+        int n = nums.length;
+        int[] tmp = new int[n + 2];
+        tmp[0] = 1;
+        tmp[n + 1] = 1;
+
+        for (int i = 0; i < n; i++) {
+            tmp[i + 1] = nums[i];
+        }
+
+        int[][] memo = new int[n + 2][n + 2];
+        return burstBalloons_memo(tmp, 0, n+1, memo);
+    }
+
+    private int burstBalloons_memo(int[] balloons, int left, int right, int[][] memo) {
+        if (left == right -1) {
+            return 0;
+        }
+
+        // memo[left][right],  left and right are exclusive
+        if (memo[left][right] != 0) {
+            return memo[left][right];
+        }
+
+        int res = 0;
+        for (int i = left + 1; i < right; i++) {  // for exclusive, i starts at left + 1
+            int coins = balloons[left ] * balloons[i] * balloons[right ];
+            coins += burstBalloons_memo(balloons, left, i , memo);
+            coins += burstBalloons_memo(balloons, i , right, memo);
+            res = Math.max(res, coins);
+        }
+
+        memo[left][right] = res;
+        return res;
+    }
 
 
     public static void main(String[] args) {
         BurstBalloons solution = new BurstBalloons();
         int[] nums = {3, 1, 5, 8};
-        int result = solution.maxCoins(nums);
+        int result = solution.maxCoins_memo(nums);
         System.out.println(result); // Output: 167
 
         int[] nums2 = {3, 1, 2, 5, 8};
-        int result2 = solution.maxCoins(nums2);
+        int result2 = solution.maxCoins_memo(nums2);
         System.out.println(result2); // Output: 188
     }
 
