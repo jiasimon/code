@@ -98,14 +98,45 @@ public class BurstBalloons {
     }
 
 
+
+    // dp bottom up, inclusive
+    // 39 ms, 89.79%; 42.15mb, 11.47%
+    public int maxCoins_dp(int[] nums) {
+        int n = nums.length;
+        int[] tmp = new int[n + 2];
+        tmp[0] = 1;
+        tmp[n + 1] = 1;
+
+        for (int i = 0; i < n; i++) {
+            tmp[i + 1] = nums[i];
+        }
+
+        int[][] dp = new int[n + 2][n + 2];
+
+        for (int len = 1; len <= n; len++) {
+            for (int left = 1; left <= n - len + 1; left++) {
+                int right = left + len - 1;
+                for (int i = left; i <= right; i++) {
+                    int coins = tmp[left - 1] * tmp[i] * tmp[right + 1];
+                    coins += dp[left][i - 1] + dp[i + 1][right];
+                    dp[left][right] = Math.max(dp[left][right], coins);
+                }
+            }
+        }
+        return dp[1][n];
+
+    }
+
+
+
     public static void main(String[] args) {
         BurstBalloons solution = new BurstBalloons();
         int[] nums = {3, 1, 5, 8};
-        int result = solution.maxCoins_memo(nums);
+        int result = solution.maxCoins_dp(nums);
         System.out.println(result); // Output: 167
 
         int[] nums2 = {3, 1, 2, 5, 8};
-        int result2 = solution.maxCoins_memo(nums2);
+        int result2 = solution.maxCoins_dp(nums2);
         System.out.println(result2); // Output: 188
     }
 
