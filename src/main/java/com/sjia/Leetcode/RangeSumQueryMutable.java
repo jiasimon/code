@@ -1,7 +1,7 @@
 package com.sjia.Leetcode;
 
 
-// 307. Range Sum Query - Mutable   https://leetcode.com/problems/range-sum-query-mutable/description/
+// #307. Range Sum Query - Mutable   https://leetcode.com/problems/range-sum-query-mutable/description/
 /*
 Given an integer array nums, handle multiple queries of the following types:
 

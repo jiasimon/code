@@ -1,7 +1,7 @@
 package com.sjia.Leetcode;
 
 public class RangeSumSegmentTree {
-    // 307. Range Sum Query - Mutable   https://leetcode.com/problems/range-sum-query-mutable/description/
+    // #307. Range Sum Query - Mutable   https://leetcode.com/problems/range-sum-query-mutable/description/
     /*
     Update the value of an element in nums.
     Calculate the sum of the elements of nums between indices left and right inclusive where left <= right.
