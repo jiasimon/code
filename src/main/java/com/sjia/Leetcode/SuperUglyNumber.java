@@ -21,7 +21,7 @@ public class SuperUglyNumber {
 
     // PriorityQueue and hashset
     // TLE,  86 / 87  n = 10000
-    public int nthSuperUglyNumber(int n, int[] primes) {
+    public int nthSuperUglyNumber_HashSet(int n, int[] primes) {
         Set<Long> seen = new HashSet<>();
         PriorityQueue<Long> pq = new PriorityQueue<>();
 
@@ -39,6 +39,29 @@ public class SuperUglyNumber {
         }
         return ugly;
     }
+
+
+    // if( ugly % prime == 0) break;
+    public int nthSuperUglyNumber(int n, int[] primes) {
+        // Set<Long> seen = new HashSet<>();
+        PriorityQueue<Long> pq = new PriorityQueue<>();
+
+        // seen.add(1L);
+        pq.offer(1L);
+        int ugly = 0;
+        for (int i=0; i < n; i++) {
+            long curr = pq.poll();
+            ugly = (int) curr;
+
+            for ( int prime : primes) {
+                pq.offer(curr * prime);
+                if( ugly % prime == 0) break;
+            }
+
+        }
+        return ugly;
+    }
+
 
 
     public static void main(String[] args) {
