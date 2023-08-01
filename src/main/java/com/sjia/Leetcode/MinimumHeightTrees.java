@@ -18,6 +18,7 @@ public class MinimumHeightTrees {
 
 
     // BFS,
+    // 17ms, 94.34% ; 54.9 MB, 91.75%
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
 
         List<Integer> res = new ArrayList<>();
@@ -79,11 +80,53 @@ public class MinimumHeightTrees {
     }
 
 
+
+    // List<Set<Integer>> graph
+    // 27 ms, 70.99%; 57.3 MB, 24.48%
+    public List<Integer> findMinHeightTrees2(int n, int[][] edges) {
+        if (n == 1) {
+            return Collections.singletonList(0);
+        }
+
+        List<Set<Integer>> graph = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            graph.add(new HashSet<>());
+        }
+
+        for (int[] edge : edges) {
+            graph.get(edge[0]).add(edge[1]);
+            graph.get(edge[1]).add(edge[0]);
+        }
+
+        List<Integer> leaves = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            if (graph.get(i).size() == 1) {
+                leaves.add(i);
+            }
+        }
+
+        while (n > 2) {
+            n -= leaves.size();
+            List<Integer> newLeaves = new ArrayList<>();
+            for (int leaf : leaves) {
+                int neighbor = graph.get(leaf).iterator().next();
+                graph.get(neighbor).remove(leaf);
+                if (graph.get(neighbor).size() == 1) {
+                    newLeaves.add(neighbor);
+                }
+            }
+            leaves = newLeaves;
+        }
+
+        return leaves;
+    }
+
+
     public static void main(String[] args) {
         MinimumHeightTrees solution = new MinimumHeightTrees();
         int n = 6;
         int[][] edges = {{0, 3}, {1, 3}, {2, 3}, {4, 3}, {5, 4}};
-        List<Integer> result = solution.findMinHeightTrees(n, edges);
+        List<Integer> result = solution.findMinHeightTrees2(n, edges);
         System.out.println(result); // Output: [3, 4]
     }
 }
