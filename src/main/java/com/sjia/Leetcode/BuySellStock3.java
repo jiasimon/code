@@ -15,6 +15,7 @@ public class BuySellStock3 {
     // Runtime: 2 ms, faster than 92.43% of Java online submissions for Best Time to Buy and Sell Stock III.
     //Memory Usage: 39.8 MB, less than 12.50% of Java online submissions for Best Time to Buy and Sell Stock III.
 
+    // _i20, 2 for second tranc, 0 for "no stock"
     int maxProfit_with_cool(int[] prices) {
         int dp_i10 = 0, dp_i11 = Integer.MIN_VALUE;
         int dp_i20 = 0, dp_i21 = Integer.MIN_VALUE;
