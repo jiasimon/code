@@ -13,7 +13,7 @@ public class RemoveDuplicateLetters {
     Input: s = "bcac"       Output: "bca"
      */
 
-    public String removeDuplicateLetters(String s) {
+    public String removeDuplicateLetters_failed(String s) {
         int n = s.length();
         char[] chars = s.toCharArray();
         int[] lastOccurrence = new int[26];
@@ -46,11 +46,49 @@ public class RemoveDuplicateLetters {
         return result.toString();
     }
 
+
+    public String removeDuplicateLetters(String s) {
+        int[] lastOccurrence = new int[26];
+        boolean[] visited = new boolean[26];
+        char[] chars = s.toCharArray();
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < chars.length; i++) {
+            lastOccurrence[chars[i] - 'a'] = i;
+        }
+
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+
+            while (!stack.isEmpty() && c < stack.peek() && lastOccurrence[stack.peek() - 'a'] > i && !visited[c - 'a']) {
+                visited[stack.pop() - 'a'] = false;
+            }
+
+            if (!visited[c - 'a']) {
+                stack.push(c);
+                visited[c - 'a'] = true;
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        while (!stack.isEmpty()) {
+            result.insert(0, stack.pop());
+        }
+
+        return result.toString();
+    }
+
+
     public static void main(String[] args) {
         RemoveDuplicateLetters solution = new RemoveDuplicateLetters();
         String s = "abacb";
         String result = solution.removeDuplicateLetters(s);
         System.out.println(result); // Output: "abc"
+
+        s = "acabcd";
+        result = solution.removeDuplicateLetters(s);
+        System.out.println(result);
+
     }
 
 }
