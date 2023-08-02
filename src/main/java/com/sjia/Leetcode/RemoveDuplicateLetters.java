@@ -79,6 +79,40 @@ public class RemoveDuplicateLetters {
     }
 
 
+    // if (inStack[c-'a']) continue;
+    public String removeDuplicateLetters2(String s) {
+        int[] lastPosition = new int[26];
+        boolean[] inStack = new boolean[26];
+
+        char[] chars = s.toCharArray();
+
+        Stack<Character> stack = new Stack<>();
+
+        for (int i=0; i < chars.length; i++) {
+            lastPosition[chars[i] - 'a'] = i;
+        }
+
+        for ( int i=0; i < chars.length; i++) {
+            char c = chars[i];
+            if (inStack[c-'a']) continue;
+
+            while (!stack.isEmpty() && stack.peek() > c && lastPosition[stack.peek() - 'a'] > i) {
+                inStack[stack.pop() - 'a'] = false;
+            }
+
+            stack.push(c);
+            inStack[c-'a'] = true;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (char c : stack) {
+            sb.append(c);
+        }
+
+        return sb.toString();
+    }
+
+
     public static void main(String[] args) {
         RemoveDuplicateLetters solution = new RemoveDuplicateLetters();
         String s = "abacb";
@@ -87,7 +121,7 @@ public class RemoveDuplicateLetters {
 
         s = "acabcd";
         result = solution.removeDuplicateLetters(s);
-        System.out.println(result);
+        System.out.println(result); // Output: "abcd"
 
     }
 
