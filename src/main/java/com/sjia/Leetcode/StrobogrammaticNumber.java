@@ -13,7 +13,7 @@ public class StrobogrammaticNumber {
 
 
     // HashMap for 01689
-    public boolean isStrobogrammatic(String num) {
+    public boolean isStrobogrammatic2(String num) {
         if (num.length() ==0) return true;
         Map<Character, Character> tmp = new HashMap<>();
         tmp.put('0','0');
@@ -34,6 +34,30 @@ public class StrobogrammaticNumber {
         return true;
     }
 
+
+
+    public boolean isStrobogrammatic(String num) {
+        if (num.length() ==0) return true;
+
+
+        int left =0, right= num.length()-1 ;
+        while(left <= right) {
+            if(num.charAt(left) == num.charAt(right)) {
+                if(num.charAt(left) != '0' && num.charAt(left) != '1' && num.charAt(left) != '8') {
+                    return false;
+                }
+            } else {
+                if ((num.charAt(left) != '6' || num.charAt(right) != '9') &&
+                        (num.charAt(left) != '9' || num.charAt(right) != '6')) {
+                    return false;
+                }
+            }
+            left++;
+            right--;
+
+        }
+        return true;
+    }
 
 
     public static void main(String[] args) {
