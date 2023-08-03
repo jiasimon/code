@@ -46,6 +46,17 @@ public class WiggleSort {
 
 
 
+    //
+    public void wiggleSort_swap(int[] nums) {
+        // 1. if i is even, then nums[i] <= nums[i - 1]
+        // 2. if i is odd, then nums[i] >= nums[i - 1]
+        for (int i = 1; i < nums.length; ++i)
+            if ((i % 2 == 0 && nums[i] > nums[i - 1]) || (i % 2 == 1 && nums[i] < nums[i - 1]))
+                swap(nums, i, i - 1);
+    }
+
+
+
     public static void main(String[] args) {
         WiggleSort solution = new WiggleSort();
         int[] nums = {3, 5, 2, 1, 6, 4};
@@ -55,7 +66,11 @@ public class WiggleSort {
         solution.wiggleSort_sort2(nums);
         System.out.println(Arrays.toString(nums)); // Output: [2, 1, 4, 3, 6, 5], nums[0] >= nums[1] <= nums[2] >= nums[3]
 
-        
+
+        solution.wiggleSort_swap(nums);
+        System.out.println(Arrays.toString(nums)); // Output: [1, 4, 2, 6, 3, 5]
+
+
 
 
     }
