@@ -15,6 +15,31 @@ public class SingleNumber3 {
      */
 
 
+    // xor, n & -n
+    public int[] singleNumber(int[] nums) {
+        // Get the XOR of the two distinct numbers
+        int xor = 0;
+        for (int num : nums) {
+            xor ^= num;
+        }
+
+        // Find the rightmost set bit in the XOR result
+        int rightmostSetBit = xor & -xor;
+
+        // Separate the numbers into two groups based on the rightmost set bit
+        int num1 = 0, num2 = 0;
+        for (int num : nums) {
+            if ((num & rightmostSetBit) == 0) {
+                num1 ^= num;
+            } else {
+                num2 ^= num;
+            }
+        }
+
+        return new int[]{num1, num2};
+    }
+
+
     // Set contains and remove
     // 4ms, 46.96%; 44.69mb, 19.80%
     public int[] singleNumber2(int[] nums) {
@@ -54,10 +79,15 @@ public class SingleNumber3 {
     }
 
     public static void main(String[] args) {
-        int[] nums = {1, 2, 1, 3, 2, 5};
         SingleNumber3 solution = new SingleNumber3();
-        int[] result = solution.singleNumberHashSet(nums);
-        System.out.println("The two distinct numbers are: " + result[0] + " and " + result[1]);
+
+//        int[] nums = {1, 2, 1, 3, 2, 5};
+//        int[] result = solution.singleNumber(nums);
+//        System.out.println("The two distinct numbers are: " + result[0] + " and " + result[1]);
         // Output: The two distinct numbers are: 3 and 5
+
+        int[] nums2 = {1, 5, 1, 3, 5, 7};
+        int[] result2 = solution.singleNumber(nums2);
+        System.out.println("The two distinct numbers are: " + result2[0] + " and " + result2[1]);
     }
 }
