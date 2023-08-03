@@ -42,7 +42,8 @@ public class SuperUglyNumber {
 
 
     // if( ugly % prime == 0) break;
-    public int nthSuperUglyNumber(int n, int[] primes) {
+    // 76ms, 53.68%; 55.60mb; 5.22%
+    public int nthSuperUglyNumber_PriorityQueue(int n, int[] primes) {
         // Set<Long> seen = new HashSet<>();
         PriorityQueue<Long> pq = new PriorityQueue<>();
 
@@ -62,6 +63,30 @@ public class SuperUglyNumber {
         return ugly;
     }
 
+
+    // array pointer
+    public int nthSuperUglyNumber(int n, int[] primes) {
+        int[] superUgly = new int[n];
+        int[] indexes = new int[primes.length];
+        superUgly[0] = 1;
+
+        for (int i = 1; i < n; i++) {
+            int nextUgly = Integer.MAX_VALUE;
+            for (int j = 0; j < primes.length; j++) {
+                nextUgly = Math.min(nextUgly, primes[j] * superUgly[indexes[j]]);
+            }
+
+            for (int j = 0; j < primes.length; j++) {
+                if (nextUgly == primes[j] * superUgly[indexes[j]]) {
+                    indexes[j]++;
+                }
+            }
+
+            superUgly[i] = nextUgly;
+        }
+
+        return superUgly[n - 1];
+    }
 
 
     public static void main(String[] args) {
