@@ -71,8 +71,9 @@ public class SuperUglyNumber {
         superUgly[0] = 1;
 
         for (int i = 1; i < n; i++) {
-            int nextUgly = Integer.MAX_VALUE;
+            long nextUgly = Long.MAX_VALUE;
             for (int j = 0; j < primes.length; j++) {
+                long tmp = primes[j] * superUgly[indexes[j]];
                 nextUgly = Math.min(nextUgly, primes[j] * superUgly[indexes[j]]);
             }
 
@@ -82,11 +83,45 @@ public class SuperUglyNumber {
                 }
             }
 
-            superUgly[i] = nextUgly;
+            superUgly[i] = (int)nextUgly;
         }
 
         return superUgly[n - 1];
     }
+
+
+
+    public long nthSuperUglyNumber_long(int n, int[] primes) {
+        long[] superUgly = new long[n];
+        int[] indexes = new int[primes.length];
+        superUgly[0] = 1L;
+
+
+
+        for (int i = 1; i < n; i++) {
+//            int nextUgly = Integer.MAX_VALUE;
+            long nextUgly = Long.MAX_VALUE;
+            for (int j = 0; j < primes.length; j++) {
+                long tmp = primes[j] * superUgly[indexes[j]];
+
+                nextUgly = Math.min(nextUgly, tmp);
+            }
+
+            for (int j = 0; j < primes.length; j++) {
+                long tmp = primes[j] * superUgly[indexes[j]];
+//                if (nextUgly == primes[j] * superUgly[indexes[j]]) {
+                if (nextUgly == tmp) {
+                    indexes[j]++;
+                }
+            }
+
+            superUgly[i] = nextUgly;
+
+        }
+
+        return superUgly[n - 1];
+    }
+
 
 
     public static void main(String[] args) {
@@ -99,6 +134,11 @@ public class SuperUglyNumber {
         n = 100;
         result = solution.nthSuperUglyNumber(n, primes);
         System.out.println(result);  // Output: 5408
+
+        int[] primes2 = {2, 3, 5, 7};
+        n = 5911;
+        result = solution.nthSuperUglyNumber(n, primes2);
+        System.out.println(result);  // Expect: 2144153025  Output: -2147483648
     }
 
 }
