@@ -37,7 +37,38 @@ public class CoinChange {
 
 
 
+    // memo
+    // 33ms, 29.47%; 43.63mb, 39.30%
+    public int coinChange_memo(int[] coins, int amount) {
+        if (amount < 1) {
+            return 0;
+        }
 
+        int[] memo = new int[amount+1];
+        Arrays.fill(memo,-2);
+        return coinChange_memo(coins, amount, memo);
+    }
+
+
+
+    private int coinChange_memo(int[] coins, int remain, int[] memo) {
+        if ( remain < 0) return -1;
+        if ( remain == 0) return 0;
+        if (memo[remain] != -2) {
+            return memo[remain];
+        }
+
+        int count = -1;
+        for ( int i=0; i < coins.length; i++) {
+            int tmp = coinChange_memo(coins, remain-coins[i], memo);
+            if ( tmp != -1)  {
+                if (count < 0) count = tmp+ 1;
+                else count = Math.min(count, tmp + 1);
+            }
+        }
+        memo[remain] = count;
+        return count;
+    }
 
 
 
@@ -46,7 +77,7 @@ public class CoinChange {
         CoinChange solution = new CoinChange();
         int[] coins = {1, 2, 5};
         int amount = 11;
-        int result = solution.coinChangeRecursive(coins, amount);
+        int result = solution.coinChange_memo(coins, amount);
         System.out.println(result); // Output: 3 (11 = 5 + 5 + 1)
     }
 
