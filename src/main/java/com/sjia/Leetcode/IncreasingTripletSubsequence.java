@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class IncreasingTripletSubsequence {
     // #334. Increasing Triplet Subsequence https://leetcode.com/problems/increasing-triplet-subsequence/
     /*
@@ -14,6 +16,7 @@ public class IncreasingTripletSubsequence {
      */
 
     // two pointer
+    // 2ms, 98.61%; 131.75mb, 47.65%
     public boolean increasingTriplet(int[] nums) {
         if (nums.length < 2) return false;
 
@@ -33,10 +36,35 @@ public class IncreasingTripletSubsequence {
         return false;
     }
 
+
+
+    // compare to #300 LIS
+    // DP,  75 / 80
+    public boolean increasingTriplet_LIS(int[] nums) {
+        if (nums.length < 2) return false;
+
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+        int res = 1;
+
+        for ( int i=1; i < n ; i++) {
+            for (int j=0; j < i; j++ ) {
+                if(nums[i] > nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                    if (dp[i] == 3) return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
     public static void main(String[] args) {
         IncreasingTripletSubsequence solution = new IncreasingTripletSubsequence();
         int[] nums = {1, 2, 3, 4, 5};
-        System.out.println(solution.increasingTriplet(nums)); // Output: true (Increasing triplet subsequence: [1, 2, 3])
+        System.out.println(solution.increasingTriplet_LIS(nums)); // Output: true (Increasing triplet subsequence: [1, 2, 3])
 
 
 
