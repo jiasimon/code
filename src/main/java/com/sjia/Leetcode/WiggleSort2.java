@@ -24,7 +24,7 @@ public class WiggleSort2 {
 
     // sort, odd, even put num from big to small
     // 6ms, 35.27%; 46.65mb, 84.23%
-    public void wiggleSort(int[] nums) {
+    public void wiggleSort_odd_even(int[] nums) {
         Arrays.sort(nums);
 
         int[] tmp = new int[nums.length];
@@ -47,15 +47,80 @@ public class WiggleSort2 {
     }
 
 
+    // quick select, 3-way partition, revisit
+
+    int[] nums;
+    int n;
+    int qselect(int l, int r, int k) {
+        if (l == r) return nums[l];
+        int x = nums[l + r >> 1], i = l - 1, j = r + 1;
+        while (i < j) {
+            do i++; while (nums[i] < x);
+            do j--; while (nums[j] > x);
+            if (i < j) swap(i, j);
+        }
+        int cnt = j - l + 1;
+        if (k <= cnt) return qselect(l, j, k);
+        else return qselect(j + 1, r, k - cnt);
+    }
+    void swap(int a, int b) {
+        int c = nums[a];
+        nums[a] = nums[b];
+        nums[b] = c;
+    }
+    int getIdx(int x) {
+        return (2 * x + 1) % (n | 1);
+    }
+    public void wiggleSort(int[] _nums) {
+        nums = _nums;
+        n = nums.length;
+        int x = qselect(0, n - 1, n + 1 >> 1);
+        int l = 0, r = n - 1, loc = 0;
+        while (loc <= r) {
+            if (nums[getIdx(loc)] > x) swap(getIdx(loc++), getIdx(l++));
+            else if (nums[getIdx(loc)] < x) swap(getIdx(loc), getIdx(r--));
+            else loc++;
+        }
+    }
+
+
+
+
+    //
+    public void wiggleSort_swap(int[] nums) {
+        // 1. if i is even, then nums[i] <= nums[i - 1]
+        // 2. if i is odd, then nums[i] >= nums[i - 1]
+        for (int i = 1; i < nums.length; ++i) {
+            if ((i % 2 == 0 && nums[i] > nums[i - 1]) || (i % 2 == 1 && nums[i] < nums[i - 1]))
+                swap(nums, i, i - 1);
+        }
+
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+
+
     public static void main(String[] args) {
         WiggleSort2 solution = new WiggleSort2();
         int[] nums = {1, 5, 1, 1, 6, 4};
         solution.wiggleSort(nums);
         System.out.println(Arrays.toString(nums)); // Output: [1, 6, 1, 5, 1, 4]
 
+
+
         int[] nums2 = {1, 2, 4, 4, 4, 6};
         solution.wiggleSort(nums2);
         System.out.println(Arrays.toString(nums2)); // Output: [4, 6, 2, 4, 1, 4]
+
+        int[] nums2b = {1, 2, 4, 4, 4, 6};
+        solution.wiggleSort_swap(nums2b);
+        System.out.println(Arrays.toString(nums2b)); // Output: [1, 4, 2, 4, 4, 6]
+
 
     }
 
