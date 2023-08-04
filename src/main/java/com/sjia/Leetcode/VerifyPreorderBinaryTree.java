@@ -25,7 +25,8 @@ public class VerifyPreorderBinaryTree {
 
 
     // stack.size() == 1, one # in the end
-    public boolean isValidSerialization(String preorder) {
+    // 8ms, 23.33%; 43.74mb, 13.33%
+    public boolean isValidSerialization_Stack(String preorder) {
         String[] nodes = preorder.split(",");
         int n = nodes.length;
         Stack<String> stack = new Stack<>();
@@ -47,6 +48,28 @@ public class VerifyPreorderBinaryTree {
 
         return stack.size() == 1 && stack.peek().equals("#");
     }
+
+
+
+    // without stack, # to -1, other +1
+    // 4ms, Beats 91.78%; 43.65mb, 29.11%
+    public boolean isValidSerialization(String preorder) {
+        String[] nodes = preorder.split(",");
+        int n = nodes.length;
+        int count=0;
+        for (int i=0; i < n-1; i++) {
+            if(nodes[i].equals("#")){
+                count--;
+                if (count <0) return false;
+            }
+            else {
+                    count++;
+            }
+        }
+        return count ==0 && nodes[n-1].equals("#");
+
+    }
+
 
     public static void main(String[] args) {
         VerifyPreorderBinaryTree solution = new VerifyPreorderBinaryTree();
