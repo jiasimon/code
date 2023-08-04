@@ -38,6 +38,33 @@ public class IncreasingTripletSubsequence {
 
 
 
+    // leftMin, rightMax, 3 pass
+    // 6ms, 14.72%; 125.90mb; 91.61%
+    public boolean increasingTriplet_3Pass(int[] nums) {
+        int n = nums.length;
+        if (n<2) return false;
+        int[] leftMin = new int[n];
+        int[] rightMax = new int[n];
+
+        leftMin[0] = nums[0];
+        for (int i = 1; i < n; i++) {
+            leftMin[i] = Math.min(leftMin[i-1], nums[i]);
+        }
+
+        rightMax[n-1] = nums[n-1];
+        for (int j = n-2; j>=0; j--) {
+            rightMax[j] = Math.max(nums[j], rightMax[j+1]);
+        }
+        for (int i=1; i < n-1; i++) {
+            if(nums[i] > leftMin[i-1]  && nums[i] < rightMax[i + 1]){
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
     // compare to #300 LIS
     // DP,  75 / 80
     public boolean increasingTriplet_LIS(int[] nums) {
@@ -64,7 +91,10 @@ public class IncreasingTripletSubsequence {
     public static void main(String[] args) {
         IncreasingTripletSubsequence solution = new IncreasingTripletSubsequence();
         int[] nums = {1, 2, 3, 4, 5};
-        System.out.println(solution.increasingTriplet_LIS(nums)); // Output: true (Increasing triplet subsequence: [1, 2, 3])
+        System.out.println(solution.increasingTriplet_3Pass(nums)); // Output: true (Increasing triplet subsequence: [1, 2, 3])
+
+        int[] nums2 = {5,1,6};
+        System.out.println(solution.increasingTriplet_3Pass(nums2)); // False
 
 
 
