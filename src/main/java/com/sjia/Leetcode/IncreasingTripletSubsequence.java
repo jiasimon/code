@@ -88,13 +88,46 @@ public class IncreasingTripletSubsequence {
 
 
 
+    //LIS  binary search
+    // 7ms, 23.96%; 119.26mb, 69.63%
+    public boolean increasingTriplet_LIS_binary(int[] nums) {
+        int n = nums.length;
+        if (n<2) return false;
+        int res=0;
+        int[] f = new int[n+1];
+
+        Arrays.fill(f, Integer.MAX_VALUE);
+
+        for (int i=0; i < n; i++) {
+            int tmp = nums[i];
+            int l=1, r= i+1;   // l=0 or l=1
+            while ( l < r) {
+                int mid = l + (r - l) / 2;
+                if (f[mid] < nums[i]) {
+                    l = mid + 1;
+                } else {
+                    r = mid;
+                }
+            }
+            f[r] = nums[i];
+            res = Math.max(res, r);
+        }
+        return res >= 3;
+
+    }
+
+
     public static void main(String[] args) {
         IncreasingTripletSubsequence solution = new IncreasingTripletSubsequence();
         int[] nums = {1, 2, 3, 4, 5};
-        System.out.println(solution.increasingTriplet_3Pass(nums)); // Output: true (Increasing triplet subsequence: [1, 2, 3])
+        System.out.println(solution.increasingTriplet_LIS_binary(nums)); // Output: true (Increasing triplet subsequence: [1, 2, 3])
 
         int[] nums2 = {5,1,6};
-        System.out.println(solution.increasingTriplet_3Pass(nums2)); // False
+        System.out.println(solution.increasingTriplet_LIS_binary(nums2)); // False
+
+
+        int[] nums3 = {10, 9, 2, 5, 3, 7, 101, 18};
+        System.out.println(solution.increasingTriplet_LIS_binary(nums3));
 
 
 
