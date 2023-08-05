@@ -27,7 +27,16 @@ public class SelfCrossing {
                     i-2
     */
 
-    public boolean isSelfCrossing(int[] distance) {
+
+    /*
+    Case 1: If the new line crosses the line three steps ahead.
+    Case 2: If the new line crosses the line four steps ahead.
+    Case 3: If the new line crosses the line five steps ahead.
+    Case 4: If the new line crosses the line six steps ahead.
+    Case 5: If the new line crosses the line four steps ahead and reaches the line's starting point.
+    Case 6: If the new line crosses the line five steps ahead and reaches the line's starting point.
+     */
+    public boolean isSelfCrossing2(int[] distance) {
         int n = distance.length;
 
         if (n <= 3) {
@@ -58,6 +67,27 @@ public class SelfCrossing {
 
         return false;
     }
+
+
+    // 3 cases
+    // 5ms, 38.75%; 50.9 MB, 98.75%
+    public boolean isSelfCrossing(int[] distance) {
+        if (distance.length <= 3)
+            return false;
+
+        for (int i = 3; i < distance.length; ++i) {
+            if (distance[i - 2] <= distance[i] && distance[i - 1] <= distance[i - 3])
+                return true;
+            if (i >= 4 && distance[i - 1] == distance[i - 3] && distance[i - 2] <= distance[i] + distance[i - 4])
+                return true;
+            if (i >= 5 && distance[i - 4] <= distance[i - 2] && distance[i - 2] <= distance[i] + distance[i - 4] && distance[i - 1] <= distance[i - 3] &&
+                    distance[i - 3] <= distance[i - 1] + distance[i - 5])
+                return true;
+        }
+
+        return false;
+    }
+
 
     public static void main(String[] args) {
         SelfCrossing solution = new SelfCrossing();
