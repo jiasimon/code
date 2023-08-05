@@ -1,6 +1,9 @@
 package com.sjia.Leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class IncreasingTripletSubsequence {
     // #334. Increasing Triplet Subsequence https://leetcode.com/problems/increasing-triplet-subsequence/
@@ -89,7 +92,7 @@ public class IncreasingTripletSubsequence {
 
 
     //LIS  binary search
-    // 7ms, 23.96%; 119.26mb, 69.63%
+    // 48ms, 5.06%; 128.80mb 89.65%
     public boolean increasingTriplet_LIS_binary(int[] nums) {
         int n = nums.length;
         if (n<2) return false;
@@ -117,17 +120,40 @@ public class IncreasingTripletSubsequence {
     }
 
 
+
+
+    // LIS_Piles, Collections.binarySearch
+    // ~pile,  (-(insertion point) - 1)
+    // 23 ms, 5.6%, 127.7 MB; 91.18%
+    public boolean increasingTriplet_LIS_Piles(int[] nums) {
+
+        List<Integer> piles = new ArrayList<>(nums.length);
+        for (int num : nums) {
+            int pile = Collections.binarySearch(piles, num);
+            if (pile < 0) pile = ~pile;
+            if (pile == piles.size()) {
+                piles.add(num);
+            } else {
+                piles.set(pile, num);
+            }
+        }
+        return piles.size() >= 3;
+
+    }
+
+
+
     public static void main(String[] args) {
         IncreasingTripletSubsequence solution = new IncreasingTripletSubsequence();
         int[] nums = {1, 2, 3, 4, 5};
-        System.out.println(solution.increasingTriplet_LIS_binary(nums)); // Output: true (Increasing triplet subsequence: [1, 2, 3])
+        System.out.println(solution.increasingTriplet_LIS_Piles(nums)); // Output: true (Increasing triplet subsequence: [1, 2, 3])
 
         int[] nums2 = {5,1,6};
-        System.out.println(solution.increasingTriplet_LIS_binary(nums2)); // False
+        System.out.println(solution.increasingTriplet_LIS_Piles(nums2)); // False
 
 
         int[] nums3 = {10, 9, 2, 5, 3, 7, 101, 18};
-        System.out.println(solution.increasingTriplet_LIS_binary(nums3));
+        System.out.println(solution.increasingTriplet_LIS_Piles(nums3));
 
 
 
