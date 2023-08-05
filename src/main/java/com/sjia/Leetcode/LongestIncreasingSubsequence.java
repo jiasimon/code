@@ -1,6 +1,9 @@
 package com.sjia.Leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class LongestIncreasingSubsequence {
     // #300. Longest Increasing Subsequence https://leetcode.com/problems/longest-increasing-subsequence/
@@ -84,13 +87,29 @@ public class LongestIncreasingSubsequence {
     }
 
 
+
+    public int lengthOfLIS_Piles(int[] nums) {
+        List<Integer> piles = new ArrayList<>(nums.length);
+        for (int num : nums) {
+            int pile = Collections.binarySearch(piles, num);
+            if (pile < 0) pile = ~pile;
+            if (pile == piles.size()) {
+                piles.add(num);
+            } else {
+                piles.set(pile, num);
+            }
+        }
+        return piles.size();
+    }
+
+
     public static void main(String[] args) {
         int[] nums = {10, 9, 2, 5, 3, 7, 101, 18};
         LongestIncreasingSubsequence solution = new LongestIncreasingSubsequence();
-        int result = solution.lengthOfLIS_Brute(nums);
+        int result = solution.lengthOfLIS_Piles(nums);
         System.out.println("The length of the longest increasing subsequence is: " + result); // Output: The length of the longest increasing subsequence is: 4
 
-        result = solution.lengthOfLIS_Memo(nums);
+        result = solution.lengthOfLIS_Piles(nums);
         System.out.println("lengthOfLIS_Memo: The length of the longest increasing subsequence is: " + result);
     }
 
