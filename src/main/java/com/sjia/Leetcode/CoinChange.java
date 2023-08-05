@@ -52,6 +52,7 @@ public class CoinChange {
 
 
     // dp , from total to coin
+    // 15ms , 88.69%; 42.93mb, 91.54%
     public int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount+1];
         Arrays.fill(dp, amount +1);
@@ -71,7 +72,23 @@ public class CoinChange {
 
 
 
+    // dp, from coin to total
+    public int coinChange2(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        Arrays.fill(dp, amount +1);
 
+        dp[0] =0;
+
+        for (int coin : coins) {
+            for (int i = coin; i <= amount; i++) {
+                dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+            }
+        }
+
+        if(dp[amount] > amount) return -1;
+        else return dp[amount];
+
+    }
 
 
 
