@@ -88,6 +88,8 @@ public class LongestIncreasingSubsequence {
 
 
 
+    // piles Collections.binarySearch
+    //5ms, 90.03%; 43.75mb, 25.40%
     public int lengthOfLIS_Piles(int[] nums) {
         List<Integer> piles = new ArrayList<>(nums.length);
         for (int num : nums) {
@@ -103,13 +105,44 @@ public class LongestIncreasingSubsequence {
     }
 
 
+
+    public int lengthOfLIS_Binary(int[] nums) {
+        if (nums == null || nums.length==0) return 0;
+        int n = nums.length;
+//        int[] ends = new int[n];
+//        ends[0] = nums[0];
+
+        List<Integer> piles = new ArrayList<>(nums.length);
+        piles.add(nums[0]);
+
+        for (int num: nums) {
+            if (num < piles.get(0)) {
+                piles.set(0,num);
+            }
+            else if ( num > piles.get(piles.size()-1)) {
+                piles.add(num);
+            } else {
+                int left = 0, right = piles.size();
+                while (left < right) {
+                    int mid = left + (right - left) / 2;
+                    if (piles.get(mid) < num) left = mid + 1;
+                    else right = mid;
+                }
+                piles.set(right, num);
+            }
+
+        }
+        return piles.size();
+    }
+
+
     public static void main(String[] args) {
         int[] nums = {10, 9, 2, 5, 3, 7, 101, 18};
         LongestIncreasingSubsequence solution = new LongestIncreasingSubsequence();
-        int result = solution.lengthOfLIS_Piles(nums);
+        int result = solution.lengthOfLIS_Binary(nums);
         System.out.println("The length of the longest increasing subsequence is: " + result); // Output: The length of the longest increasing subsequence is: 4
 
-        result = solution.lengthOfLIS_Piles(nums);
+        result = solution.lengthOfLIS_Binary(nums);
         System.out.println("lengthOfLIS_Memo: The length of the longest increasing subsequence is: " + result);
     }
 
