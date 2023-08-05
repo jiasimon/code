@@ -15,7 +15,7 @@ public class ShortestWordDistance {
      */
 
 
-    // 
+    //
     public int shortestDistance(String[] words, String word1, String word2) {
         int index1 = -1;
         int index2 = -1;
@@ -32,6 +32,19 @@ public class ShortestWordDistance {
             }
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        ShortestWordDistance shortestWordDistance = new ShortestWordDistance();
+
+        String[] words = {"practice", "makes", "perfect", "coding", "makes"};
+        String word1 = "coding";
+        String word2 = "practice";
+        System.out.println("Shortest distance: " + shortestWordDistance.shortestDistance(words, word1, word2)); // Output: 3
+
+        word1 = "makes";
+        word2 = "coding";
+        System.out.println("Shortest distance: " + shortestWordDistance.shortestDistance(words, word1, word2)); // Output: 1
     }
 
 }
