@@ -12,7 +12,7 @@ public class CountingBits {
 
 
 
-    // bitCount
+    // Integer.bitCount
     // 2 ms, 63.32%; 46.8 MB, 12.60%
     public int[] countBits_bitCount(int num) {
         int[] res = new int[num+1];
