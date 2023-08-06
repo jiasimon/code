@@ -80,6 +80,27 @@ public class HouseRobber3 {
     }
 
 
+    // use int[2] to store MaxRobCurrent and MaxNotRobCurrent
+    // 0ms, 100%; 43.7MB, 79.51%
+    public int rob(TreeNode root) {
+        int[] res = rob_dp(root);
+        return Math.max(res[0], res[1]);
+    }
+
+    private int[] rob_dp(TreeNode root) {
+        if (root == null) {
+            return new int[2];
+        }
+
+        int[] left = rob_dp(root.left);
+        int[] right = rob_dp(root.right);
+
+        int[] res = new int[2];
+        // [0]: Not rob current Max;  [1]: rob current Max
+        res[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        res[1] = root.val + left[0] + right[0];
+        return res;
+    }
 
 
     public static void main(String[] args) {
