@@ -103,6 +103,46 @@ public class PalindromePairs {
     }
 
 
+    // String convert to Hash
+    // 597 ms, 63.13%; 54.5 MB, 99.76%
+    public List<List<Integer>> palindromePairs_StringToHash(String[] words) {
+        int n = words.length;
+        final long mod3 = 1000000007; // Large prime number as the modulus
+        long[] pows = new long[301]; // Because the maximum word length is 301, the highest power is 300
+
+        // Calculate the powers of 26 for each position (up to 300) in the words
+        pows[0] = 1;
+        for (int i = 1; i < 301; i++) {
+            pows[i] = pows[i - 1] * 26 % mod3;
+        }
+
+        long[] hash = new long[n]; // Store the hash values of n words
+        long[] revHash = new long[n]; // Store the hash values of reversed words
+        int[] lens = new int[n]; // Store the lengths of the words
+
+        // Calculate the hash values of the words and their reverse
+        for (int i = 0; i < n; ++i) {
+            lens[i] = words[i].length();
+            for (int j = 0; j < lens[i]; ++j) {
+                revHash[i] = (revHash[i] + (words[i].charAt(j) - 'a' + 1) * pows[j]) % mod3; // From left to right
+                hash[i] = (hash[i] + (words[i].charAt(lens[i] - 1 - j) - 'a' + 1) * pows[j]) % mod3; // From right to left
+            }
+        }
+
+        List<List<Integer>> result = new ArrayList<>();
+        // Check all possible pairs of words
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (i == j) continue;
+                if ((hash[i] * pows[lens[j]] + hash[j]) % mod3 == (revHash[j] * pows[lens[i]] + revHash[i]) % mod3) {
+                    result.add(Arrays.asList(i, j));
+                }
+            }
+        }
+
+        return result;
+
+    }
 
     public List<List<Integer>> palindromePairs2(String[] words) {
         List<List<Integer>> ret = new ArrayList<>();
