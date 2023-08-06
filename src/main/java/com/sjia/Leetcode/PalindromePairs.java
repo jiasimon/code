@@ -25,7 +25,7 @@ public class PalindromePairs {
 
 
     // brute force
-    //
+    // TLE 134 / 136
     public List<List<Integer>> palindromePairs_brute(String[] words) {
         List<List<Integer>> res = new ArrayList<>();
         int n = words.length;
@@ -56,6 +56,53 @@ public class PalindromePairs {
         }
         return true;
     }
+
+
+    // 3 Cases, prefix, suffix
+    public List<List<Integer>> palindromePairs(String[] words) {
+        List<List<Integer>> result = new ArrayList<>();
+        Map<String, Integer> wordIndexMap = new HashMap<>();
+
+        // Build a map of reversed words along with their indices
+        for (int i = 0; i < words.length; i++) {
+            wordIndexMap.put(new StringBuilder(words[i]).reverse().toString(), i);
+        }
+
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            int wordLen = word.length();
+
+            // Case 1: Check if the word itself is a palindrome, and there exists an empty string in the list
+            if (wordIndexMap.containsKey("") && isPalindrome(word) && wordIndexMap.get("") != i) {
+                result.add(Arrays.asList(i, wordIndexMap.get("")));
+                result.add(Arrays.asList(wordIndexMap.get(""), i));
+            }
+
+            // Case 2: Check if the reverse of the current word exists in the list
+//            String reversedWord = new StringBuilder(word).reverse().toString();
+            if (wordIndexMap.containsKey(word) && wordIndexMap.get(word) != i) {
+                result.add(Arrays.asList(i, wordIndexMap.get(word)));
+            }
+
+            // Case 3: Check for palindrome prefixes and suffixes
+            for (int j = 1; j < wordLen; j++) {
+                String prefix = word.substring(0, j);
+                String suffix = word.substring(j);
+
+                if (isPalindrome(prefix) && wordIndexMap.containsKey(suffix) && wordIndexMap.get(suffix) != i) {
+                    result.add(Arrays.asList(wordIndexMap.get(suffix), i));
+                }
+
+                if (isPalindrome(suffix) && wordIndexMap.containsKey(prefix) && wordIndexMap.get(prefix) != i) {
+                    result.add(Arrays.asList(i, wordIndexMap.get(prefix)));
+                }
+            }
+        }
+
+        return result;
+    }
+
+
 
     public static void main(String[] args) {
         PalindromePairs solution = new PalindromePairs();
