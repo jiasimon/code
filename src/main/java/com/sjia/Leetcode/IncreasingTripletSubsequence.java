@@ -142,6 +142,35 @@ public class IncreasingTripletSubsequence {
     }
 
 
+    // 21 ms, 5.6%; 128.5 MB, 90.87%
+    public boolean increasingTriplet_LIS_left_right(int[] nums) {
+        int n = nums.length;
+        if (n<2) return false;
+//        int[] ends = new int[n];
+//        ends[0] = nums[0];
+
+        List<Integer> piles = new ArrayList<>(nums.length);
+        piles.add(nums[0]);
+
+        for (int num: nums) {
+            if (num < piles.get(0)) {
+                piles.set(0,num);
+            }
+            else if ( num > piles.get(piles.size()-1)) {
+                piles.add(num);
+            } else {
+                int left = 0, right = piles.size();
+                while (left < right) {
+                    int mid = left + (right - left) / 2;
+                    if (piles.get(mid) < num) left = mid + 1;
+                    else right = mid;
+                }
+                piles.set(right, num);
+            }
+
+        }
+        return piles.size() >=3;
+    }
 
     public static void main(String[] args) {
         IncreasingTripletSubsequence solution = new IncreasingTripletSubsequence();

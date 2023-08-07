@@ -18,7 +18,7 @@ public class CourseSchedule {
 
      */
 
-    //  BFS TopSort.
+    //  BFS TopSort. int[] inDegree, adj map
     public static boolean canFinish(int numCourses, int[][] prerequisites) {
         // Create an adjacency list representation of the course dependencies
         List<List<Integer>> adjacencyList = new ArrayList<>();
