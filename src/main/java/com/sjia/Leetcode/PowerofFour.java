@@ -2,7 +2,12 @@ package com.sjia.Leetcode;
 
 public class PowerofFour {
 
-    // #342 https://leetcode.com/problems/power-of-four/
+    // #342. Power of Four https://leetcode.com/problems/power-of-four/
+    /*
+    Given an integer n, return true if it is a power of four. Otherwise, return false.
+
+    An integer n is a power of four, if there exists an integer x such that n == 4x.
+     */
 
 
     // Loop
@@ -25,12 +30,27 @@ public class PowerofFour {
     }*/
 
 
-    // bit
-    // Runtime: 1 ms, faster than 100.00% of Java online submissions for Power of Four.
-    //Memory Usage: 36.6 MB, less than 53.98% of Java online submissions for Power of Four.
-/*    public boolean isPowerOfFour(int num) {
 
-        return ( num > 0 && (num & (num-1)) == 0 && (num & 0x55555555) != 0 );
-    }*/
+
+    // 1ms, 95.93%; 39.20mb, 97.00%
+    public boolean isPowerOfFour2(int n) {
+        if ( n <= 0) return false;
+        while ( n >=4) {
+            if (n%4 !=0) {
+                return false;
+            } else {
+                n /= 4;
+            }
+        }
+        return n==1;
+    }
+
+
+    public static void main(String[] args) {
+        PowerofFour solution = new PowerofFour();
+        int num = 16;
+        System.out.println(solution.isPowerOfFour(num)); // Output: true (4^2 = 16)
+    }
+
 
 }
