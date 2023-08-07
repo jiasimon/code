@@ -1,7 +1,7 @@
 package com.sjia.Leetcode;
 
 public class ReverseString {
-    // #344 https://leetcode.com/problems/reverse-string/
+    // #344. Reverse String https://leetcode.com/problems/reverse-string/
 
 
     //Runtime: 0 ms, faster than 100.00% of Java online submissions for Reverse String.
@@ -18,5 +18,14 @@ public class ReverseString {
         }
 
     }
+
+
+    public static void main(String[] args) {
+        ReverseString solution = new ReverseString();
+        char[] s = {'h', 'e', 'l', 'l', 'o'};
+        solution.reverseString(s);
+        System.out.println(s); // Output: "olleh"
+    }
+
 
 }
