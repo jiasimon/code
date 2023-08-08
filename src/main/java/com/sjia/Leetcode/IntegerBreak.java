@@ -15,7 +15,7 @@ public class IntegerBreak {
 
      */
 
-    public int integerBreak(int n) {
+    public int integerBreak_hardCodePartial(int n) {
         if (n == 2) return 1;
         else if (n == 3) return 2;
         else if (n == 4) return 4;
@@ -43,6 +43,48 @@ public class IntegerBreak {
             }
         }
         return dp[n];
+    }
+
+
+    // dp
+    public int integerBreak(int n) {
+        int[] dp = new int[100];
+        dp[2] = 1;
+        dp[3] = 2;
+        dp[4] = 4;
+        dp[5] = 6;
+        dp[6] = 9;
+        dp[7] = 12;
+        dp[8] = 18;
+        dp[9] = 27;
+        for ( int i=10; i<=n; i++) {
+            if ( i%3 == 0) {
+                dp[i] = 3 * dp[i-3];
+            } else if ( i%3 == 1) {
+                dp[i] = 4 * dp[i-4];
+            } else {
+                dp[i] = 2* dp[i-2];
+            }
+        }
+        return dp[n];
+    }
+
+
+    // math, (int) Math.pow(3, quotient)
+    public int integerBreak2(int n) {
+        if (n <= 3) {
+            return n - 1;
+        }
+        int quotient = n / 3;
+        int remainder = n % 3;
+        if (remainder == 0) {
+            return (int) Math.pow(3, quotient);
+        } else if (remainder == 1) {
+            return (int) Math.pow(3, quotient - 1) * 4;
+        } else {
+            return (int) Math.pow(3, quotient) * 2;
+        }
+
     }
 
     public static void main(String[] args) {
