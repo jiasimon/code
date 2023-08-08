@@ -89,9 +89,19 @@ public class ReverseVowels {
         return new String(charArray);
     }
 
+    // indexOf(c) != -1
+    // 4 ms, 75.4%; 43.6 MB, 96.6%
     private boolean isVowel(char c) {
         return "aeiouAEIOU".indexOf(c) != -1;
     }
+
+
+    // String contains
+    // 6 ms, 51.65%; 45.1 MB, 14.62%
+    private boolean isVowel_contains(char c) {
+        return "aeiouAEIOU".contains(c+"");
+    }
+
 
     public static void main(String[] args) {
         ReverseVowels solution = new ReverseVowels();
