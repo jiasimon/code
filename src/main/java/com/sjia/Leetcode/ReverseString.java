@@ -20,6 +20,15 @@ public class ReverseString {
     }
 
 
+    // sb.reverse
+    public String reverseString_StringBuilder(char[] s) {
+        if (s==null || s.length==0) return "";
+         String tmp = String.valueOf(s);
+         StringBuilder sb = new StringBuilder(tmp);
+         return sb.reverse().toString();
+    }
+
+
     public static void main(String[] args) {
         ReverseString solution = new ReverseString();
         char[] s = {'h', 'e', 'l', 'l', 'o'};
