@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class ReverseVowels {
 
-    // #345 https://leetcode.com/problems/reverse-vowels-of-a-string/
+    // #345. Reverse Vowels of a String  https://leetcode.com/problems/reverse-vowels-of-a-string/
     // Write a function that takes a string and reverse only the vowels of a string.
 
     // Runtime: 5 ms, faster than 59.04% of Java online submissions for Reverse Vowels of a String.
@@ -36,7 +36,7 @@ public class ReverseVowels {
 
     // Runtime: 5 ms, faster than 59.04% of Java online submissions for Reverse Vowels of a String.
     //Memory Usage: 39.8 MB, less than 38.58% of Java online submissions for Reverse Vowels of a String.
-    public String reverseVowels(String s) {
+    public String reverseVowels2(String s) {
         if (s ==null || s.length()==0)  return s;
         //String vowel = "aeiouAEIOU";
         char [] tmp = s.toCharArray();
@@ -55,6 +55,48 @@ public class ReverseVowels {
             }
         }
         return new String(tmp);
+    }
+
+
+
+    // 'aeiouAEIOU'.indexOf(c) != -1
+    // 4 ms, 75.4%; 43.6 MB, 96.6%
+    public String reverseVowels(String s) {
+        char[] charArray = s.toCharArray();
+        int left = 0;
+        int right = charArray.length - 1;
+
+        while (left < right) {
+            if (isVowel(charArray[left]) && isVowel(charArray[right])) {
+                // Swap the vowels at left and right pointers
+                char temp = charArray[left];
+                charArray[left] = charArray[right];
+                charArray[right] = temp;
+                left++;
+                right--;
+            } else {
+                // Move the left pointer if the character at left is not a vowel
+                if (!isVowel(charArray[left])) {
+                    left++;
+                }
+                // Move the right pointer if the character at right is not a vowel
+                if (!isVowel(charArray[right])) {
+                    right--;
+                }
+            }
+        }
+
+        return new String(charArray);
+    }
+
+    private boolean isVowel(char c) {
+        return "aeiouAEIOU".indexOf(c) != -1;
+    }
+
+    public static void main(String[] args) {
+        ReverseVowels solution = new ReverseVowels();
+        String s = "hello";
+        System.out.println(solution.reverseVowels(s)); // Output: "holle"
     }
 
 
