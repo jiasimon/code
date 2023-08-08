@@ -46,6 +46,17 @@ public class PowerofFour {
     }
 
 
+    // bit
+    // 0ms, 100%; 39.2 MB, 96.94%
+    public boolean isPowerOfFour_bit(int num) {
+        // num & (num-1)) == 0 ,  Power of two, refer #231
+        return ( num > 0 && (num & (num-1)) == 0 && (num %3 ==1 ) );
+//        return ( num > 0 && (num & (num-1)) == 0 && (num & 0x55555555) != 0 );
+    }
+
+
+
+
     public static void main(String[] args) {
         PowerofFour solution = new PowerofFour();
         int num = 16;
