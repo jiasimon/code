@@ -34,8 +34,9 @@ public class ReverseVowels {
 
 
 
-    // Runtime: 5 ms, faster than 59.04% of Java online submissions for Reverse Vowels of a String.
-    //Memory Usage: 39.8 MB, less than 38.58% of Java online submissions for Reverse Vowels of a String.
+
+    // HashSet
+    // 5 ms, 60.14%; 44.1 MB, 38.29%
     public String reverseVowels2(String s) {
         if (s ==null || s.length()==0)  return s;
         //String vowel = "aeiouAEIOU";
