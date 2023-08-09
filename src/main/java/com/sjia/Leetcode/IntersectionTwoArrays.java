@@ -43,6 +43,32 @@ public class IntersectionTwoArrays {
 
 
 
+
+    // Set.size  to int[]
+    public int[] intersection_Set(int[] nums1, int[] nums2) {
+        HashSet<Integer> set1 = new HashSet<>();
+        HashSet<Integer> intersect = new HashSet<>();
+
+        for (Integer n: nums1) {
+            set1.add(n);
+        }
+
+        for ( int n: nums2) {
+            if (set1.contains(n) ){
+                intersect.add(n);
+            }
+        }
+
+        int[] res = new int[intersect.size()];
+        int index=0;
+        for (int n : intersect) {
+            res[index] = n;
+            index++;
+        }
+        return res;
+    }
+
+
     // Runtime: 4 ms, faster than 43.97% of Java online submissions for Intersection of Two Arrays.
     //Memory Usage: 41.4 MB, less than 5.08% of Java online submissions for Intersection of Two Arrays.
     public int[] intersection_retainAll(int[] nums1, int[] nums2) {
