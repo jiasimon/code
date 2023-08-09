@@ -29,10 +29,28 @@ public class ReverseString {
     }
 
 
+
+    public void reverseString_recursive(char[] s) {
+        int i = 0;
+        int j = s.length - 1;
+        solveSwap(s, i, j);
+    }
+
+    // recursive
+    public void solveSwap(char[] s, int i, int j){
+        if(i >= j) return;
+        char temp = s[i];
+        s[i] = s[j];
+        s[j] = temp;
+        solveSwap(s, ++i, --j);
+    }
+
+
+
     public static void main(String[] args) {
         ReverseString solution = new ReverseString();
         char[] s = {'h', 'e', 'l', 'l', 'o'};
-        solution.reverseString(s);
+        solution.reverseString_recursive(s);
         System.out.println(s); // Output: "olleh"
     }
 
