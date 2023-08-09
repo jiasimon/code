@@ -1,6 +1,6 @@
 package com.sjia.Leetcode;
 
-import java.util.Arrays;
+import java.util.*;
 import java.util.Comparator;
 
 public class RussianDollEnvelopes {
@@ -24,7 +24,8 @@ public class RussianDollEnvelopes {
      */
 
 
-    public int maxEnvelopes(int[][] envelopes) {
+
+    public int maxEnvelopes_Comparator(int[][] envelopes) {
         if (envelopes == null || envelopes.length == 0) {
             return 0;
         }
@@ -57,6 +58,47 @@ public class RussianDollEnvelopes {
         }
 
         return maxLength;
+    }
+
+
+
+    // #LIS Collections.binarySearch
+    // 59ms, 49.95%; 95.02mb, 91.29%
+    public int maxEnvelopes(int[][] envelopes) {
+        if (envelopes == null || envelopes.length == 0) {
+            return 0;
+        }
+
+        Arrays.sort(envelopes, new Comparator<int[]> () {
+            @Override
+            public int compare(int[] a, int[] b) {
+                if ( a[0] == b[0]) {
+                    return b[1] - a[1];
+                } else {
+                    return a[0] - b[0];
+                }
+            }
+        });
+
+
+        // Apply Longest Increasing Subsequence (LIS)
+        List <Integer> piles = new ArrayList<>(envelopes.length);
+
+        for ( int[] envelope : envelopes) {
+//            int index = Arrays.binarySearch(piles, Integer.valueOf(envelope[1]));
+            int index = Collections.binarySearch(piles, envelope[1] );
+            if ( index < 0) {
+                index = - (index + 1);  //  index = ~index;
+            }
+            if ( index == piles.size()) {
+                piles.add(envelope[1]);
+            } else {
+                piles.set(index, envelope[1]);
+            }
+        }
+
+        return piles.size();
+
     }
 
     public static void main(String[] args) {
