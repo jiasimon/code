@@ -22,7 +22,8 @@ public class RemoveInvalidParentheses {
             return result;
         }
         Set<String> visited = new HashSet<>();
-        Queue<String> queue = new LinkedList<>();
+//        Queue<String> queue = new LinkedList<>();
+        Queue<String> queue = new ArrayDeque<>();
         boolean found = false;
         queue.offer(s);
         visited.add(s);
@@ -48,26 +49,72 @@ public class RemoveInvalidParentheses {
         }
         return result;
     }
+
+
+    // LinkedList, ArrayDeque
+    // 51 ms, 70.75%; 44.4 MB, 47.83%
+    public List<String> removeInvalidParentheses2(String s) {
+        List <String> res = new ArrayList<>();
+        if ( s == null || s.isEmpty() )  {
+            return res;
+        }
+
+        Set<String> visited = new HashSet<>();
+        Queue<String> queue = new LinkedList<>();
+
+        boolean found = false;
+
+        queue.offer(s);
+        visited.add(s);
+
+        while (!queue.isEmpty()) {
+            String tmp = queue.poll();
+            if ( isValid(tmp) ) {
+                res.add(tmp);
+                found = true;
+            }
+            if(found) {
+                continue;
+            }
+
+            for ( int i = 0; i < tmp.length(); i++ ) {
+                if( tmp.charAt(i) == '(' || tmp.charAt(i) == ')' ) {
+                    String next = tmp.substring(0,i) + tmp.substring(i+1);
+                    if( visited.add(next)) {
+                        queue.offer(next);
+                    }
+                }
+            }
+        }
+
+        return res;
+
+
+    }
+
+
     private boolean isValid(String s) {
-        int count = 0;
-        for (char c : s.toCharArray()) {
-            if (c == '(') {
-                count++;
-            } else if (c == ')') {
-                count--;
-                if (count < 0) {
+        int res = 0;
+
+        for (char c: s.toCharArray()) {
+            if ( c == '(') {
+                res++;
+            } else if ( c== ')' ) {
+                res--;
+                if (res < 0) {
                     return false;
                 }
             }
         }
-        return count == 0;
+
+        return res == 0;
     }
 
     public static void main(String[] args) {
         RemoveInvalidParentheses solution = new RemoveInvalidParentheses();
         String s = "()())()";
-        List<String> result = solution.removeInvalidParentheses(s);
-        System.out.println(result); // Output: ["()()()", "(())()"]
+        List<String> result = solution.removeInvalidParentheses2(s);
+        System.out.println(result); // Output: [(())(), ()()()]
     }
 
 
