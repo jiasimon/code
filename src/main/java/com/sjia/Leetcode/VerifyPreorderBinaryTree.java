@@ -71,10 +71,25 @@ public class VerifyPreorderBinaryTree {
     }
 
 
+
+    public boolean isValidSerialization_degree(String preorder) {
+        int degree = 1; // OutDegree (children) - inDegree (parent)
+
+        for ( String node : preorder.split(",")) {
+            if (--degree < 0) // One parent
+                return false;
+            if (!node.equals("#"))
+                degree += 2; // Two children
+        }
+
+        return degree == 0;
+    }
+
+
     public static void main(String[] args) {
         VerifyPreorderBinaryTree solution = new VerifyPreorderBinaryTree();
         String preorder = "9,3,4,#,#,1,#,#,2,#,6,#,#";
-        System.out.println(solution.isValidSerialization(preorder)); // Output: true
+        System.out.println(solution.isValidSerialization_degree(preorder)); // Output: true
     }
 
 
