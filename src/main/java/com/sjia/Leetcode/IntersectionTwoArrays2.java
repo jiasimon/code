@@ -2,6 +2,7 @@ package com.sjia.Leetcode;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.*;
 
 public class IntersectionTwoArrays2 {
 
@@ -16,10 +17,43 @@ public class IntersectionTwoArrays2 {
      */
 
 
+
+
+
+    // Map and List
+    // 3ms, 65.77%; 43.56mb, 41.07%
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> intersect = new ArrayList<>();
+
+        // Create a frequency map for nums1
+        for (int num : nums1) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        // Find the intersection elements using the frequency map
+        for (int num : nums2) {
+            if (map.containsKey(num) && map.get(num) > 0) {
+                intersect.add(num);
+                map.put(num, map.get(num) - 1);
+            }
+        }
+
+        // Convert the intersection list to an array
+        int[] result = new int[intersect.size()];
+        int index = 0;
+        for (int num : intersect) {
+            result[index++] = num;
+        }
+
+        return result;
+    }
+
+
     // Runtime: 2 ms, faster than 98.86% of Java online submissions for Intersection of Two Arrays II.
     //Memory Usage: 39.9 MB, less than 9.07% of Java online submissions for Intersection of Two Arrays II.
-    public int[] intersect(int[] nums1, int[] nums2) {
-        if (nums1.length > nums2.length) return intersect(nums2, nums1);
+    public int[] intersect_old(int[] nums1, int[] nums2) {
+        if (nums1.length > nums2.length) return intersect_old(nums2, nums1);
 
         HashMap<Integer, Integer> tmp = new HashMap<>();
         for (int n : nums1) {
