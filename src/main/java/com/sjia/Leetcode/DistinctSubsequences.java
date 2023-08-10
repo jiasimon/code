@@ -16,6 +16,8 @@ public class DistinctSubsequences {
     rabb b it
     ra b bbit
     rab b bit
+
+    compare to Hackerrank CommonChild DP formula;
      */
 
 
@@ -144,6 +146,12 @@ public class DistinctSubsequences {
         String t2 = "bag";
         int result2 = solution.numDistinctRecursive(s2, t2);
         System.out.println("Distinct Subsequences: " + result2);  // Output: 5
+
+
+        String s3 = "HARRY";
+        String t3 = "SALLY";
+        int result3 = solution.numDistinct(s3, t3);
+        System.out.println("Distinct Subsequences: " + result3);
     }
 
 
