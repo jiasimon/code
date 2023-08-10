@@ -24,6 +24,7 @@ public class LargestDivisibleSubset {
 
     // simliar to LIS dp
     // int[] prevIndices
+    // 13ms,  99.06%; 42.09mb, 86.73%
     public List<Integer> largestDivisibleSubset(int[] nums) {
         int n = nums.length;
         if (n == 0) {
@@ -62,6 +63,50 @@ public class LargestDivisibleSubset {
 
         return result;
     }
+
+
+
+    // 15ms, 85.63%; 41.88mb, 95.58%
+    public List<Integer> largestDivisibleSubset_dp(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        int[] f = new int[n];
+        int[] g = new int[n];
+        for (int i = 0; i < n; i++) {
+            // 至少包含自身一个数，因此起始长度为 1，由自身转移而来
+            int len = 1, prev = i;
+            for (int j = 0; j < i; j++) {
+                if (nums[i] % nums[j] == 0) {
+                    // 如果能接在更长的序列后面，则更新「最大长度」&「从何转移而来」
+                    if (f[j] + 1 > len) {
+                        len = f[j] + 1;
+                        prev = j;
+                    }
+                }
+            }
+            // 记录「最终长度」&「从何转移而来」
+            f[i] = len;
+            g[i] = prev;
+        }
+
+        // 遍历所有的 f[i]，取得「最大长度」和「对应下标」
+        int max = -1, idx = -1;
+        for (int i = 0; i < n; i++) {
+            if (f[i] > max) {
+                idx = i;
+                max = f[i];
+            }
+        }
+
+        // 使用 g[] 数组回溯出具体方案
+        List<Integer> ans = new ArrayList<>();
+        while (ans.size() != max) {
+            ans.add(nums[idx]);
+            idx = g[idx];
+        }
+        return ans;
+    }
+
 
     public static void main(String[] args) {
         LargestDivisibleSubset solution = new LargestDivisibleSubset();
