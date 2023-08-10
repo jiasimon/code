@@ -1,4 +1,4 @@
-package com.sjia;
+package com.sjia.hackerRank;
 
 public class MyTest {
 

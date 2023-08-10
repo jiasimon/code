@@ -1,4 +1,4 @@
-package com.sjia;
+package com.sjia.hackerRank;
 
 import java.util.ArrayList;
 import java.util.List;
