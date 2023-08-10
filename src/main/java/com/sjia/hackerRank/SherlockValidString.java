@@ -48,7 +48,8 @@ public class SherlockValidString {
         if (first == 1 && second == last) return "YES";
 
         // If all are same and last character has just 1 extra count
-        if (first == second && second == secondLast && secondLast == (last - 1)) return "YES";
+//        if (first == second && second == secondLast && secondLast == (last - 1)) return "YES";
+        if (first == secondLast  && secondLast == (last - 1)) return "YES";
 
         // Else invalid string
         return "NO";
