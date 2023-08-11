@@ -73,6 +73,7 @@ public class CoinChange {
 
 
     // dp, from coin to total
+    // 10ms, 99.56%; 43.66mb, 39.40%
     public int coinChange2(int[] coins, int amount) {
         int[] dp = new int[amount+1];
         Arrays.fill(dp, amount +1);
