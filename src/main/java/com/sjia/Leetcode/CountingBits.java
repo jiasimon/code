@@ -24,6 +24,7 @@ public class CountingBits {
 
 
     // recursive, top down
+    // 11 ms, 18.60%; 46.5 MB, 46.80%
     public int[] countBits_odd_even(int num) {
         int[] res = new int[num+1];
         for (int i=0; i <= num; i++) {
@@ -42,6 +43,22 @@ public class CountingBits {
     }
 
 
+
+    // dp, bottom up
+    public int[] countBits(int num) {
+        int[] dp = new int[num + 1];
+        dp[0] = 0;
+
+        for (int i = 1; i <= num; i++) {
+            if (i % 2 == 0) {
+                dp[i] = dp[i / 2];
+            } else {
+                dp[i] = dp[i / 2] + 1;
+            }
+        }
+
+        return dp;
+    }
 
 
 
