@@ -64,7 +64,7 @@ public class ReverseShuffleMerge {
     }
 
 
-    static String reverseShuffleMerge_stack(String s) {
+    static String reverseShuffleMerge_stack_failed(String s) {
         int[] freq = new int[26]; // Frequency of characters in s
         int[] needed = new int[26]; // Characters needed for the answer
         int[] used = new int[26]; // Characters used for the answer
@@ -100,8 +100,6 @@ public class ReverseShuffleMerge {
 
                 used[curr]++;
 
-            } else {
-                freq[curr]--;
             }
 
 
@@ -117,10 +115,52 @@ public class ReverseShuffleMerge {
     }
 
 
+
+
+    // this method is OK
+    // only need two int[26]
+    static String reverseShuffleMerge_stack(String s) {
+        int[] freq = new int[26]; // Frequency of characters in s
+        int[] needed = new int[26]; // Characters needed for the answer
+        char[] result = new char[s.length() / 2];
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            freq[c - 'a']++;
+        }
+
+        for (int i = 0; i < 26; i++) {
+            needed[i] = freq[i] / 2;
+        }
+
+        for (int i = s.length() -1; i >=0 ; i--) {
+            char c = s.charAt(i);
+            freq[c - 'a']--;
+
+            if (needed[c - 'a'] > 0) {
+//                while (!stack.isEmpty() && stack.peek() > c && freq[stack.peek() - 'a'] > 0) {
+                while (!stack.isEmpty() && stack.peek() > c && freq[stack.peek() - 'a'] > 0
+                        && freq[stack.peek() - 'a'] > needed[stack.peek() - 'a']) {
+                    needed[stack.pop() - 'a']++;
+                }
+                stack.push(c);
+                needed[c - 'a']--;
+            }
+        }
+
+        StringBuilder res = new StringBuilder();
+        for (char c : stack) {
+            res.append(c);
+        }
+
+        return res.toString();
+    }
+
+
     public static void main(String[] args) {
-//        String s = "abcdefgabcdefg";
+        String s = "abcdefgabcdefg";
 //        String s = "eggegg";
-        String s = "djjcddjggbiigjhfghehhbgdigjicafgjcehhfgifadihiajgciagicdahcbajjbhifjiaajigdgdfhdiijjgaiejgegbbiigida";
+//        String s = "djjcddjggbiigjhfghehhbgdigjicafgjcehhfgifadihiajgciagicdahcbajjbhifjiaajigdgdfhdiijjgaiejgegbbiigida";
 //        String s = "aeiouuoiea";
         String result = reverseShuffleMerge_stack(s);
         System.out.println(s + " reverseShuffleMerge: " + result);
