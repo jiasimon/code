@@ -1,7 +1,9 @@
 package com.sjia.Leetcode;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class KdiffPairsInArray {
     // #532. K-diff Pairs in an Array   https://leetcode.com/problems/k-diff-pairs-in-an-array/description/
@@ -50,6 +52,28 @@ public class KdiffPairsInArray {
         return res;
 
     }
+
+
+
+
+
+    // two HashSets
+    // 9ms, 72.33%; 45.34mb, 6.41%
+    public int findPairs_TwoSets(int[] nums, int k) {
+        Set<Integer> visited = new HashSet<Integer>();
+        Set<Integer> res = new HashSet<Integer>();
+        for (int num : nums) {
+            if (visited.contains(num - k)) {
+                res.add(num - k);
+            }
+            if (visited.contains(num + k)) {
+                res.add(num);
+            }
+            visited.add(num);
+        }
+        return res.size();
+    }
+
 
     public static void main(String[] args) {
         KdiffPairsInArray solution = new KdiffPairsInArray();
