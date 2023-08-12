@@ -1,9 +1,6 @@
 package com.sjia.hackerRank;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MaximumSubarraySumMod {
     // https://www.hackerrank.com/challenges/maximum-subarray-sum/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=search
@@ -12,26 +9,33 @@ public class MaximumSubarraySumMod {
 
      */
 
-    public static long maximumSum(List<Integer> a, long m) {
+    public static long maximumSum_failed(List<Long> a, long m) {
         // Write your code here
         long prefix = 0;
         long res = 0;
-        Set<Long> set = new HashSet<Long>();
+        Set<Long> set = new HashSet<>();
         set.add(0L);
 
-        for (Integer tmp : a) {
+        for (Long tmp : a) {
             prefix = (prefix + tmp) % m;
             res = Math.max(res, prefix);
-            long p = 0;
+
+//            long p = 0;
+            long p = Long.MAX_VALUE;
 
             for (long j : set) {
-                if (j >= prefix + 1)
-                    p = j;
+                if (j >= prefix + 1) {
+//                    p = j;
+                    p = Math.min(p, j);
+                }
+
+
             }
 
-            if (p != 0)
+//            if (p != 0)
+            if (p != Long.MAX_VALUE)
             {
-                res = Math.max(res, prefix - p + m);
+                res = Math.max(res, (prefix - p + m ) );
             }
             set.add(prefix);
         }
@@ -39,12 +43,15 @@ public class MaximumSubarraySumMod {
     }
 
 
+
+
     public static void main(String[] args) {
 //        List<Integer> test1 = Arrays.asList(3,3,9,9,5);
 
-        List<Integer> test1 = Arrays.asList(846930887, 1681692778, 1714636916, 1957747794, 424238336, 719885387, 1649760493, 596516650, 1189641422, 1025202363, 1350490028, 783368691, 1102520060, 2044897764, 1967513927, 1365180541, 1540383427, 304089173, 1303455737, 35005212, 521595369, 294702568, 1726956430, 336465783, 861021531, 278722863, 233665124, 2145174068, 468703136, 1101513930, 1801979803, 1315634023, 635723059, 1369133070, 1125898168, 1059961394, 2089018457, 628175012, 1656478043, 1131176230, 1653377374, 859484422, 1914544920, 608413785, 756898538, 1734575199, 1973594325, 149798316, 2038664371, 1129566414);
+        List<Long> test1 = Arrays.asList(846930887L, 1681692778L, 1714636916L, 1957747794L, 424238336L, 719885387L, 1649760493L, 596516650L, 1189641422L, 1025202363L, 1350490028L, 783368691L, 1102520060L, 2044897764L, 1967513927L, 1365180541L, 1540383427L, 304089173L, 1303455737L, 35005212L, 521595369L, 294702568L, 1726956430L, 336465783L, 861021531L, 278722863L, 233665124L, 2145174068L, 468703136L, 1101513930L, 1801979803L, 1315634023L, 635723059L, 1369133070L, 1125898168L, 1059961394L, 2089018457L, 628175012L, 1656478043L, 1131176230L, 1653377374L, 859484422L, 1914544920L, 608413785L, 756898538L, 1734575199L, 1973594325L, 149798316L, 2038664371L, 1129566414L);
 
-        System.out.println(test1 + " MaximumSubarraySum Mod: " + maximumSum(test1,1804289384));
+        System.out.println(test1 + " MaximumSubarraySum Mod: " + maximumSum_failed(test1,1804289384));
+        // init return :  Mod: 1799709226;   expected: 1802192837
     }
 
 
