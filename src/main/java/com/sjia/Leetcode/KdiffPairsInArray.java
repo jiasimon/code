@@ -1,9 +1,6 @@
 package com.sjia.Leetcode;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class KdiffPairsInArray {
     // #532. K-diff Pairs in an Array   https://leetcode.com/problems/k-diff-pairs-in-an-array/description/
@@ -72,6 +69,24 @@ public class KdiffPairsInArray {
             visited.add(num);
         }
         return res.size();
+    }
+
+
+
+    // sort , binary search
+    public int findPairs_binarySearch(int[] nums, int k) {
+        Arrays.sort(nums);
+        Set<Integer> set = new HashSet<>();
+
+        int n = nums.length;
+        for ( int i = 0 ; i < n; i++) {
+            if (Arrays.binarySearch(nums, i+1, n, nums[i] + k) > 0 ) {
+                set.add(nums[i]);
+            }
+        }
+
+        return set.size();
+
     }
 
 
