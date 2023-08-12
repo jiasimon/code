@@ -38,7 +38,7 @@ public class TripleSum3Arrays {
             } else {
                 tmp2 = -(tmp2 + 1);
             }
-            res += tmp1 * tmp2;
+            res += (long)tmp1 * tmp2;
         }
 
 
