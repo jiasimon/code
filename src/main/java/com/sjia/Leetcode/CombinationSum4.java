@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class CombinationSum4 {
     // #377. Combination Sum IV  https://leetcode.com/problems/combination-sum-iv/
     // compare to #322. Coin Change, #518. Coin Change II
@@ -64,7 +66,7 @@ public class CombinationSum4 {
 
 
     // memo, TLE 14/15
-    public int combinationSum4_memo(int[] nums, int target) {
+    public int combinationSum4_memo_failed(int[] nums, int target) {
         int n = nums.length;
         int[] memo = new int[target+1];
         memo[0] = 1;
@@ -84,6 +86,34 @@ public class CombinationSum4 {
         memo[target] = res;
         return res;
     }
+
+
+
+
+    // fix memo issue, init to -1
+    public int combinationSum4_memo(int[] nums, int target) {
+        int n = nums.length;
+        int[] memo = new int[target+1];
+        Arrays.fill(memo , -1);
+        memo[0] = 1;
+        return helper(nums, target, memo);
+    }
+
+    private int helper(int[] nums, int target, int[] memo) {
+        if (target == 0) return 1;
+        if (memo[target] != -1) {
+            return memo[target];
+        }
+        int res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (target >= nums[i]) {
+                res += helper(nums, target - nums[i], memo);
+            }
+        }
+        memo[target] = res;
+        return res;
+    }
+
 
 
     public static void main(String[] args) {
