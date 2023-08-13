@@ -2,6 +2,9 @@ package com.sjia.Leetcode;
 
 public class CombinationSum4 {
     // #377. Combination Sum IV  https://leetcode.com/problems/combination-sum-iv/
+    // compare to #322. Coin Change, #518. Coin Change II
+
+
     /*
         Given an array of distinct integers nums and a target integer target, return the number of possible combinations that add up to target.
 
@@ -46,13 +49,13 @@ public class CombinationSum4 {
 
 
     // recursive , Time Limit Exceeded
-    public int combinationSum4b(int[] nums, int target) {
+    public int combinationSum4_recursive(int[] nums, int target) {
         if (target == 0) return 1;
 
         int res =0;
         for (int i : nums) {
             if (i <= target) {  // it should be <=
-                res += combinationSum4b(nums,target -i);
+                res += combinationSum4_recursive(nums,target -i);
             }
         }
         return res;
@@ -63,8 +66,14 @@ public class CombinationSum4 {
         CombinationSum4 cs = new CombinationSum4();
         int[] nums = {1, 2, 3};
         int target = 4;
-        int count = cs.combinationSum4b(nums, target);
-        System.out.println("Number of combinations for target " + target + ": " + count);
+        int count = cs.combinationSum4_recursive(nums, target);
+        System.out.println("Number of combinations for target " + target + ": " + count);  // output: 7
+
+        target = 5;
+        int count2 = cs.combinationSum4_recursive(nums, target);
+        System.out.println("Number of combinations for target " + target + ": " + count2); // output 13
+
+
     }
 
 
