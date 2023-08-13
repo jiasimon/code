@@ -17,9 +17,9 @@ public class WiggleSubsequence {
     0 <= nums[i] <= 1000
      */
 
-    // dp, up[], down[]
+    // dp, up[], down[] up[i] = down[i-1] + 1
     // 0 ms, 100%; 40 MB, 77.68%
-    public int wiggleMaxLength(int[] nums) {
+    public int wiggleMaxLength_dp_array(int[] nums) {
         int n = nums.length;
         if (n <1) return 0;
 
@@ -43,11 +43,33 @@ public class WiggleSubsequence {
             }
             res = Math.max(up[i], down[i]);
         }
-
         return res;
-
-
     }
+
+
+
+     // dp, only two var: up, down
+    public int wiggleMaxLength(int[] nums) {
+        int n = nums.length;
+        if (n <1) return 0;
+
+        int up = 1;
+        int down = 1;
+
+        for (int i=1; i < n; i++) {
+            if( nums[i] > nums[i-1]  ) {
+                up = down + 1;
+            } else if (nums[i] < nums[i-1] ) {
+                down = up + 1;
+            } else {
+//                up = up;
+//                down = down;
+            }
+//            res = Math.max(up[i], down[i]);
+        }
+        return Math.max(up, down);
+    }
+
 
 
     public static void main(String[] args) {
