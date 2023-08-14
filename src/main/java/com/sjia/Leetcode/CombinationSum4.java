@@ -34,6 +34,7 @@ public class CombinationSum4 {
 
 
     // DP  dynamic programming
+    // loop from target to coin
     public int combinationSum4(int[] nums, int target) {
         int[] dp = new int[target + 1];
         dp[0] = 1;
