@@ -19,7 +19,7 @@ public class PatchingArray {
      */
 
 
-    public int minPatches(int[] nums, int n) {
+    public int minPatches2(int[] nums, int n) {
         int count = 0;
         long miss = 1; // Represents the smallest sum that cannot be obtained using the numbers seen so far
         int i = 0;
@@ -38,6 +38,28 @@ public class PatchingArray {
 
         return count;
     }
+
+
+    // 0ms, 100%; 42.80mb, 91.57%
+    public int minPatches(int[] nums, int n) {
+        int res =0;
+        int i = 0; // nums array index
+        long miss = 1; // Min sum we may miss
+
+        while(miss <= n ) {
+            if( i < nums.length && nums[i] <= miss) {
+                miss = miss + nums[i];
+                i++;
+            } else {
+                miss += miss;
+                res++;
+            }
+
+        }
+        return res;
+
+    }
+
 
     public static void main(String[] args) {
         PatchingArray solution = new PatchingArray();
