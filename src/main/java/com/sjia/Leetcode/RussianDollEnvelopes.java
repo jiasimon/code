@@ -25,6 +25,8 @@ public class RussianDollEnvelopes {
 
 
 
+    // Arrays.binarySearch(dp, 0, maxLength, envelope[1])
+    // 37ms, 98.53%; 99.05mb,  8.39%
     public int maxEnvelopes_Comparator(int[][] envelopes) {
         if (envelopes == null || envelopes.length == 0) {
             return 0;
@@ -101,10 +103,51 @@ public class RussianDollEnvelopes {
 
     }
 
+
+
+    // LIS, 2 loop, TLE 85/87
+    public int maxEnvelopes_dp(int[][] envelopes) {
+        if (envelopes == null || envelopes.length == 0) {
+            return 0;
+        }
+
+        Arrays.sort(envelopes, new Comparator<int[]> () {
+            @Override
+            public int compare(int[] a, int[] b) {
+                if ( a[0] == b[0]) {
+                    return b[1] - a[1];
+                } else {
+                    return a[0] - b[0];
+                }
+            }
+        });
+
+
+        // Apply Longest Increasing Subsequence (LIS), 2 loop
+        int n = envelopes.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+        int res = 1;
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (envelopes[i][1] > envelopes[j][1]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+            res = Math.max(res, dp[i]);
+        }
+
+        return res;
+
+
+    }
+
+
     public static void main(String[] args) {
         RussianDollEnvelopes solution = new RussianDollEnvelopes();
         int[][] envelopes = {{5,4},{6,4},{6,7},{2,3}};
-        int maxEnvelopes = solution.maxEnvelopes(envelopes);
+        int maxEnvelopes = solution.maxEnvelopes_dp(envelopes);
         System.out.println("Maximum number of envelopes: " + maxEnvelopes); // Output: 3
     }
 
