@@ -35,6 +35,11 @@ public class TargetSum {
             return 0;
         }
 
+        // for test3
+        if ( (total + target) %2 ==1) {
+            return 0;
+        }
+
         // subset with "+", subsetSum as target
         int subsetSum = ( total + target )/ 2;
 
@@ -62,6 +67,12 @@ public class TargetSum {
         int target2 = 5;
         int res2 = solution.findTargetSumWays(nums2, target2);
         System.out.println("Number of ways to reach the target sum: " + res2);
+
+
+        int[] nums3 = {7,9,3,8,0,2,4,8,3,9};
+        int target3 = 0;
+        int res3 = solution.findTargetSumWays(nums3, target3);
+        System.out.println("Number of ways to reach the target sum: " + res3);
 
     }
 
