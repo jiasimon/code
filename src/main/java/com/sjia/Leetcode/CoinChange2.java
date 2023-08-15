@@ -49,13 +49,32 @@ public class CoinChange2 {
 
 
 
+    // coin from big to small;
+    public int change_dp(int amount, int[] coins) {
+        int n = coins.length;
+        int[] dp = new int[amount + 1];
+        dp[0] = 1;
+
+
+        for (int i = n-1; i >=0; i-- ) {
+            for (int j = 0; j <= amount; j++) {
+                if (j >= coins[i]) {
+                    dp[j] += dp[j - coins[i]];
+                }
+            }
+        }
+        return dp[amount];
+    }
+
+
+
 
 
     public static void main(String[] args) {
         CoinChange2 solution = new CoinChange2();
         int amount = 5;
         int[] coins = {1, 2, 5};
-        int ways = solution.change_dp_coin_total(amount, coins);
+        int ways = solution.change_dp(amount, coins);
         System.out.println("Number of ways to make change: " + ways); // Output: 4
     }
 
