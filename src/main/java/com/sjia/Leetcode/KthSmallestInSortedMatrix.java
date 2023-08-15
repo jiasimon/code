@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class KthSmallestInSortedMatrix {
     // #378. Kth Smallest Element in a Sorted Matrix    https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/
 
@@ -18,10 +20,25 @@ public class KthSmallestInSortedMatrix {
      */
 
 
+    // brute force, to 1-D array
+    // 13ms, 63.18%; 47.1 MB, 57.79%
     public int kthSmallest(int[][] matrix, int k) {
+        int m = matrix.length;
+        int n = matrix[0].length;
 
+        int[] tmp = new int[m*n];
 
-        return -1;
+        int index =0;
+        for ( int[] row : matrix ) {
+            for (int num: row) {
+                tmp[index] = num;
+                index++;
+            }
+        }
+        Arrays.sort(tmp);
+
+        return tmp[k-1];
+
     }
 
 
