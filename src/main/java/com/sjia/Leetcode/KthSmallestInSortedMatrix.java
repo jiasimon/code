@@ -1,6 +1,7 @@
 package com.sjia.Leetcode;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class KthSmallestInSortedMatrix {
     // #378. Kth Smallest Element in a Sorted Matrix    https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/
@@ -17,6 +18,11 @@ public class KthSmallestInSortedMatrix {
     1 <= n <= 300
     -10^9 <= matrix[i][j] <= 10^9
     All the rows and columns of matrix are guaranteed to be sorted in non-decreasing order.
+
+   [ 1,  5,  9],
+   [10, 11, 13],
+   [12, 13, 15]
+
      */
 
 
@@ -38,6 +44,28 @@ public class KthSmallestInSortedMatrix {
         Arrays.sort(tmp);
 
         return tmp[k-1];
+
+    }
+
+
+    // PriorityQueue
+    // 16 ms, 59.35%; 45.8 MB,85.18%
+    public int kthSmallest_MaxHeap(int[][] matrix, int k) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        // PriorityQueue<Integer> maxHeap = new PriorityQueue<>();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b-a);
+
+        for ( int[] row : matrix ) {
+            for (int num: row) {
+                maxHeap.offer(num);
+                if (maxHeap.size() > k ) {
+                    maxHeap.poll();
+                }
+            }
+        }
+        return maxHeap.poll();
 
     }
 
