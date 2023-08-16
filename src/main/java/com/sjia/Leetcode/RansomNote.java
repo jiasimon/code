@@ -6,10 +6,47 @@ import java.util.Map;
 
 public class RansomNote {
 
-    // #383 https://leetcode.com/problems/ransom-note/
+    // #383. Ransom Note    https://leetcode.com/problems/ransom-note/
 
-    // Runtime: 32 ms, faster than 9.31% of Java online submissions for Ransom Note.
-    //Memory Usage: 49.6 MB, less than 5.02% of Java online submissions for Ransom Note.
+    /*
+    Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+
+    Each letter in magazine can only be used once in ransomNote.
+
+    Input: ransomNote = "a", magazine = "b"     Output: false
+    Input: ransomNote = "aa", magazine = "aab"  Output: true
+
+    1 <= ransomNote.length, magazine.length <= 10^5
+    ransomNote and magazine consist of lowercase English letters.
+     */
+
+
+    // one hashmap
+    // 10 ms, 62.17%; 44 MB, 51.87%
+    public boolean canConstruct(String ransomNote, String magazine) {
+        if (ransomNote.length() > magazine.length()) return false;
+
+        Map<Character, Integer> letterCount = new HashMap<>() ;
+
+        for (char c : magazine.toCharArray()) {
+            letterCount.put(c, letterCount.getOrDefault(c, 0) + 1);
+        }
+
+        // Check if the ransom note can be constructed
+
+        for (char c : ransomNote.toCharArray()) {
+            if (!letterCount.containsKey(c) || letterCount.get(c) == 0) {
+                return false;
+            }
+            letterCount.put(c, letterCount.get(c) - 1);
+        }
+
+        return true;
+
+    }
+
+
+
 /*
     public boolean canConstruct(String ransomNote, String magazine) {
         if (ransomNote.length() > magazine.length()) return false;
@@ -61,7 +98,7 @@ public class RansomNote {
 
     // Runtime: 3 ms, faster than 84.41% of Java online submissions for Ransom Note.
     //Memory Usage: 43.1 MB, less than 5.02% of Java online submissions for Ransom Note.
-    public boolean canConstruct(String ransomNote, String magazine) {
+    public boolean canConstruct_array(String ransomNote, String magazine) {
         if (ransomNote.length() > magazine.length()) return false;
 
         int[] m = new int[26];
@@ -83,8 +120,8 @@ public class RansomNote {
     public static void main(String[] args) {
 
 
-        String ransomNote  = "aa";
-        String magazine = "ab";
+        String ransomNote  = "aabb";
+        String magazine = "aab";
         RansomNote solution = new RansomNote();
         boolean result = solution.canConstruct(ransomNote, magazine);
 
