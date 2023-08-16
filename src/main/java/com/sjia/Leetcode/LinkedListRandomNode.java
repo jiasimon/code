@@ -42,4 +42,27 @@ public class LinkedListRandomNode {
 
 }
 
+/*
+class Solution {
+    List<Integer> list ;
+    private Random rand;
+
+    public Solution(ListNode head) {
+        list = new ArrayList<>();
+        rand = new Random();
+        while (head != null) {
+            list.add(head.val);
+            head = head.next;
+        }
+
+
+    }
+
+    public int getRandom() {
+        int tmp = rand.nextInt(list.size());
+        return list.get(tmp);
+
+    }
+}
+ */
 
