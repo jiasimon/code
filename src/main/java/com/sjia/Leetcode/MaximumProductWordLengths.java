@@ -57,11 +57,43 @@ public class MaximumProductWordLengths {
     }
 
 
+    // Bit mask
+    // 8 ms, 100.00%; 44.91mb, 62.88%
+    public int maxProduct(String[] words) {
+        int n = words.length;
+        int[] wordBits = new int[n];
+
+        // Convert each word to its bit representation
+        for (int i = 0; i < n; i++) {
+            String tmp = words[i];
+            int wordBit = 0;
+            for (char c : tmp.toCharArray()) {
+                wordBit |= (1 << (c - 'a'));
+            }
+            wordBits[i] = wordBit;
+        }
+
+        int maxProduct = 0;
+
+        // Check the bitwise AND of each pair of words
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if ((wordBits[i] & wordBits[j]) == 0) { // No common letters
+                    int product = words[i].length() * words[j].length();
+                    maxProduct = Math.max(maxProduct, product);
+                }
+            }
+        }
+
+        return maxProduct;
+    }
+
+
 
     public static void main(String[] args) {
         MaximumProductWordLengths solution = new MaximumProductWordLengths();
         String[] words = {"abcw", "baz", "foo", "bar", "xtfn", "abcdef"};
-        int result = solution.maxProduct_Hashset(words);
+        int result = solution.maxProduct(words);
         System.out.println(result); // Output: 16 (Product of "abcw" and "xtfn")
     }
 
