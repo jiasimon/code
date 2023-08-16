@@ -42,6 +42,38 @@ public class LinkedListRandomNode {
 
 }
 
+
+class LinkedListRandomNodeReservoir {
+    private ListNode head;
+    private Random rand;
+
+    public LinkedListRandomNodeReservoir(ListNode head) {
+        this.head = head;
+        this.rand = new Random();
+    }
+
+    public int getRandom() {
+        int count = 1;
+        int result = 0;
+        ListNode curr = head;
+
+        while (curr != null) {
+            if (rand.nextInt(count) == 0) {
+                result = curr.val;
+            }
+            count++;
+            curr = curr.next;
+        }
+
+        return result;
+    }
+}
+
+
+
+
+
+
 /*
 class Solution {
     List<Integer> list ;
