@@ -71,6 +71,56 @@ public class LongestIncreasingPathInMatrix {
 
     }
 
+
+
+    // directions array
+    // 9ms, 77.69%; 44.34mb, 22.40%
+    private int[][] directions = {{0,1},{0,-1},{1,0},{-1,0}};
+
+    public int longestIncreasingPath_directionArray(int[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return 0;
+        }
+
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int[][] memo = new int[rows][cols];
+        int maxLength = 0;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                maxLength = Math.max(maxLength, dfs(matrix, i, j, memo));
+            }
+        }
+
+        return maxLength;
+    }
+
+    private int dfs(int[][] matrix, int i, int j, int[][] memo) {
+        if (memo[i][j] != 0) {
+            return memo[i][j];
+        }
+
+        int maxLength = 1;
+
+        // loop each direction
+        for (int[] dir : directions) {
+            int newRow = i + dir[0];
+            int newCol = j + dir[1];
+
+            if (newRow >= 0 && newRow < matrix.length && newCol >= 0 && newCol < matrix[0].length
+                    && matrix[newRow][newCol] > matrix[i][j]) {
+                maxLength = Math.max(maxLength, 1 + dfs(matrix, newRow, newCol, memo));
+            }
+        }
+
+        memo[i][j] = maxLength;
+        return maxLength;
+    }
+
+
+
+
     public static void main(String[] args) {
         LongestIncreasingPathInMatrix solution = new LongestIncreasingPathInMatrix();
         int[][] matrix = {
