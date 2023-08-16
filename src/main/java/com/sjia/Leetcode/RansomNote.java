@@ -23,7 +23,7 @@ public class RansomNote {
 
     // one hashmap
     // 10 ms, 62.17%; 44 MB, 51.87%
-    public boolean canConstruct(String ransomNote, String magazine) {
+    public boolean canConstruct_OneHashMap(String ransomNote, String magazine) {
         if (ransomNote.length() > magazine.length()) return false;
 
         Map<Character, Integer> letterCount = new HashMap<>() ;
@@ -47,8 +47,9 @@ public class RansomNote {
 
 
 
-/*
-    public boolean canConstruct(String ransomNote, String magazine) {
+    // Twp maps
+    // 14 ms, 53.99%; 44.4 MB, 12.57%
+    public boolean canConstruct2(String ransomNote, String magazine) {
         if (ransomNote.length() > magazine.length()) return false;
 
         Map<Character, Integer> r = new HashMap<>();
@@ -66,7 +67,7 @@ public class RansomNote {
             if (r.get(key) >  m.getOrDefault(key,0)) return false;
         }
         return true;
-    }*/
+    }
 
 
 
@@ -123,7 +124,7 @@ public class RansomNote {
         String ransomNote  = "aabb";
         String magazine = "aab";
         RansomNote solution = new RansomNote();
-        boolean result = solution.canConstruct(ransomNote, magazine);
+        boolean result = solution.canConstruct2(ransomNote, magazine);
 
         System.out.printf("ransomNote: %s  and magazine %s canConstruct %s \n",
                 ransomNote,magazine, result);
