@@ -21,7 +21,7 @@ public class LexicographicalNumbers {
 
     // dfs, recursive
     // 3 ms, 69.83%; 47 MB, 89.44%
-    public List<Integer> lexicalOrder(int n) {
+    public List<Integer> lexicalOrder_recursive(int n) {
         List<Integer> res = new ArrayList<>();
         // loop for 2,3 ...
         for ( int i=1; i<=9; i++) {
@@ -48,11 +48,29 @@ public class LexicographicalNumbers {
     }
 
 
+    // iterative slower than dfs
+    // 5 ms, 53.41%; 47.6 MB, 42.28%
+    public List<Integer> lexicalOrder(int n) {
+        List<Integer> res = new ArrayList<>();
+        int curr = 1;
+        while (res.size() < n) {
+            res.add(curr);
+            if (curr * 10 <= n) {
+                curr *= 10;
+            } else {
+                while (curr % 10 == 9 || curr == n)
+                    curr /= 10;
+                curr++;
+            }
+        }
+        return res;
+    }
+
 
 
     public static void main(String[] args) {
         LexicographicalNumbers solution = new LexicographicalNumbers();
-        int n = 21;
+        int n = 13;  // n = 21
         List<Integer> result = solution.lexicalOrder(n);
         System.out.println("Lexicographically sorted numbers: " + result);
     }
