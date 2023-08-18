@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ShuffleArray {
@@ -19,6 +21,8 @@ public class ShuffleArray {
     All the elements of nums are unique.
      */
 
+
+    // nums.clone()
 
     private int[] original;
     private int[] shuffled;
@@ -54,3 +58,51 @@ public class ShuffleArray {
 
 
 }
+
+
+/*
+
+// get a random number from a list
+// 61ms, 11.61%; 49.5 MB, 62.1%
+class ShuffleArray2 {
+
+
+    private int[] original;
+    private int[] shuffled;
+    private Random rand;
+
+    public ShuffleArray2(int[] nums) {
+        original = nums.clone();
+        shuffled = new int[nums.length];
+        rand = new Random();
+
+    }
+
+    public int[] reset() {
+        return original;
+//        System.arraycopy(original, 0, shuffled, 0, shuffled.length);
+//        return shuffled;
+    }
+
+
+
+
+    public int[] shuffle() {
+        List<Integer> list = new ArrayList<>();
+
+        for ( int n : original) {
+            list.add(n);
+        }
+
+        for ( int i=0; i < original.length; i++) {
+            int tmp = rand.nextInt(list.size());
+            shuffled[i] = list.remove(tmp);
+        }
+        return shuffled;
+
+    }
+
+
+}
+
+*/
