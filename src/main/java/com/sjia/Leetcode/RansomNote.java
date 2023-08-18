@@ -97,8 +97,9 @@ public class RansomNote {
 
 
 
-    // Runtime: 3 ms, faster than 84.41% of Java online submissions for Ransom Note.
-    //Memory Usage: 43.1 MB, less than 5.02% of Java online submissions for Ransom Note.
+
+    // int[26] , one array
+    // 3 ms, 80.82%; 43.5 MB, 94.2%
     public boolean canConstruct_array(String ransomNote, String magazine) {
         if (ransomNote.length() > magazine.length()) return false;
 
