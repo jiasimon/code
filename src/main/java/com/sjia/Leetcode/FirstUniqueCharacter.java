@@ -32,13 +32,32 @@ public class FirstUniqueCharacter {
     }
 
 
+    // incorrect, return 'c' instead of 'l'
+    public int firstUniqChar_keySet(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (char c: s.toCharArray()) {
+            map.put(c, map.getOrDefault(c,0)+1);
+        }
+
+        for ( char c : map.keySet()) {
+            if(map.get(c) == 1) {
+                return s.indexOf(c);
+            }
+        }
+        return -1;
+    }
+
+
+    // int[26]
+    // 5 ms, 91.14%; 43.7 MB, 98.87%
     public int firstUniqChar(String s) {
-        int[] table = new int[26];
+        int[] freq = new int[26];
         for (char c : s.toCharArray()) {
-            table[c - 'a'] +=1;
+            freq[c - 'a'] +=1;
         }
         for (int i=0; i < s.length(); i++) {
-           if (table[s.charAt(i)- 'a'] == 1) return i;
+           if (freq[s.charAt(i)- 'a'] == 1) return i;
         }
         return -1;
     }
@@ -47,7 +66,7 @@ public class FirstUniqueCharacter {
     public static void main(String[] args) {
         FirstUniqueCharacter solution = new FirstUniqueCharacter();
         String s = "leetcode";
-        int index = solution.firstUniqChar(s);
+        int index = solution.firstUniqChar_keySet(s);
         System.out.println("Index of the first unique character: " + index); // Output: 0
     }
 
