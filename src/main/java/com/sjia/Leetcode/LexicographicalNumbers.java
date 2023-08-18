@@ -25,7 +25,7 @@ public class LexicographicalNumbers {
         List<Integer> res = new ArrayList<>();
         // loop for 2,3 ...
         for ( int i=1; i<=9; i++) {
-            dfs(1, n , res);
+            dfs(i, n , res);
         }
         return res;
     }
@@ -48,4 +48,12 @@ public class LexicographicalNumbers {
     }
 
 
+
+
+    public static void main(String[] args) {
+        LexicographicalNumbers solution = new LexicographicalNumbers();
+        int n = 21;
+        List<Integer> result = solution.lexicalOrder(n);
+        System.out.println("Lexicographically sorted numbers: " + result);
+    }
 }
