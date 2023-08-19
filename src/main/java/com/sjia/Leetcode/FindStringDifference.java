@@ -35,11 +35,33 @@ public class FindStringDifference {
     }
 
 
+    // int[26]
+    // 1ms, 100%; 40.4 MB, 95.57%
+    public char findTheDifference2(String s, String t) {
+        int[] freq = new int[26];
+
+        for ( char c : s.toCharArray()) {
+            freq[c-'a']++;
+        }
+
+        for (char c : t.toCharArray()) {
+            freq[c-'a']--;
+            if (freq[c-'a'] < 0) return c;
+        }
+
+        return '#';
+    }
+
+
+
+
+
+
     public static void main(String[] args) {
         FindStringDifference solution = new FindStringDifference();
         String s = "abcd";
         String t = "abcde";
-        char difference = solution.findTheDifference(s, t);
+        char difference = solution.findTheDifference2(s, t);
         System.out.println("Added character: " + difference); // Output: 'e'
     }
 
