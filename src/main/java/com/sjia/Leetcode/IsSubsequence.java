@@ -1,7 +1,7 @@
 package com.sjia.Leetcode;
 
 public class IsSubsequence {
-    // #392 https://leetcode.com/problems/is-subsequence/
+    // #392. Is Subsequence https://leetcode.com/problems/is-subsequence/
 
     // "aaaaaa", "bbaaaa"
 /*
@@ -17,17 +17,19 @@ public class IsSubsequence {
     }*/
 
 
-    // two pointer
-    // Runtime: 1 ms, faster than 83.83% of Java online submissions for Is Subsequence.
-    //Memory Usage: 37.3 MB, less than 57.83% of Java online submissions for Is Subsequence.
 
+    // two pointer
+    //
     public boolean isSubsequence(String s, String t) {
-        //if (s.length() ==0 ) return true;
+        if (s.length() ==0 ) return true;
+
         int i = 0, j = 0;
         int x = s.length(), y = t.length();
         while( i < x && j <y) {
-            if (s.charAt(i) == t.charAt(j)) i++;
-            else j++;
+            if (s.charAt(i) == t.charAt(j)) {
+                i++;
+            }
+            j++;
         }
         return i == x;
     }
