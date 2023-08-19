@@ -20,7 +20,7 @@ public class IsSubsequence {
 
     // two pointer
     //
-    public boolean isSubsequence(String s, String t) {
+    public boolean isSubsequence2(String s, String t) {
         if (s.length() ==0 ) return true;
 
         int i = 0, j = 0;
@@ -32,6 +32,24 @@ public class IsSubsequence {
             j++;
         }
         return i == x;
+    }
+
+
+    // two pointer, return sIndex == s.length()
+    // 1 ms, 89.72%; 40.3 MB, 79.24%
+    public boolean isSubsequence(String s, String t) {
+        if (s.isEmpty()) return true;
+
+        int sIndex=0, tIndex=0;
+
+        while (sIndex < s.length() && tIndex < t.length()) {
+            if (s.charAt(sIndex) == t.charAt(tIndex)) {
+                sIndex++;
+            }
+            tIndex++;
+        }
+
+        return sIndex == s.length();
     }
 
 
