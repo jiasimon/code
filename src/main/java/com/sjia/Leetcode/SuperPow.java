@@ -16,6 +16,7 @@ public class SuperPow {
 
     private static final int MOD = 1337;
 
+    // 26 ms, 17.24%; 43.2 MB, 52.98%
     public int superPow(int a, int[] b) {
         if (b.length == 0) {
             return 1;
@@ -46,12 +47,34 @@ public class SuperPow {
 
 
 
+    // 3 ms, 62.38%; 43.1 MB, 64.26%
+//    private final int MOD = 1337;
+
+    public int superPow2(int a, int[] b) {
+        int ans = 1;
+
+        a %= MOD;
+        for (final int i : b)
+            ans = powerMod(ans, 10) * powerMod(a, i) % MOD;
+
+        return ans;
+    }
+
+
+    private int powerMod(int x, int y) {
+        int pow = 1;
+        x %= MOD;
+        while (y-- > 0)
+            pow = (pow * x) % MOD;
+        return pow;
+    }
+
 
     public static void main(String[] args) {
         SuperPow solution = new SuperPow();
         int a = 2;
         int[] b = {1,2};
-        int result = solution.superPow(a, b);
+        int result = solution.superPow2(a, b);
         System.out.println("Result: " + result); // Output: 85
     }
 
