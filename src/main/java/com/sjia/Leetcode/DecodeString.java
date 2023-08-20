@@ -25,6 +25,7 @@ public class DecodeString {
 
 
     // two stack: num, str, StringBuilder
+    // 1ms, 78%; 41 MB, 23.84%
     public String decodeString(String s) {
         Stack<Integer> numStack = new Stack<>();
         Stack<String> strStack = new Stack<>();
@@ -61,6 +62,15 @@ public class DecodeString {
         String encodedString = "3[a2[c]]";
         String decodedString = solution.decodeString(encodedString);
         System.out.println("Decoded string: " + decodedString); // Output: "accaccacc"
+
+        encodedString = "3[a]2[bc]";
+        decodedString = solution.decodeString(encodedString);
+        System.out.println("Decoded string: " + decodedString); // Output: "aaabcbc"
+
+        encodedString = "3[a2[c4[d]]]";
+        decodedString = solution.decodeString(encodedString);
+        System.out.println("Decoded string: " + decodedString); // Output: "acddddcddddacddddcddddacddddcdddd"
+
     }
 
 }
