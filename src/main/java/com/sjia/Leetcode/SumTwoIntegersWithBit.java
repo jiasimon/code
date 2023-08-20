@@ -9,6 +9,7 @@ public class SumTwoIntegersWithBit {
 
      */
 
+    // ^ is XOR to get the carry
     public int getSum(int a, int b) {
         while (b != 0) {
             int carry = a & b;
@@ -16,6 +17,16 @@ public class SumTwoIntegersWithBit {
             b = carry << 1;
         }
         return a;
+    }
+
+
+    public int getSum_plusEqual(int a, int b) {
+        int res =0;
+
+        res += a;
+        res += b;
+        return res;
+
     }
 
     public static void main(String[] args) {
