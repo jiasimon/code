@@ -29,10 +29,29 @@ public class SumTwoIntegersWithBit {
 
     }
 
+
+
+    // recursive, xor, AND left shift
+    // 0 ms, 100% ; 39.1 MB, 65.78%
+    public int getSum_recursive(int a, int b) {
+        // carry ==0, stop
+        if ( b == 0) {
+            return a;
+        }
+
+        int sum = a ^ b; // Sum of bits without carry
+        int carry = (a & b ) << 1;  // Carry bits
+
+        return getSum(sum, carry);
+
+    }
+
+
+
     public static void main(String[] args) {
         SumTwoIntegersWithBit solution = new SumTwoIntegersWithBit();
         int a = 5, b = 7;
-        int sum = solution.getSum(a, b);
+        int sum = solution.getSum_recursive(a, b);
         System.out.println("Sum of " + a + " and " + b + " is: " + sum); // Output: 12
     }
 
