@@ -20,6 +20,8 @@ public class FindKPairsSmallestSums {
 
 
 
+    // minHeap, (a, b) -> a[0] + a[1] - b[0] - b[1]
+    // 28 ms, 98.48%; 56.3 MB, 91.24%
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         List<List<Integer>> result = new ArrayList<>();
         if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0 || k <= 0) {
@@ -49,15 +51,49 @@ public class FindKPairsSmallestSums {
 
 
 
+    // brute, Math.min(m, k), Math.min(k, m*n)
+    // TLE, 25/36
+    public List<List<Integer>> kSmallestPairs_brute(int[] nums1, int[] nums2, int k) {
+        int m = nums1.length;
+        int n = nums2.length;
+
+        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> tmp = new ArrayList<>();
+
+        for (int i =0; i < Math.min(m, k); i++) {
+            for ( int j = 0 ; j < Math.min(n, k); j++) {
+                tmp.add(Arrays.asList(nums1[i], nums2[j]));
+            }
+        }
+
+        Collections.sort(tmp, (a,b) -> a.get(0)+ a.get(1) - b.get(0) -b.get(1) );
+//        for ( int i= 0 ; i < k; i++) {
+        for ( int i= 0 ; i < Math.min(k, m*n); i++) {
+            res.add(tmp.get(i));
+        }
+
+        return res;
+
+    }
+
+
     public static void main(String[] args) {
         FindKPairsSmallestSums solution = new FindKPairsSmallestSums();
         int[] nums1 = {1, 7, 11};
         int[] nums2 = {2, 4, 6};
         int k = 3;
-        List<List<Integer>> result = solution.kSmallestPairs(nums1, nums2, k);
+        List<List<Integer>> result = solution.kSmallestPairs_brute(nums1, nums2, k);
         for (List<Integer> pair : result) {
             System.out.println(pair);
         }
+
+        int[] nums1b = {1, 2};
+        int[] nums2b = {3};
+        k = 3;
+        result = solution.kSmallestPairs_brute(nums1b, nums2b, k);
+        System.out.println( "Find K Pairs with Smallest Sums: " + result);
+
+
     }
 
 
