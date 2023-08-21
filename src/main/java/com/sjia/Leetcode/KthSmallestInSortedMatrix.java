@@ -5,6 +5,7 @@ import java.util.PriorityQueue;
 
 public class KthSmallestInSortedMatrix {
     // #378. Kth Smallest Element in a Sorted Matrix    https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/
+    // compare to #373
 
     /*
     Given an n x n matrix where each of the rows and columns is sorted in ascending order, return the kth smallest element in the matrix.
@@ -48,7 +49,7 @@ public class KthSmallestInSortedMatrix {
     }
 
 
-    // PriorityQueue
+    // PriorityQueue, maxHeap
     // 16 ms, 59.35%; 45.8 MB,85.18%
     public int kthSmallest_MaxHeap(int[][] matrix, int k) {
         int m = matrix.length;
@@ -68,6 +69,33 @@ public class KthSmallestInSortedMatrix {
         return maxHeap.poll();
 
     }
+
+
+
+    // Min Heap to find kth smallest element from N sorted list
+    // 18 ms, 52.32%; 45.5 MB, 94.35%
+    public int kthSmallest_minHeap(int[][] matrix, int k) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int res = -1;
+
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>( (a,b) -> a[0] - b[0] );
+
+        for (int r = 0; r < Math.min(m, k); ++r) {
+            minHeap.offer(new int[]{matrix[r][0], r, 0});
+        }
+
+        for (int i = 1; i <= k; ++i) {
+            int[] top = minHeap.poll();
+            int r = top[1], c = top[2]; // r: row; c: column
+            res = top[0];
+            if (c + 1 < n) minHeap.offer(new int[]{matrix[r][c + 1], r, c + 1});
+        }
+
+        return res;
+    }
+
+
 
 
     public static void main(String[] args) {
