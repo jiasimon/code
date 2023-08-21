@@ -68,6 +68,31 @@ public class LexicographicalNumbers {
 
 
 
+    // for loop,
+    public List<Integer> lexicalOrder_iterative(int n) {
+        List<Integer> result = new ArrayList<>();
+        int current = 1;
+
+        for (int i = 1; i <= n; i++) {
+            result.add(current);
+
+            if (current * 10 <= n) {
+                current *= 10;
+            } else if (current % 10 != 9 && current + 1 <= n) {
+                current++;
+            } else {
+                while ((current / 10) % 10 == 9) {
+                    current /= 10;
+                }
+                current = current / 10 + 1;
+            }
+        }
+
+        return result;
+    }
+
+
+
     public static void main(String[] args) {
         LexicographicalNumbers solution = new LexicographicalNumbers();
         int n = 13;  // n = 21
