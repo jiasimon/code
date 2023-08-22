@@ -18,22 +18,50 @@ public class EliminationGame {
     arr = [6]
      */
 
-    public int lastRemaining(int n) {
-        boolean leftToRight = true; // Direction of elimination
-        int remaining = n;
-        int step = 1;
-        int head = 1;
 
-        while (remaining > 1) {
-            if (leftToRight || remaining % 2 == 1) {
-                head += step;
+    // head += step
+    // 2 ms, 87.1%; 40.6 MB, 38.52%
+    public int lastRemaining(int n) {
+        boolean leftToRight = true;
+        int remaining = n;
+        int head = 1;
+        int step =1;
+
+
+        while( remaining > 1) {
+            if (leftToRight || remaining %2 ==1) {
+                head = head + step;
             }
+
             step *= 2;
             remaining /= 2;
             leftToRight = !leftToRight;
         }
 
         return head;
+    }
+
+
+
+    // Josephus Problem
+    /*
+        if you start from the left to right, the result is i
+        then, if you start from right to left, the result is n+1-i
+        for n numbers, after one pass, there are n/2 left, each number is two times of the original,
+        1,2,3,4,5,6,7,8,9
+        after one pass
+        2,4,6,8
+        assume the result of 1,2,3,4 from left to right is f(4)
+        then the result of 1,2,3,4 from right to left is 5-f(4)
+        then the result of 2,4,6,8 from right to left is 2*(5-f(4))
+        this is the formula
+        f(n)=2(1+n/2-f(n/2))* when n is 1, of course the result is 1
+     */
+
+    public int lastRemaining_math(int n) {
+        if ( n==1) return 1;
+        return 2* ( n/2 + 1 - lastRemaining_math(n/2) );
+
     }
 
 
