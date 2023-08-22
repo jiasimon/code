@@ -55,6 +55,21 @@ public class FindStringDifference {
 
 
 
+    // sum delta to char
+    public char findTheDifference_sum(String s, String t) {
+        int res = 0;
+        for ( char c: t.toCharArray()) {
+            res += c;
+        }
+        for ( char c : s.toCharArray()) {
+            res -= c;
+        }
+        return (char)res;
+    }
+
+
+
+
 
 
     public static void main(String[] args) {
