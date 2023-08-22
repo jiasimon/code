@@ -63,10 +63,25 @@ public class FirstUniqueCharacter {
     }
 
 
+    // int[128]
+    // 5 ms, 91.11%; 44.1 MB, 75.28%
+    public int firstUniqChar_int128(String s) {
+        int[] freq = new int[128];
+        for (char c : s.toCharArray()) {
+            freq[c]++;
+        }
+        for (int i=0; i < s.length(); i++) {
+            if (freq[s.charAt(i)] == 1) return i;
+        }
+        return -1;
+    }
+
+
+
     public static void main(String[] args) {
         FirstUniqueCharacter solution = new FirstUniqueCharacter();
         String s = "leetcode";
-        int index = solution.firstUniqChar_keySet(s);
+        int index = solution.firstUniqChar_int128(s);
         System.out.println("Index of the first unique character: " + index); // Output: 0
     }
 
