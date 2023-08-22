@@ -5,6 +5,8 @@ import java.util.*;
 public class FindKPairsSmallestSums {
     // #373. Find K Pairs with Smallest Sums    https://leetcode.com/problems/find-k-pairs-with-smallest-sums/
 
+    // compare to #378
+
     /*
     You are given two integer arrays nums1 and nums2 sorted in non-decreasing order and an integer k.
 
@@ -108,12 +110,46 @@ public class FindKPairsSmallestSums {
     }
 
 
+
+    // PriorityQueue<List<Integer>> , slower than PriorityQueue<int[]>
+    // 48 ms, 57.2%; 59.8 MB, 19.93%
+    public List<List<Integer>> kSmallestPairs_minHeap(int[] nums1, int[] nums2, int k) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        if (nums1.length == 0 || nums2.length == 0 || k == 0) {
+            return result;
+        }
+
+        PriorityQueue<List<Integer>> minHeap = new PriorityQueue<>((a,b) -> a.get(0)+ a.get(1) - b.get(0) -b.get(1));
+
+        for (int i = 0; i < Math.min(nums1.length, k); i++) {
+            minHeap.offer( Arrays.asList(nums1[i], nums2[0], 0));
+        }
+
+        while (k-- > 0 && !minHeap.isEmpty()) {
+            List<Integer> curr = minHeap.poll();
+            int i = curr.get(2); // index in nums2
+
+            result.add(Arrays.asList(curr.get(0), curr.get(1)));
+//            result.add(curr.subList(0,2));
+
+            if (i + 1 < nums2.length) {
+                minHeap.offer( Arrays.asList(curr.get(0), nums2[i+1], i + 1) );
+            }
+        }
+
+        return result;
+    }
+
+
+
+
     public static void main(String[] args) {
         FindKPairsSmallestSums solution = new FindKPairsSmallestSums();
         int[] nums1 = {1, 7, 11};
         int[] nums2 = {2, 4, 6};
         int k = 3;
-        List<List<Integer>> result = solution.kSmallestPairs_mergeKSortedList(nums1, nums2, k);
+        List<List<Integer>> result = solution.kSmallestPairs_minHeap(nums1, nums2, k);
         for (List<Integer> pair : result) {
             System.out.println(pair);
         }
@@ -121,7 +157,7 @@ public class FindKPairsSmallestSums {
         int[] nums1b = {1, 2};
         int[] nums2b = {3};
         k = 3;
-        result = solution.kSmallestPairs_brute(nums1b, nums2b, k);
+        result = solution.kSmallestPairs_minHeap(nums1b, nums2b, k);
         System.out.println( "Find K Pairs with Smallest Sums: " + result);
 
 
