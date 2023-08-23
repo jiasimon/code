@@ -4,6 +4,8 @@ import java.util.*;
 
 public class KdiffPairsInArray {
     // #532. K-diff Pairs in an Array   https://leetcode.com/problems/k-diff-pairs-in-an-array/description/
+    // #forinterview    #forkid
+
     /*
     Given an array of integers nums and an integer k, return the number of unique k-diff pairs in the array.
 
@@ -57,8 +59,8 @@ public class KdiffPairsInArray {
     // two HashSets
     // 9ms, 72.33%; 45.34mb, 6.41%
     public int findPairs_TwoSets(int[] nums, int k) {
-        Set<Integer> visited = new HashSet<Integer>();
-        Set<Integer> res = new HashSet<Integer>();
+        Set<Integer> visited = new HashSet<>();
+        Set<Integer> res = new HashSet<>();
         for (int num : nums) {
             if (visited.contains(num - k)) {
                 res.add(num - k);
