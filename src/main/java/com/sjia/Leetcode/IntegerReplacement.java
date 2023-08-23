@@ -15,21 +15,32 @@ public class IntegerReplacement {
 
     // recursive
     // java.lang.StackOverflowError
-    public int integerReplacement(int n) {
+    public int integerReplacement_recursive_failed(int n) {
         if (n == 1) {
             return 0;
         } else if (n % 2 == 0) {
-            return 1 + integerReplacement(n / 2);
+            return 1 + integerReplacement_recursive_failed(n / 2);
         } else {
-            return 1 + Math.min(integerReplacement(n + 1), integerReplacement(n - 1));
+            return 1 + Math.min(integerReplacement_recursive_failed(n + 1), integerReplacement_recursive_failed(n - 1));
         }
+    }
+
+    public int integerReplacement_recursive(int n) {
+        if (n == 1) {
+            return 0;
+        } else if (n % 2 == 0) {
+            return 1 + integerReplacement_recursive(n / 2);
+        } else {
+            return 2 + Math.min(integerReplacement_recursive(n/2), integerReplacement_recursive(n/2 + 1));
+        }
+
     }
 
 
     public static void main(String[] args) {
         IntegerReplacement solution = new IntegerReplacement();
         int n = 8;
-        int steps = solution.integerReplacement(n);
+        int steps = solution.integerReplacement_recursive(n);
         System.out.println("Steps needed to convert " + n + " to 1: " + steps); // Output: 3
     }
 
