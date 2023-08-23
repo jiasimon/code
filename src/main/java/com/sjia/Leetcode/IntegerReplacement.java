@@ -1,0 +1,36 @@
+package com.sjia.Leetcode;
+
+public class IntegerReplacement {
+    // #397. Integer Replacement    https://leetcode.com/problems/integer-replacement/
+
+    /*
+    Given a positive integer n, you can apply one of the following operations:
+
+    If n is even, replace n with n / 2.
+    If n is odd, replace n with either n + 1 or n - 1.
+    Return the minimum number of operations needed for n to become 1.
+
+     */
+
+
+    // recursive
+    // java.lang.StackOverflowError
+    public int integerReplacement(int n) {
+        if (n == 1) {
+            return 0;
+        } else if (n % 2 == 0) {
+            return 1 + integerReplacement(n / 2);
+        } else {
+            return 1 + Math.min(integerReplacement(n + 1), integerReplacement(n - 1));
+        }
+    }
+
+
+    public static void main(String[] args) {
+        IntegerReplacement solution = new IntegerReplacement();
+        int n = 8;
+        int steps = solution.integerReplacement(n);
+        System.out.println("Steps needed to convert " + n + " to 1: " + steps); // Output: 3
+    }
+
+}
