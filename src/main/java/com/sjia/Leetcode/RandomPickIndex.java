@@ -1,6 +1,6 @@
 package com.sjia.Leetcode;
 
-import java.util.Random;
+import java.util.*;
 
 public class RandomPickIndex {
     // #398. Random Pick Index  https://leetcode.com/problems/random-pick-index/description/
@@ -16,6 +16,32 @@ public class RandomPickIndex {
     1 <= nums.length <= 2 * 10^4
     -2^31 <= nums[i] <= 2^31 - 1
      */
+
+
+
+
+    // 73 ms, 92.30%; 54.9 MB, 58.71%
+    Map<Integer, List<Integer>> pos;
+    private Random random;
+
+    public RandomPickIndex(int[] nums) {
+        pos = new HashMap<Integer, List<Integer>>();
+        random = new Random();
+        for (int i = 0; i < nums.length; ++i) {
+            pos.putIfAbsent(nums[i], new ArrayList<Integer>());
+            pos.get(nums[i]).add(i);
+        }
+
+
+
+    }
+
+    public int pick(int target) {
+        List<Integer> indices = pos.get(target);
+        return indices.get(random.nextInt(indices.size()));
+
+
+    }
 
 
 
