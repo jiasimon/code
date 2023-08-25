@@ -24,6 +24,7 @@ public class TargetSum {
 
 
     // subsetSum = ( total + target )/ 2
+    // 4 ms, 94.6%; 39.8 MB, 95.44%
     public int findTargetSumWays(int[] nums, int target) {
 
         int total= 0;
@@ -31,7 +32,7 @@ public class TargetSum {
             total += n;
         }
 
-        if ( total < target) {
+        if ( total < Math.abs(target) ) {
             return 0;
         }
 
