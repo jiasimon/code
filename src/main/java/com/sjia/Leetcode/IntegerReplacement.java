@@ -1,5 +1,8 @@
 package com.sjia.Leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class IntegerReplacement {
     // #397. Integer Replacement    https://leetcode.com/problems/integer-replacement/
 
@@ -35,6 +38,47 @@ public class IntegerReplacement {
         }
 
     }
+
+
+    public int integerReplacement_long(int n) {
+        long num = n;
+        return (int) dfs_long(num);
+
+    }
+
+
+    public long dfs_long(long n) {
+        if (n == 1) {
+            return 0;
+        } else if (n % 2 == 0) {
+            return 1 + dfs_long(n / 2);
+        } else {
+            return 1 + Math.min(dfs_long(n + 1), dfs_long(n - 1));
+        }
+
+    }
+
+
+
+    // memo, Hashmap
+    // 1 ms, 58.87%; 39.6 MB, 18.83%
+    Map<Integer, Integer> memo = new HashMap<Integer, Integer>();
+
+    public int integerReplacement(int n) {
+        if (n == 1) {
+            return 0;
+        }
+        if (!memo.containsKey(n)) {
+            if (n % 2 == 0) {
+                memo.put(n, 1 + integerReplacement(n / 2));
+            } else {
+                memo.put(n, 2 + Math.min(integerReplacement(n / 2), integerReplacement(n / 2 + 1)));
+            }
+        }
+        return memo.get(n);
+    }
+
+
 
 
     public static void main(String[] args) {
