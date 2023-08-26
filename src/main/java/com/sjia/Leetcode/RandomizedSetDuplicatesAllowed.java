@@ -70,12 +70,35 @@ public class RandomizedSetDuplicatesAllowed {
     public static void main(String[] args) {
         RandomizedSetDuplicatesAllowed randomCollection = new RandomizedSetDuplicatesAllowed();
 
+/*
         System.out.println(randomCollection.insert(1)); // true
         System.out.println(randomCollection.insert(1)); // false
         System.out.println(randomCollection.insert(2)); // true
         System.out.println(randomCollection.getRandom()); // 1 or 2
         System.out.println(randomCollection.remove(1)); // true
         System.out.println(randomCollection.getRandom()); // 1 or 2
+
+*/
+
+
+        System.out.println(randomCollection.insert(1)); // true
+        System.out.println(randomCollection.insert(1)); // true
+        System.out.println(randomCollection.insert(1)); // true
+        System.out.println(randomCollection.insert(2)); // true
+        System.out.println(randomCollection.insert(2)); // true
+
+        System.out.println(randomCollection.getRandom()); // 1 or 2
+
+        System.out.println(randomCollection.remove(1)); // true
+        System.out.println(randomCollection.remove(1)); // true
+        System.out.println(randomCollection.getRandom()); // 1 or 2
+
+        System.out.println(randomCollection.remove(2)); // true
+        System.out.println(randomCollection.remove(1)); // true
+        System.out.println(randomCollection.remove(2)); // true
+        System.out.println(randomCollection.getRandom()); // 1 or 2
+
+
     }
 
 
