@@ -41,6 +41,24 @@ public class BinaryWatch {
     }
 
 
+
+
+    // m < 10 ? "0" + m : m
+    // 10 ms, 42.79%; 41 MB, 91.3%
+    public List<String> readBinaryWatch_(int num) {
+        List<String> res = new ArrayList<>();
+        //直接遍历  0:00 -> 12:00   每个时间有多少1
+        for (int h = 0; h < 12; h++) {
+            for (int m = 0; m < 60; m++) {
+                if (Integer.bitCount(h) + Integer.bitCount(m) == num)
+                    res.add(h + ":" + (m < 10 ? "0" + m : m));
+            }
+        }
+        return res;
+
+    }
+
+
     public static void main(String[] args) {
         BinaryWatch binaryWatch = new BinaryWatch();
         int num = 1;
