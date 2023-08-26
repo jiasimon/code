@@ -80,6 +80,26 @@ public class IntegerReplacement {
 
 
 
+    // if((temp&3)==3&&temp!=3)
+    public int integerReplacement_bit(int n) {
+        long temp=n;
+        int count=0;
+        while(temp!=1){
+            if((temp&3)==3&&temp!=3){
+                temp++;
+            }
+            else if((temp&1)==1){
+                temp--;
+            }
+            else{
+                temp=temp>>1;
+            }
+            count++;
+        }
+        return count;
+
+    }
+
 
     public static void main(String[] args) {
         IntegerReplacement solution = new IntegerReplacement();
