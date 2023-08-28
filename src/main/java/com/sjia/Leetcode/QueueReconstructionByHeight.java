@@ -39,6 +39,30 @@ public class QueueReconstructionByHeight {
     }
 
 
+
+    // 7 ms, 85.70%; 44.4 MB, 65.13%
+    // (a, b) -> { if else }
+    public int[][] reconstructQueue_comparator(int[][] people) {
+        Arrays.sort(people, (a, b) -> {
+            if (a[0] != b[0]) {
+                // Sort by height in descending order
+                return b[0] - a[0];
+            } else {
+                // If heights are the same, sort by k value in ascending order
+                return a[1] - b[1];
+            }
+        });
+
+        List<int[]> queue = new ArrayList<>();
+        for (int[] person : people) {
+            // Insert at the index specified by k value
+            queue.add(person[1], person);
+        }
+
+        return queue.toArray(new int[queue.size()][]);
+    }
+
+
     public static void main(String[] args) {
         QueueReconstructionByHeight solution = new QueueReconstructionByHeight();
 
