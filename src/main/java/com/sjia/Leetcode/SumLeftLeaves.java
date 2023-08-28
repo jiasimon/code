@@ -36,6 +36,41 @@ public class SumLeftLeaves {
     }
 
 
+
+    // 0 ms, 100%; 40.2 MB, 73.71%
+    public int sumOfLeftLeaves_recursive(TreeNode root) {
+        if ( root == null)  {
+            return 0;
+        }
+
+        int res = 0;
+        if (root.left != null && root.left.left == null && root.left.right == null) {
+            res += root.left.val;
+        }
+
+        // Recurse on both left and right subtrees
+        res += sumOfLeftLeaves(root.left);
+        res += sumOfLeftLeaves(root.right);
+
+        return res;
+
+    }
+
+
+    // recursive with flag
+    public int sumOfLeftLeaves_recursive_flag(TreeNode root) {
+        return helper(root, false);
+    }
+
+    private int helper(TreeNode root, boolean isLeft) {
+        if (root == null) return 0;
+        if (root.left == null && root.right == null && isLeft) {
+            return root.val;
+        }
+        return helper(root.left, true) + helper(root.right, false);
+    }
+
+
     public static void main(String[] args) {
         SumLeftLeaves solution = new SumLeftLeaves();
 
@@ -46,8 +81,8 @@ public class SumLeftLeaves {
         root.right.left = new TreeNode(15);
         root.right.right = new TreeNode(7);
 
-        int sum = solution.sumOfLeftLeaves(root);
-        System.out.println("Sum of left leaves: " + sum);
+        int sum = solution.sumOfLeftLeaves_recursive(root);
+        System.out.println("Sum of left leaves: " + sum);  // 24
     }
 
 }
