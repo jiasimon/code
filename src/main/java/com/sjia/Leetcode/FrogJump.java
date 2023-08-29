@@ -56,7 +56,7 @@ public class FrogJump {
 
     // DP,  jump to stones[i] with jump j
     // 87 ms, 24.89%; 63 MB, 15.31%
-    public boolean canCross_dp(int[] stones) {
+    public boolean canCross_dp_to_Stone(int[] stones) {
         final int n = stones.length;
         // dp[i][j] := 1 if a frog can make a size j jump to stones[i]
         int[][] dp = new int[n][n + 1];
@@ -108,10 +108,32 @@ public class FrogJump {
     }
 
 
+    // dp[i][j] := 1 if a frog can make a size j jump from stones[i]
+    // 49 ms, 54.30%; 59.2 MB, 26.75%
+    public boolean canCross_dp_from_stone(int[] stones) {
+        final int n = stones.length;
+        // dp[i][j] := 1 if a frog can make a size j jump from stones[i]
+        int[][] dp = new int[n][n + 1];
+        dp[0][1] = 1;
+
+        for (int i = 1; i < n; ++i)
+            for (int j = 0; j < i; ++j) {
+                final int k = stones[i] - stones[j];
+                if (k <= n && dp[j][k] == 1) {
+                    dp[i][k - 1] = 1;
+                    dp[i][k] = 1;
+                    dp[i][k + 1] = 1;
+                }
+            }
+
+        return Arrays.stream(dp[n - 1]).anyMatch(a -> a == 1);
+    }
+
+
     public static void main(String[] args) {
         FrogJump solution = new FrogJump();
         int[] stones = {0, 1, 3, 5, 6, 8, 12, 17};
-        boolean canCross = solution.canCross_dp(stones);
+        boolean canCross = solution.canCross_dp_from_stone(stones);
 
         if (canCross) {
             System.out.println("The frog can cross the river.");
