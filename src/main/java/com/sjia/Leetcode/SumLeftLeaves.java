@@ -58,6 +58,7 @@ public class SumLeftLeaves {
 
 
     // recursive with flag
+    // 0 ms, 100%; 40.2 MB, 61.31%
     public int sumOfLeftLeaves_recursive_flag(TreeNode root) {
         return helper(root, false);
     }
