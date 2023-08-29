@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 public class RemoveKDigits {
@@ -28,6 +30,7 @@ public class RemoveKDigits {
     public String removeKdigits(String num, int k) {
         int n = num.length();
         if ( n== k) return "0";
+
 
         Stack<Character> stack = new Stack<>();
         for (char digit: num.toCharArray()) {
@@ -58,6 +61,14 @@ public class RemoveKDigits {
         return result.toString();
     }
 
+    /*
+    // 16 ms, 81.5%; 45.1 MB, 20.93%
+    change from
+        result.insert(0, stack.pop());
+    into
+        result.append(stack.pop());
+     result.reverse();
+     */
 
 
 
@@ -98,6 +109,49 @@ public class RemoveKDigits {
         return sb.toString();
 
     }
+
+
+
+
+    // ArrayDeque
+    public String removeKdigits_ArrayDeque(String num, int k) {
+        int n = num.length();
+        if ( n== k) return "0";
+
+
+//        Stack<Character> stack = new Stack<>();
+
+        Deque<Character> stack = new ArrayDeque<>();
+
+        for (Character digit: num.toCharArray()) {
+            while ( k > 0 && !stack.isEmpty() && stack.peek() > digit) {
+                stack.pop();
+                k--;
+            }
+            stack.push(digit);
+        }
+
+        // eg: 123456, k=2
+        while ( k > 0 ) {
+            stack.pop();
+            k--;
+        }
+
+        StringBuilder result = new StringBuilder();
+
+        while (!stack.isEmpty()) {
+            result.insert(0, stack.pop());
+        }
+
+        // Remove leading zeros
+        while (result.length() > 1 && result.charAt(0) == '0') {
+            result.deleteCharAt(0);
+        }
+
+        return result.toString();
+    }
+
+
 
 
     public static void main(String[] args) {
