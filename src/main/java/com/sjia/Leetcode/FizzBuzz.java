@@ -5,12 +5,26 @@ import java.util.List;
 
 public class FizzBuzz {
 
-    // #412 https://leetcode.com/problems/fizz-buzz/
+    // #412. Fizz Buzz https://leetcode.com/problems/fizz-buzz/
 
-    // Runtime: 2 ms, faster than 56.23% of Java online submissions for Fizz Buzz.
-    //Memory Usage: 45.8 MB, less than 5.21% of Java online submissions for Fizz Buzz.
+    /*
+    Given an integer n, return a string array answer (1-indexed) where:
 
-/*    public List<String> fizzBuzz(int n) {
+    answer[i] == "FizzBuzz" if i is divisible by 3 and 5.
+    answer[i] == "Fizz" if i is divisible by 3.
+    answer[i] == "Buzz" if i is divisible by 5.
+    answer[i] == i (as a string) if none of the above conditions are true.
+
+    Input: n = 3        Output: ["1","2","Fizz"]
+    Input: n = 5        Output: ["1","2","Fizz","4","Buzz"]
+
+    1 <= n <= 104
+     */
+
+
+
+    // 1 ms, 99.75%; 44.7 MB, 63.70%
+    public List<String> fizzBuzz_2(int n) {
         List <String> result = new ArrayList<>();
         for ( int i=1; i <=n; i++ ) {
             if ( (i %3 ==0) && (i %5 ==0) ) {
@@ -24,7 +38,7 @@ public class FizzBuzz {
             }
         }
         return result;
-    }*/
+    }
 
 
     // Runtime: 8 ms, faster than 12.59% of Java online submissions for Fizz Buzz.
@@ -74,6 +88,15 @@ public class FizzBuzz {
         }
         return ret;
     }*/
+
+
+    public static void main(String[] args) {
+        FizzBuzz solution = new FizzBuzz();
+
+        int n =15;
+        List<String> result = solution.fizzBuzz(n);
+        System.out.println(result); // Output:
+    }
 
 
 }
