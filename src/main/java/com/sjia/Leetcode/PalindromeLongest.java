@@ -1,6 +1,8 @@
 package com.sjia.Leetcode;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PalindromeLongest {
 
@@ -19,7 +21,7 @@ public class PalindromeLongest {
 
     // Runtime: 1 ms, faster than 100.00% of Java online submissions for Longest Palindrome.
     //Memory Usage: 38.2 MB, less than 29.63% of Java online submissions for Longest Palindrome.
-    public int longestPalindrome(String s) {
+    public int longestPalindrome_nD2M2(String s) {
         int[] tmp = new int[128];
         for (char c : s.toCharArray()) {
             tmp[c]  += 1;
@@ -32,6 +34,7 @@ public class PalindromeLongest {
     }
 
 
+    // stream anyMatch, slow
     // 4 ms, 69.1%; 41.2 MB, 28.4%
     public int longestPalindrome_stream(String s) {
         int ans = 0;
@@ -47,6 +50,60 @@ public class PalindromeLongest {
 
         return ans + (hasOddCount ? 1 : 0);
 
+    }
+
+
+    // if ( res < n) return res+1;
+    // 1 ms, 100%; 40.5 MB, 94.16%
+    public int longestPalindrome(String s) {
+        int res = 0;
+        int[] count = new int[128];
+
+        for (final char c : s.toCharArray())
+            ++count[c];
+
+        for (final int c : count) {
+            res += c % 2 == 0 ? c : c - 1;
+        }
+
+
+        if ( res < s.length()) return res+1;
+        else return res;
+    }
+
+
+
+    public int longestPalindrome_map(String s) {
+        if (s == null || s.isEmpty()) {
+            return 0;
+        }
+
+        Map<Character, Integer> charFrequency = new HashMap<>();
+
+        // Count the frequency of each character
+        for (char c : s.toCharArray()) {
+            charFrequency.put(c, charFrequency.getOrDefault(c, 0) + 1);
+        }
+
+        int length = 0;
+        boolean oddFrequencyFound = false;
+
+        // Calculate the length of the longest palindrome
+        for (int frequency : charFrequency.values()) {
+            if (frequency % 2 == 0) {
+                length += frequency;
+            } else {
+                length += frequency - 1;
+                oddFrequencyFound = true;
+            }
+        }
+
+        // Add one extra character if an odd-frequency character exists
+        if (oddFrequencyFound) {
+            length += 1;
+        }
+
+        return length;
     }
 
 
