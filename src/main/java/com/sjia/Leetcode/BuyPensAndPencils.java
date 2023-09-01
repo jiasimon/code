@@ -21,7 +21,7 @@ public class BuyPensAndPencils {
 
     // convert to coin problem, from coin to total
     // 52 ms, 15.79%; 42.8 MB, 8.77%
-    public long waysToBuyPensPencils(int total, int cost1, int cost2) {
+    public long waysToBuyPensPencils_beibao(int total, int cost1, int cost2) {
         int[] dp = new int[total + 1];
         dp[0] = 1;
 
@@ -45,6 +45,16 @@ public class BuyPensAndPencils {
     }
 
 
+
+    public long waysToBuyPensPencils(int total, int cost1, int cost2) {
+        long res = 0;
+        final int maxPen = total / cost1;
+
+        for (int i = 0; i <= maxPen; ++i)
+            res += (total - i * cost1) / cost2 + 1;
+
+        return res;
+    }
 
     public static void main(String[] args) {
         BuyPensAndPencils solution = new BuyPensAndPencils();
