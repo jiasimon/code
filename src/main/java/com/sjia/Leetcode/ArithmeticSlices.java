@@ -49,10 +49,35 @@ public class ArithmeticSlices {
         return res;
     }
 
+
+
+    // dp, int[] to int
+    // 0 ms, 100%; 40.7 MB, 24.37%
+    public int numberOfArithmeticSlices_dp_space(int[] nums) {
+        int n = nums.length;
+        if (n < 3) {
+            return 0;
+        }
+
+        int tmp = 0;
+        int res = 0;
+
+        for (int i = 2; i < n; i++) {
+            if (nums[i] - nums[i - 1] == nums[i - 1] - nums[i - 2]) {
+                tmp++;
+                res += tmp; // Add the slices ending at i to the total count
+            } else {
+                tmp = 0;  // break continuous ,reset to 0
+            }
+        }
+        return res;
+    }
+
+
     public static void main(String[] args) {
         ArithmeticSlices solution = new ArithmeticSlices();
         int[] A = {1, 2, 3, 4};
-        int numSlices = solution.numberOfArithmeticSlices(A);
+        int numSlices = solution.numberOfArithmeticSlices_dp(A);
         System.out.println("Number of arithmetic slices: " + numSlices);
     }
 
