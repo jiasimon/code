@@ -1,13 +1,24 @@
 package com.sjia.Leetcode;
 
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class ThirdMaximumNumber {
 
-    // #414 https://leetcode.com/problems/third-maximum-number/
-    // [2, 2, 3, 1] , return Output: 1
-    // Given a non-empty array of integers,return the third maximum number
-    // If it does not exist, return the maximum number.
+    // #414. Third Maximum Number   https://leetcode.com/problems/third-maximum-number/
+
+    /*
+    Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number.
+    Input: nums = [3,2,1]       Output: 1
+    Input: nums = [1,2]         Output: 2
+    Input: nums = [2,2,3,1]     Output: 1
+
+    1 <= nums.length <= 10^4
+    -2^31 <= nums[i] <= 2^31 - 1
+     */
+
+
+
+
 
     //Runtime: 0 ms, faster than 100.00% of Java online submissions for Third Maximum Number.
     //Memory Usage: 39.5 MB, less than 18.33% of Java online submissions for Third Maximum Number.
@@ -78,5 +89,25 @@ public class ThirdMaximumNumber {
         return pq.poll();
     }
 
+
+    // Set to List , sort
+    // 6 ms, 26.91%; 43.3 MB, 62.74%
+    public int thirdMax_set(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for ( int n : nums) {
+            set.add(n);
+        }
+
+
+        List<Integer> tmp = new ArrayList<Integer>(set);
+        Collections.sort(tmp);
+        if (tmp.size() < 3) {
+            return tmp.get(tmp.size() - 1);
+        } else {
+            return tmp.get(tmp.size() - 3);
+        }
+
+
+    }
 
 }
