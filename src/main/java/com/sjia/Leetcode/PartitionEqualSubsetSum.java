@@ -39,6 +39,33 @@ public class PartitionEqualSubsetSum {
 
     }
 
+
+
+    // from coin to total, boolean[target +1]
+    // for ( int i = target; i >= coin; i-- ) reverse order
+    // 26 ms, 84.78%; 40.7 MB, 95.51%
+    public boolean canPartition_dp(int[] nums) {
+        int sum = 0;
+        for ( int n : nums) {
+            sum += n;
+        }
+
+        if ( sum %2 == 1)  return false;
+
+        int target = sum/2 ;
+        boolean[] dp = new boolean[target + 1];
+        dp[0] = true;
+
+        for (int coin : nums) {
+            for ( int i = target; i >= coin; i-- ) {
+                dp[i] = dp[i] || dp [i-coin];
+            }
+        }
+        return dp[target];
+    }
+
+
+
     public static void main(String[] args) {
         PartitionEqualSubsetSum solution = new PartitionEqualSubsetSum();
         int[] nums = {1, 5, 11, 5};
