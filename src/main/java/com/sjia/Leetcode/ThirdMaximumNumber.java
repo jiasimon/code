@@ -110,4 +110,45 @@ public class ThirdMaximumNumber {
 
     }
 
+
+    // minHeap
+    // 4 ms, 59.56%; 43.5 MB, 41.88%
+    public int thirdMax_minHeap(int[] nums) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for(int n : nums) {
+            if(minHeap.size() < 3 && !minHeap.contains(n)) {
+                minHeap.add(n);
+            } else if(!minHeap.contains(n) && n > minHeap.peek()) {
+                minHeap.poll();
+                minHeap.add(n);
+            }
+        }
+
+        if(minHeap.size() < 3)
+            while(minHeap.size() > 1)
+                minHeap.poll();
+
+        return minHeap.poll();
+    }
+
+
+
+    public static void main(String[] args) {
+        ThirdMaximumNumber solution = new ThirdMaximumNumber();
+        int[] nums = {1,2,-2147483648};
+        int thirdMax = solution.thirdMax(nums);
+        System.out.println("Third maximum number: " + thirdMax);
+
+        int[] nums2 = {1,1,-214783648};
+        thirdMax = solution.thirdMax(nums2);
+        System.out.println("Third maximum number: " + thirdMax);
+
+
+        int[] nums3 = {1,-214783648,-214783648};
+        thirdMax = solution.thirdMax(nums2);
+        System.out.println("Third maximum number: " + thirdMax);
+
+
+    }
+
 }
