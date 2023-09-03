@@ -44,6 +44,8 @@ public class FizzBuzz {
     // Runtime: 8 ms, faster than 12.59% of Java online submissions for Fizz Buzz.
     //Memory Usage: 46.2 MB, less than 5.21% of Java online submissions for Fizz Buzz.
 
+    // String concat, slow
+    // 3 ms, 8.86%; 45.1 MB, 20.34%
     public List<String> fizzBuzz(int n) {
         List <String> result = new ArrayList<>();
         for ( int i=1; i <=n; i++ ) {
