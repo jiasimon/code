@@ -19,19 +19,7 @@ public class PalindromeLongest {
 
 
 
-    // Runtime: 1 ms, faster than 100.00% of Java online submissions for Longest Palindrome.
-    //Memory Usage: 38.2 MB, less than 29.63% of Java online submissions for Longest Palindrome.
-    public int longestPalindrome_nD2M2(String s) {
-        int[] tmp = new int[128];
-        for (char c : s.toCharArray()) {
-            tmp[c]  += 1;
-        }
-        int result =0;
-        for (int n : tmp) {
-            result += n/2*2;
-        }
-        return result < s.length() ? result+1 : result;
-    }
+
 
 
     // stream anyMatch, slow
@@ -104,6 +92,22 @@ public class PalindromeLongest {
         }
 
         return length;
+    }
+
+
+    // res += n/2*2;
+    // 1ms, 100%; 40.3 MB, 97.32%
+    public int longestPalindrome_d2m2(String s) {
+        int result =0;
+        int[] tmp = new int[128];
+        for (char c : s.toCharArray()) {
+            tmp[c]  += 1;
+        }
+
+        for (int n : tmp) {
+            result += n/2*2;
+        }
+        return result < s.length() ? result+1 : result;
     }
 
 
