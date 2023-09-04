@@ -133,10 +133,24 @@ public class ThirdMaximumNumber {
 
 
 
+    // TreeSet
+    // 5 ms, 34.84%; 43.4 MB, 51.32%
+    public int thirdMax_TreeSet(int[] nums) {
+        TreeSet<Integer> s = new TreeSet<Integer>();
+        for (int num : nums) {
+            s.add(num);
+            if (s.size() > 3) {
+                s.remove(s.first());
+            }
+        }
+        return s.size() == 3 ? s.first() : s.last();
+
+    }
+
     public static void main(String[] args) {
         ThirdMaximumNumber solution = new ThirdMaximumNumber();
         int[] nums = {1,2,-2147483648};
-        int thirdMax = solution.thirdMax(nums);
+        int thirdMax = solution.thirdMax_TreeSet(nums);
         System.out.println("Third maximum number: " + thirdMax);
 
         int[] nums2 = {1,1,-214783648};
