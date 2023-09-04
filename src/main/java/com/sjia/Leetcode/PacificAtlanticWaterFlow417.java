@@ -28,6 +28,9 @@ public class PacificAtlanticWaterFlow417 {
 
      */
 
+
+    //
+    // 4 ms, 98.25%; 45.2 MB, 15.57%
     public List<List<Integer>> pacificAtlantic(int[][] matrix) {
         List<List<Integer>> result = new ArrayList<>();
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
@@ -65,6 +68,19 @@ public class PacificAtlanticWaterFlow417 {
 
         return result;
     }
+
+
+    // 4 ms, 98.30%; 45 MB, 35.32%
+    /*
+                    List<Integer> cell = new ArrayList<>();
+                    cell.add(i);
+                    cell.add(j);
+                    res.add(cell);
+
+
+                res.add(Arrays.asList(i,j));
+     */
+
 
 
     private void dfs(int[][] matrix, boolean[][] canReach, int i, int j, int prevHeight) {
