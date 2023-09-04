@@ -67,7 +67,7 @@ public class AddStrings {
 
     // StringBuilder, sb.insert(0, tmp)
     // 4 ms, 46.17%; 43.4 MB, 46.51%
-    public String addStrings(String num1, String num2) {
+    public String addStrings_sb_insert(String num1, String num2) {
         StringBuilder result = new StringBuilder();
         int carry = 0;
         int i = num1.length() - 1;
@@ -90,12 +90,37 @@ public class AddStrings {
     }
 
 
+    // sb.reverse
+    // 1 ms, 100%; 41.5 MB, 70.50%
+    public String addStrings_sb_reverse(String num1, String num2) {
+        StringBuilder res = new StringBuilder();
+        int carry =0;
+        int i = num1.length() - 1;
+        int j = num2.length() - 1;
+
+        while (i >=0 || j >=0 || carry > 0) {
+            int digit1 = i >= 0 ? num1.charAt(i) - '0' : 0;
+            int digit2 = j >= 0 ? num2.charAt(j) - '0' : 0;
+
+            int sum = digit1 + digit2 + carry;
+            carry = sum/10;
+            res.append(sum%10);
+            i--;
+            j--;
+        }
+        return res.reverse().toString();
+
+    }
+
+
+
+
 
     public static void main(String[] args) {
         AddStrings solution = new AddStrings();
         String num1 = "123";
         String num2 = "456";
-        String sum = solution.addStrings(num1, num2);
+        String sum = solution.addStrings_sb_reverse(num1, num2);
         System.out.println("Sum of strings: " + sum);
     }
 
