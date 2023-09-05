@@ -36,6 +36,21 @@ public class MaximumEnemyForts {
     }
 
 
+    // prev=0
+    public int captureForts_prev(int[] forts) {
+        int res = 0;
+        int prev = 0;
+
+        for (int i = 0 ; i < forts.length; ++i)
+            if (forts[i] != 0) { // -1 or 1
+                if (forts[i] == -forts[prev])
+                    res = Math.max(res, i - prev - 1);
+                prev = i;
+            }
+
+        return res;
+    }
+
 
     // two pass
     public int captureForts_twoPass(int[] forts) {
