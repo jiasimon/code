@@ -1,5 +1,8 @@
 package com.sjia.Leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CopyListRandomPointer {
     // #138. Copy List with Random Pointer  https://leetcode.com/problems/copy-list-with-random-pointer/description/
     /*
@@ -65,6 +68,25 @@ public class CopyListRandomPointer {
         return clonedHead;
     }
 
+
+
+    Map<Node, Node> map = new HashMap<>();
+
+    public Node copyRandomList_map(Node head) {
+        if (head == null)
+            return null;
+        if (map.containsKey(head))
+            return map.get(head);
+
+        Node newNode = new Node(head.val);
+        map.put(head, newNode);
+        newNode.next = copyRandomList_map(head.next);
+        newNode.random = copyRandomList_map(head.random);
+        return newNode;
+    }
+
+
+
     public static void main(String[] args) {
         CopyListRandomPointer solution = new CopyListRandomPointer();
 
@@ -78,7 +100,7 @@ public class CopyListRandomPointer {
         node2.random = head;
         node3.random = node2;
 
-        Node clonedHead = solution.copyRandomList(head);
+        Node clonedHead = solution.copyRandomList_map(head);
 
         // Print the cloned list
         printList(clonedHead);
