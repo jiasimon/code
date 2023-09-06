@@ -23,7 +23,54 @@ public class SplitLinkedListInParts725 {
 
 
 
+    // i < largerParts ? 1 : 0
+    public ListNode[] splitListToParts(ListNode head, int k) {
+        // Calculate the length of the linked list
+        int length = 0;
+        ListNode current = head;
+        while (current != null) {
+            length++;
+            current = current.next;
+        }
 
+        // Determine the size of each part and the number of larger parts
+        int partSize = length / k;
+        int largerParts = length % k;
+
+        ListNode[] result = new ListNode[k];
+        current = head;
+
+        for (int i = 0; i < k; i++) {
+            int size = partSize + (i < largerParts ? 1 : 0); // Adjust size for larger parts
+            if (size == 0) {
+                result[i] = null;
+                continue;
+            }
+
+            result[i] = current; // Start of the current part
+            ListNode prev = null;
+
+            // Traverse the current part and set its end to null
+            for (int j = 0; j < size; j++) {
+                prev = current;
+                current = current.next;
+            }
+
+            if (prev != null) {
+                prev.next = null; // Cut off the current part
+            }
+        }
+
+        return result;
+    }
+
+
+
+
+
+
+    //
+    // 0 ms, 100%; 43.9 MB,14.33%
     public ListNode[] splitListToParts_newlist(ListNode head, int k) {
         int length =0;
         ListNode current = head;
@@ -37,7 +84,7 @@ public class SplitLinkedListInParts725 {
 
         ListNode[] result = new ListNode[k];
         current = head;
-        
+
         for ( int i = 0 ; i < k; i++) {
 
             int size = 0;
