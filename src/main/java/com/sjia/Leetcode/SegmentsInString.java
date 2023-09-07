@@ -4,15 +4,27 @@ import java.util.Arrays;
 
 public class SegmentsInString {
 
-    // #434 https://leetcode.com/problems/number-of-segments-in-a-string/
+    // #434. Number of Segments in a String https://leetcode.com/problems/number-of-segments-in-a-string/
 
-    // Runtime: 1 ms, faster than 36.39% of Java online submissions for Number of Segments in a String.
-    //Memory Usage: 37.4 MB, less than 12.07% of Java online submissions for Number of Segments in a String.
+    /*
+    Given a string s, return the number of segments in the string.
+
+    A segment is defined to be a contiguous sequence of non-space characters.
+
+    Input: s = "Hello, my name is John"     Output: 5
+    Explanation: The five segments are ["Hello,", "my", "name", "is", "John"]
+
+    Input: s = "Hello"      Output: 1
+
+
+     */
+
+
     public int countSegments(String s) {
-        if(s.trim().length() == 0) return 0;
-        String[] tmp = s.trim().split("\\s+");
-        //System.out.println(Arrays.toString(tmp));
-        return tmp.length;
+        s = s.trim();
+        if ( s.length() == 0 ) return 0;
+
+        return s.split("\\s+").length;
 
     }
 
