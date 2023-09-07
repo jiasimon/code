@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class MinimumTimeToRepairCars {
     // #2594. Minimum Time to Repair Cars   https://leetcode.com/problems/minimum-time-to-repair-cars/
 
@@ -58,11 +60,40 @@ public class MinimumTimeToRepairCars {
     }
 
 
+    // hard code  upper bound
+    // 61 ms, 42.92%; 53.4 MB, 100%
+    public long repairCars_binary(int[] ranks, int cars) {
+        long l = 1;
+        long r = 1000000000000000l;
+
+        while ( l < r) {
+            long m = ( l + r) / 2;
+            if (  numCarsFixed(ranks, m) >= cars ) {
+                r = m;
+            } else {
+                l = m + 1;
+            }
+        }
+        return l;
+
+    }
+
+
+
+    private long numCarsFixed(int[] ranks, long minutes) {
+        long carsFixed = 0;
+
+        for ( int r : ranks) {
+            carsFixed += Math.sqrt(minutes / r);
+        }
+        return carsFixed;
+    }
+
     public static void main(String[] args) {
         MinimumTimeToRepairCars solution = new MinimumTimeToRepairCars();
         int[] ranks = {4, 2, 3, 1};
         int cars = 10;
-        long minTime = solution.repairCars(ranks, cars);
+        long minTime = solution.repairCars_binary(ranks, cars);
         System.out.println("Minimum Time to Repair Cars: " + minTime); // Output: 16
     }
 
