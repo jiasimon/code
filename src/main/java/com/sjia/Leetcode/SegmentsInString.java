@@ -20,11 +20,26 @@ public class SegmentsInString {
      */
 
 
-    public int countSegments(String s) {
+    public int countSegments_split(String s) {
         s = s.trim();
         if ( s.length() == 0 ) return 0;
 
         return s.split("\\s+").length;
+
+    }
+
+
+    // without split
+    // i==0 || s.charAt(i-1) ==' '
+    public int countSegments(String s) {
+        int res =0;
+        for ( int i=0; i < s.length(); i++) {
+            if ( ( i==0 || s.charAt(i-1) ==' ') && s.charAt(i) != ' ' ) {
+                res++;
+            }
+
+        }
+        return res;
 
     }
 
