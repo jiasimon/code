@@ -64,7 +64,7 @@ public class MinimumTimeToRepairCars {
     // 61 ms, 42.92%; 53.4 MB, 100%
     public long repairCars_binary(int[] ranks, int cars) {
         long l = 1;
-        long r = 1000000000000000l;
+        long r = 1000000000000000l;  // 10^15
 
         while ( l < r) {
             long m = ( l + r) / 2;
@@ -78,6 +78,23 @@ public class MinimumTimeToRepairCars {
 
     }
 
+
+    // 57 ms, 50%; 54.1 MB, 60.85%
+    public long repairCars_binary2(int[] ranks, int cars) {
+        long l = 1;
+        long r = 100000000000000l; // 10^14
+
+        while ( l < r) {
+            long m = ( l + r) / 2;
+            if (  numCarsFixed(ranks, m) >= cars ) {
+                r = m;
+            } else {
+                l = m + 1;
+            }
+        }
+        return l;
+
+    }
 
 
     private long numCarsFixed(int[] ranks, long minutes) {
