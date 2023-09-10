@@ -77,11 +77,54 @@ public class FindRightInterval436 {
         return result;
     }
 
+
+
+
+    // binary search, l < r, right = n instead of n-1
+    //
+    public int[] findRightInterval_binary(int[][] intervals) {
+        int n = intervals.length;
+        int[] result = new int[n];
+        IntervalWithIndex[] intervalsWithIndex = new IntervalWithIndex[n];
+
+        // Create custom data structures to store the original interval and its index
+        for (int i = 0; i < n; i++) {
+            intervalsWithIndex[i] = new IntervalWithIndex(intervals[i], i);
+        }
+
+        // Sort intervals by their start times
+        Arrays.sort(intervalsWithIndex, Comparator.comparingInt(a -> a.interval[0]));
+
+        for (int i = 0; i < n; i++) {
+            int targetStart = intervals[i][1];
+            int left = 0;
+//            int right = n - 1;
+            int right = n;
+            int rightIntervalIndex = -1;
+
+            // Perform binary search to find the right interval
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+                if (intervalsWithIndex[mid].interval[0] >= targetStart) {
+                    rightIntervalIndex = intervalsWithIndex[mid].index;
+                    right = mid ; // Continue searching in the left half
+                } else {
+                    left = mid + 1; // Continue searching in the right half
+                }
+            }
+
+            result[i] = rightIntervalIndex;
+        }
+
+        return result;
+    }
+
+
     public static void main(String[] args) {
         FindRightInterval436 solution = new FindRightInterval436();
         int[][] intervals = {{3, 4}, {2, 3}, {1, 2}};
-        int[] rightIntervals = solution.findRightInterval(intervals);
-        System.out.println("Right Intervals: " + Arrays.toString(rightIntervals)); // Output: [1, 0, -1]
+        int[] rightIntervals = solution.findRightInterval_binary(intervals);
+        System.out.println("Right Intervals: " + Arrays.toString(rightIntervals)); // Output: [-1, 0, 1]
     }
 
 }
