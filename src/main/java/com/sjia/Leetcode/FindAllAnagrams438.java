@@ -80,11 +80,35 @@ public class FindAllAnagrams438 {
 
 
 
+    public List<Integer> findAnagrams_array(String s, String p) {
+        List<Integer> res = new ArrayList<>();
+        int[] count = new int[128];
+        int required = p.length();
+
+        for ( char c : p.toCharArray())
+            ++count[c];
+
+        for (int l = 0, r = 0; r < s.length(); r++) {
+            if (--count[s.charAt(r)] >= 0)
+                required--;
+            while (required == 0) {
+                if (r - l + 1 == p.length())
+                    res.add(l);
+                if (++count[s.charAt(l++)] > 0) {
+                    required++;
+                }
+
+            }
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
         FindAllAnagrams438 solution = new FindAllAnagrams438();
         String s = "cbaebabacd";
         String p = "abc";
-        List<Integer> anagramIndices = solution.findAnagrams(s, p);
+        List<Integer> anagramIndices = solution.findAnagrams_array(s, p);
         System.out.println("Anagram Indices: " + anagramIndices); // Output: [0, 6]
     }
 
