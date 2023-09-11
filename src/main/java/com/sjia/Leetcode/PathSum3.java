@@ -49,6 +49,28 @@ public class PathSum3 {
 
 
 
+    public int pathSum_dfs(TreeNode root, int sum) {
+        if (root == null)
+            return 0;
+        return dfs(root, sum) + pathSum_dfs(root.left, sum) + pathSum_dfs(root.right, sum);
+    }
+
+    /*
+    Failed on 127/128
+    [1000000000,1000000000,null,294967296,null,1000000000,null,1000000000,null,1000000000]
+    0
+    recursive parameter: targetSum-root.val，
+    targetSum-root.val  could less than Integer.MIN
+     */
+    private int dfs(TreeNode root, int sum) {
+        if (root == null)
+            return 0;
+        return (sum == root.val ? 1 : 0) +   //
+                dfs(root.left, sum - root.val) + //
+                dfs(root.right, sum - root.val);
+    }
+
+
     public static void main(String[] args) {
         PathSum3 solution = new PathSum3();
 
