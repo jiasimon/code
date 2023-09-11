@@ -26,6 +26,7 @@ public class GroupPeople1282 {
 
 
 
+    // 7 ms, 55.15%; 44.9 MB, 9.6%
     public List<List<Integer>> groupThePeople(int[] groupSizes) {
         List<List<Integer>> result = new ArrayList<>();
         Map<Integer, List<Integer>> groupMap = new HashMap<>();
@@ -52,12 +53,34 @@ public class GroupPeople1282 {
 
 
 
+    public List<List<Integer>> groupThePeople_getOrDefault(int[] groupSizes) {
+        List<List<Integer>> result = new ArrayList<>();
+        Map<Integer, List<Integer>> groupMap = new HashMap<>();
 
-    
+        // Iterate through the people and group them by their group size
+        for (int i = 0; i < groupSizes.length; i++) {
+            int tmp = groupSizes[i];
+
+            List<Integer> list = groupMap.getOrDefault(tmp, new ArrayList<>());
+            list.add(i);
+            groupMap.put(tmp, list);
+
+
+            // If the group size equals the size, add it to the result and reset the group
+            if (groupMap.get(tmp).size() == tmp) {
+                result.add(groupMap.get(tmp));
+                groupMap.put(tmp, new ArrayList<>());
+            }
+        }
+
+        return result;
+    }
+
+
     public static void main(String[] args) {
         GroupPeople1282 solution = new GroupPeople1282();
         int[] groupSizes = {3, 3, 3, 3, 3, 1, 3};
-        List<List<Integer>> groups = solution.groupThePeople(groupSizes);
+        List<List<Integer>> groups = solution.groupThePeople_getOrDefault(groupSizes);
         System.out.println("Grouped People: " + groups);
     }
 
