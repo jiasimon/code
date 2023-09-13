@@ -14,6 +14,20 @@ public class ArrangingCoins {
         return (int)result;
     }
 
+
+
+    // iterative
+    // 5 ms, 56.38%; 40.2 MB, 16.94%
+    public int arrangeCoins_iterative(int n) {
+        int i=1;
+        while ( n > 0) {
+            i++;
+            n = n-i;
+        }
+        return i-1;
+    }
+
+
     public static void main(String[] args) {
         int testData  = 1804289383;
         ArrangingCoins solution = new ArrangingCoins();
