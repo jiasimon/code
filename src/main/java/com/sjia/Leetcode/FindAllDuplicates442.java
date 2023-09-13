@@ -3,9 +3,10 @@ package com.sjia.Leetcode;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FindAllDuplicates442 {
-    // 442. Find All Duplicates in an Array https://leetcode.com/problems/find-all-duplicates-in-an-array/description/
+    // #442. Find All Duplicates in an Array https://leetcode.com/problems/find-all-duplicates-in-an-array/description/
     // #interview
 
     /*
@@ -34,6 +35,26 @@ public class FindAllDuplicates442 {
 
         return result;
     }
+
+
+
+    // set.contains(n)
+    // 17 ms, 32.71%; 54.5 MB, 12.56%
+    public List<Integer> findDuplicates_set(int[] nums) {
+        List<Integer> res = new ArrayList<>();
+        Set<Integer> set = new HashSet<>();
+
+        for ( int n : nums) {
+            if( set.contains(n)) {
+                res.add(n);
+            } else {
+                set.add(n);
+            }
+        }
+        return res;
+
+    }
+
 
     public static void main(String[] args) {
         FindAllDuplicates442 solution = new FindAllDuplicates442();
