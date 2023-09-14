@@ -56,6 +56,25 @@ public class FindAllDuplicates442 {
     }
 
 
+
+    // nums[x - 1] = -nums[x - 1]
+    // 5 ms, 95.34%; 52.9 MB, 92.99%
+    public List<Integer> findDuplicates_negative(int[] nums) {
+        int n = nums.length;
+        List<Integer> res = new ArrayList<Integer>();
+        for (int i = 0; i < n; ++i) {
+            int x = Math.abs(nums[i]);
+            if (nums[x - 1] > 0) {
+                nums[x - 1] = -nums[x - 1];
+            } else {
+                res.add(x);
+            }
+        }
+        return res;
+
+    }
+
+
     public static void main(String[] args) {
         FindAllDuplicates442 solution = new FindAllDuplicates442();
         int[] nums = {4, 3, 2, 7, 8, 2, 1};
