@@ -1,6 +1,7 @@
 package com.sjia.Leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,59 +51,85 @@ public class MinCostConnectPoints1584 {
     }
 
 
-
-
     // Kruskal algorithm using Union-Find
     // 319 ms, 44.85%; 65.5 MB, 43.33%
-        public int minCostConnectPoints(int[][] points) {
-            int n = points.length;
-            List<int[]> edges = new ArrayList<>();
+    public int minCostConnectPoints_Kruskal(int[][] points) {
+        int n = points.length;
+        List<int[]> edges = new ArrayList<>();
 
-            // Generate all possible edges and calculate their distances
-            for (int i = 0; i < n; i++) {
-                for (int j = i + 1; j < n; j++) {
-                    int distance = Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1]);
-                    edges.add(new int[]{i, j, distance});
-                }
+        // Generate all possible edges and calculate their distances
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int distance = Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1]);
+                edges.add(new int[]{i, j, distance});
             }
-
-            // Sort edges by distance in ascending order
-            Collections.sort(edges, (a, b) -> a[2] - b[2]);
-
-            int minCost = 0;
-            int edgeCount = 0;
-            UnionFind uf = new UnionFind(n);
-
-            // Apply Kruskal's algorithm to find the minimum spanning tree
-            for (int[] edge : edges) {
-                int u = edge[0];
-                int v = edge[1];
-                int distance = edge[2];
-
-                if (uf.find(u) != uf.find(v)) {
-                    uf.union(u, v);
-                    minCost += distance;
-                    edgeCount++;
-                }
-
-                // Stop when we have included n - 1 edges (spanning tree is complete)
-                if (edgeCount == n - 1) {
-                    break;
-                }
-            }
-
-            return minCost;
         }
 
+        // Sort edges by distance in ascending order
+        Collections.sort(edges, (a, b) -> a[2] - b[2]);
 
+        int minCost = 0;
+        int edgeCount = 0;
+        UnionFind uf = new UnionFind(n);
 
+        // Apply Kruskal's algorithm to find the minimum spanning tree
+        for (int[] edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            int distance = edge[2];
 
-        public static void main(String[] args) {
-            MinCostConnectPoints1584 solution = new MinCostConnectPoints1584();
-            int[][] points = {{0, 0}, {2, 2}, {3, 10}, {5, 2}, {7, 0}};
-            int minCost = solution.minCostConnectPoints(points);
-            System.out.println("Minimum Cost to Connect Points: " + minCost); // Output: 20
+            if (uf.find(u) != uf.find(v)) {
+                uf.union(u, v);
+                minCost += distance;
+                edgeCount++;
+            }
+
+            // Stop when we have included n - 1 edges (spanning tree is complete)
+            if (edgeCount == n - 1) {
+                break;
+            }
         }
+
+        return minCost;
+    }
+
+
+    // prim algorithm
+    // 74 ms, 83.29%; 43.8 MB, 90.5%
+    public int minCostConnectPoints(int[][] points) {
+        // dist[i] := min distance to connect points[i]
+        int[] dist = new int[points.length];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        int ans = 0;
+
+        for (int i = 0; i < points.length - 1; ++i) {
+            for (int j = i + 1; j < points.length; ++j) {
+                // Try to connect points[i] with points[j].
+                dist[j] = Math.min(dist[j], Math.abs(points[i][0] - points[j][0]) +
+                        Math.abs(points[i][1] - points[j][1]));
+                // Swap points[j] (point with min dist) with points[i + 1].
+                if (dist[j] < dist[i + 1]) {
+                    final int[] tempPoint = points[j];
+                    points[j] = points[i + 1];
+                    points[i + 1] = tempPoint;
+                    final int tempDist = dist[j];
+                    dist[j] = dist[i + 1];
+                    dist[i + 1] = tempDist;
+                }
+            }
+            ans += dist[i + 1];
+        }
+
+        return ans;
+    }
+
+
+    public static void main(String[] args) {
+        MinCostConnectPoints1584 solution = new MinCostConnectPoints1584();
+        int[][] points = {{0, 0}, {2, 2}, {3, 10}, {5, 2}, {7, 0}};
+        int minCost = solution.minCostConnectPoints(points);
+        System.out.println("Minimum Cost to Connect Points: " + minCost); // Output: 20
+    }
 
 
 }
