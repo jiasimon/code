@@ -1,11 +1,17 @@
 package com.sjia.Leetcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class FindDisappearedNumbers {
-    // #448 https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+    // #448. Find All Numbers Disappeared in an Array https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+    // FindDisappearedNumbers448
+
+    /*
+    Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all the integers in the range [1, n] that do not appear in nums.
+
+    Input: nums = [4,3,2,7,8,2,3,1]     Output: [5,6]
+    Input: nums = [1,1]                 Output: [2]
+     */
 
     // Runtime: 18 ms, faster than 27.03% of Java online submissions for Find All Numbers Disappeared in an Array.
     //Memory Usage: 48.2 MB, less than 89.42% of Java online submissions for Find All Numbers Disappeared in an Array.
@@ -22,6 +28,8 @@ public class FindDisappearedNumbers {
         }
         return result;
     }
+
+    
 
 
 
@@ -46,6 +54,16 @@ public class FindDisappearedNumbers {
         }
         return result;
     }*/
+
+
+
+    public static void main(String[] args) {
+        FindDisappearedNumbers solution = new FindDisappearedNumbers();
+        int[] nums = {4, 3, 2, 7, 8, 2, 1};
+
+        List<Integer> disappearedNumbers = solution.findDisappearedNumbers_set(nums);
+        System.out.println("Disappeared Numbers: " + disappearedNumbers); // Output: [5, 6]
+    }
 
 
 }
