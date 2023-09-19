@@ -24,7 +24,7 @@ public class EliminateMaximumMonsters1921 {
 
     //
     // 21 ms, 60.53%; 56.1 MB, 39.47%
-    public int eliminateMaximum(int[] dist, int[] speed) {
+    public int eliminateMaximum_arrivalTime(int[] dist, int[] speed) {
         int n = dist.length;
 
         // Calculate the time it takes for each monster to reach you
@@ -50,6 +50,17 @@ public class EliminateMaximumMonsters1921 {
 
 
 
+    // (dist[i] - 1) / speed[i]
+    // dist[i] = (dist[i] - 1) / speed[i] instead of dist[i] = dist[i] / speed[i] - (dist[i] % speed[i] == 0 ? 1 : 0)
+    public int eliminateMaximum(int[] dist, int[] speed) {
+        for (int i = 0; i < dist.length; ++i)
+            dist[i] = (dist[i] - 1) / speed[i];
+        Arrays.sort(dist);
+        for (int i = 0; i < dist.length; ++i)
+            if (i > dist[i])
+                return i;
+        return dist.length;
+    }
 
 
 
@@ -63,6 +74,11 @@ public class EliminateMaximumMonsters1921 {
         int[] dist2 = {3,2,4};
         int[] speed2 = {5,3,2};
         eliminated = solution.eliminateMaximum(dist2, speed2);
+        System.out.println("Maximum number of monsters eliminated: " + eliminated);
+
+        int[] dist3 = {3,2,9};
+        int[] speed3 = {1,2,2};
+        eliminated = solution.eliminateMaximum(dist3, speed3);
         System.out.println("Maximum number of monsters eliminated: " + eliminated);
     }
 }
