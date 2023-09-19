@@ -1,7 +1,7 @@
 package com.sjia.Leetcode;
 
 public class ArrangingCoins {
-    // #441 https://leetcode.com/problems/arranging-coins/
+    // #441. Arranging Coins https://leetcode.com/problems/arranging-coins/
     // 1,3,5
     // n is a non-negative integer
 
@@ -25,6 +25,29 @@ public class ArrangingCoins {
             n = n-i;
         }
         return i-1;
+    }
+
+
+    // binary search sum
+    // 1 ms, 100%; 39.5 MB, 74.85%
+    public int arrangeCoins_binary(int n) {
+        long left = 0;
+        long right = n;
+
+        while (left <= right) {
+            long mid = left + (right - left) / 2;
+            long sum = mid * (mid + 1) / 2; // Sum of the first mid natural numbers
+
+            if (sum == n) {
+                return (int) mid; // Found a perfect arrangement
+            } else if (sum < n) {
+                left = mid + 1; // Try a larger number of rows
+            } else {
+                right = mid - 1; // Try a smaller number of rows
+            }
+        }
+
+        return (int) right; // Return the largest n such that sum is less than or equal to n
     }
 
 
