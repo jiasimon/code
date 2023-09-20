@@ -51,12 +51,24 @@ public class ArrangingCoins {
     }
 
 
+    /*
+    (x+1)x=2n
+    x=-1+sqrt(1+8n)
+    long for overflow
+     */
+    public int arrangeCoins_math(int n) {
+        return (int) ((Math.sqrt((long) 8 * n + 1) - 1) / 2);
+    }
+
+
+
+
     public static void main(String[] args) {
         int testData  = 1804289383;
         ArrangingCoins solution = new ArrangingCoins();
-        int result = solution.arrangeCoins(testData);
+        int result = solution.arrangeCoins_math(testData);
 
-        System.out.printf("testData %s arrangeCoins is %s \n", testData,result);
+        System.out.printf("testData %s arrangeCoins is %s \n", testData,result); // 60070
     }
 
 }
