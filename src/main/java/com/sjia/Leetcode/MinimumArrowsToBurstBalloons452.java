@@ -30,6 +30,9 @@ public class MinimumArrowsToBurstBalloons452 {
     -2^31 <= xstart < xend <= 2^31 - 1
      */
 
+
+    // Integer.compare(a[1], b[1])
+    // 50 ms, 96.49%; 75.8 MB, 84.98%
     public int findMinArrowShots(int[][] points) {
         if (points == null || points.length == 0) {
             return 0;
@@ -54,10 +57,41 @@ public class MinimumArrowsToBurstBalloons452 {
         return arrows;
     }
 
+
+
+
+    // (a,b) -> a[1] - b[1], failed on [[-2147483646,-2147483645],[2147483646,2147483647]]
+    // return 1 instead of 2
+    public int findMinArrowShots_sort(int[][] points) {
+        if ( points.length == 1) return 1;
+
+        // Sort the points by their end points
+        Arrays.sort(points, (a,b) -> a[1] - b[1]);
+
+        int arrows = 1;
+
+        int end = points[0][1];
+
+        for (int i=1; i < points.length; i++) {
+            if (points[i][0] > end) {
+                arrows++;
+                end = points[i][1];
+            }
+        }
+
+        return arrows;
+
+    }
+
+
     public static void main(String[] args) {
         MinimumArrowsToBurstBalloons452 solution = new MinimumArrowsToBurstBalloons452();
         int[][] balloons = {{10,16}, {2,8}, {1,6}, {7,12}};
         int minArrows = solution.findMinArrowShots(balloons);
+        System.out.println("Minimum arrows needed: " + minArrows); // Output: 2
+
+        int[][] balloons2 = {{-2147483646,-2147483645},  {2147483646,2147483647}};
+        minArrows = solution.findMinArrowShots_sort(balloons2);
         System.out.println("Minimum arrows needed: " + minArrows); // Output: 2
     }
 
