@@ -1,5 +1,8 @@
 package com.sjia.Leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class AddTwoNumbers2 {
     // #445. Add Two Numbers II     https://leetcode.com/problems/add-two-numbers-ii/description/
 
@@ -62,6 +65,34 @@ public class AddTwoNumbers2 {
         return prev;
     }
 
+
+    public ListNode addTwoNumbers_ArrayDeque(ListNode l1, ListNode l2) {
+        Deque<ListNode> stack1 = new ArrayDeque<>();
+        Deque<ListNode> stack2 = new ArrayDeque<>();
+        while (l1 != null) {
+            stack1.push(l1);
+            l1 = l1.next;
+        }
+        while (l2 != null) {
+            stack2.push(l2);
+            l2 = l2.next;
+        }
+        ListNode head = null;
+        int carry = 0;
+        while (carry > 0 || !stack1.isEmpty() || !stack2.isEmpty()) {
+            if (!stack1.isEmpty())
+                carry += stack1.pop().val;
+            if (!stack2.isEmpty())
+                carry += stack2.pop().val;
+            ListNode node = new ListNode(carry % 10);
+            node.next = head;
+            head = node;
+            carry /= 10;
+        }
+        return head;
+    }
+
+
     public static void main(String[] args) {
         AddTwoNumbers2 solution = new AddTwoNumbers2();
 
@@ -70,7 +101,7 @@ public class AddTwoNumbers2 {
         // Output: 7 -> 8 -> 0 -> 7
         ListNode l1 = new ListNode(7, new ListNode(2, new ListNode(4, new ListNode(3))));
         ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
-        ListNode result = solution.addTwoNumbers(l1, l2);
+        ListNode result = solution.addTwoNumbers_ArrayDeque(l1, l2);
 
         // Print the result
         while (result != null) {
