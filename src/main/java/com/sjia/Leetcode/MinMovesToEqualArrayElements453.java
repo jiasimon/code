@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class MinMovesToEqualArrayElements453 {
     // #453. Minimum Moves to Equal Array Elements  https://leetcode.com/problems/minimum-moves-to-equal-array-elements/description/
 
@@ -12,6 +14,8 @@ public class MinMovesToEqualArrayElements453 {
     1 <= nums.length <= 10^5
     -10^9 <= nums[i] <= 10^9
      */
+
+
 
     public int minMoves(int[] nums) {
         int min = Integer.MAX_VALUE;
@@ -28,6 +32,19 @@ public class MinMovesToEqualArrayElements453 {
         }
 
         return moves;
+    }
+
+
+
+    // sort, sum nums[i] - nums[0]
+    // 12 ms, 34.10%; 44.1 MB
+    public int minMoves_sort(int[] nums) {
+        Arrays.sort(nums);
+        int res =0;
+        for ( int i =1; i < nums.length; i++) {
+            res += nums[i] - nums[0];
+        }
+        return res;
     }
 
     public static void main(String[] args) {
