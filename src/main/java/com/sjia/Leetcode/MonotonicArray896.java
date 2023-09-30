@@ -37,6 +37,33 @@ public class MonotonicArray896 {
         return true;
     }
 
+
+    // two pass
+    public boolean isMonotonic_twoPass(int[] nums) {
+        return isSorted(nums, true) || isSorted(nums, false);
+    }
+
+    public boolean isSorted(int[] nums, boolean increasing) {
+        int n = nums.length;
+        if (increasing) {
+            for (int i = 0; i < n - 1; ++i) {
+                if (nums[i] > nums[i + 1]) {
+                    return false;
+                }
+            }
+        } else {
+            for (int i = 0; i < n - 1; ++i) {
+                if (nums[i] < nums[i + 1]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
+
+
     public static void main(String[] args) {
         MonotonicArray solution = new MonotonicArray();
         int[] A1 = {1, 2, 2, 3};
