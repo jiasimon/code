@@ -50,6 +50,32 @@ public class NumberBoomerangs {
     }
 
 
+
+
+    public int numberOfBoomerangs_map(int[][] points) {
+        int count = 0; // Total count of boomerangs
+
+        for (int[] pointA : points) {
+            Map<Integer, Integer> distanceFreq = new HashMap<>(); // Store distance frequencies
+
+            for (int[] pointB : points) {
+                if (pointA != pointB) {
+                    int distance = getDistance(pointA, pointB);
+                    distanceFreq.put(distance, distanceFreq.getOrDefault(distance, 0) + 1);
+                }
+            }
+
+            // Calculate the number of boomerangs for the current point
+            for (int freq : distanceFreq.values()) {
+                count += freq * (freq - 1); // n * (n - 1) permutations
+            }
+        }
+
+        return count;
+    }
+
+
+
     public static void main(String[] args) {
         NumberBoomerangs solution = new NumberBoomerangs();
         int[][] points = {{0, 0}, {1, 0}, {2, 0}};
