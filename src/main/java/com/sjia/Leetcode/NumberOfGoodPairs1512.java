@@ -41,6 +41,20 @@ public class NumberOfGoodPairs1512 {
     }
 
 
+    // two loops, j=i+1
+    //
+    public int numIdenticalPairs_twoFor(int[] nums) {
+        int res =0;
+        for (int i=0; i < nums.length; i++){
+            for (int j=i+1; j < nums.length; j++) {
+                if (nums[j] == nums[i]) res++;
+            }
+        }
+        return res;
+
+    }
+
+
     public static void main(String[] args) {
         NumberOfGoodPairs1512 solution = new NumberOfGoodPairs1512();
         int[] nums = {1, 2, 3, 1, 1, 3};
