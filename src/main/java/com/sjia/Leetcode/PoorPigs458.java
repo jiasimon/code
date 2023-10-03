@@ -26,6 +26,18 @@ public class PoorPigs458 {
     }
 
 
+    public int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
+        int pigs = 0;
+        int testsPerPig = minutesToTest / minutesToDie + 1;
+
+        while (Math.pow(testsPerPig, pigs) < buckets) {
+            pigs++;
+        }
+
+        return pigs;
+    }
+
+
     public static void main(String[] args) {
         PoorPigs458 solution = new PoorPigs458();
         int buckets = 1000;
@@ -36,6 +48,8 @@ public class PoorPigs458 {
         System.out.println("Pigs needed: " + pigsNeeded); // Output: 5
 
         int pigsNeeded2 = solution.poorPigs_math(125, 1, 4);
-        System.out.println("Pigs needed: " + pigsNeeded2); // Output: 5
+        System.out.println("Pigs needed poorPigs_math: " + pigsNeeded2);
+        pigsNeeded2 = solution.poorPigs(125, 1, 4);
+        System.out.println("Pigs needed pow: " + pigsNeeded2); // Output: 3   instead of 4
     }
 }
