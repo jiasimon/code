@@ -53,6 +53,31 @@ public class AssignCookies {
 
     }
 
+
+
+    public int findContentChildren_withComments(int[] g, int[] s) {
+        Arrays.sort(g); // Sort the children's greed factor in ascending order
+        Arrays.sort(s); // Sort the cookies in ascending order
+
+        int i = 0; // Pointer for the children
+        int j = 0; // Pointer for the cookies
+        int count = 0; // Count of satisfied children
+
+        while (i < g.length && j < s.length) {
+            if (g[i] <= s[j]) {
+                // If the child's greed can be satisfied with the current cookie, move to the next child and cookie
+                i++;
+                j++;
+                count++;
+            } else {
+                // If the current cookie is not enough for the child, try the next larger cookie
+                j++;
+            }
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
         AssignCookies solution = new AssignCookies();
         int[] children = {1, 2, 3};
