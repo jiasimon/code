@@ -17,6 +17,7 @@ public class CountSmallerNumbersAfterSelf {
 
 
     // naive, 2 loop
+    // TLE 62/66
     public List<Integer> countSmaller_brute(int[] nums) {
         int n = nums.length;
         List<Integer> res = new ArrayList<>();
