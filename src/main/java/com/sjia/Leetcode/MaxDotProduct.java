@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class MaxDotProduct {
     // #1458. Max Dot Product of Two Subsequences   https://leetcode.com/problems/max-dot-product-of-two-subsequences/description/?envType=daily-question&envId=2023-10-08
 
@@ -25,9 +27,11 @@ public class MaxDotProduct {
 
 
     // dp, first row, column
-    public int maxDotProduct(int[] nums1, int[] nums2) {
+    // failed on [-3,-8,3,-10,1,3,9], [9,2,3,7,-9,1,-8,5,-1,-1]
+    public int maxDotProduct_dp1(int[] nums1, int[] nums2) {
         int m = nums1.length;
         int n = nums2.length;
+
 
         int[][] dp = new int[m][n];
 
@@ -48,7 +52,8 @@ public class MaxDotProduct {
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
                 int maxPrev = Math.max(dp[i - 1][j], dp[i][j - 1]);
-                dp[i][j] = Math.max(maxPrev, dp[i - 1][j - 1] + nums1[i] * nums2[j]);
+//                dp[i][j] = Math.max(maxPrev, dp[i - 1][j - 1] + nums1[i] * nums2[j]);
+                dp[i][j] = Math.max(maxPrev, Math.max(0, dp[i - 1][j - 1]) + nums1[i] * nums2[j]);
             }
         }
 
@@ -57,12 +62,19 @@ public class MaxDotProduct {
 
 
 
+
+
+
+
     public static void main(String[] args) {
         MaxDotProduct solution = new MaxDotProduct();
-        int[] nums1 = {2, 1, -2, 5};
-        int[] nums2 = {3, 0, -6};
+//        int[] nums1 = {2, 1, -2, 5};
+//        int[] nums2 = {3, 0, -6};
 
-        int maxDot = solution.maxDotProduct(nums1, nums2);
-        System.out.println("Max Dot Product: " + maxDot); // Output: 18
+        int[] nums1 = {-3,-8,3,-10,1,3,9};
+        int[] nums2 = {9,2,3,7,-9,1,-8,5,-1,-1};
+
+        int maxDot = solution.maxDotProduct_dp1(nums1, nums2);
+        System.out.println("Max Dot Product: " + maxDot); // Output: 200 instead of 194
     }
 }
