@@ -38,6 +38,14 @@ public class Rand10UsingRand7 {
         return (int) (Math.random() * 7) + 1;
     }
 
+
+    // rand7() -> rand49() -> rand40() -> rand10()
+    public int rand10_rand49_rand40() {
+        int result = 40;
+        while (result >= 40) {result = 7 * (rand7() - 1) + (rand7() - 1);}
+        return result % 10 + 1;
+    }
+
     public static void main(String[] args) {
         Rand10UsingRand7 solution = new Rand10UsingRand7();
 
