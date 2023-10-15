@@ -29,31 +29,33 @@ public class FindDisappearedNumbers {
         return result;
     }
 
-    
 
 
 
-    // smart solution
-    // Runtime: 5 ms, faster than 89.23% of Java online submissions for Find All Numbers Disappeared in an Array.
-    //Memory Usage: 48.5 MB, less than 77.54% of Java online submissions for Find All Numbers Disappeared in an Array.
-/*
-    public List<Integer> findDisappearedNumbers(int[] nums) {
-        List<Integer> result = new ArrayList<Integer>();
+    // index = Math.abs(n) -1;
+    // 5 ms, 89.57%; 53.8 MB, 34.62%
+    public List<Integer> findDisappearedNumbers_negative(int[] nums) {
+        List<Integer> res = new ArrayList<>();
 
-        for(int i = 0; i < nums.length; i++) {
-            int val = Math.abs(nums[i]) - 1;
-            if(nums[val] > 0) {
-                nums[val] = -nums[val];
+        for ( int n : nums) {
+            int index = Math.abs(n) -1;
+            if(nums[index] > 0) {
+                nums[index] = -nums[index];
             }
         }
 
-        for(int i = 0; i < nums.length; i++) {
-            if(nums[i] > 0) {
-                result.add(i+1);
+        for ( int i =0; i < nums.length; i++) {
+            if (nums[i] > 0) {
+                res.add(i+1);
             }
         }
-        return result;
-    }*/
+
+        return res;
+
+    }
+
+
+
 
 
 
@@ -61,7 +63,7 @@ public class FindDisappearedNumbers {
         FindDisappearedNumbers solution = new FindDisappearedNumbers();
         int[] nums = {4, 3, 2, 7, 8, 2, 1};
 
-        List<Integer> disappearedNumbers = solution.findDisappearedNumbers_set(nums);
+        List<Integer> disappearedNumbers = solution.findDisappearedNumbers_negative(nums);
         System.out.println("Disappeared Numbers: " + disappearedNumbers); // Output: [5, 6]
     }
 
