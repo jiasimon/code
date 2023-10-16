@@ -101,6 +101,24 @@ public class IntegerReplacement {
     }
 
 
+    // (n >>> 1) & 1) == 0
+    public int integerReplacement_faster(int n) {
+        int c = 0;
+        while (n != 1) {
+            if ((n & 1) == 0) {
+                n >>>= 1;
+            } else if (n == 3 || ((n >>> 1) & 1) == 0) {
+                --n;
+            } else {
+                ++n;
+            }
+            ++c;
+        }
+        return c;
+
+    }
+
+
     public static void main(String[] args) {
         IntegerReplacement solution = new IntegerReplacement();
         int n = 8;
