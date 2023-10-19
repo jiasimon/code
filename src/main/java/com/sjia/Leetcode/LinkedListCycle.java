@@ -32,6 +32,27 @@ public class LinkedListCycle {
     }
 
 
+    public boolean hasCycle_tortoise(ListNode head) {
+        if (head == null || head.next == null) {
+            return false; // No cycle if the list is empty or has only one node
+        }
+
+        ListNode tortoise = head;
+        ListNode hare = head;
+
+        while (hare != null && hare.next != null) {
+            tortoise = tortoise.next;      // Move one step
+            hare = hare.next.next;         // Move two steps
+
+            if (tortoise == hare) {
+                return true; // Cycle detected
+            }
+        }
+
+        return false; // No cycle detected
+    }
+
+
     public static void main(String[] args) {
         LinkedListCycle solution = new LinkedListCycle();
 
