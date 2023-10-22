@@ -60,7 +60,14 @@ public class Rand10UsingRand7 {
         while (result >= 22) {result = 3 * 3 * (rand3() - 1) + 3 * (rand3() - 1) + (rand3() - 1);}
         return result % 11 + 1;
     }
-    
+
+
+    // Implement rand9() using rand7()
+    public int rand9_rand49_rand45() {
+        int result = 45;
+        while (result >= 45) {result = 7 * (rand7() - 1) + (rand7() - 1);}
+        return result % 9 + 1;
+    }
 
 
 
