@@ -46,6 +46,24 @@ public class Rand10UsingRand7 {
         return result % 10 + 1;
     }
 
+
+    //  Implement rand11() using rand3()
+    // rand3() -> rand27() -> rand22 -> rand11
+
+    public int rand3() {
+        // Simulate generating a random integer from 1 to 7
+        return (int) (Math.random() * 3) + 1;
+    }
+
+    public int rand11() {
+        int result = 22;
+        while (result >= 22) {result = 3 * 3 * (rand3() - 1) + 3 * (rand3() - 1) + (rand3() - 1);}
+        return result % 11 + 1;
+    }
+    
+
+
+
     public static void main(String[] args) {
         Rand10UsingRand7 solution = new Rand10UsingRand7();
 
