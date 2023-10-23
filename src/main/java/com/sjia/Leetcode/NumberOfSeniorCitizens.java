@@ -1,7 +1,10 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class NumberOfSeniorCitizens {
     // #2678. Number of Senior Citizens     https://leetcode.com/problems/number-of-senior-citizens/
+    // #stream
 
     /*
     You are given a 0-indexed array of strings details. Each element of details provides information about a given passenger compressed into a string of length 15. The system is such that:
@@ -33,6 +36,16 @@ public class NumberOfSeniorCitizens {
         }
 
         return res;
+
+    }
+
+
+    // stream filter count
+    // 4 ms, 11.94%; 41.5 MB, 45.19%
+    public int countSeniors_stream(String[] details) {
+        return (int) Arrays.stream(details)
+                .filter(detail -> Integer.parseInt(detail.substring(11, 13)) > 60)
+                .count();
 
     }
 
