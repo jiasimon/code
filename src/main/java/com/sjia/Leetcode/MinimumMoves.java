@@ -3,10 +3,18 @@ package com.sjia.Leetcode;
 import java.util.Arrays;
 
 public class MinimumMoves {
-    // #453 https://leetcode.com/problems/minimum-moves-to-equal-array-elements/
-    // Given a non-empty integer array of size n,
-    // find the minimum moves required to make all array elements equal,
-    // where a move is incrementing n - 1 elements by 1.
+    // #453. Minimum Moves to Equal Array Elements https://leetcode.com/problems/minimum-moves-to-equal-array-elements/
+    // #stream  #interview
+
+    /*
+    Given an integer array nums of size n, return the minimum number of moves required to make all array elements equal.
+
+    In one move, you can increment n - 1 elements of the array by 1.
+    Input: nums = [1,2,3]       Output: 3
+    Input: nums = [1,1,1]       Output: 0
+    1 <= nums.length <= 10^5
+    -10^9 <= nums[i] <= 10^9
+     */
 
 
     // Runtime: 10 ms, faster than 23.46% of Java online submissions for Minimum Moves to Equal Array Elements.
@@ -34,6 +42,15 @@ public class MinimumMoves {
         }
         return sum- min* nums.length;
 
+    }
+
+
+    // stream sum and min, slow
+    // 7 ms, 36.55%; 43.9 MB, 61.65%
+    public int minMoves_stream(int[] nums) {
+        int sum = Arrays.stream(nums).sum();
+        int min = Arrays.stream(nums).min().getAsInt();
+        return sum - min * nums.length;
     }
 
 
