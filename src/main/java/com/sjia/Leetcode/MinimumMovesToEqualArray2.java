@@ -34,11 +34,26 @@ public class MinimumMovesToEqualArray2 {
     }
 
 
+
+    // nums[j]-nums[i]
+    public int minMoves2_twoPointer(int[] nums) {
+        Arrays.sort(nums);
+        int i = 0, j = nums.length-1;
+        int res = 0;
+        while(i < j){
+            res += nums[j]-nums[i];
+            i++;
+            j--;
+        }
+        return res;
+
+    }
+
     public static void main(String[] args) {
         MinimumMovesToEqualArray2 solution = new MinimumMovesToEqualArray2();
         int[] nums = {1, 2, 3};
 
-        int minMoves = solution.minMoves2(nums);
+        int minMoves = solution.minMoves2_twoPointer(nums);
         System.out.println("Minimum Moves: " + minMoves); // Output: 2
     }
 
