@@ -36,6 +36,7 @@ public class MinimumMovesToEqualArray2 {
 
 
     // nums[j]-nums[i]
+    // 4 ms, 97.27%; 43.5 MB,71.54%
     public int minMoves2_twoPointer(int[] nums) {
         Arrays.sort(nums);
         int i = 0, j = nums.length-1;
