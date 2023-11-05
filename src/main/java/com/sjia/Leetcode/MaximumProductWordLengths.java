@@ -89,6 +89,33 @@ public class MaximumProductWordLengths {
     }
 
 
+    public int maxProduct_bit(String[] words) {
+        int n = words.length;
+        int[] masks = new int[n]; // Stores bitmasks for each word
+
+        // Precompute bitmasks for each word
+        for (int i = 0; i < n; i++) {
+            for (char c : words[i].toCharArray()) {
+                masks[i] |= 1 << (c - 'a');
+            }
+        }
+
+        int maxProduct = 0;
+
+        // Check all possible combinations and find the maximum product
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if ((masks[i] & masks[j]) == 0) { // If the words don't share common letters
+                    maxProduct = Math.max(maxProduct, words[i].length() * words[j].length());
+                }
+            }
+        }
+
+        return maxProduct;
+    }
+
+
+
 
     public static void main(String[] args) {
         MaximumProductWordLengths solution = new MaximumProductWordLengths();
