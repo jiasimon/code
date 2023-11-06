@@ -46,6 +46,21 @@ public class LicenseKeyFormatting482 {
         return sb.toString();
     }
 
+
+    // tmp.reverse().toString().toUpperCase(), less code
+    // 15 ms, 53.34%; 43.3 MB, 90.23%
+    public String licenseKeyFormatting_reverse(String S, int K) {
+        StringBuilder tmp = new StringBuilder();
+        for (int i=S.length()-1; i>=0; i--) {
+            if(S.charAt(i) != '-') {
+                if (tmp.length() %( K+1) == K ) tmp.append("-");
+                tmp.append(S.charAt(i));
+            }
+        }
+        return tmp.reverse().toString().toUpperCase();
+    }
+
+
     public static void main(String[] args) {
         LicenseKeyFormatting482 solution = new LicenseKeyFormatting482();
         String S = "5F3Z-2e-9-w";
