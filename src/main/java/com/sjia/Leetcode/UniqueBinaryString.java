@@ -1,6 +1,7 @@
 package com.sjia.Leetcode;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,7 +24,7 @@ public class UniqueBinaryString {
 
     // Set<Integer> stream
     // 14 ms, 19.64%; 41.5 MB, 21.9%
-    public String findDifferentBinaryString(String[] nums) {
+    public String findDifferentBinaryString_stream(String[] nums) {
         final int bitSize = nums[0].length();
         final int maxNum = 1 << bitSize;
         Set<Integer> numsSet = Arrays.stream(nums)
@@ -33,7 +34,7 @@ public class UniqueBinaryString {
 
         for (int num = 0; num < maxNum; ++num)
             if (!numsSet.contains(num)) {
-                System.out.println( num + " , " + Integer.toBinaryString(num));
+//                System.out.println( num + " , " + Integer.toBinaryString(num));
                 return String.format("%" + bitSize + "s", Integer.toBinaryString(num)).replace(' ', '0');
             }
 
@@ -43,15 +44,35 @@ public class UniqueBinaryString {
     }
 
 
+    // faster than stream
+    // 11 ms, 21.9%; 41.9 MB, 18.91%
+    public String findDifferentBinaryString_Set(String[] nums) {
+        final int bitSize = nums[0].length();
+        final int maxNum = 1 << bitSize;
+
+        Set<Integer> tmp = new HashSet<Integer>();
+        for ( String num : nums) {
+            tmp.add(Integer.parseInt(num, 2));
+        }
+
+        for (int num = 0; num < maxNum; ++num)
+            if (!tmp.contains(num)) {
+                return String.format("%" + bitSize + "s", Integer.toBinaryString(num)).replace(' ', '0');
+            }
+        throw new IllegalArgumentException();
+
+    }
+
+
     public static void main(String[] args) {
         UniqueBinaryString solution = new UniqueBinaryString();
         String[] nums = {"00", "01", "11"};
 
-        String result = solution.findDifferentBinaryString(nums);
+        String result = solution.findDifferentBinaryString_Set(nums);
         System.out.println("Unique Binary String: " + result);
 
         String[] nums2 = {"001", "010", "111"};
-        result = solution.findDifferentBinaryString(nums2);
+        result = solution.findDifferentBinaryString_Set(nums2);
         System.out.println("Unique Binary String: " + result);
 
 
