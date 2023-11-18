@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class MaximumSumKElements {
     // #2656. Maximum Sum With Exactly K Elements   https://leetcode.com/problems/maximum-sum-with-exactly-k-elements/description/
 
@@ -20,7 +22,7 @@ public class MaximumSumKElements {
      */
 
 
-    //
+    // for loop
     // 1 ms, 100%; 44.1 MB, 15.7%
     public int maximizeSum(int[] nums, int k) {
         int tmp = 0;
@@ -30,6 +32,16 @@ public class MaximumSumKElements {
         return tmp * k + k *( k-1)/2 ;
 
     }
+
+
+    // Arrays.stream(nums).max().getAsInt()
+    // 5 ms, 47.53%; 43.9 MB, 20.92%
+    public int maximizeSum_stream(int[] nums, int k) {
+        int x = Arrays.stream(nums).max().getAsInt();
+        return x * k + k * (k - 1) / 2;
+
+    }
+
 
     public static void main(String[] args) {
         MaximumSumKElements solution = new MaximumSumKElements();
