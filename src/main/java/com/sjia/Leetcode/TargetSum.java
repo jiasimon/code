@@ -57,12 +57,38 @@ public class TargetSum {
 
     }
 
+
+
+    // brute force , backtrack
+    // 506 ms, 20.92%; 39.6 MB, 95.63%
+
+    int count = 0;
+
+    public int findTargetSumWays_backtrack(int[] nums, int target) {
+        backtrack(nums, target, 0, 0);
+        return count;
+    }
+
+    public void backtrack(int[] nums, int target, int index, int sum) {
+        if (index == nums.length) {
+            if (sum == target) {
+                count++;
+            }
+        } else {
+            backtrack(nums, target, index + 1, sum + nums[index]);
+            backtrack(nums, target, index + 1, sum - nums[index]);
+        }
+    }
+
+
+
     public static void main(String[] args) {
         TargetSum solution = new TargetSum();
         int[] nums = {1, 1, 1, 1, 1};
         int target = 3;
         int res = solution.findTargetSumWays(nums, target);
         System.out.println("Number of ways to reach the target sum: " + res); // Output: 5
+
 
         int[] nums2 = {1, 2, 3, 4, 5};
         int target2 = 5;
