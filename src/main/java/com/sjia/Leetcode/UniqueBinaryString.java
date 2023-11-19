@@ -64,6 +64,19 @@ public class UniqueBinaryString {
     }
 
 
+
+    // Cantor's Diagonal Argument
+    // 0 ms, 100%; 41.2 MB, 23.86%
+    public String findDifferentBinaryString(String[] nums) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < nums.length; i++) {
+            Character curr = nums[i].charAt(i);
+            res.append(curr == '0' ? '1' : '0');
+        }
+        return res.toString();
+    }
+
+
     public static void main(String[] args) {
         UniqueBinaryString solution = new UniqueBinaryString();
         String[] nums = {"00", "01", "11"};
