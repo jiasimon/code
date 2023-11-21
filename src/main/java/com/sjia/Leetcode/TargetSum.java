@@ -81,24 +81,53 @@ public class TargetSum {
     }
 
 
+    public int findTargetSumWays_dp2D(int[] nums, int target) {
+
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+
+        // If the target sum is out of bounds, return 0
+        if (target > sum || target < -sum) {
+            return 0;
+        }
+
+        int n = nums.length;
+        int[][] dp = new int[n + 1][2 * sum + 1];
+        dp[0][sum] = 1; // Set the initial value at sum index to 1
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= 2 * sum; j++) {
+                if (dp[i - 1][j] != 0) {
+                    dp[i][j + nums[i - 1]] += dp[i - 1][j];
+                    dp[i][j - nums[i - 1]] += dp[i - 1][j];
+                }
+            }
+        }
+
+        return dp[n][target + sum];
+
+    }
+
 
     public static void main(String[] args) {
         TargetSum solution = new TargetSum();
         int[] nums = {1, 1, 1, 1, 1};
         int target = 3;
-        int res = solution.findTargetSumWays(nums, target);
+        int res = solution.findTargetSumWays_dp2D(nums, target);
         System.out.println("Number of ways to reach the target sum: " + res); // Output: 5
 
 
         int[] nums2 = {1, 2, 3, 4, 5};
         int target2 = 5;
-        int res2 = solution.findTargetSumWays(nums2, target2);
+        int res2 = solution.findTargetSumWays_dp2D(nums2, target2);
         System.out.println("Number of ways to reach the target sum: " + res2);
 
 
         int[] nums3 = {7,9,3,8,0,2,4,8,3,9};
         int target3 = 0;
-        int res3 = solution.findTargetSumWays(nums3, target3);
+        int res3 = solution.findTargetSumWays_dp2D(nums3, target3);
         System.out.println("Number of ways to reach the target sum: " + res3);
 
     }
