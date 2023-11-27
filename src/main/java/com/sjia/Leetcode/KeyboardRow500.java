@@ -20,6 +20,7 @@ public class KeyboardRow500 {
 
      */
 
+    // 0ms. 100%
     public String[] findWords(String[] words) {
         String[] rows = {"QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"};
         List<String> result = new ArrayList<>();
@@ -50,6 +51,26 @@ public class KeyboardRow500 {
         }
 
         return result.toArray(new String[0]);
+    }
+
+
+
+    // lowerWord.chars().allMatch
+    // 2ms, 6.64%
+    public String[] findWords_stream(String[] words) {
+        List<String> ans = new ArrayList<>();
+        final int[] rows = {2, 3, 3, 2, 1, 2, 2, 2, 1, 2, 2, 2, 3,
+                3, 1, 1, 1, 1, 2, 1, 1, 3, 1, 3, 1, 3};
+
+        for (final String word : words) {
+            final String lowerWord = word.toLowerCase();
+            final int row = rows[lowerWord.charAt(0) - 'a'];
+            final boolean isValid = lowerWord.chars().allMatch(c -> rows[c - 'a'] == row);
+            if (isValid)
+                ans.add(word);
+        }
+
+        return ans.toArray(new String[0]);
     }
 
     public static void main(String[] args) {
