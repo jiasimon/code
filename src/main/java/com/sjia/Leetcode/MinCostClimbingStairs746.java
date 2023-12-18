@@ -25,6 +25,26 @@ public class MinCostClimbingStairs746 {
 
 
 
+    // memo
+    // 1 ms, 45.67%; 43.2 MB, 44.35%
+    int[] dp;
+    public int minCostClimbingStairs_memo(int[] cost) {
+        int n = cost.length;
+        dp = new int[n];
+        return Math.min(minCost_memo(cost, n-1), minCost_memo(cost, n-2));
+    }
+
+    private int minCost_memo(int[] cost, int n) {
+        if (n < 0) return 0;
+        if (n==0 || n==1) return cost[n];
+        if (dp[n] != 0) return dp[n];
+        dp[n] = cost[n] + Math.min(minCost_memo(cost, n-1), minCost_memo(cost, n-2));
+        return dp[n];
+    }
+
+
+
+
 
     public static void main(String[] args) {
         MinCostClimbingStairs746 solution = new MinCostClimbingStairs746();
