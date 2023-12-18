@@ -2,6 +2,7 @@ package com.sjia.Leetcode;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class FindBottomLeftTreeValue {
@@ -47,6 +48,34 @@ public class FindBottomLeftTreeValue {
     }
 
 
+
+    public int findBottomLeftValue_bfs2(TreeNode root) {
+        if (root == null) {
+            return -1; // or any other default value indicating absence of the tree
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        int result = root.val;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (i == 0) {
+                    result = node.val; // Update the result for each level
+                }
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+        }
+
+        return result;
+    }
 
     public static void main(String[] args) {
         FindBottomLeftTreeValue solution = new FindBottomLeftTreeValue();
