@@ -68,6 +68,21 @@ public class CoinChange2 {
 
 
 
+    // dp2, coin to amount
+    // 2 ms, 100%; 41 MB, 66.40%
+    public int change(int amount, int[] coins) {
+        int[] dp = new int[amount + 1];
+        dp[0] = 1; // Base case: 1 way to make 0 amount (by using no coins)
+
+        for (int coin : coins) {
+            for (int i = coin; i <= amount; i++) {
+                dp[i] += dp[i - coin];
+            }
+        }
+
+        return dp[amount];
+    }
+
 
 
     public static void main(String[] args) {
