@@ -1,5 +1,7 @@
 package com.sjia.Leetcode;
 
+import java.util.Arrays;
+
 public class StudentAttendanceRecord2 {
     // #552. Student Attendance Record II   https://leetcode.com/problems/student-attendance-record-ii/description/
 
@@ -22,32 +24,44 @@ public class StudentAttendanceRecord2 {
      */
 
     public int checkRecord(int n) {
-        int MOD = 1000000007;
-        long[] P = new long[n + 1]; // P[i] represents the number of all possible attendance records ending with 'P'
-        long[] L = new long[n + 1]; // L[i] represents the number of all possible attendance records ending with 'L'
-        long[] A = new long[n + 1]; // A[i] represents the number of all possible attendance records ending with 'A'
+        final int kMod = 1_000_000_007;
+        // dp[i][j] := the length so far with i A's and the last letters are j L's
+        long[][] dp = new long[2][3];
+        dp[0][0] = 1;
 
-        P[0] = 1;
-        L[0] = 1;
-        L[1] = 1;
-        A[0] = 1;
-        A[1] = 1;
+        while (n-- > 0) {
+            long[][] prev = Arrays.stream(dp)
+                    .map((long[] A) -> A.clone())
+                    .toArray((int length) -> new long[length][]);
 
-        for (int i = 2; i <= n; i++) {
-            P[i] = (P[i - 1] + L[i - 1] + A[i - 1]) % MOD;
-            A[i] = (P[i - 1] + L[i - 1] + P[i - 2] + L[i - 2]) % MOD;
-            L[i] = (P[i - 1] + A[i - 1] + P[i - 2] + A[i - 2]) % MOD;
+            // Append a P.
+            dp[0][0] = (prev[0][0] + prev[0][1] + prev[0][2]) % kMod;
+
+            // Append an L.
+            dp[0][1] = prev[0][0];
+
+            // Append an L.
+            dp[0][2] = prev[0][1];
+
+            // Append an A or append a P.
+            dp[1][0] =
+                    (prev[0][0] + prev[0][1] + prev[0][2] + prev[1][0] + prev[1][1] + prev[1][2]) % kMod;
+
+            // Append an L.
+            dp[1][1] = prev[1][0];
+
+            // Append an L.
+            dp[1][2] = prev[1][1];
         }
 
-        long res = (P[n] + L[n] + A[n]) % MOD;
-        return (int) res;
+        return (int) ((dp[0][0] + dp[0][1] + dp[0][2] + dp[1][0] + dp[1][1] + dp[1][2]) % kMod);
     }
 
     public static void main(String[] args) {
         StudentAttendanceRecord2 studentAttendanceRecord2 = new StudentAttendanceRecord2();
 
-        System.out.println(studentAttendanceRecord2.checkRecord(3)); // Output: 20
-        System.out.println(studentAttendanceRecord2.checkRecord(5)); // Output: 164
+        System.out.println(studentAttendanceRecord2.checkRecord(3)); // Output: 19
+        System.out.println(studentAttendanceRecord2.checkRecord(5)); // Output: 94
 
     }
 }
