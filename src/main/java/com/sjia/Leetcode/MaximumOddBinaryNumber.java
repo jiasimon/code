@@ -19,7 +19,7 @@ public class MaximumOddBinaryNumber {
     s consists only of '0' and '1'.
      */
 
-    public String maximumOddBinaryNumber(String s) {
+    public String maximumOddBinaryNumber_repeat(String s) {
         int ones = 0;
         for (int i =0; i < s.length(); i++) {
             if (s.charAt(i) == '1') {
@@ -30,11 +30,36 @@ public class MaximumOddBinaryNumber {
         int zeros = s.length() - ones;
 
         // JDK11
-        return "1".repeat(ones - 1) + "0".repeat(zeros) + "1";
+        return "1";
+//        return "1".repeat(ones - 1) + "0".repeat(zeros) + "1";
 
     }
 
 
-    
+    public String maximumOddBinaryNumber_sb(String s) {
+        int ones = 0;
+        for (int i =0; i < s.length(); i++) {
+            if (s.charAt(i) == '1') {
+                ones++;
+            }
+        }
+
+        int zeros = s.length() - ones;
+
+        StringBuilder sb = new StringBuilder();
+        for (int i=0; i < ones - 1; i++) {
+            sb.append("1");
+        }
+
+        for (int i=0; i < zeros; i++) {
+            sb.append("0");
+        }
+        sb.append("1");
+        return sb.toString();
+
+    }
+
+
+
 
 }
