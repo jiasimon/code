@@ -3,7 +3,7 @@ package com.sjia.Leetcode;
 import java.util.HashSet;
 
 public class DistributeCandies {
-    // #575 https://leetcode.com/problems/distribute-candies/
+    // #575. Distribute Candies https://leetcode.com/problems/distribute-candies/
 
     // Given an integer array with even length, where different numbers in this array represent different kinds of candies.
     // You need to distribute these candies equally in number to brother and sister.
@@ -27,5 +27,25 @@ public class DistributeCandies {
         return Math.min(candies.length / 2, ((int) Arrays.stream(candies).distinct().count()));
     }*/
 
+
+    // HashSet, 30ms
+    public int distributeCandies_Set(int[] candies) {
+        int n = candies.length;
+        HashSet set = new HashSet<>();
+        for (int c : candies) {
+            set.add(c);
+        }
+        return Math.min(n/2, set.size());
+    }
+
+    public static void main(String[] args) {
+        DistributeCandies solution = new DistributeCandies();
+
+        int[] testCandies1 = {1, 1, 2, 2, 3, 3};
+        int[] testCandies2 = {1, 1, 2, 3};
+
+        System.out.println("Test Case 1: " + solution.distributeCandies(testCandies1)); // Output: 3
+        System.out.println("Test Case 2: " + solution.distributeCandies(testCandies2)); // Output: 2
+    }
 
 }
