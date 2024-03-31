@@ -36,6 +36,22 @@ public class SubtreeAnotherTree {
         return s.val == t.val && isSameTree(s.left, t.left) && isSameTree(s.right, t.right);
     }
 
+
+    // 2ms, 96.02%
+    public boolean isSubtree_faster(TreeNode root, TreeNode subRoot) {
+        if (isSameTree(root, subRoot)){
+            return true;
+        }
+
+
+        if ( root == null) {
+            return false;
+        }
+
+
+        return isSubtree_faster(root.left, subRoot) || isSubtree_faster(root.right, subRoot);
+    }
+
     public static void main(String[] args) {
         SubtreeAnotherTree solution = new SubtreeAnotherTree();
 
