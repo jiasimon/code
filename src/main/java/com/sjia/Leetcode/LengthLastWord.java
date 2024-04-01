@@ -62,6 +62,12 @@ public class LengthLastWord {
         return res;
     }
 
+    // s.split(" ")
+    public int lengthOfLastWord_split(String s) {
+        s = s.trim();
+        String[] eachWord = s.split(" ");
+        return eachWord[eachWord.length - 1].length();
+    }
 
     public static void main(String[] args) {
 
