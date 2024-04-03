@@ -1,8 +1,6 @@
 package com.sjia.Leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ErectFence {
     // #587. Erect the Fence    https://leetcode.com/problems/erect-the-fence/description/
@@ -20,7 +18,7 @@ public class ErectFence {
      */
 
     // chatgpt incorrect
-    public int[][] outerTrees_incorrect(int[][] trees) {
+    public int[][] outerTrees_fix_gpt(int[][] trees) {
         List<int[]> points = new ArrayList<>();
         for (int[] tree : trees) {
             points.add(new int[]{tree[0], tree[1]});
@@ -61,6 +59,11 @@ public class ErectFence {
         List<int[]> hull = new ArrayList<>(upperHull);
         hull.addAll(lowerHull.subList(1, lowerHull.size() - 1));
 
+        // use set to remove duplicate
+        Set<int[]> set = new HashSet<>(hull);
+        List<int[]> res = new ArrayList<>();
+        res.addAll(set);
+
         return hull;
     }
 
@@ -69,6 +72,8 @@ public class ErectFence {
     private int orientation(int[] p, int[] q, int[] r) {
         return (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1]);
     }
+
+
 
     // Test case
     public static void main(String[] args) {
