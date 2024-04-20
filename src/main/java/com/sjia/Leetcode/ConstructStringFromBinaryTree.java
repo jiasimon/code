@@ -24,6 +24,23 @@ public class ConstructStringFromBinaryTree {
         return sb.toString();
     }
 
+
+    // String
+    // 11ms, 46MB
+    public String tree2str_String(TreeNode t) {
+        if (t == null) return "";
+
+        String result = t.val + "";
+
+        String left = tree2str_String(t.left);
+        String right = tree2str_String(t.right);
+
+        if (left == "" && right == "") return result;
+        if (left == "") return result + "()" + "(" + right + ")";
+        if (right == "") return result + "(" + left + ")";
+        return result + "(" + left + ")" + "(" + right + ")";
+    }
+
     public static void main(String[] args) {
         ConstructStringFromBinaryTree solution = new ConstructStringFromBinaryTree();
 
