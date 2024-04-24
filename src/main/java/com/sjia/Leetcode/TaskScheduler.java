@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TaskScheduler {
-    // #621 https://leetcode.com/problems/task-scheduler/   #fb
+    // #621. Task Scheduler https://leetcode.com/problems/task-scheduler/   #fb
 
     // there is a non-negative integer n that represents the cooldown period
     // between two same tasks (the same letter in the array)
@@ -29,7 +29,7 @@ public class TaskScheduler {
     //  char count array, sort it,  Math.max(tasks.length , (count[25]-1)*(n+1) + 25-i)
     // Runtime: 2 ms, faster than 99.59% of Java online submissions for Task Scheduler.
     // Memory Usage: 40.5 MB, less than 29.35% of Java online submissions for Task Scheduler.
-    public int leastInterval(char[] tasks, int n) {
+    public int leastInterval3(char[] tasks, int n) {
         int[] count = new int[26];
         for (char t: tasks) {
             count[t - 'A']++;
@@ -69,6 +69,26 @@ public class TaskScheduler {
 
         return tasks.length + idles;
     }
+
+
+    // 2ms, 99.29%
+    public int leastInterval(char[] tasks, int n) {
+        int[] frequencies = new int[26];
+        for (char task : tasks) {
+            frequencies[task - 'A']++;
+        }
+        Arrays.sort(frequencies);
+
+        int maxFreq = frequencies[25] - 1;
+        int idleSlots = maxFreq * n;
+
+        for (int i = 24; i >= 0 && frequencies[i] > 0; i--) {
+            idleSlots -= Math.min(frequencies[i], maxFreq);
+        }
+
+        return idleSlots > 0 ? idleSlots + tasks.length : tasks.length;
+    }
+
 
     public static void main(String[] args) {
         char[] testData = { 'A','A','A','A','A','A','B','C','D','E','F','G'};
