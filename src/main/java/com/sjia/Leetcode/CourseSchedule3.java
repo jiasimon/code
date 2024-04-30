@@ -53,6 +53,29 @@ public class CourseSchedule3 {
         return maxHeap.size();
     }
 
+    public int scheduleCourse_PriorityQueue(int[][] courses) {
+        Arrays.sort(courses, (a, b) -> a[1] - b[1]); // Sort courses by their deadlines
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
+        int time = 0;
+
+        for (int[] course : courses) {
+            int duration = course[0];
+            int deadline = course[1];
+
+            if (time + duration <= deadline) {
+                pq.offer(duration);
+                time += duration;
+            } else if (!pq.isEmpty() && pq.peek() > duration) {
+                time += duration - pq.poll();
+                pq.offer(duration);
+            }
+        }
+
+        return pq.size();
+    }
+
+
     public static void main(String[] args) {
         CourseSchedule3 solution = new CourseSchedule3();
         int[][] courses = {{100, 200}, {200, 1300}, {1000, 1250}, {2000, 3200}};
