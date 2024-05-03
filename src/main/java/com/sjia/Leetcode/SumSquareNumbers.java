@@ -18,7 +18,7 @@ public class SumSquareNumbers {
     // two pointer
     // Runtime: 2 ms, faster than 97.69% of Java online submissions for Sum of Square Numbers.
     //Memory Usage: 35.9 MB, less than 93.86% of Java online submissions for Sum of Square Numbers.
-    public boolean judgeSquareSum(int c) {
+    public boolean judgeSquareSum_old(int c) {
         if (c <0) return false;
         int left=0, right = (int)Math.sqrt(c);
         while(left <= right) {
@@ -28,6 +28,33 @@ public class SumSquareNumbers {
             else return true;
         }
         return false;
+    }
+
+    // 124 / 127 testcases passed
+    // c = 2147483600
+    public boolean judgeSquareSum(int c) {
+        if (c <=2) return true;
+        int left=0, right = (int)Math.sqrt(c);
+        while(left <= right) {
+            int sum = left*left + right * right;
+            if (sum<c) left++;
+            else if (sum>c) right--;
+            else return true;
+        }
+        return false;
+    }
+
+
+    public static void main(String[] args) {
+        SumSquareNumbers solution = new SumSquareNumbers();
+
+        // Test Cases
+        int num1 = 5;
+        int num2 = 3;
+        int num3 = 2147483600;
+        System.out.println("Test Case 1: " + solution.judgeSquareSum(num1)); // Output: true
+        System.out.println("Test Case 2: " + solution.judgeSquareSum(num2)); // Output: false
+        System.out.println("Test Case 3: " + solution.judgeSquareSum(num3)); // Output: false
     }
 
 
