@@ -25,7 +25,7 @@ Result:
      */
 
     // failed on s = "abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba"
-    public int countPalindromicSubsequences(String s) {
+    public int countPalindromicSubsequences_2(String s) {
         int n = s.length();
         int MOD = 1_000_000_007;
 
@@ -71,6 +71,51 @@ Result:
         return dp[0][n - 1];
     }
 
+    public int countPalindromicSubsequences(String s) {
+        int n = s.length();
+        int MOD = 1_000_000_007;
+
+        // dp[i][j] will store the count of distinct palindromic subsequences in s[i:j+1]
+        int[][] dp = new int[n][n];
+
+        // Base case: Single characters are palindromes
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = 1;
+        }
+
+        // Fill dp for substrings of increasing length
+        for (int len = 2; len <= n; len++) {
+            for (int i = 0; i <= n - len; i++) {
+                int j = i + len - 1;
+                if (s.charAt(i) == s.charAt(j)) {
+                    int low = i + 1, high = j - 1;
+
+                    // Find the first and last occurrence of s[i] in s[i+1:j]
+                    while (low <= high && s.charAt(low) != s.charAt(i)) low++;
+                    while (low <= high && s.charAt(high) != s.charAt(i)) high--;
+
+                    if (low > high) {
+                        // No matching character inside, add two new palindromes: s[i] and s[i:j]
+                        dp[i][j] = dp[i + 1][j - 1] * 2 + 2;
+                    } else if (low == high) {
+                        // One matching character inside, add one new palindrome: s[i:j]
+                        dp[i][j] = dp[i + 1][j - 1] * 2 + 1;
+                    } else {
+                        // Two or more matching characters, subtract the overlapping part
+                        dp[i][j] = dp[i + 1][j - 1] * 2 - dp[low + 1][high - 1];
+                    }
+                } else {
+                    // If s[i] != s[j], combine results of [i+1, j] and [i, j-1], subtract overlap
+                    dp[i][j] = dp[i + 1][j] + dp[i][j - 1] - dp[i + 1][j - 1];
+                }
+
+                // Handle modulo to avoid negative results
+                dp[i][j] = (dp[i][j] % MOD + MOD) % MOD;
+            }
+        }
+
+        return dp[0][n - 1];
+    }
 
     public static void main(String[] args) {
         CountDifferentPalindromicSubseq solution = new CountDifferentPalindromicSubseq();
@@ -86,6 +131,10 @@ Result:
         // Test Case 3
         String s3 = "aaaa";
         System.out.println(solution.countPalindromicSubsequences(s3)); // Output: 15
+
+
+        String s4 = "abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba";
+        System.out.println(solution.countPalindromicSubsequences(s4)); // Output: 104860361
     }
 
 }
