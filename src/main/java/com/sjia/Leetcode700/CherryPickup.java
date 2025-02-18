@@ -9,62 +9,40 @@ public class CherryPickup {
      */
 
 
-    private int[][] grid;
-    private int n;
-    private int[][][] memo;
-
-    // Time Limit Exceeded
+    int[][][] memo;
+    int[][] grid;
+    int N;
     public int cherryPickup(int[][] grid) {
         this.grid = grid;
-        this.n = grid.length;
-        this.memo = new int[n][n][n];
-
-        for (int[][] layer : memo) {
-            for (int[] row : layer) {
+        N = grid.length;
+        memo = new int[N][N][N];
+        for (int[][] layer: memo) {
+            for (int[] row: layer) {
                 Arrays.fill(row, Integer.MIN_VALUE);
             }
         }
-
         return Math.max(0, dp(0, 0, 0));
     }
 
-    private int dp(int r1, int c1, int r2) {
-        int c2 = r1 + c1 - r2;  // Since both move together, derive c2
-
-        // Base case: out of bounds or obstacle
-        if (r1 >= n || c1 >= n || r2 >= n || c2 >= n || grid[r1][c1] == -1 || grid[r2][c2] == -1) {
-            return Integer.MIN_VALUE;
-        }
-
-        // If both reached bottom-right, return the cherry count
-        if (r1 == n - 1 && c1 == n - 1) {
+    public int dp(int r1, int c1, int c2) {
+        int r2 = r1 + c1 - c2;
+        if (N == r1 || N == r2 || N == c1 || N == c2 ||
+                grid[r1][c1] == -1 || grid[r2][c2] == -1) {
+            return -999999;
+        } else if (r1 == N - 1 && c1 == N - 1) {
             return grid[r1][c1];
+        } else if (memo[r1][c1][c2] != Integer.MIN_VALUE) {
+            return memo[r1][c1][c2];
+        } else {
+            int ans = grid[r1][c1];
+            if (c1 != c2) {
+                ans += grid[r2][c2];
+            }
+            ans += Math.max(Math.max(dp(r1, c1 + 1, c2 + 1), dp(r1 + 1, c1, c2 + 1)),
+                    Math.max(dp(r1, c1 + 1, c2), dp(r1 + 1, c1, c2)));
+            memo[r1][c1][c2] = ans;
+            return ans;
         }
-
-        // If already computed, return the cached value
-        if (memo[r1][c1][r2] != Integer.MIN_VALUE) {
-            return memo[r1][c1][r2];
-        }
-
-        // Current cherries collected (avoid double-counting if r1 == r2 and c1 == c2)
-        int cherries = grid[r1][c1];
-        if (r1 != r2) {
-            cherries += grid[r2][c2];
-        }
-
-        // Recursively explore all possible moves
-        int maxNext = Math.max(
-                Math.max(dp(r1 + 1, c1, r2 + 1), dp(r1 + 1, c1, r2)), // Person 1 down, Person 2 down or right
-                Math.max(dp(r1, c1 + 1, r2 + 1), dp(r1, c1 + 1, r2))  // Person 1 right, Person 2 down or right
-        );
-
-        if (maxNext == Integer.MIN_VALUE) {
-            return memo[r1][c1][r2] = Integer.MIN_VALUE;
-        }
-
-        // Store result in memo and return
-        memo[r1][c1][r2] = cherries + maxNext;
-        return memo[r1][c1][r2];
     }
 
     public static void main(String[] args) {
