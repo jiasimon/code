@@ -1,5 +1,7 @@
 package com.sjia.Leetcode700;
 
+import java.util.Locale;
+
 public class ShortestCompletingWord {
     // #748. Shortest Completing Word   https://leetcode.com/problems/shortest-completing-word/description/
     /*
@@ -41,6 +43,17 @@ public class ShortestCompletingWord {
         for (char c : str.toCharArray()) {
             if (Character.isLetter(c)) {
                 freq[Character.toLowerCase(c) - 'a']++;
+            }
+        }
+        return freq;
+    }
+
+    private int[] getLetterFrequency2(String str) {
+        int[] freq = new int[26];
+        String tmp = str.toLowerCase();
+        for (char c : tmp.toCharArray()) {
+            if (Character.isLetter(c)) {
+                freq[c - 'a']++;
             }
         }
         return freq;
