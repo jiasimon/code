@@ -16,7 +16,7 @@ public class PartitionLabels {
     s consists of lowercase English letters.
      */
 
-    public List<Integer> partitionLabels(String s) {
+    public List<Integer> partitionLabels_copilot_failed(String s) {
         List<Integer> result = new ArrayList<>();
         int[] lastIndex = new int[26];
 
@@ -39,11 +39,38 @@ public class PartitionLabels {
         return result;
     }
 
+    public List<Integer> partitionLabels(String s) {
+        List<Integer> result = new ArrayList<>();
+        int[] lastIndex = new int[26];
+
+        // Step 1: Record the last occurrence index for each character
+        for (int i = 0; i < s.length(); i++) {
+            lastIndex[s.charAt(i) - 'a'] = i;
+        }
+
+        // Step 2: Initialize variables to track the start and end of the current partition
+        int partitionEnd = 0;
+        int partitionStart = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            // Update the end of the current partition
+            partitionEnd = Math.max(partitionEnd, lastIndex[s.charAt(i) - 'a']);
+
+            // If we reach the end of the current partition, add its size to the result
+            if (i == partitionEnd) {
+                result.add(partitionEnd - partitionStart + 1);
+                partitionStart = i + 1;
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         PartitionLabels solution = new PartitionLabels();
         String s = "ababcbacadefegdehijhklij";
         List<Integer> result = solution.partitionLabels(s);
         System.out.println(result); // Output: [9, 7, 8]   copilot code get wrong answer[8, 7, 16]
+        // copilot code return the index of partition index instead of size
     }
 
 }
