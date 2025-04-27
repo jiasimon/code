@@ -9,8 +9,8 @@
         <module name="hankerRank" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8">
-      <module name="hankerRank" target="8" />
+    <bytecodeTargetLevel target="11">
+      <module name="hankerRank" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
