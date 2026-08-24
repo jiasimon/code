@@ -21,13 +21,13 @@ public class MissingMultiple {
         for (int n : nums) {
             tmp.add(n);
         }
-        for (int i=1; i<=100; i++ ) {
-            if (!tmp.contains(i*k)) {
-                return i*k;
+        for (int i=k; ; i +=k ) {
+            if (!tmp.contains(i)) {
+                return i;
             }
 
         }
-        return 101*k;
+
     }
 
     public static void main(String[] args) {
