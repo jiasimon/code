@@ -11,14 +11,9 @@ public class BeautifulSubstring {
      */
 
     public String shortestBeautifulSubstring(String s, int k) {
-        int count =0;
-        char[] charArray = s.toCharArray();
-        for ( char c : charArray) {
-            if (c=='1') {
-                count++;
-            }
+        if (s.replace("0", "").length() < k) {
+            return "";
         }
-        if (count<k) return "";
 
         for ( int size = k; ; size++) {
             String res = "";
