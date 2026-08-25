@@ -38,7 +38,7 @@ public class ArrayMissingElements {
         ArrayMissingElements solution = new ArrayMissingElements();
 
         testTypicalCase(solution);
-//        testNoGaps(solution);
+        testNoGaps(solution);
 //        testEmptyArray(solution);
 //        testSingleElement(solution);
 //        testUnsortedInput(solution);
@@ -62,6 +62,13 @@ public class ArrayMissingElements {
         List<Integer> expected = Arrays.asList(2, 4, 5, 7);
         List<Integer> actual = solution.findMissingElements(nums);
         check("typicalCase_multipleGaps", expected, actual);
+    }
+
+    private static void testNoGaps(ArrayMissingElements solution) {
+        int[] nums = {5, 6, 7, 8, 9};
+        List<Integer> expected = new ArrayList<>();
+        List<Integer> actual = solution.findMissingElements(nums);
+        check("noGaps_consecutiveIntegers", expected, actual);
     }
 
     // --- simple assertion helper ---
