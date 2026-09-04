@@ -30,4 +30,30 @@ public class SherlockAnagrams {
         return res;
     }
 
+    public static int sherlockAndAnagramsByLength(String s) {
+        int n = s.length();
+        Map<String, Integer> freq = new HashMap<>();
+
+        // Generate all substrings, normalize each by sorting its characters,
+        // and count occurrences of each normalized form.
+        for (int len = 1; len < n; len++) {
+            for (int start = 0; start + len <= n; start++) {
+                String sub = s.substring(start, start + len);
+                char[] chars = sub.toCharArray();
+                Arrays.sort(chars);
+                String key = new String(chars);
+                freq.put(key, freq.getOrDefault(key, 0) + 1);
+            }
+        }
+
+        // For each group of k substrings that are anagrams of each other,
+        // the number of pairs is k choose 2 = k * (k - 1) / 2.
+        long totalPairs = 0;
+        for (int count : freq.values()) {
+            totalPairs += (long) count * (count - 1) / 2;
+        }
+
+        return (int) totalPairs;
+    }
+
 }
