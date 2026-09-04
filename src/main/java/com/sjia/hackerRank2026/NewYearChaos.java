@@ -20,4 +20,30 @@ public class NewYearChaos {
         System.out.println(bribes);
     }
 
+    public static void minimumBribes2(List<Integer> q) {
+        int totalBribes = 0;
+
+        for (int i = 0; i < q.size(); i++) {
+            // Original 1-based index position for the person currently at index i
+            int originalPosition = q.get(i);
+            // Current 1-based position in the queue
+            int currentPosition = i + 1;
+
+
+            if (originalPosition - currentPosition > 2) {
+                System.out.println("Too chaotic");
+                return;
+            }
+
+            int startLookback = Math.max(0, originalPosition - 2);
+            for (int j = startLookback; j < i; j++) {
+                if (q.get(j) > originalPosition) {
+                    totalBribes++;
+                }
+            }
+        }
+
+        System.out.println(totalBribes);
+    }
+
 }
