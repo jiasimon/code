@@ -18,5 +18,15 @@ public class MinDiffInArray {
         return (int)res;
 
     }
-    
+
+    public static int minimumAbsoluteDifferenceSort(List<Integer> arr) {
+        Collections.sort(arr);
+        int res = Integer.MAX_VALUE;
+        int n = arr.size();
+        for (int i = 0; i < n - 1; i++) {
+            res = Math.min(res, arr.get(i + 1) - arr.get(i));
+        }
+        return res;
+    }
+
 }
