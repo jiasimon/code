@@ -1,5 +1,6 @@
 package com.sjia.hackerRank2026;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CandiesMin {
@@ -9,9 +10,11 @@ public class CandiesMin {
     public static long candies(int n, List<Integer> arr) {
         // Write your code here
         int[] dp = new int[arr.size()];
-        for (int i=0; i<arr.size(); i++ ){
-            dp[i] = 1;
-        }
+
+        Arrays.fill(dp, 1);
+//        for (int i=0; i<arr.size(); i++ ){
+//            dp[i] = 1;
+//        }
 
         for (int i=1; i< arr.size(); i++) {
             if (arr.get(i) > arr.get(i-1)){
