@@ -16,5 +16,5 @@ public class DiagonalDifference {
         res = Math.abs(sum1-sum2);
         return res;
     }
-    
+
 }
