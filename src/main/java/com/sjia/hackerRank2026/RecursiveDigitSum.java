@@ -43,4 +43,17 @@ public class RecursiveDigitSum {
     }
 
 
+    public static int superDigitByMath(String n, int k) {
+        // Write your code here
+        long tmp = 0;
+        for (char c : n.toCharArray()) {
+            // tmp += Character.getNumericValue(c);
+            tmp += c - '0';
+        }
+
+        tmp *= k;
+        return (1 + (int)((tmp-1)%9 ));
+    }
+
+
 }
