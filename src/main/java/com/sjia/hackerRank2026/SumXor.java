@@ -21,6 +21,28 @@ public class SumXor {
         return 1L << res;
     }
 
+    public static long sumXorByLoop(long n) {
+        // Base case: If n is 0, the only valid x is 0
+        if (n == 0) {
+            return 1;
+        }
+
+        long unsetBits = 0;
+
+        // Count the number of 0s in the binary representation of n
+        // up to its most significant bit
+        while (n > 0) {
+            if ((n & 1) == 0) {
+                unsetBits++;
+            }
+            n >>= 1; // Shift right to check the next bit
+        }
+
+        // Total combinations = 2^unsetBits
+        // Using bitwise shift 1L << unsetBits is equivalent to Math.pow(2, unsetBits)
+        return 1L << unsetBits;
+    }
+
     public static void main(String[] args) {
         // Test Cases: [input, expectedOutput]
         long[][] testCases = {
