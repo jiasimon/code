@@ -37,6 +37,23 @@ public class CounterGame {
 
     }
 
+    public static String counterGame_bitCount(long n) {
+//        if(n==1) return "Richard";
+//        if (n ==2 ) return "Louise";
+        int turns = Long.bitCount(n - 1);
+
+        // Louise goes first. If total turns are odd, Louise wins.
+        // If total turns are even (or 0), Richard wins.
+        if (turns % 2 == 1) {
+            return "Louise";
+        } else {
+            return "Richard";
+        }
+
+//        return (turns % 2 == 1) ? "Louise" : "Richard";
+        
+    }
+
     public static void main(String[] args) {
         long[] inputs =      {1, 2, 3, 6, 7, 132, 1000000000000000000L, 4, 5, 1024};
         String[] expected =  {"Richard", "Louise", "Louise", "Richard", "Richard",
