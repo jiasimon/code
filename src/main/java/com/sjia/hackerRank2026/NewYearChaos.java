@@ -20,6 +20,31 @@ public class NewYearChaos {
         System.out.println(bribes);
     }
 
+    static void minimumBribesNCustomer(int[] q) {
+        int n = q.length;
+        int bribes = 0;
+        final int MAX_BRIBE = 3; // <-- changed from 2 to 3
+
+        for (int i = n - 1; i >= 0; i--) {
+            // If a person moved forward more than MAX_BRIBE positions, it's impossible
+            if (q[i] - (i + 1) > MAX_BRIBE) {
+                System.out.println("Too chaotic");
+                return;
+            }
+
+            // Only need to check people who could have bribed q[i]
+            // i.e. those originally within MAX_BRIBE positions ahead of q[i]'s current spot
+            for (int j = Math.max(0, q[i] - MAX_BRIBE); j < i; j++) {
+                if (q[j] > q[i]) {
+                    bribes++;
+                }
+            }
+        }
+
+        System.out.println(bribes);
+    }
+
+
     public static void minimumBribes2(List<Integer> q) {
         int totalBribes = 0;
 
