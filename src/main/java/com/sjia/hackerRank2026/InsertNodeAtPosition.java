@@ -6,7 +6,7 @@ import java.io.IOException;
 public class InsertNodeAtPosition {
     // https://www.hackerrank.com/challenges/one-month-preparation-kit-insert-a-node-at-a-specific-position-in-a-linked-list
 
-    class SinglyLinkedListNode {
+    static class SinglyLinkedListNode {
         public int data;
         public SinglyLinkedListNode next;
 

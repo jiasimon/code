@@ -51,7 +51,7 @@ public class CounterGame {
         }
 
 //        return (turns % 2 == 1) ? "Louise" : "Richard";
-        
+
     }
 
     public static void main(String[] args) {

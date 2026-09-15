@@ -7,6 +7,7 @@ public class MergeTwoSortedLists {
          int data;
          SinglyLinkedListNode next;
      }
+/*
 
      SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
         // 1. Create a dummy node to act as the head of the merged list
@@ -36,6 +37,7 @@ public class MergeTwoSortedLists {
         return dummy.next;
     }
 
+*/
 
 
 }
