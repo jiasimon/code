@@ -3,6 +3,7 @@ package com.sjia.hackerRank2026;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -43,6 +44,21 @@ public class PickingNumbers {
 
         int res = 0;
         for (int i = 0; i < 101; i++) {
+            res = Math.max(res, freq[i] + freq[i + 1]);
+        }
+        return res;
+    }
+
+
+    public static int pickingNumbersByMax(List<Integer> a) {
+        if (a.isEmpty()) return 0;
+
+        int max = Collections.max(a);
+        int[] freq = new int[max + 2];
+        for (int v : a) freq[v]++;
+
+        int res = 0;
+        for (int i = 0; i <= max; i++) {
             res = Math.max(res, freq[i] + freq[i + 1]);
         }
         return res;
