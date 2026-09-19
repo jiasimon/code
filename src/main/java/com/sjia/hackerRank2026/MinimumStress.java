@@ -34,6 +34,92 @@ public class MinimumStress {
         }
     }
 
+    /*
+
+            static class Edge {
+                int u;
+                int v;
+                int weight;
+        Edge(int u, int v, int weight) {
+                    this.u = u;
+                    this.v = v;
+                    this.weight = weight;
+                }
+            }
+        static class UnionFind {
+                private int[] parent;
+                private int[] rank;
+        UnionFind(int n) {
+                    parent = new int[n];
+                    rank = new int[n];
+        for (int i = 0; i < n; i++) {
+                        parent[i] = i;
+                    }
+                }
+        int find(int x) {
+                    if (parent[x] != x) {
+                        parent[x] = find(parent[x]); // Path compression
+                    }
+        return parent[x];
+                }
+        boolean union(int a, int b) {
+                    int rootA = find(a);
+                    int rootB = find(b);
+        if (rootA == rootB) {
+                        return false;
+                    }
+        // Union by rank
+                    if (rank[rootA] < rank[rootB]) {
+                        parent[rootA] = rootB;
+                    } else if (rank[rootA] > rank[rootB]) {
+                        parent[rootB] = rootA;
+                    } else {
+                        parent[rootB] = rootA;
+                        rank[rootA]++;
+                    }
+        return true;
+                }
+        boolean connected(int a, int b) {
+                    return find(a) == find(b);
+                }
+            }
+        public static int getMinimumStress(
+                    int n,
+                    List<List<Integer>> edges,
+                    int source,
+                    int destination) {
+        // Convert input into Edge objects
+                List<Edge> edgeList = new ArrayList<>();
+        for (List<Integer> edge : edges) {
+                    int u = edge.get(0);
+                    int v = edge.get(1);
+                    int weight = edge.get(2);
+        edgeList.add(new Edge(u, v, weight));
+                }
+        // Process edges from smallest weight to largest
+                edgeList.sort(Comparator.comparingInt(e -> e.weight));
+        UnionFind uf = new UnionFind(n);
+        // Special case
+                if (source == destination) {
+                    return 0;
+                }
+        for (Edge edge : edgeList) {
+        // Add this edge to the graph
+                    uf.union(edge.u, edge.v);
+        // As soon as source and destination are connected,
+                    // this edge's weight is the minimum possible stress.
+                    if (uf.connected(source, destination)) {
+                        return edge.weight;
+                    }
+                }
+        // No path exists
+                return -1;
+            }
+        }
+
+     */
+
+
     public static int getMinimumStress(int N, List<List<Edge>> adj, int U, int V) {
         // Track the minimum bottleneck/stress needed to reach each node
         int[] minStressToNode = new int[N + 1];
