@@ -7,6 +7,7 @@ import java.util.List;
 public class CutSticks {
     // https://www.hackerrank.com/challenges/cut-the-sticks
 
+    // use equals instead of !=
     public static List<Integer> cutTheSticks(List<Integer> arr) {
         List<Integer> res = new ArrayList<>();
         arr.sort(Comparator.naturalOrder());
@@ -14,7 +15,8 @@ public class CutSticks {
         res.add(n);
 
         for (int i=1; i<n; i++) {
-            if (arr.get(i) != arr.get(i-1)) {
+            if (!arr.get(i).equals(arr.get(i-1))) {
+//            if (arr.get(i) != arr.get(i-1)) {
                 res.add(n-i);
             }
         }
