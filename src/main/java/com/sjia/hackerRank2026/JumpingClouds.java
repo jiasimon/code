@@ -19,6 +19,6 @@ public class JumpingClouds {
         return res;
     }
 
-    
+
 
 }
