@@ -9,8 +9,8 @@ public class OrganizingContainersBalls {
     public static String organizingContainers(List<List<Integer>> container) {
         int n = container.size();
 
-        long[] containerCapacities = new long[n];
-        long[] ballTypeCounts = new long[n];
+        long[] containerCapacities = new long[n]; // total balls in each container
+        long[] ballTypeCounts = new long[n];    // total balls of each type, across all containers
 
         // Calculate the row sums (capacities) and column sums (ball types)
         for (int i = 0; i < n; i++) {

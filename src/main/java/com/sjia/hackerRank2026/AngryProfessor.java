@@ -14,5 +14,5 @@ public class AngryProfessor {
         else return "YES";
     }
 
-    
+
 }
