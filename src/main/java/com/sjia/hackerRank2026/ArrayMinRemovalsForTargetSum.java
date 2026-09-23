@@ -3,7 +3,7 @@ package com.sjia.hackerRank2026;
 public class ArrayMinRemovalsForTargetSum {
     // give int[] and a target, remove either left most or right most, find the minimum removal
 
-        // totalSum - k,  
+        // totalSum - k,
         public static int minOperations(int[] nums, int k) {
             int totalSum = 0;
             int n = nums.length;
@@ -42,11 +42,54 @@ public class ArrayMinRemovalsForTargetSum {
 
             // 4. Minimum removals = total length - maximum remaining window length
             return maxLen == -1 ? -1 : n - maxLen;
-
-
         }
 
-        public static void main(String[] args) {
+    public static int minOperationsSlidingWindow(int[] nums, int k) {
+        int totalSum = 0;
+        int n = nums.length;
+
+        for (int num : nums) {
+            totalSum += num;
+        }
+
+        // The sum of the remaining middle subarray needed
+        int targetSubarraySum = totalSum - k;
+
+        // If target is less than 0, k is larger than the total array sum
+        if (targetSubarraySum < 0) {
+            return -1;
+        }
+
+        // If targetSubarraySum is 0, we must remove all elements
+        if (targetSubarraySum == 0) {
+            return n;
+        }
+
+        int left = 0;
+        int currentSum = 0;
+        int maxLen = -1;
+
+        // Sliding window to find the longest subarray with sum equal to targetSubarraySum
+        for (int right = 0; right < n; right++) {
+            currentSum += nums[right];
+
+            while (currentSum > targetSubarraySum && left <= right) {
+                currentSum -= nums[left];
+                left++;
+            }
+
+            if (currentSum == targetSubarraySum) {
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+        }
+
+        // Minimum removals = total length - maximum remaining window length
+        return maxLen == -1 ? -1 : n - maxLen;
+    }
+
+
+
+    public static void main(String[] args) {
             int[] arr1 = {3, 4, 1, 3, 2};
             int k1 = 5;
             System.out.println("Result: " + minOperations(arr1, k1)); // Output: 2
