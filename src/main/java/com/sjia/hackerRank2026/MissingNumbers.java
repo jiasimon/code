@@ -1,5 +1,6 @@
 package com.sjia.hackerRank2026;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MissingNumbers {
