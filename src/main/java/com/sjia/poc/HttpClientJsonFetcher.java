@@ -11,10 +11,11 @@ public class HttpClientJsonFetcher {
         public static void main(String[] args) {
             // 1. Create the HTTP Client
             HttpClient client = HttpClient.newHttpClient();
+            String url = "https://jsonmock.hackerrank.com/api/universities";
 
             // 2. Build the request with JSON headers
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://api.example.com/data"))
+                    .uri(URI.create(url))
                     .header("Accept", "application/json") // Request JSON from the server
                     .GET()
                     .build();
@@ -34,7 +35,7 @@ public class HttpClientJsonFetcher {
                 e.printStackTrace();
             }
         }
-    
+
 
 
 
