@@ -6,7 +6,7 @@ public class FunnyString {
     // Failed on "uwa" s = "uwa", diffs: |w-u|=2, |a-w|=22 → diff array [2, 22]
     // reverse diff array [22, 2]
 
-    public static String funnyString(String s) {
+    public static String funnyString_incorrect(String s) {
         // Write your code here
         StringBuffer diff_sb = new StringBuffer();
         for (int i=0; i< s.length()-1; i++) {
@@ -24,5 +24,16 @@ public class FunnyString {
             return "Not Funny";
         }
     }
+
+    public static String funnyString(String s) {
+        int n = s.length();
+        for (int i=1; i<n ; i++) {
+            int diff = Math.abs(s.charAt(i) - s.charAt(i - 1));
+            int reverseDiff = Math.abs(s.charAt(n-i) - s.charAt(n-i-1));
+            if(diff != reverseDiff) return "Not Funny";
+        }
+        return "Funny";
+    }
+    
 
 }
