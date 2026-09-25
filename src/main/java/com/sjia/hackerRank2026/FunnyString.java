@@ -34,6 +34,6 @@ public class FunnyString {
         }
         return "Funny";
     }
-    
+
 
 }
