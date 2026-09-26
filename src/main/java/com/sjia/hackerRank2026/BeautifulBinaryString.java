@@ -20,5 +20,7 @@ public class BeautifulBinaryString {
         return count;
     }
 
-    
+    public static int beautifulBinaryString_math(String b) {
+        return (b.length() - b.replaceAll("010", "").length()) / 3;
+    }
 }
